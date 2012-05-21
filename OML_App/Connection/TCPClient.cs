@@ -12,10 +12,16 @@ using Android.Widget;
 using System.Net.Sockets;
 using System.Net;
 using System.Threading;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.IO;
 
 namespace OML_App.Connection
 {
-    //The commands for interaction between the server and the client
+    
+  
+    /// <summary>
+    /// never used
+    /// </summary>
     enum Command
     {
         Login,      //Log into the server
@@ -25,36 +31,46 @@ namespace OML_App.Connection
         Null        //No command
     }
 
-    public class TCPClient
+    /// <summary>
+    /// setting up client en connection to server
+    /// </summary>
+    public class TCPClient 
     {
+        #region Variables
         Activity1 MainAct;
         public Socket clientSocket;
-        public string strName = "Test ReintJan";
-
+        Data Liefdes_brief = new Data();
+        string Ip_Adress;
         private byte[] byteData = new byte[1024];
-
-        public TCPClient(Activity1 Act)
+        int Port;
+        #endregion
+      
+        #region Setting_Up_Client
+        public TCPClient(Activity1 Act, string ip_adress, int port)
         {
+            this.Ip_Adress = ip_adress;
+            this.Port = port;
             this.MainAct = Act;
-            Connect("141.252.221.71");
+            Connect();
+            Thread newThread = new Thread(new ThreadStart(Run));
+            newThread.Start(); 
         }
+        #endregion
 
-        public void Connect(string ipadress)
+        public void Connect()
         {
             try
             {
                 clientSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-
-                IPAddress ipAddress = IPAddress.Parse(ipadress);
+                IPAddress ipAddress = IPAddress.Parse(Ip_Adress);
                 //Server is listening on port 1000
-                IPEndPoint ipEndPoint = new IPEndPoint(ipAddress, 1234);
-
+                IPEndPoint ipEndPoint = new IPEndPoint(ipAddress, Port);
                 //Connect to the server
-                clientSocket.BeginConnect(ipEndPoint, new AsyncCallback(OnConnect), null);
+                clientSocket.Connect(ipEndPoint);
             }
             catch (Exception ex)
             {
-                System.Console.WriteLine("@ Connect:" + ex.Message);
+                Console.WriteLine(ex);
             }
         }
 
@@ -70,34 +86,16 @@ namespace OML_App.Connection
             }
         }
 
-        private void OnConnect(IAsyncResult ar)
+        private void Send()
         {
             try
             {
-                System.Console.WriteLine("@ OnConnect:" + "Start Timer");
-                Thread.Sleep(5000);
-                clientSocket.EndConnect(ar);
-
-                //We are connected so we login into the server
-                Data msgToSend = new Data();
-                msgToSend.cmdCommand = Command.Login;
-                msgToSend.strName = strName;
-                msgToSend.strMessage = null;
-
-                byte[] b = msgToSend.ToByte();
-
-                //Send the message to the server
-                clientSocket.BeginSend(b, 0, b.Length, SocketFlags.None, new AsyncCallback(OnSend), null);
-
-                //Start OnReceive
-                byteData = new byte[1024];
-                //Start listening to the data asynchronously
-                clientSocket.BeginReceive(byteData,
-                                           0,
-                                           byteData.Length,
-                                           SocketFlags.None,
-                                           new AsyncCallback(OnReceive),
-                                           null);
+                BinaryFormatter bf = new BinaryFormatter();
+                MemoryStream ms = new MemoryStream();
+                bf.Serialize(ms, Liefdes_brief.SetPacket(2, 8, 9, 8, 0, 10, 0));
+                byte[] henk = ms.ToArray();
+                //clientSocket.EndConnect(ar);
+                clientSocket.BeginSend(henk,0 ,henk.Length, SocketFlags.None, null, null );
             }
             catch (Exception ex)
             {
@@ -105,49 +103,19 @@ namespace OML_App.Connection
             }
         }
 
-        private void OnReceive(IAsyncResult ar)
+        private void Receive()
         {
             try
             {
-                clientSocket.EndReceive(ar);
-
-                Data msgReceived = new Data(byteData);
-                //Accordingly process the message received
-                switch (msgReceived.cmdCommand)
-                {
-                    case Command.Login:
-                        //lstChatters.Items.Add(msgReceived.strName);
-                        break;
-
-                    case Command.Logout:
-                        //lstChatters.Items.Remove(msgReceived.strName);
-                        break;
-
-                    case Command.Message:
-                        break;
-
-                    case Command.List:
-                        //lstChatters.Items.AddRange(msgReceived.strMessage.Split('*'));
-                        //lstChatters.Items.RemoveAt(lstChatters.Items.Count - 1);
-                        //txtChatBox.Text += "<<<" + strName + " has joined the room>>>\r\n";
-                        break;
-                }
-
-                if (msgReceived.strMessage != null && msgReceived.cmdCommand != Command.List)
-                {
-                    //MainAct.LogText += msgReceived.strMessage + "\r\n";
-                    //MainAct.OnSetText();
-
-                }
-
                 byteData = new byte[1024];
 
                 clientSocket.BeginReceive(byteData,
-                                          0,
-                                          byteData.Length,
-                                          SocketFlags.None,
-                                          new AsyncCallback(OnReceive),
-                                          null);
+                                           0,
+                                           byteData.Length,
+                                           SocketFlags.None,
+                                           null,
+                                           null);
+                Liefdes_brief.GetPackage(byteData);
 
             }
             catch (ObjectDisposedException)
@@ -156,6 +124,11 @@ namespace OML_App.Connection
             {
                 System.Console.WriteLine("@ OnReceive:" + ex.Message);
             }
+        }
+
+        public void Run()
+        {
+            
         }
     }
 }
