@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/background"
+    android:padding="8dp">
+    <RelativeLayout
+        android:id="@+id/menuBoxMain"
+        android:layout_width="176dp"
+        android:layout_height="314dp"
+        android:background="@drawable/menubox"
+        android:paddingBottom="32dp"
+        android:paddingLeft="17dp"
+        android:paddingRight="17dp"
+        android:paddingTop="32dp">
+        <Button
+            android:id="@+id/liveButton"
+            android:layout_width="142dp"
+            android:layout_height="55dp"
+            android:background="@drawable/livebutton" />
+        <Button
+            android:id="@+id/recordedButton"
+            android:layout_width="142dp"
+            android:layout_height="55dp"
+            android:layout_below="@id/liveButton"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/recordedbutton" />
+        <Button
+            android:id="@+id/settingsButton"
+            android:layout_width="142dp"
+            android:layout_height="55dp"
+            android:layout_below="@id/recordedButton"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/settingsbutton" />
+    </RelativeLayout>
+</RelativeLayout>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/background">
+    <RelativeLayout
+        android:minWidth="25px"
+        android:minHeight="25px"
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/relativeLayout1">
+        <TextView
+            android:text="Select Car"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView1"
+            android:paddingLeft="20dp"
+            android:paddingTop="30dp"
+            android:textSize="30px" />
+        <TextView
+            android:text="IP Address:"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView2"
+            android:layout_marginLeft="25.0dp"
+            android:layout_marginTop="75.0dp"
+            android:textSize="20px"
+            android:enabled="true"
+            android:visibility="visible" />
+        <EditText
+            android:layout_width="301.0dp"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/textView2"
+            android:id="@+id/ipaddress"
+            android:layout_marginTop="72.0dp"
+            android:layout_marginLeft="10.0dp"
+            android:enabled="true"
+            android:visibility="visible" />
+        <TextView
+            android:text="Port:"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textView2"
+            android:id="@+id/textView3"
+            android:layout_marginTop="30.0dp"
+            android:layout_marginLeft="26.0dp"
+            android:textSize="20px"
+            android:enabled="true"
+            android:visibility="visible" />
+        <EditText
+            android:inputType="textPostalAddress"
+            android:layout_width="300.0dp"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/textView3"
+            android:id="@+id/port"
+            android:layout_below="@id/ipaddress"
+            android:layout_marginLeft="68.0dp"
+            android:enabled="true"
+            android:visibility="visible"
+            android:layout_marginTop="16.0dp" />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textView3"
+            android:id="@+id/connectbutton"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="20.0dp"
+            android:background="@drawable/connectbutton" />
+    </RelativeLayout>
+</LinearLayout>
