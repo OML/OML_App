@@ -21,12 +21,8 @@ namespace OML_App
 	
 	    public Point _touchingPoint = new Point(INIT_X, INIT_Y);
 	
-	    private Boolean _dragging = false;
-	    private MotionEvent lastEvent;
-	
 	    public int _power = 0;
 
-        private float mLastTouchX;
         private float mLastTouchY;
         private int mActivePointerId;
 
@@ -61,8 +57,12 @@ namespace OML_App
             {
                 case MotionEventActions.Down:
                     //remember where we started
-                    mLastTouchX = events.GetX();
                     mLastTouchY = events.GetY();
+
+                    if (mLastTouchY < 0)
+                        mLastTouchY = 0;
+                    else if (mLastTouchY > 179)
+                        mLastTouchY = 179;
 
                     //save the ID of this pointer
                     mActivePointerId = events.GetPointerId(0);
@@ -71,20 +71,18 @@ namespace OML_App
                 case MotionEventActions.Move:
                     //find the index of the activepointer and fetch its position
                     int pointerIndex = events.FindPointerIndex(mActivePointerId);
-
-                    float x = events.GetX(pointerIndex);
+                    
+                    //only get the vertical movement
                     float y = events.GetY(pointerIndex);
 
-                    //calc distance moved
-                    float dx = x - mLastTouchX;
-                    float dy = y - mLastTouchY;
-
-                    //move object
-                    _touchingPoint.X += (int)dx;
-                    _touchingPoint.Y += (int)dy;
+                    if (y < 13)
+                        y = 13;
+                    else if (y > 179)
+                        y = 179;
+                    else
+                        _touchingPoint.Y = (int)y;
 
                     //remember this touch point for the next move event
-                    mLastTouchX = x;
                     mLastTouchY = y;
 
                     //invalidate to request a redraw
@@ -102,20 +100,22 @@ namespace OML_App
             }
 		
 		    //determine the percentage of power forward/backward
-            //-89.5 > 0 < +89.5
-            _power = Convert.ToInt32(_touchingPoint.Y - 89.5f);
+            //-83 < 0 > 83
+            _power = Convert.ToInt32((_touchingPoint.Y - 13) - 83);
 
             //make sure we can return a power value for the engine between 100 and - 100
             //100 being max power forwards, -100 max power reverse.
-            if (_power < 0)
+            if (_power < -1)
             {
-                _power = Convert.ToInt32((Math.Abs(_power / 89.5f)) * 100);
+                _power = Convert.ToInt32((Math.Abs(_power / 83)) * 100);
             }
-            else if (_power > 0)
+            else if (_power > 1)
             {
-                _power = Convert.ToInt32((_power / 89.5f) * 100);
+                _power = Convert.ToInt32((_power / 83) * 100);
                 _power *= -1;
             }
+            else
+                _power = 0;
 	    }
 
         protected override void OnDraw(Canvas canvas)
@@ -127,8 +127,11 @@ namespace OML_App
                 //if (((View)this.GetParent()).getVisibility() == VISIBLE && ((View)this.getParent()).getId() != id.bigSlider)
                 //{
                 //draw the dragable slider(s)
-                //canvas.DrawBitmap(BitmapFactory.DecodeResource(Resource.Drawable.slidersmall, _touchingPoint.X, _touchingPoint.Y));            
-                canvas.DrawBitmap(BitmapFactory.DecodeResource(Resources, Resource.Drawable.slidersmall), _touchingPoint.X, _touchingPoint.Y, null);
+                //canvas.DrawBitmap(BitmapFactory.DecodeResource(Resource.Drawable.slidersmall, _touchingPoint.X, _touchingPoint.Y));    
+
+                //draw the y with minus 13 to make it center.
+                canvas.DrawBitmap(BitmapFactory.DecodeResource(Resources, Resource.Drawable.slidersmall), _touchingPoint.X, _touchingPoint.Y - 13, null);
+
                 //}
                 //else
                 //{

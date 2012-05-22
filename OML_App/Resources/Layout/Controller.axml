@@ -14,8 +14,10 @@
         <RelativeLayout
             android:id="@+id/menuBox"
             android:layout_width="176dp"
-            android:layout_height="314dp"
-            android:background="@drawable/menubox3"
+            android:layout_height="249dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/menubox2"
             android:paddingLeft="17dp"
             android:paddingRight="17dp"
             android:paddingTop="32dp"
@@ -28,14 +30,27 @@
             android:background="@drawable/sliderBoxL"
             android:layout_below="@id/menuBox"
             android:layout_marginTop="8dp"
+            android:layout_marginLeft="8dp"
             android:paddingTop="25dp"
-            android:paddingLeft="34dp"
-            android:paddingRight="32dp"
-            android:paddingBottom="25dp">
+            android:paddingLeft="33dp">
             <RelativeLayout
                 android:id="@+id/smallSlider0"
                 android:layout_width="44dp"
-                android:layout_height="205dp" />
+                android:layout_height="205dp">
+                <oml_app.SliderControls
+                            android:id="@+id/sliderControls1"
+                            android:layout_width="fill_parent"
+                            android:layout_height="fill_parent"/>
+            </RelativeLayout>
+            <TextView
+              android:id="@+id/powerTextView0"
+              android:layout_width="60dp"
+              android:layout_height="40dp"
+              android:layout_toRightOf="@id/smallSlider0"
+              android:layout_marginLeft="8dp"
+              android:background="#ffffff"
+              android:textColor="#000000"
+              android:textSize="80sp"/>
         </RelativeLayout>
     <!--<RelativeLayout
                 android:id="@+id/smallSliderLayout"
@@ -84,9 +99,10 @@
         <ViewFlipper
             android:id="@+id/flipper"
             android:layout_width="640dp"
-            android:layout_height="584dp"
+            android:layout_height="520dp"
             android:layout_toRightOf="@id/menuBox"
-            android:layout_marginLeft="8dp">
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp">
             <RelativeLayout
                 android:id="@+id/overView"
                 android:layout_width="fill_parent"
@@ -129,10 +145,11 @@
         <RelativeLayout
             android:id="@+id/sideBox"
             android:layout_width="176dp"
-            android:layout_height="314dp"
+            android:layout_height="249dp"
             android:layout_toRightOf="@id/flipper"
             android:layout_marginLeft="8dp"
-            android:background="@drawable/menubox3"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/menubox2"
             android:paddingTop="32dp"
             android:paddingLeft="17dp"
             android:paddingRight="17dp"
@@ -160,13 +177,17 @@
             android:layout_marginTop="8dp"
             android:layout_marginLeft="8dp"
             android:paddingTop="25dp"
-            android:paddingLeft="91dp"
-            android:paddingRight="32dp"
-            android:paddingBottom="25dp">
+            android:paddingRight="39dp"
+            android:paddingLeft="91dp">
             <RelativeLayout
                 android:id="@+id/smallSlider0"
                 android:layout_width="44dp"
-                android:layout_height="205dp" />
+                android:layout_height="205dp">
+                <oml_app.SliderControls
+                      android:id="@+id/sliderControls1"
+                      android:layout_width="fill_parent"
+                      android:layout_height="fill_parent"/>
+            </RelativeLayout>
         </RelativeLayout>
     </RelativeLayout>
 </LinearLayout>

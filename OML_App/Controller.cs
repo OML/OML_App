@@ -27,8 +27,8 @@ namespace OML_App
 
 
             //Setup Connect Button
-            Button btnOpenNewActivity1 = FindViewById<Button>(Resource.Id.flipButton);
-            btnOpenNewActivity1.Click += new EventHandler(FlipButton);
+            //Button btnOpenNewActivity1 = FindViewById<Button>(Resource.Id.flipButton);
+            //btnOpenNewActivity1.Click += new EventHandler(FlipButton);
             
         }
 
