@@ -93,7 +93,7 @@ namespace OML_App.Connection
         {
             try
             {
-                //Singleton.Instance.GetType
+                Singleton.Instance.Y = 4;
                 BinaryFormatter bf = new BinaryFormatter();
                 MemoryStream ms = new MemoryStream();
                 bf.Serialize(ms, Liefdes_brief.SetPacket(2, 8, 9, 8, 0, 10, 0));

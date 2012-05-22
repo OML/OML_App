@@ -66,7 +66,7 @@ namespace OML_App
                 return true;
             else
                 connect = new TCPClient(ip, portnr);
-                
+              
                 //TODO Make Test!
                 return false;
 
