@@ -177,6 +177,10 @@
     <AndroidResource Include="Resources\Drawable\sliderBoxL.png" />
     <AndroidResource Include="Resources\Drawable\sliderBoxR.png" />
     <AndroidResource Include="Resources\Drawable\menubox3.png" />
+    <AndroidResource Include="Resources\Drawable\batterybutton.png" />
+    <AndroidResource Include="Resources\Drawable\batterybutton_pressed.png" />
+    <AndroidResource Include="Resources\Drawable\overviewbutton.png" />
+    <AndroidResource Include="Resources\Drawable\overviewbutton_pressed.png" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />

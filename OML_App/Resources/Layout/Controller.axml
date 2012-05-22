@@ -4,48 +4,39 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:background="@drawable/background">
-  <RelativeLayout
-      android:minWidth="25px"
-      android:minHeight="25px"
-      android:layout_width="fill_parent"
-      android:layout_height="match_parent"
-      android:id="@+id/startlayout">
-    <!-- MenuBox layout, includes 4 buttons -->
     <RelativeLayout
-        android:id="@+id/menuBox"
-        android:layout_width="176dp"
-        android:layout_height="314dp"
-        android:background="@drawable/menubox3"
-        android:paddingLeft="17dp"
-        android:paddingRight="17dp"
-        android:paddingTop="32dp"
-        android:paddingBottom="32dp">
-      <Button
-          android:id="@+id/sliderButton"
-          android:layout_width="142dp"
-          android:layout_height="55dp"
-          android:background="@drawable/startbutton" />
-    </RelativeLayout>
+        android:minWidth="25px"
+        android:minHeight="25px"
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/startlayout">
+    <!-- MenuBox layout -->
+        <RelativeLayout
+            android:id="@+id/menuBox"
+            android:layout_width="176dp"
+            android:layout_height="314dp"
+            android:background="@drawable/menubox3"
+            android:paddingLeft="17dp"
+            android:paddingRight="17dp"
+            android:paddingTop="32dp"
+            android:paddingBottom="32dp" />
     <!-- SliderBox layout, contains sliders to control CARMEN -->
-    <RelativeLayout
-        android:id="@+id/slidersBox0"
-        android:layout_width="176dp"
-        android:layout_height="262dp"
-        android:background="@drawable/sliderBoxL"
-        android:layout_below="@id/menuBox"
-        android:layout_marginTop="8dp"
-        android:paddingTop="25dp"
-        android:paddingLeft="34dp"
-        android:paddingRight="32dp"
-        android:paddingBottom="25dp">
-
-      <RelativeLayout
-          android:id="@+id/smallSlider0"
-          android:layout_width="44dp"
-          android:layout_height="205dp">
-      </RelativeLayout>
-    </RelativeLayout>
-
+        <RelativeLayout
+            android:id="@+id/slidersBox0"
+            android:layout_width="176dp"
+            android:layout_height="262dp"
+            android:background="@drawable/sliderBoxL"
+            android:layout_below="@id/menuBox"
+            android:layout_marginTop="8dp"
+            android:paddingTop="25dp"
+            android:paddingLeft="34dp"
+            android:paddingRight="32dp"
+            android:paddingBottom="25dp">
+            <RelativeLayout
+                android:id="@+id/smallSlider0"
+                android:layout_width="44dp"
+                android:layout_height="205dp" />
+        </RelativeLayout>
     <!--<RelativeLayout
                 android:id="@+id/smallSliderLayout"
                 android:layout_width="fill_parent"
@@ -89,42 +80,41 @@
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentTop="true" />
             </RelativeLayout>-->
-
     <!-- ViewBox layout, will show all the view here -->
-    <ViewFlipper
-        android:id="@+id/flipper"
-        android:layout_width="640dp"
-        android:layout_height="584dp"
-        android:layout_toRightOf="@id/menuBox"
-        android:layout_marginLeft="8dp">
-      <RelativeLayout
-          android:id="@+id/overView"
-          android:layout_width="fill_parent"
-          android:layout_height="fill_parent"
-          android:background="@drawable/AchtergrondAppGrijs">
-        <TextView
-            android:id="@+id/testtext"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="15dp"
-            android:textSize="80sp" />
-      </RelativeLayout>
-      <RelativeLayout
-          android:id="@+id/battery"
-          android:layout_width="fill_parent"
-          android:layout_height="fill_parent"
-          android:background="@drawable/AchtergrondAppGrijs">
-        <TextView
-            android:id="@+id/battext"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="15dp"
-            android:textColor="#000000"
-            android:textSize="80sp" />
-      </RelativeLayout>
-    </ViewFlipper>
+        <ViewFlipper
+            android:id="@+id/flipper"
+            android:layout_width="640dp"
+            android:layout_height="584dp"
+            android:layout_toRightOf="@id/menuBox"
+            android:layout_marginLeft="8dp">
+            <RelativeLayout
+                android:id="@+id/overView"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:background="@drawable/AchtergrondAppGrijs">
+                <TextView
+                    android:id="@+id/testtext"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="15dp"
+                    android:textSize="80sp" />
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/battery"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:background="@drawable/AchtergrondAppGrijs">
+                <TextView
+                    android:id="@+id/battext"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="15dp"
+                    android:textColor="#000000"
+                    android:textSize="80sp" />
+            </RelativeLayout>
+        </ViewFlipper>
     <!--<RelativeLayout
             android:id="@+id/viewBox"
             android:layout_width="640dp"
@@ -136,36 +126,47 @@
     <!-- BottomBox layout, will show data like speed etc -->
     <!-- SideBox layout, will show specified data -->
     <!-- JoyBox layout, will handle joystick -->
-    <RelativeLayout
-        android:id="@+id/sideBox"
-        android:layout_width="176dp"
-        android:layout_height="314dp"
-        android:layout_toRightOf="@id/flipper"
-        android:layout_marginLeft="8dp"
-        android:background="@drawable/menubox3"
-        android:minWidth="25px"
-        android:minHeight="25px">
+        <RelativeLayout
+            android:id="@+id/sideBox"
+            android:layout_width="176dp"
+            android:layout_height="314dp"
+            android:layout_toRightOf="@id/flipper"
+            android:layout_marginLeft="8dp"
+            android:background="@drawable/menubox3"
+            android:paddingTop="32dp"
+            android:paddingLeft="17dp"
+            android:paddingRight="17dp"
+            android:paddingBottom="32dp">
+            <Button
+                android:id="@+id/overviewButton"
+                android:layout_width="142dp"
+                android:layout_height="55dp"
+                android:background="@drawable/overviewbutton" />
+            <Button
+                android:id="@+id/batteryButton"
+                android:layout_width="142dp"
+                android:layout_height="55dp"
+                android:layout_marginTop="8dp"
+                android:layout_below="@id/overviewButton"
+                android:background="@drawable/batterybutton" />
+        </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/slidersBox1"
+            android:layout_width="176dp"
+            android:layout_height="262dp"
+            android:background="@drawable/sliderBoxR"
+            android:layout_below="@id/sideBox"
+            android:layout_toRightOf="@id/flipper"
+            android:layout_marginTop="8dp"
+            android:layout_marginLeft="8dp"
+            android:paddingTop="25dp"
+            android:paddingLeft="91dp"
+            android:paddingRight="32dp"
+            android:paddingBottom="25dp">
+            <RelativeLayout
+                android:id="@+id/smallSlider0"
+                android:layout_width="44dp"
+                android:layout_height="205dp" />
+        </RelativeLayout>
     </RelativeLayout>
-
-    <RelativeLayout
-        android:id="@+id/slidersBox1"
-        android:layout_width="176dp"
-        android:layout_height="262dp"
-        android:background="@drawable/sliderBoxR"
-        android:layout_below="@id/sideBox"
-        android:layout_toRightOf="@id/flipper"
-        android:layout_marginTop="8dp"
-        android:layout_marginLeft="8dp"
-        android:paddingTop="25dp"
-        android:paddingLeft="91dp"
-        android:paddingRight="32dp"
-        android:paddingBottom="25dp">
-
-      <RelativeLayout
-          android:id="@+id/smallSlider0"
-          android:layout_width="44dp"
-          android:layout_height="205dp">
-      </RelativeLayout>
-    </RelativeLayout>
-  </RelativeLayout>
 </LinearLayout>
