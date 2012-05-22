@@ -61,11 +61,11 @@ namespace OML_App
         private bool CheckIP()
         {
             string ip = ipaddress.Text;
-            int portnr = Convert.ToInt16(port.Text);
+            //int portnr = Convert.ToInt16(port.Text);
             if (ip == "1234")
                 return true;
             else
-                connect = new TCPClient(ip, portnr);
+                connect = new TCPClient(ip, 12);
               
                 //TODO Make Test!
                 return false;
