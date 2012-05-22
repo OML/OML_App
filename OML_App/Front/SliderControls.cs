@@ -17,14 +17,18 @@ namespace OML_App
     public class SliderControls : View, View.IOnTouchListener
     {
         public static int INIT_X = 0;
-	    public static int INIT_Y = 179;
+	    public static int INIT_Y = 89;
 	
 	    public Point _touchingPoint = new Point(INIT_X, INIT_Y);
 	
 	    private Boolean _dragging = false;
 	    private MotionEvent lastEvent;
 	
-	    public float percentage = 0;
+	    public int _power = 0;
+
+        private float mLastTouchX;
+        private float mLastTouchY;
+        private int mActivePointerId;
 
         public SliderControls(Context context, IAttributeSet attrs) :
             base(context, attrs)
@@ -53,52 +57,65 @@ namespace OML_App
 
         public void update(MotionEvent events)
 	    {
-		    if (events == null && lastEvent == null)
-			    return;
-		
-		    else if(events == null && lastEvent != null)
-			    events = lastEvent;
-		
-		    else
-			    lastEvent = events;
-
-            switch (events.Action)
+            switch (events.Action & events.ActionMasked)
             {
                 case MotionEventActions.Down:
-                    if (events.GetX() < 250 && events.GetY() > 300)
-                    {
-                        _dragging = true;
-                    }
+                    //remember where we started
+                    mLastTouchX = events.GetX();
+                    mLastTouchY = events.GetY();
+
+                    //save the ID of this pointer
+                    mActivePointerId = events.GetPointerId(0);
                     break;
 
                 case MotionEventActions.Move:
-                    if (events.GetX() < 250 && events.GetY() > 300)
-                    {
-                        _dragging = true;
-                    }
+                    //find the index of the activepointer and fetch its position
+                    int pointerIndex = events.FindPointerIndex(mActivePointerId);
+
+                    float x = events.GetX(pointerIndex);
+                    float y = events.GetY(pointerIndex);
+
+                    //calc distance moved
+                    float dx = x - mLastTouchX;
+                    float dy = y - mLastTouchY;
+
+                    //move object
+                    _touchingPoint.X += (int)dx;
+                    _touchingPoint.Y += (int)dy;
+
+                    //remember this touch point for the next move event
+                    mLastTouchX = x;
+                    mLastTouchY = y;
+
+                    //invalidate to request a redraw
+                    Invalidate();
                     break;
 
                 case MotionEventActions.Up:
-                    _dragging = false;
-                    _touchingPoint.Y = 179 / 2;
+                    //reset our touching point on release
+                    _touchingPoint = new Point(0, 89);
+                    break;
+
+                case MotionEventActions.Cancel:
+                    _touchingPoint = new Point(0, 89);
                     break;
             }
 		
-		    if ( _dragging )
-		    {
-			    // get the position
-			    _touchingPoint.X = INIT_X;
-			
-			    if ((int)events.GetY() < 0)
-				    _touchingPoint.Y = 0;
-			    else if((int)events.GetY() > 179)
-				    _touchingPoint.Y = 179;
-			    else
-				    _touchingPoint.Y = (int)events.GetY();
-		    }
-		
-		    //determine the percentage of power
-		    percentage = ((Math.Abs(_touchingPoint.Y - 179) / 179) * 100);
+		    //determine the percentage of power forward/backward
+            //-89.5 > 0 < +89.5
+            _power = Convert.ToInt32(_touchingPoint.Y - 89.5f);
+
+            //make sure we can return a power value for the engine between 100 and - 100
+            //100 being max power forwards, -100 max power reverse.
+            if (_power < 0)
+            {
+                _power = Convert.ToInt32((Math.Abs(_power / 89.5f)) * 100);
+            }
+            else if (_power > 0)
+            {
+                _power = Convert.ToInt32((_power / 89.5f) * 100);
+                _power *= -1;
+            }
 	    }
 
         protected override void OnDraw(Canvas canvas)
@@ -120,6 +137,7 @@ namespace OML_App
                 //}
                 //for debugging in edit mode
             }
+            //for debugging purposes
             else
             {
                 Paint innerCirclePaint = new Paint();
