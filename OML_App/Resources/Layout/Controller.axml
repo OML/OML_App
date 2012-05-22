@@ -4,54 +4,54 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:background="@drawable/background">
-    <RelativeLayout
-        android:minWidth="25px"
-        android:minHeight="25px"
-        android:layout_width="fill_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/startlayout">
+  <RelativeLayout
+      android:minWidth="25px"
+      android:minHeight="25px"
+      android:layout_width="fill_parent"
+      android:layout_height="match_parent"
+      android:id="@+id/startlayout">
     <!-- MenuBox layout -->
-        <RelativeLayout
-            android:id="@+id/menuBox"
-            android:layout_width="176dp"
-            android:layout_height="249dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="8dp"
-            android:background="@drawable/menubox2"
-            android:paddingLeft="17dp"
-            android:paddingRight="17dp"
-            android:paddingTop="32dp"
-            android:paddingBottom="32dp" />
+    <RelativeLayout
+        android:id="@+id/menuBox"
+        android:layout_width="176dp"
+        android:layout_height="249dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/menubox2"
+        android:paddingLeft="17dp"
+        android:paddingRight="17dp"
+        android:paddingTop="32dp"
+        android:paddingBottom="32dp" />
     <!-- SliderBox layout, contains sliders to control CARMEN -->
-        <RelativeLayout
-            android:id="@+id/slidersBox0"
-            android:layout_width="176dp"
-            android:layout_height="262dp"
-            android:background="@drawable/sliderBoxL"
-            android:layout_below="@id/menuBox"
-            android:layout_marginTop="8dp"
-            android:layout_marginLeft="8dp"
-            android:paddingTop="25dp"
-            android:paddingLeft="33dp">
-            <RelativeLayout
-                android:id="@+id/smallSlider0"
-                android:layout_width="44dp"
-                android:layout_height="205dp">
-                <oml_app.SliderControls
-                            android:id="@+id/sliderControls1"
-                            android:layout_width="fill_parent"
-                            android:layout_height="fill_parent"/>
-            </RelativeLayout>
-            <TextView
-              android:id="@+id/powerTextView0"
-              android:layout_width="60dp"
-              android:layout_height="40dp"
-              android:layout_toRightOf="@id/smallSlider0"
-              android:layout_marginLeft="8dp"
-              android:background="#ffffff"
-              android:textColor="#000000"
-              android:textSize="80sp"/>
-        </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/slidersBox0"
+        android:layout_width="176dp"
+        android:layout_height="262dp"
+        android:background="@drawable/sliderBoxL"
+        android:layout_below="@id/menuBox"
+        android:layout_marginTop="8dp"
+        android:layout_marginLeft="8dp"
+        android:paddingTop="25dp"
+        android:paddingLeft="33dp">
+      <RelativeLayout
+          android:id="@+id/smallSlider0"
+          android:layout_width="44dp"
+          android:layout_height="205dp">
+        <oml_app.SliderControls
+                    android:id="@+id/sliderControls1"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"/>
+      </RelativeLayout>
+      <TextView
+        android:id="@+id/powerTextView0"
+        android:layout_width="60dp"
+        android:layout_height="40dp"
+        android:layout_toRightOf="@id/smallSlider0"
+        android:layout_marginLeft="8dp"
+        android:background="#ffffff"
+        android:textColor="#000000"
+        android:textSize="80sp"/>
+    </RelativeLayout>
     <!--<RelativeLayout
                 android:id="@+id/smallSliderLayout"
                 android:layout_width="fill_parent"
@@ -96,41 +96,196 @@
                     android:layout_alignParentTop="true" />
             </RelativeLayout>-->
     <!-- ViewBox layout, will show all the view here -->
-        <ViewFlipper
-            android:id="@+id/flipper"
-            android:layout_width="640dp"
-            android:layout_height="520dp"
-            android:layout_toRightOf="@id/menuBox"
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="8dp">
-            <RelativeLayout
-                android:id="@+id/overView"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:background="@drawable/AchtergrondAppGrijs">
-                <TextView
-                    android:id="@+id/testtext"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginTop="15dp"
-                    android:textSize="80sp" />
-            </RelativeLayout>
-            <RelativeLayout
-                android:id="@+id/battery"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:background="@drawable/AchtergrondAppGrijs">
-                <TextView
-                    android:id="@+id/battext"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginTop="15dp"
-                    android:textColor="#000000"
-                    android:textSize="80sp" />
-            </RelativeLayout>
-        </ViewFlipper>
+    <ViewFlipper
+        android:id="@+id/flipper"
+        android:layout_width="640dp"
+        android:layout_height="520dp"
+        android:layout_toRightOf="@id/menuBox"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp">
+      <RelativeLayout
+          android:id="@+id/overView"
+          android:layout_width="fill_parent"
+          android:layout_height="fill_parent"
+          android:background="@drawable/OverViewBG">
+        <TextView
+            android:id="@+id/EngLF1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="105dp"
+            android:layout_marginLeft="105dp"
+            android:textColor="#000000"
+            android:text="2.58A"
+            android:textSize="20sp" />
+        <TextView
+              android:id="@+id/EngLF2"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_marginTop="155dp"
+              android:layout_marginLeft="105dp"
+              android:textColor="#000000"
+              android:text="18.43V"
+              android:textSize="20sp" />
+        <TextView
+              android:id="@+id/EngLF3"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_marginTop="200dp"
+              android:layout_marginLeft="105dp"
+              android:textColor="#000000"
+              android:text="43C"
+              android:textSize="20sp" />
+        <TextView
+             android:id="@+id/EngLR1"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_marginTop="370dp"
+             android:layout_marginLeft="105dp"
+             android:textColor="#000000"
+             android:text="2.58A"
+             android:textSize="20sp" />
+        <TextView
+              android:id="@+id/EngLR2"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_marginTop="420dp"
+              android:layout_marginLeft="105dp"
+              android:textColor="#000000"
+              android:text="18.30V"
+              android:textSize="20sp" />
+        <TextView
+              android:id="@+id/EngLR3"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_marginTop="465dp"
+              android:layout_marginLeft="105dp"
+              android:textColor="#000000"
+              android:text="38C"
+              android:textSize="20sp" />
+        <TextView
+              android:id="@+id/EngRF1"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_marginTop="105dp"
+              android:layout_marginLeft="470dp"
+              android:textColor="#000000"
+              android:text="1.98A"
+              android:textSize="20sp" />
+        <TextView
+              android:id="@+id/EngRF2"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_marginTop="155dp"
+              android:layout_marginLeft="470dp"
+              android:textColor="#000000"
+              android:text="5.00V"
+              android:textSize="20sp" />
+        <TextView
+              android:id="@+id/EngRF3"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_marginTop="200dp"
+              android:layout_marginLeft="470dp"
+              android:textColor="#000000"
+              android:text="27C"
+              android:textSize="20sp" />
+        <TextView
+             android:id="@+id/EngRR1"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_marginTop="370dp"
+             android:layout_marginLeft="470dp"
+             android:textColor="#000000"
+             android:text="1.84A"
+             android:textSize="20sp" />
+        <TextView
+              android:id="@+id/EngRR2"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_marginTop="420dp"
+              android:layout_marginLeft="470dp"
+              android:textColor="#000000"
+              android:text="5.00V"
+              android:textSize="20sp" />
+        <TextView
+              android:id="@+id/EngRR3"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_marginTop="465dp"
+              android:layout_marginLeft="470dp"
+              android:textColor="#000000"
+              android:text="25C"
+              android:textSize="20sp" />
+        <TextView
+              android:id="@+id/Accu1Curr"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_marginTop="240dp"
+              android:layout_marginLeft="210dp"
+              android:textColor="#000000"
+              android:text="4.58A"
+              android:textSize="20sp" />
+        <TextView
+              android:id="@+id/Accu1Voltage"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_marginTop="265dp"
+              android:layout_marginLeft="210dp"
+              android:textColor="#000000"
+              android:text="21.08V"
+              android:textSize="20sp" />
+        <TextView
+              android:id="@+id/Accu1Temp"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_marginTop="290dp"
+              android:layout_marginLeft="210dp"
+              android:textColor="#000000"
+              android:text="25C"
+              android:textSize="20sp" />
+        <TextView
+              android:id="@+id/Accu2Curr"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_marginTop="240dp"
+              android:layout_marginLeft="350dp"
+              android:textColor="#000000"
+              android:text="4.58A"
+              android:textSize="20sp" />
+        <TextView
+              android:id="@+id/Accu2Voltage"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_marginTop="265dp"
+              android:layout_marginLeft="350dp"
+              android:textColor="#000000"
+              android:text="21.20V"
+              android:textSize="20sp" />
+        <TextView
+              android:id="@+id/Accu2Temp"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_marginTop="290dp"
+              android:layout_marginLeft="350dp"
+              android:textColor="#000000"
+              android:text="28C"
+              android:textSize="20sp" />
+      </RelativeLayout>
+      <RelativeLayout
+          android:id="@+id/battery"
+          android:layout_width="fill_parent"
+          android:layout_height="fill_parent"
+          android:background="@drawable/AchtergrondAppGrijs">
+        <TextView
+            android:id="@+id/battext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:textColor="#000000"
+            android:text ="An other (Flipper) view"
+            android:textSize="25sp" />
+      </RelativeLayout>
+    </ViewFlipper>
     <!--<RelativeLayout
             android:id="@+id/viewBox"
             android:layout_width="640dp"
@@ -142,52 +297,52 @@
     <!-- BottomBox layout, will show data like speed etc -->
     <!-- SideBox layout, will show specified data -->
     <!-- JoyBox layout, will handle joystick -->
-        <RelativeLayout
-            android:id="@+id/sideBox"
-            android:layout_width="176dp"
-            android:layout_height="249dp"
-            android:layout_toRightOf="@id/flipper"
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="8dp"
-            android:background="@drawable/menubox2"
-            android:paddingTop="32dp"
-            android:paddingLeft="17dp"
-            android:paddingRight="17dp"
-            android:paddingBottom="32dp">
-            <Button
-                android:id="@+id/overviewButton"
-                android:layout_width="142dp"
-                android:layout_height="55dp"
-                android:background="@drawable/overviewbutton" />
-            <Button
-                android:id="@+id/batteryButton"
-                android:layout_width="142dp"
-                android:layout_height="55dp"
-                android:layout_marginTop="8dp"
-                android:layout_below="@id/overviewButton"
-                android:background="@drawable/batterybutton" />
-        </RelativeLayout>
-        <RelativeLayout
-            android:id="@+id/slidersBox1"
-            android:layout_width="176dp"
-            android:layout_height="262dp"
-            android:background="@drawable/sliderBoxR"
-            android:layout_below="@id/sideBox"
-            android:layout_toRightOf="@id/flipper"
-            android:layout_marginTop="8dp"
-            android:layout_marginLeft="8dp"
-            android:paddingTop="25dp"
-            android:paddingRight="39dp"
-            android:paddingLeft="91dp">
-            <RelativeLayout
-                android:id="@+id/smallSlider0"
-                android:layout_width="44dp"
-                android:layout_height="205dp">
-                <oml_app.SliderControls
-                      android:id="@+id/sliderControls1"
-                      android:layout_width="fill_parent"
-                      android:layout_height="fill_parent"/>
-            </RelativeLayout>
-        </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/sideBox"
+        android:layout_width="176dp"
+        android:layout_height="249dp"
+        android:layout_toRightOf="@id/flipper"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/menubox2"
+        android:paddingTop="32dp"
+        android:paddingLeft="17dp"
+        android:paddingRight="17dp"
+        android:paddingBottom="32dp">
+      <Button
+          android:id="@+id/overviewButton"
+          android:layout_width="142dp"
+          android:layout_height="55dp"
+          android:background="@drawable/overviewbutton" />
+      <Button
+          android:id="@+id/batteryButton"
+          android:layout_width="142dp"
+          android:layout_height="55dp"
+          android:layout_marginTop="8dp"
+          android:layout_below="@id/overviewButton"
+          android:background="@drawable/batterybutton" />
     </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/slidersBox1"
+        android:layout_width="176dp"
+        android:layout_height="262dp"
+        android:background="@drawable/sliderBoxR"
+        android:layout_below="@id/sideBox"
+        android:layout_toRightOf="@id/flipper"
+        android:layout_marginTop="8dp"
+        android:layout_marginLeft="8dp"
+        android:paddingTop="25dp"
+        android:paddingRight="39dp"
+        android:paddingLeft="91dp">
+      <RelativeLayout
+          android:id="@+id/smallSlider0"
+          android:layout_width="44dp"
+          android:layout_height="205dp">
+        <oml_app.SliderControls
+              android:id="@+id/sliderControls1"
+              android:layout_width="fill_parent"
+              android:layout_height="fill_parent"/>
+      </RelativeLayout>
+    </RelativeLayout>
+  </RelativeLayout>
 </LinearLayout>
