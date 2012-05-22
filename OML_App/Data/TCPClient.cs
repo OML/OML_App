@@ -14,6 +14,7 @@ using System.Net;
 using System.Threading;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
+using OML_App.Data;
 
 namespace OML_App.Connection
 {
@@ -46,15 +47,17 @@ namespace OML_App.Connection
         #endregion
       
         #region Setting_Up_Client
-        public TCPClient(Activity1 Act, string ip_adress, int port)
+        public TCPClient( string ip_adress, int port)
         {
             this.Ip_Adress = ip_adress;
             this.Port = port;
-            this.MainAct = Act;
+            //this.MainAct = Act;
             Connect();
             Thread newThread = new Thread(new ThreadStart(Run));
             newThread.Start(); 
         }
+
+        
         #endregion
 
         public void Connect()
@@ -90,6 +93,7 @@ namespace OML_App.Connection
         {
             try
             {
+                //Singleton.Instance.GetType
                 BinaryFormatter bf = new BinaryFormatter();
                 MemoryStream ms = new MemoryStream();
                 bf.Serialize(ms, Liefdes_brief.SetPacket(2, 8, 9, 8, 0, 10, 0));
@@ -128,7 +132,13 @@ namespace OML_App.Connection
 
         public void Run()
         {
-            
+            while (true)
+            {
+                Thread.Sleep(500);
+                Receive();
+                Thread.Sleep(500);
+                Send();
+            }
         }
     }
 }

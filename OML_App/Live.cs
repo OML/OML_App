@@ -9,6 +9,8 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
+using OML_App.Connection;
+
 
 namespace OML_App
 {
@@ -17,6 +19,7 @@ namespace OML_App
     {
         public EditText ipaddress;
         public EditText port;
+        public TCPClient connect;
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
@@ -58,10 +61,12 @@ namespace OML_App
         private bool CheckIP()
         {
             string ip = ipaddress.Text;
-            string portnr = port.Text;
+            int portnr = Convert.ToInt16(port.Text);
             if (ip == "1234")
                 return true;
             else
+                connect = new TCPClient(ip, portnr);
+                
                 //TODO Make Test!
                 return false;
 

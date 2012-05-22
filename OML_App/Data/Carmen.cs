@@ -25,8 +25,8 @@ namespace OML_App.Data
          * Tablet send:
          * Boolean speed // slow and fast driving
          * boolean calibration mode //possibility to move each engine separate
-         * left int -1000 t/m 1000 //left wheel values
-         * Right int -1000 t/m 1000 //Right wheel values
+         * left int -100 t/m 100 //left wheel values
+         * Right int -100 t/m 100 //Right wheel values
          * 
          * Boolean engine check (calibration)
          * engine int[4] -1000 t/m 1000 
