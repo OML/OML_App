@@ -100,7 +100,6 @@
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="15dp"
-                    android:text="TestText1"
                     android:textSize="80sp" />
             </RelativeLayout>
             <RelativeLayout
@@ -115,7 +114,6 @@
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="15dp"
                     android:textColor="#000000"
-                    android:text="Battery"
                     android:textSize="80sp" />
             </RelativeLayout>
         </ViewFlipper>
@@ -139,10 +137,5 @@
             android:background="@drawable/sidebox2"
             android:minWidth="25px"
             android:minHeight="25px" />
-          <Button
-              android:id="@+id/flipButton"
-              android:layout_width="142dp"
-              android:layout_height="55dp"
-              android:background="@drawable/startbutton" />
     </RelativeLayout>
 </LinearLayout>
