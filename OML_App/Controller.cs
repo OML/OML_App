@@ -15,6 +15,7 @@ namespace OML_App
     [Activity(Label = "My Activity")]
     public class Controller : Activity
     {
+        private ViewFlipper flipper;
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
@@ -22,9 +23,18 @@ namespace OML_App
             // Create your application here
             SetContentView(Resource.Layout.Controller);
 
-            ViewFlipper flipper = FindViewById<ViewFlipper>(Resource.Id.flipper);
+            flipper = FindViewById<ViewFlipper>(Resource.Id.flipper);
+
+
+            //Setup Connect Button
+            Button btnOpenNewActivity1 = FindViewById<Button>(Resource.Id.flipButton);
+            btnOpenNewActivity1.Click += new EventHandler(FlipButton);
             
-            
+        }
+
+        public void FlipButton(object sender, EventArgs e)
+        {
+            flipper.ShowNext();
         }
     }
 }
