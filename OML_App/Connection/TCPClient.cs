@@ -46,11 +46,11 @@ namespace OML_App.Connection
         #endregion
       
         #region Setting_Up_Client
-        public TCPClient(Activity1 Act, string ip_adress, int port)
+        public TCPClient(string ip_adress, int port)
         {
             this.Ip_Adress = ip_adress;
             this.Port = port;
-            this.MainAct = Act;
+         //   this.MainAct = Act;
             Connect();
             Thread newThread = new Thread(new ThreadStart(Run));
             newThread.Start(); 

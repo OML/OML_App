@@ -21,6 +21,10 @@ namespace OML_App
 
             // Create your application here
             SetContentView(Resource.Layout.Controller);
+
+            ViewFlipper flipper = FindViewById<ViewFlipper>(Resource.Id.flipper);
+            
+            
         }
     }
 }

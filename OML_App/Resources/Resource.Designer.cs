@@ -118,8 +118,8 @@ namespace OML_App
 		public partial class Id
 		{
 			
-			// aapt resource value: 0x7f050022
-			public const int back_button1 = 2131034146;
+			// aapt resource value: 0x7f05001f
+			public const int back_button1 = 2131034143;
 			
 			// aapt resource value: 0x7f05000f
 			public const int battery = 2131034127;
@@ -130,59 +130,50 @@ namespace OML_App
 			// aapt resource value: 0x7f05000a
 			public const int bigSlider = 2131034122;
 			
-			// aapt resource value: 0x7f050011
-			public const int bottomBox = 2131034129;
-			
-			// aapt resource value: 0x7f05001b
-			public const int connectbutton = 2131034139;
+			// aapt resource value: 0x7f050018
+			public const int connectbutton = 2131034136;
 			
 			// aapt resource value: 0x7f05000c
 			public const int flipper = 2131034124;
 			
-			// aapt resource value: 0x7f050014
-			public const int gameControls1 = 2131034132;
-			
-			// aapt resource value: 0x7f050020
-			public const int ip_adress = 2131034144;
-			
-			// aapt resource value: 0x7f050018
-			public const int ipaddress = 2131034136;
-			
-			// aapt resource value: 0x7f050013
-			public const int joyBox = 2131034131;
-			
 			// aapt resource value: 0x7f05001d
-			public const int liveButton = 2131034141;
+			public const int ip_adress = 2131034141;
+			
+			// aapt resource value: 0x7f050015
+			public const int ipaddress = 2131034133;
+			
+			// aapt resource value: 0x7f05001a
+			public const int liveButton = 2131034138;
 			
 			// aapt resource value: 0x7f050002
 			public const int menuBox = 2131034114;
 			
-			// aapt resource value: 0x7f05001c
-			public const int menuBoxMain = 2131034140;
+			// aapt resource value: 0x7f050019
+			public const int menuBoxMain = 2131034137;
 			
-			// aapt resource value: 0x7f050015
-			public const int nhl_image = 2131034133;
+			// aapt resource value: 0x7f050012
+			public const int nhl_image = 2131034130;
 			
 			// aapt resource value: 0x7f05000d
 			public const int overView = 2131034125;
 			
-			// aapt resource value: 0x7f05001a
-			public const int port = 2131034138;
-			
-			// aapt resource value: 0x7f050021
-			public const int port_adress = 2131034145;
+			// aapt resource value: 0x7f050017
+			public const int port = 2131034135;
 			
 			// aapt resource value: 0x7f05001e
-			public const int recordedButton = 2131034142;
+			public const int port_adress = 2131034142;
+			
+			// aapt resource value: 0x7f05001b
+			public const int recordedButton = 2131034139;
 			
 			// aapt resource value: 0x7f050000
 			public const int relativeLayout1 = 2131034112;
 			
-			// aapt resource value: 0x7f05001f
-			public const int settingsButton = 2131034143;
+			// aapt resource value: 0x7f05001c
+			public const int settingsButton = 2131034140;
 			
-			// aapt resource value: 0x7f050012
-			public const int sideBox = 2131034130;
+			// aapt resource value: 0x7f050011
+			public const int sideBox = 2131034129;
 			
 			// aapt resource value: 0x7f050003
 			public const int sliderButton = 2131034115;
@@ -214,14 +205,14 @@ namespace OML_App
 			// aapt resource value: 0x7f05000e
 			public const int testtext = 2131034126;
 			
+			// aapt resource value: 0x7f050013
+			public const int textView1 = 2131034131;
+			
+			// aapt resource value: 0x7f050014
+			public const int textView2 = 2131034132;
+			
 			// aapt resource value: 0x7f050016
-			public const int textView1 = 2131034134;
-			
-			// aapt resource value: 0x7f050017
-			public const int textView2 = 2131034135;
-			
-			// aapt resource value: 0x7f050019
-			public const int textView3 = 2131034137;
+			public const int textView3 = 2131034134;
 			
 			private Id()
 			{
