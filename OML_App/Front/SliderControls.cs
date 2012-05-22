@@ -61,13 +61,28 @@ namespace OML_App
 		
 		    else
 			    lastEvent = events;
-		
-		    //drag drop 
-            if (events.Action == MotionEventActions.Down)
-			    _dragging = true;
 
-            else if (events.Action == MotionEventActions.Up)							
-			    _dragging = false;
+            switch (events.Action)
+            {
+                case MotionEventActions.Down:
+                    if (events.GetX() < 250 && events.GetY() > 300)
+                    {
+                        _dragging = true;
+                    }
+                    break;
+
+                case MotionEventActions.Move:
+                    if (events.GetX() < 250 && events.GetY() > 300)
+                    {
+                        _dragging = true;
+                    }
+                    break;
+
+                case MotionEventActions.Up:
+                    _dragging = false;
+                    _touchingPoint.Y = 179 / 2;
+                    break;
+            }
 		
 		    if ( _dragging )
 		    {
