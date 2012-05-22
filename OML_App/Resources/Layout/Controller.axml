@@ -82,59 +82,60 @@
                     android:layout_alignParentTop="true" />
             </RelativeLayout>
         </RelativeLayout>
-    <!-- CameraBox layout, will show a live camera feed -->
-        <RelativeLayout
-            android:id="@+id/cameraBox"
+    <!-- ViewBox layout, will show all the view here -->
+        <ViewFlipper
+            android:id="@+id/flipper"
+            android:layout_width="640dp"
+            android:layout_height="500dp"
+            android:layout_toRightOf="@id/menuBox"
+            android:layout_marginLeft="8dp">
+            <RelativeLayout
+                android:id="@+id/overView"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:background="@drawable/AchtergrondAppGrijs">
+                <TextView
+                    android:id="@+id/testtext"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="15dp"
+                    android:textSize="80sp" />
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/battery"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:background="@drawable/AchtergrondAppGrijs">
+                <TextView
+                    android:id="@+id/battext"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="15dp"
+                    android:textColor="#000000"
+                    android:textSize="80sp" />
+            </RelativeLayout>
+        </ViewFlipper>
+    <!--<RelativeLayout
+            android:id="@+id/viewBox"
             android:layout_width="640dp"
             android:layout_height="414dp"
             android:layout_toRightOf="@id/menuBox"
             android:layout_marginLeft="8dp"
             android:minWidth="25px"
-            android:minHeight="25px" />
+            android:minHeight="25px" />-->
     <!-- BottomBox layout, will show data like speed etc -->
     <!-- SideBox layout, will show specified data -->
     <!-- JoyBox layout, will handle joystick -->
         <RelativeLayout
-            android:id="@+id/bottomBox"
-            android:layout_width="640dp"
-            android:layout_height="104dp"
-            android:layout_below="@id/cameraBox"
-            android:layout_toRightOf="@id/slidersBox"
-            android:layout_marginTop="8dp"
-            android:layout_marginLeft="8dp"
-            android:background="@drawable/bottombox" />
-        <RelativeLayout
             android:id="@+id/sideBox"
             android:layout_width="176dp"
-            android:layout_height="352dp"
-            android:layout_toRightOf="@id/cameraBox"
+            android:layout_height="249dp"
+            android:layout_toRightOf="@id/flipper"
             android:layout_marginLeft="8dp"
             android:background="@drawable/sidebox2"
             android:minWidth="25px"
-            android:minHeight="25px">
-            <RelativeLayout
-                android:id="@+id/sideBox"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_toRightOf="@id/cameraBox"
-                android:layout_marginLeft="8dp"
-                android:background="@drawable/sidebox2" />
-        </RelativeLayout>
-        <RelativeLayout
-            android:id="@+id/joyBox"
-            android:layout_width="176dp"
-            android:layout_height="159dp"
-            android:layout_toRightOf="@id/bottomBox"
-            android:layout_below="@id/sideBox"
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="8dp"
-            android:background="@drawable/joybox">
-            <oml_app.GameControls
-                android:id="@+id/gameControls1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentTop="true" />
-        </RelativeLayout>
+            android:minHeight="25px" />
     </RelativeLayout>
 </LinearLayout>
