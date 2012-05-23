@@ -11,21 +11,18 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using System.Runtime.InteropServices;
+using OML_App.Data;
 
 
 namespace OML_App.Connection
-{   
+{
     /// <summary>
     /// @author Daniel de Valk
     /// Class where we create our data packages and get our data from the packages
-    /// check if i can commit
     /// </summary>
-    class Data
+    public class Data
     {
         #region variable
-
-        //our incoming package
-        SyncStructPackage pack = new SyncStructPackage();
 
         public string[] words;
         public byte opcode; //opcode
@@ -36,29 +33,125 @@ namespace OML_App.Connection
         #endregion
 
         #region Sendpackage
+        #region switch
         /// <summary>
-        /// Converts the Data structure into an array of bytes
+        /// give the opcode and it executes its request!
         /// </summary>
-        /// <param name="Opcode"></param>
-        /// <param name="Speed"></param>
-        /// <param name="left"></param>
-        /// <param name="right"></param>
-        /// <param name="Calibrationmode"></param>
-        /// <param name="engine"></param>
-        /// <param name="sound"></param>
+        /// <param name="ludevedu">0==reject 1==ok 2==sync 3==report 4==keepalive </param>
         /// <returns></returns>
-        public SendStructPackage SetPacket(byte Opcode, byte Speed, sbyte left, sbyte right, byte Calibrationmode, ushort engine, byte sound)
+        public byte[] SendPackage(int ludevedu)
         {
-            SendStructPackage pack = new SendStructPackage();
-            pack.opcode = Opcode;
-            pack.speed = Speed;
-            pack.left = left;
-            pack.right = right;
-            pack.Calibration_mode = Calibrationmode;
-            pack.engine = engine;
-            pack.sound = sound;
+            byte[] buffer = null;
+            switch (ludevedu)
+            {
+                //Reject
+                //case 0:
+                //    Reject();
+                //    break;
+                ////ok
+                //case 1:
+                //    buffer = new byte[Marshal.SizeOf(ok())];
+                //    break;
+                //sync
+                case 2:
+                    buffer = new byte[Marshal.SizeOf(Sync())];
+                    unsafe
+                    {
+                        GCHandle gch = GCHandle.Alloc(buffer, GCHandleType.Pinned);
+                        Marshal.StructureToPtr(Sync(), gch.AddrOfPinnedObject(), false);
+                        gch.Free();
+                    }
+                    break;
+                //report
+                case 3:
+                    buffer = new byte[Marshal.SizeOf(Report())];
+                    unsafe
+                    {
+                        GCHandle gch = GCHandle.Alloc(buffer, GCHandleType.Pinned);
+                        Marshal.StructureToPtr(Report(), gch.AddrOfPinnedObject(), false);
+                        gch.Free();
+                    }
+                    break;
+                //keep
+                case 4:
+                    buffer = new byte[Marshal.SizeOf(keep())];
+                    unsafe
+                    {
+                        GCHandle gch = GCHandle.Alloc(buffer, GCHandleType.Pinned);
+                        Marshal.StructureToPtr(keep(), gch.AddrOfPinnedObject(), false);
+                        gch.Free();
+                    }
+                    break;
+                default:
+                    break;
+            }
 
-            return pack;
+
+            return buffer;
+        }
+        #endregion
+
+        #region Reject
+        //public void Reject()
+        //{
+
+        //}
+        #endregion
+
+        #region OK
+        ///// <summary>
+        ///// Standard Accept package is always standard
+        ///// </summary>
+        ///// <returns>okStructpackage</returns>
+        //public okStructPackage ok()
+        //{
+        //    okStructPackage ok = new okStructPackage();
+        //    ok.opcode = 1;
+        //    ok.padding = 1;
+        //    return ok;
+        //}
+
+        ///// <summary>
+        ///// ok struct package
+        ///// </summary>
+        //[StructLayout(LayoutKind.Sequential, Pack = 1)]
+        //public struct okStructPackage
+        //{
+        //    public byte opcode;
+        //    public byte padding;
+        //}
+        #endregion
+
+        #region Sync
+        /*
+         *      request (opcode = sync)
+         * 		Type C / C#				Name
+         * 		--------------------------------------
+         * 		8bit	/ byte			opcode = sync
+         * 		8bit	/ byte			Boolean speed 0 slow and 1 fast driving
+         * 		8bit signed / sbyte 	left int -100 t/m 100 //left wheel values
+         * 		8bit Signed / sbyte		Right int -100 t/m 100 //Right wheel values
+         * 		8bit	/ byte			boolean calibration mode //possibility to move 
+         *                              each engine separate
+         * 		16bit unigned / UInt16	engine int[4] 0..65535 rpm
+         * 		8bit	/ byte			sound int //playing sounds array[99] possibility 
+         *                              of max 99 sounds SO Sounds[0] gets first sound
+         */
+        public SendStructPackage Sync()
+        {
+            SendStructPackage sync = new SendStructPackage();
+            sync.opcode = 2;
+            sync.speed = Convert.ToByte(Send_Singleton.Instance.speed);
+            sync.left = Convert.ToSByte(Send_Singleton.Instance.left);
+            sync.right = Convert.ToSByte(Send_Singleton.Instance.right);
+            sync.Calibration_mode = Convert.ToByte(Send_Singleton.Instance.Calibration_mode);
+            sync.engine_0 = Convert.ToByte(Send_Singleton.Instance.engine0);
+            sync.engine_1 = Convert.ToByte(Send_Singleton.Instance.engine1);
+            sync.engine_2 = Convert.ToByte(Send_Singleton.Instance.engine2);
+            sync.engine_3 = Convert.ToByte(Send_Singleton.Instance.engine3);
+            sync.sound = Convert.ToByte(Send_Singleton.Instance.sound);
+            return sync;
+
         }
 
         /// <summary>
@@ -72,32 +165,80 @@ namespace OML_App.Connection
             public sbyte left; //left int -100 t/m 100 //left wheel values
             public sbyte right; //Right int -100 t/m 100 //Right wheel values
             public byte Calibration_mode; //boolean calibration mode //possibility to move each engine separate
-            public ushort engine; //engine int[4] -100 t/m 100
+
+            public ushort engine_0; //engine int[4] -100 t/m 100
+            public ushort engine_1;
+            public ushort engine_2;
+            public ushort engine_3;
+
             public byte sound; //sound int //playing sounds array[99] possibility of max 99 sounds SO Sounds[0] gets first sound
         }
 
+        #endregion
+
+        #region report
+        /*
+         *      request (opcode = report)
+         * 		Type C / C#				Name
+         * 		--------------------------------------
+         * 		8bit / byte				opcode = report
+         *   	8bit / byte				padding
+         *      16bit / Int16			throttle event treshold (percent)
+         *		16bit unsigned / UInt16	voltage event treshold (mV)
+         *		16bit unsigned / UInt16	current event treshold (mA)
+         *		16bit / Int16			temperature event treshold (tenth degrees)
+         *		16bit / Int16			Gyro event treshold (hundreth G)
+         */
+        public ReportStructPackage Report()
+        {
+            ReportStructPackage report = new ReportStructPackage();
+            report.opcode = 3;
+            report.padding = 1;
+            report.throttle = Convert.ToInt16(Send_Singleton.Instance.throttle);
+            report.voltage = Convert.ToUInt16(Send_Singleton.Instance.voltage);
+            report.current = Convert.ToUInt16(Send_Singleton.Instance.current);
+            report.temperature = Convert.ToInt16(Send_Singleton.Instance.temperature);
+            report.Gyro = Convert.ToInt16(Send_Singleton.Instance.Gyro);
+            return report;
+        }
+
         [StructLayout(LayoutKind.Sequential, Pack = 1)]
-        public struct okStructPackage
+        public struct ReportStructPackage
+        {
+            public byte opcode;
+            public byte padding;
+            public Int16 throttle;
+            public UInt16 voltage;
+            public UInt16 current;
+            public Int16 temperature;
+            public Int16 Gyro;
+        }
+
+
+        #endregion
+
+        #region Keep Alive
+        /// <summary>
+        /// Standard keep alive package
+        /// </summary>
+        public keepaliveStructPackage keep()
+        {
+            keepaliveStructPackage keep_alive = new keepaliveStructPackage();
+            keep_alive.opcode = 4;
+            keep_alive.padding = 1;
+            return keep_alive;
+        }
+
+        /// <summary>
+        /// keep alive package must be send in less than 2 seconds.
+        /// </summary>
+        [StructLayout(LayoutKind.Sequential, Pack = 1)]
+        public struct keepaliveStructPackage
         {
             public byte opcode;
             public byte padding;
         }
-
-        [StructLayout(LayoutKind.Sequential, Pack = 1)]
-        public struct whatStructPackage
-        {
-            byte opcode;
-            byte padding;
-            short throttle;
-            ushort voltage;
-            ushort current;
-            short temperature;
-            short gyro;
-                
-        }
-
-
-
+        #endregion
         #endregion
 
         #region Getpackage
@@ -116,16 +257,19 @@ namespace OML_App.Connection
         ///
         /// </summary>
         /// <param name="data"></param>
-        public void GetPackage(byte[] data)
+        public int GetPackage(byte[] data)
         {
+            int return_opcode = 0;
             opcode = data[0];
             if (opcode == 0)
             {
                 //data reject
+                return_opcode = 0;
             }
             if (opcode == 1)
             {
                 //data ok
+                return_opcode = 1;
             }
             else if (opcode == 2)
             {
@@ -142,15 +286,16 @@ namespace OML_App.Connection
                         pack = *p;
                         gch.Free();
                     }
+
                 }
                 catch (Exception e)
                 {
                     Console.WriteLine(e);
                 }
-
+                return_opcode = 2;
             }
             //get list sounds "REPORT"
-            else if(opcode == 3)
+            else if (opcode == 3)
             {
                 int pad = data[1];
                 int protocol = data[2];
@@ -180,6 +325,7 @@ namespace OML_App.Connection
                     counter_word++;
                     new_word = true;
                 }
+                return_opcode = 3;
             }
             else if (opcode == 4)
             {
@@ -196,24 +342,18 @@ namespace OML_App.Connection
                         keepalive = *p;
                         gch.Free();
                     }
+
                 }
                 catch (Exception e)
                 {
                     Console.WriteLine(e);
                 }
+                return_opcode = 4;
             }
-
+            return return_opcode;
         }
 
-        /// <summary>
-        /// keep alive
-        /// </summary>
-        [StructLayout(LayoutKind.Sequential, Pack = 1)]
-        public struct keepaliveStructPackage
-        {
-            byte opcode;
-            byte padding;
-        }
+
 
         /// <summary>
         /// syncstruct package
