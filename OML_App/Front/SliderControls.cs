@@ -68,9 +68,8 @@ namespace OML_App
                     //save the ID of this pointer
                     mActivePointerId = events.GetPointerId(counter);
 
-                    //up the counter when we touch and make sure it stays 0 or 1
+                    //up the counter when we touch
                     counter++;
-                    counter %= 2;
                     break;
 
                 case MotionEventActions.Move:
@@ -98,10 +97,12 @@ namespace OML_App
                 case MotionEventActions.Up:
                     //reset our touching point on release
                     _touchingPoint = new Point(0, 89);
+                    counter--;
                     break;
 
                 case MotionEventActions.Cancel:
                     _touchingPoint = new Point(0, 89);
+                    counter--;
                     break;
             }
 		
