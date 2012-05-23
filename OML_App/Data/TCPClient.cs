@@ -93,10 +93,10 @@ namespace OML_App.Connection
         {
             try
             {
-                Singleton.Instance.Y = 4;
+                //Singleton.Instance.Y = 4;
                 BinaryFormatter bf = new BinaryFormatter();
                 MemoryStream ms = new MemoryStream();
-                bf.Serialize(ms, Liefdes_brief.SetPacket(2, 8, 9, 8, 0, 10, 0));
+                //bf.Serialize(ms, Liefdes_brief.SetPacket(2, 8, 9, 8, 0, 10, 0));
                 byte[] henk = ms.ToArray();
                 //clientSocket.EndConnect(ar);
                 clientSocket.BeginSend(henk,0 ,henk.Length, SocketFlags.None, null, null );

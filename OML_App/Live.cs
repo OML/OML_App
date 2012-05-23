@@ -67,7 +67,7 @@ namespace OML_App
             if (ip == "1234")
                 return true;
             else
-                
+                return false;
 
             //Dirty H@ck
             Receive_Singleton.Instance.init();
@@ -92,14 +92,14 @@ namespace OML_App
 
             connect = new TCPClient(ip, 1337);
 
-            if (connect.connected)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            //if (connect.connected)
+            //{
+            //    return true;
+            //}
+            //else
+            //{
+            //    return false;
+            //}
 
         }
 
