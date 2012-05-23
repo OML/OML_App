@@ -56,10 +56,11 @@
     <Compile Include="Activity1.cs" />
     <Compile Include="Analyse.cs" />
     <Compile Include="Connection\Data.cs" />
-    <Compile Include="Connection\TCPClient.cs" />
     <Compile Include="Data\Carmen.cs" />
     <Compile Include="Data\Sensor.cs" />
     <Compile Include="Data\Session.cs" />
+    <Compile Include="Data\Singleton.cs" />
+    <Compile Include="Data\TCPClient.cs" />
     <Compile Include="Data\ValueData.cs" />
     <Compile Include="Front\GameControls.cs" />
     <Compile Include="Front\SliderControls.cs" />

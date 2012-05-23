@@ -47,7 +47,7 @@ namespace OML_App.Connection
         #endregion
       
         #region Setting_Up_Client
-        public TCPClient( string ip_adress, int port)
+        public TCPClient(string ip_adress, int port)
         {
             this.Ip_Adress = ip_adress;
             this.Port = port;
