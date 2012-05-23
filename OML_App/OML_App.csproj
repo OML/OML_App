@@ -95,9 +95,6 @@
     <AndroidResource Include="Resources\Values\Strings.xml" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\Drawable\Icon.png" />
-  </ItemGroup>
-  <ItemGroup>
     <AndroidResource Include="Resources\Drawable\backbutton.png" />
   </ItemGroup>
   <ItemGroup>
@@ -186,6 +183,7 @@
     <AndroidResource Include="Resources\Drawable\overviewbutton.png" />
     <AndroidResource Include="Resources\Drawable\overviewbutton_pressed.png" />
     <AndroidResource Include="Resources\Drawable\OverViewBG.png" />
+    <AndroidResource Include="Resources\Drawable\Icon.png" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
