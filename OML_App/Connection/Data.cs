@@ -18,6 +18,7 @@ namespace OML_App.Connection
     /// <summary>
     /// @author Daniel de Valk
     /// Class where we create our data packages and get our data from the packages
+    /// check if i can commit
     /// </summary>
     class Data
     {
