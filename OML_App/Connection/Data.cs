@@ -42,6 +42,7 @@ namespace OML_App.Connection
         public byte[] SendPackage(int ludevedu)
         {
             byte[] buffer = null;
+            
             switch (ludevedu)
             {
                 //Reject
@@ -54,31 +55,37 @@ namespace OML_App.Connection
                 //    break;
                 //sync
                 case 2:
-                    buffer = new byte[Marshal.SizeOf(Sync())];
+                    SendStructPackage packet = Sync();
+                    buffer = new byte[Marshal.SizeOf(packet)];
+                    //buffer = Sync();
                     unsafe
                     {
                         GCHandle gch = GCHandle.Alloc(buffer, GCHandleType.Pinned);
-                        Marshal.StructureToPtr(Sync(), gch.AddrOfPinnedObject(), false);
+                        Marshal.StructureToPtr(packet, gch.AddrOfPinnedObject(), false);
                         gch.Free();
                     }
                     break;
                 //report
                 case 3:
-                    buffer = new byte[Marshal.SizeOf(Report())];
-                    unsafe
                     {
-                        GCHandle gch = GCHandle.Alloc(buffer, GCHandleType.Pinned);
-                        Marshal.StructureToPtr(Report(), gch.AddrOfPinnedObject(), false);
-                        gch.Free();
+                        ReportStructPackage packet0 = Report();
+                        buffer = new byte[Marshal.SizeOf(packet0)];
+                        unsafe
+                        {
+                            GCHandle gch = GCHandle.Alloc(buffer, GCHandleType.Pinned);
+                            Marshal.StructureToPtr(packet0, gch.AddrOfPinnedObject(), false);
+                            gch.Free();
+                        }
+                        break;
                     }
-                    break;
                 //keep
                 case 4:
+                    keepaliveStructPackage packet1 = keep();
                     buffer = new byte[Marshal.SizeOf(keep())];
                     unsafe
                     {
                         GCHandle gch = GCHandle.Alloc(buffer, GCHandleType.Pinned);
-                        Marshal.StructureToPtr(keep(), gch.AddrOfPinnedObject(), false);
+                        Marshal.StructureToPtr(packet1, gch.AddrOfPinnedObject(), false);
                         gch.Free();
                     }
                     break;

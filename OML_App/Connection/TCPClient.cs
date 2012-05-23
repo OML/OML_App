@@ -41,7 +41,7 @@ namespace OML_App.Connection
         public TCPClient(string ip_adress, int port)
         {
             bool connect = false;
-            this.Ip_Adress = "127.0.0.1"; //"192.168.1.103";
+            this.Ip_Adress = "192.168.1.152"; //"192.168.1.103";
             this.Port = 1337;
             Connect();
             Thread newThread = new Thread(new ThreadStart(Run));
@@ -96,16 +96,16 @@ namespace OML_App.Connection
         {
             try
             {
-                byte[] buffer = new byte[Marshal.SizeOf(packet)];
+                //byte[] buffer = new byte[Marshal.SizeOf(packet)];
 
-                //Console.WriteLine(Marshal.SizeOf(packet));
-                unsafe
-                {
-                    GCHandle gch = GCHandle.Alloc(buffer, GCHandleType.Pinned);
-                    Marshal.StructureToPtr(packet, gch.AddrOfPinnedObject(), false);
-                    gch.Free();
-                }
-                clientSocket.BeginSend(buffer, 0, buffer.Length, SocketFlags.None, null, null);
+                ////Console.WriteLine(Marshal.SizeOf(packet));
+                //unsafe
+                //{
+                //    GCHandle gch = GCHandle.Alloc(buffer, GCHandleType.Pinned);
+                //    Marshal.StructureToPtr(packet, gch.AddrOfPinnedObject(), false);
+                //    gch.Free();
+                //}
+                clientSocket.BeginSend(packet, 0, packet.Length, SocketFlags.None, null, null);
             }
             catch (Exception ex)
             {
@@ -118,7 +118,7 @@ namespace OML_App.Connection
             try
             {
                 byteData = new byte[1024];
-                clientSocket.Receive(byteData);
+                //clientSocket.Receive(byteData);
                 clientSocket.BeginReceive(byteData,
                                            0,
                                            byteData.Length,
@@ -143,7 +143,7 @@ namespace OML_App.Connection
             {
                 packet = Liefdes_brief.SendPackage(4);
                 Send();
-                Receive();
+                //Receive();
                 Thread.Sleep(1000);
                 //Send();
 
