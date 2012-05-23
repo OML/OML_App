@@ -14,46 +14,42 @@ using System.Net;
 using System.Threading;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
+using System.Runtime.InteropServices;
+using OML_App.Data;
 
 namespace OML_App.Connection
 {
-    
-  
-    /// <summary>
-    /// never used
-    /// </summary>
-    enum Command
-    {
-        Login,      //Log into the server
-        Logout,     //Logout of the server
-        Message,    //Send a text message to all the chat clients
-        List,       //Get a list of users in the chat room from the server
-        Null        //No command
-    }
-
     /// <summary>
     /// setting up client en connection to server
     /// </summary>
-    public class TCPClient 
+    public class TCPClient
     {
         #region Variables
-        Activity1 MainAct;
+
         public Socket clientSocket;
         Data Liefdes_brief = new Data();
+        //Data.SendStructPackage packet;
+        byte[] packet;
+        public bool connected = false;
         string Ip_Adress;
         private byte[] byteData = new byte[1024];
         int Port;
+        int result_opcode;
         #endregion
-      
+
         #region Setting_Up_Client
         public TCPClient(string ip_adress, int port)
         {
-            this.Ip_Adress = ip_adress;
-            this.Port = port;
-         //   this.MainAct = Act;
+            bool connect = false;
+            this.Ip_Adress = "127.0.0.1"; //"192.168.1.103";
+            this.Port = 1337;
             Connect();
             Thread newThread = new Thread(new ThreadStart(Run));
-            newThread.Start(); 
+            newThread.Start();
+            if (!connect)
+            {
+                //please an error message
+            }
         }
         #endregion
 
@@ -66,11 +62,17 @@ namespace OML_App.Connection
                 //Server is listening on port 1000
                 IPEndPoint ipEndPoint = new IPEndPoint(ipAddress, Port);
                 //Connect to the server
+
+
+                Send();
                 clientSocket.Connect(ipEndPoint);
+                connected = true;
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex);
+                connected = true;
+
             }
         }
 
@@ -78,7 +80,7 @@ namespace OML_App.Connection
         {
             try
             {
-                clientSocket.EndSend(ar);                
+                clientSocket.EndSend(ar);
             }
             catch (Exception ex)
             {
@@ -86,16 +88,24 @@ namespace OML_App.Connection
             }
         }
 
+
+
+
+
         private void Send()
         {
             try
             {
-                BinaryFormatter bf = new BinaryFormatter();
-                MemoryStream ms = new MemoryStream();
-                bf.Serialize(ms, Liefdes_brief.SetPacket(2, 8, 9, 8, 0, 10, 0));
-                byte[] henk = ms.ToArray();
-                //clientSocket.EndConnect(ar);
-                clientSocket.BeginSend(henk,0 ,henk.Length, SocketFlags.None, null, null );
+                byte[] buffer = new byte[Marshal.SizeOf(packet)];
+
+                //Console.WriteLine(Marshal.SizeOf(packet));
+                unsafe
+                {
+                    GCHandle gch = GCHandle.Alloc(buffer, GCHandleType.Pinned);
+                    Marshal.StructureToPtr(packet, gch.AddrOfPinnedObject(), false);
+                    gch.Free();
+                }
+                clientSocket.BeginSend(buffer, 0, buffer.Length, SocketFlags.None, null, null);
             }
             catch (Exception ex)
             {
@@ -108,14 +118,14 @@ namespace OML_App.Connection
             try
             {
                 byteData = new byte[1024];
-
+                clientSocket.Receive(byteData);
                 clientSocket.BeginReceive(byteData,
                                            0,
                                            byteData.Length,
                                            SocketFlags.None,
                                            null,
                                            null);
-                Liefdes_brief.GetPackage(byteData);
+                result_opcode = Liefdes_brief.GetPackage(byteData);
 
             }
             catch (ObjectDisposedException)
@@ -126,9 +136,25 @@ namespace OML_App.Connection
             }
         }
 
+        //i want a loop from uno second
         public void Run()
         {
-            
+            while (true)
+            {
+                packet = Liefdes_brief.SendPackage(4);
+                Send();
+                Receive();
+                Thread.Sleep(1000);
+                //Send();
+
+                //Send();
+                //packet = Liefdes_brief.SendPackage(3);
+                //Send();
+                //packet = Liefdes_brief.SendPackage(2);
+                //Send();
+                //SetPacket(2, 0, 25, 25, 0, 10, 0);
+                //Receive();
+            }
         }
     }
 }
