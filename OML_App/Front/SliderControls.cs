@@ -22,6 +22,7 @@ namespace OML_App
 	    public Point _touchingPoint = new Point(INIT_X, INIT_Y);
 	
 	    public int _power = 0;
+        public int counter = 0;
 
         private float mLastTouchY;
         private int mActivePointerId;
@@ -65,7 +66,11 @@ namespace OML_App
                         mLastTouchY = 179;
 
                     //save the ID of this pointer
-                    mActivePointerId = events.GetPointerId(0);
+                    mActivePointerId = events.GetPointerId(counter);
+
+                    //up the counter when we touch and make sure it stays 0 or 1
+                    counter++;
+                    counter %= 2;
                     break;
 
                 case MotionEventActions.Move:
@@ -75,6 +80,7 @@ namespace OML_App
                     //only get the vertical movement
                     float y = events.GetY(pointerIndex);
 
+                    //make sure the slider stays within the bounds
                     if (y < 13)
                         y = 13;
                     else if (y > 179)
