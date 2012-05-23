@@ -118,7 +118,7 @@ namespace OML_App.Connection
             try
             {
                 byteData = new byte[1024];
-                clientSocket.Receive(byteData);
+                //clientSocket.Receive(byteData);
                 clientSocket.BeginReceive(byteData,
                                            0,
                                            byteData.Length,
