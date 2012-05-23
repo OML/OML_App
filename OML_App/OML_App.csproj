@@ -57,6 +57,7 @@
     <Compile Include="Analyse.cs" />
     <Compile Include="Connection\Data.cs" />
     <Compile Include="Data\Carmen.cs" />
+    <Compile Include="Data\Send_Singleton.cs" />
     <Compile Include="Data\Sensor.cs" />
     <Compile Include="Data\Session.cs" />
     <Compile Include="Data\Singleton.cs" />
@@ -70,6 +71,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Settings.cs" />
     <Compile Include="Controller.cs" />
+    <Compile Include="Setting\SingletonRecieve.cs" />
+    <Compile Include="Setting\SingletonSend.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
