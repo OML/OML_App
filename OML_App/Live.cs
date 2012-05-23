@@ -11,6 +11,7 @@ using Android.Views;
 using Android.Widget;
 using OML_App.Connection;
 using Android.Content.PM;
+using OML_App.Data;
 
 
 namespace OML_App
@@ -66,10 +67,39 @@ namespace OML_App
             if (ip == "1234")
                 return true;
             else
-                connect = new TCPClient(ip, 12);
-              
-                //TODO Make Test!
+                
+
+            //Dirty H@ck
+            Receive_Singleton.Instance.init();
+
+            //some hardcoded values
+
+            Send_Singleton.Instance.speed = 1;
+            Send_Singleton.Instance.sound = 0;
+            Send_Singleton.Instance.right = 50;
+            Send_Singleton.Instance.left = 50;
+            Send_Singleton.Instance.engine0 = 10;
+            Send_Singleton.Instance.engine1 = 10;
+            Send_Singleton.Instance.engine2 = 10;
+            Send_Singleton.Instance.engine3 = 10;
+            Send_Singleton.Instance.Calibration_mode = 0;
+            Send_Singleton.Instance.voltage = 1;
+            Send_Singleton.Instance.Calibration_mode = 1;
+            Send_Singleton.Instance.Gyro = 1;
+            Send_Singleton.Instance.temperature = 1;
+            Send_Singleton.Instance.throttle = 1;
+
+
+            connect = new TCPClient(ip, 1337);
+
+            if (connect.connected)
+            {
+                return true;
+            }
+            else
+            {
                 return false;
+            }
 
         }
 
