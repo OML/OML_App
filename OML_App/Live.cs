@@ -10,11 +10,12 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using OML_App.Connection;
+using Android.Content.PM;
 
 
 namespace OML_App
 {
-    [Activity(Label = "My Activity")]
+    [Activity(Label = "My Activity", ScreenOrientation = ScreenOrientation.Landscape, Icon = "@drawable/icon")]
     public class Live : Activity
     {
         public EditText ipaddress;

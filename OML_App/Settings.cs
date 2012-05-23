@@ -9,10 +9,11 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
+using Android.Content.PM;
 
 namespace OML_App
 {
-    [Activity(Label = "Settings")]
+    [Activity(Label = "Settings", ScreenOrientation = ScreenOrientation.Landscape, Icon = "@drawable/icon")]
     public class Settings : Activity
     {
         protected override void OnCreate(Bundle bundle)

@@ -6,10 +6,11 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.OS;
+using Android.Content.PM;
 
 namespace OML_App
 {
-    [Activity(Label = "OML_App", MainLauncher = true, Icon = "@drawable/icon")]
+    [Activity(Label = "OML_App", MainLauncher = true, Icon = "@drawable/icon", ScreenOrientation = ScreenOrientation.Landscape))]
     public class Activity1 : Activity
     {
         protected override void OnCreate(Bundle bundle)
