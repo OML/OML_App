@@ -10,7 +10,7 @@ using Android.Content.PM;
 
 namespace OML_App
 {
-    [Activity(Label = "OML_App", MainLauncher = true, Icon = "@drawable/icon", ScreenOrientation = ScreenOrientation.Landscape))]
+    [Activity(Label = "OML_App", MainLauncher = true, Icon = "@drawable/icon", ScreenOrientation = ScreenOrientation.Landscape)]
     public class Activity1 : Activity
     {
         protected override void OnCreate(Bundle bundle)
