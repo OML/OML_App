@@ -225,6 +225,26 @@ namespace OML_App.Connection
         }
         #endregion
 
+        #region syncing
+        public bool syncing()
+        {
+            bool syncing = false;
+            packet = Liefdes_brief.SendPackage(3);
+            Send();
+            Thread.Sleep(50);
+
+            if (Liefdes_brief.GetPackage(byteData) == 2)
+            {
+                syncing = true;
+            }
+            else
+            {
+                keepalive();
+            }
+            return syncing;
+        }
+        #endregion
+
         public void Run()
         {
 
@@ -244,6 +264,7 @@ namespace OML_App.Connection
                 {
                     packet = Liefdes_brief.SendPackage(2);
                     Send();
+
                 }
             }
             
