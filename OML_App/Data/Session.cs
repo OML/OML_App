@@ -12,7 +12,7 @@ using Android.Widget;
 
 namespace OML_App.Data
 {
-    class Session
+    public class Session
     {
         public string Vehicle_Name;
         public List<Sensor> Sensors;
