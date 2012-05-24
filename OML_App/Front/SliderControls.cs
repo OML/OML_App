@@ -56,19 +56,19 @@ namespace OML_App
             switch (events.Action & events.ActionMasked)
             {
                 case MotionEventActions.Down:
-                    //save the ID of this pointer
-                    mActivePointerId = events.GetPointerId(0);
+                    ////save the ID of this pointer
+                    //mActivePointerId = events.GetPointerId(0);
 
                     //remember where we started
                     mLastTouchY = events.GetY(mActivePointerId);
                     break;
 
                 case MotionEventActions.Move:
-                    //find the index of the activepointer and fetch its position
-                    int pointerIndex = events.FindPointerIndex(mActivePointerId);
+                    ////find the index of the activepointer and fetch its position
+                    //int activePointerIndex = events.FindPointerIndex(mActivePointerId);
                     
                     //only get the vertical movement
-                    float y = events.GetY(pointerIndex);
+                    float y = events.GetY();
 
                     //set touchingpoint
                     _touchingPoint.Y = (int)y;
