@@ -93,13 +93,18 @@
         android:layout_height="520dp"
         android:layout_toRightOf="@id/menuBox"
         android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
-        android:background="@drawable/midbox">
+        android:layout_marginTop="8dp">
       <RelativeLayout
           android:id="@+id/overView"
           android:layout_width="fill_parent"
           android:layout_height="fill_parent"
-          android:background="@drawable/Overview_Carmen">
+          android:background="@drawable/midbox">
+      </RelativeLayout>      
+      <RelativeLayout
+          android:id="@+id/overView"
+          android:layout_width="fill_parent"
+          android:layout_height="fill_parent"
+          android:background="@drawable/Overview_Carmen3">
         <TextView
             android:id="@+id/EngLF1"
             android:layout_width="wrap_content"

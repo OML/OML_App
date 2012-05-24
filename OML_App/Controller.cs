@@ -42,7 +42,7 @@ namespace OML_App
         /// <param name="e"></param>
         public void FlipToOverView(object sender, EventArgs e)
         {
-            flipper.DisplayedChild = 0;
+            flipper.DisplayedChild = 1;
         }
 
         /// <summary>
@@ -52,7 +52,7 @@ namespace OML_App
         /// <param name="e"></param>
         public void FlipToBattery(object sender, EventArgs e)
         {
-            flipper.DisplayedChild = 1;
+            flipper.DisplayedChild = 2;
         }
 
         /// <summary>

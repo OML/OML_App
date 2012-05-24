@@ -191,6 +191,9 @@
     <AndroidResource Include="Resources\Drawable\slidersbox0.png" />
     <AndroidResource Include="Resources\Drawable\background1.png" />
     <AndroidResource Include="Resources\Drawable\Overview_Carmen.png" />
+    <AndroidResource Include="Resources\Drawable\Overview_Carmen1.png" />
+    <AndroidResource Include="Resources\Drawable\Overview_Carmen2.png" />
+    <AndroidResource Include="Resources\Drawable\Overview_Carmen3.png" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
