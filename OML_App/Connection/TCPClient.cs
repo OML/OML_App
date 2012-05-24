@@ -60,23 +60,24 @@ namespace OML_App.Connection
             {
                 clientSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
                 IPAddress ipAddress = IPAddress.Parse(Ip_Adress);
-                //Server is listening on port 1000
+                //Server is listening on port 1337
                 IPEndPoint ipEndPoint = new IPEndPoint(ipAddress, Port);
                 //Connect to the server
 
-                clientSocket.BeginSend(byteData, 0, byteData.Length, SocketFlags.None, new AsyncCallback(OnSend), null);
+                //clientSocket.BeginSend(byteData, 0, byteData.Length, SocketFlags.None, null, null);
+                //Thread.Sleep(1000);
+                //byteData = new byte[1024];
+                ////Start listening to the data asynchronously
+                //clientSocket.BeginReceive(byteData,
+                //                           0,
+                //                           byteData.Length,
+                //                           SocketFlags.None,
+                //                           new AsyncCallback(OnReceive),
+                //                           null);
 
-                byteData = new byte[1024];
-                //Start listening to the data asynchronously
-                clientSocket.BeginReceive(byteData,
-                                           0,
-                                           byteData.Length,
-                                           SocketFlags.None,
-                                           new AsyncCallback(OnReceive),
-                                           null);
 
-
-                Send();
+                //Send();
+                System.Console.WriteLine(String.Format("Connecting to {0}:{1}", Ip_Adress, Port));
                 clientSocket.Connect(ipEndPoint);
                 connected = true;
             }
@@ -94,9 +95,9 @@ namespace OML_App.Connection
             {
                 clientSocket.EndSend(ar);
             }
-            catch (ObjectDisposedException)
-            {
-            }
+            //catch (ObjectDisposedException)
+            //{
+            //}
             catch (Exception ex)
             {
                 System.Console.WriteLine("@ OnSend:" + ex.Message);
@@ -107,11 +108,11 @@ namespace OML_App.Connection
         {
             try
             {
-                clientSocket.BeginSend(packet, 0, packet.Length, SocketFlags.None, new AsyncCallback(OnSend), null);
+                clientSocket.BeginSend(packet, 0, packet.Length, SocketFlags.None, null, null);
             }
             catch (Exception ex)
             {
-                System.Console.WriteLine("@ OnConnect:" + ex.Message);
+                System.Console.WriteLine("@ Send:" + ex.Message);
             }
         }
         #endregion
@@ -248,48 +249,52 @@ namespace OML_App.Connection
 
         public void Run()
         {
-            int opc = 0;
-            int count = 0;
-            keepalive();
-            Reporting();
-            while (true)
-            {
+            packet = Liefdes_brief.SendPackage(4);
+            Send();
+            Thread.Sleep(1000);
 
-                if (isChanged())
-                {
-                    opc = Liefdes_brief.GetPackage(byteData);
-                    switch (opc)
-                    {
-                        case 0:
-                            //execute last command
-                            break;
-                        case 1:
-                            //code accepted
-                            break;
-                        case 2:
-                            //sync ok
-                            break;
-                        case 3:
-                            //do nothing save code
-                            break;
-                    }
-                }
+            //int opc = 0;
+            //int count = 0;
+            //keepalive();
+            //Reporting();
+            //while (true)
+            //{
 
-                Thread.Sleep(200);
-                //counter to get once a 800ms a keepalive
-                count++;
-                if (count >= 4)
-                {
-                    keepalive();
-                    count = 0;
-                }
-                try
-                {
-                    packet = Liefdes_brief.SendPackage(2);
-                    Send();
-                }
-                catch{} 
-            }
+            //    if (isChanged())
+            //    {
+            //        opc = Liefdes_brief.GetPackage(byteData);
+            //        switch (opc)
+            //        {
+            //            case 0:
+            //                //execute last command
+            //                break;
+            //            case 1:
+            //                //code accepted
+            //                break;
+            //            case 2:
+            //                //sync ok
+            //                break;
+            //            case 3:
+            //                //do nothing save code
+            //                break;
+            //        }
+            //    }
+
+            //    Thread.Sleep(200);
+            //    //counter to get once a 800ms a keepalive
+            //    count++;
+            //    if (count >= 4)
+            //    {
+            //        keepalive();
+            //        count = 0;
+            //    }
+            //    try
+            //    {
+            //        packet = Liefdes_brief.SendPackage(2);
+            //        Send();
+            //    }
+            //    catch{} 
+            //}
         }
     }           
 }
