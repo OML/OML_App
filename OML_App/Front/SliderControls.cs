@@ -16,10 +16,10 @@ namespace OML_App
 {
     public class SliderControls : View, View.IOnTouchListener
     {
-        public static int INIT_X = 0;
-	    public static int INIT_Y = 89;
+        public static float INIT_X = 0;
+	    public static float INIT_Y = 101;
 	
-	    public Point _touchingPoint = new Point(INIT_X, INIT_Y);
+	    public PointF _touchingPoint = new PointF(INIT_X, INIT_Y);
 	
 	    public int _power = 0;
 
@@ -56,31 +56,22 @@ namespace OML_App
             switch (events.Action & events.ActionMasked)
             {
                 case MotionEventActions.Down:
+                    ////save the ID of this pointer
+                    //mActivePointerId = events.GetPointerId(0);
+
                     //remember where we started
-                    mLastTouchY = events.GetY();
-
-                    if (mLastTouchY < 0)
-                        mLastTouchY = 0;
-                    else if (mLastTouchY > 179)
-                        mLastTouchY = 179;
-
-                    //save the ID of this pointer
-                    mActivePointerId = events.GetPointerId(0);
+                    mLastTouchY = events.GetY(mActivePointerId);
                     break;
 
                 case MotionEventActions.Move:
-                    //find the index of the activepointer and fetch its position
-                    int pointerIndex = events.FindPointerIndex(mActivePointerId);
+                    ////find the index of the activepointer and fetch its position
+                    //int activePointerIndex = events.FindPointerIndex(mActivePointerId);
                     
                     //only get the vertical movement
-                    float y = events.GetY(pointerIndex);
+                    float y = events.GetY();
 
-                    if (y < 13)
-                        y = 13;
-                    else if (y > 179)
-                        y = 179;
-                    else
-                        _touchingPoint.Y = (int)y;
+                    //set touchingpoint
+                    _touchingPoint.Y = (int)y;
 
                     //remember this touch point for the next move event
                     mLastTouchY = y;
@@ -91,31 +82,39 @@ namespace OML_App
 
                 case MotionEventActions.Up:
                     //reset our touching point on release
-                    _touchingPoint = new Point(0, 89);
-                    break;
-
-                case MotionEventActions.Cancel:
-                    _touchingPoint = new Point(0, 89);
+                    _touchingPoint = new PointF(INIT_X, INIT_Y);
                     break;
             }
+
+            if (_touchingPoint.Y < 13)
+                _touchingPoint.Y = 13;
+
+            if (_touchingPoint.Y > 189)
+                _touchingPoint.Y = 189;
 		
 		    //determine the percentage of power forward/backward
             //-83 < 0 > 83
-            _power = Convert.ToInt32((_touchingPoint.Y - 13) - 83);
+            _power = Convert.ToInt32((_touchingPoint.Y - 13) - 88);
 
             //make sure we can return a power value for the engine between 100 and - 100
             //100 being max power forwards, -100 max power reverse.
-            if (_power < -1)
+            if (_power < -2)
             {
-                _power = Convert.ToInt32((Math.Abs(_power / 83)) * 100);
+                _power = Convert.ToInt32((Math.Abs(_power / 88)) * 100);
             }
-            else if (_power > 1)
+            else if (_power > 2)
             {
-                _power = Convert.ToInt32((_power / 83) * 100);
+                _power = Convert.ToInt32((_power / 88) * 100);
                 _power *= -1;
             }
             else
                 _power = 0;
+
+            if (_power > 100)
+                _power = 100;
+
+            if (_power < -100)
+                _power = -100;
 	    }
 
         protected override void OnDraw(Canvas canvas)

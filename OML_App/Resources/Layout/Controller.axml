@@ -27,30 +27,21 @@
         android:id="@+id/slidersBox0"
         android:layout_width="176dp"
         android:layout_height="262dp"
-        android:background="@drawable/sliderBoxL"
+        android:background="@drawable/slidersbox0"
         android:layout_below="@id/menuBox"
         android:layout_marginTop="8dp"
         android:layout_marginLeft="8dp"
-        android:paddingTop="25dp"
+        android:paddingTop="30dp"
         android:paddingLeft="33dp">
       <RelativeLayout
           android:id="@+id/smallSlider0"
           android:layout_width="44dp"
-          android:layout_height="205dp">
+          android:layout_height="202dp">
         <oml_app.SliderControls
                     android:id="@+id/sliderControls1"
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"/>
       </RelativeLayout>
-      <TextView
-        android:id="@+id/powerTextView0"
-        android:layout_width="60dp"
-        android:layout_height="40dp"
-        android:layout_toRightOf="@id/smallSlider0"
-        android:layout_marginLeft="8dp"
-        android:background="#ffffff"
-        android:textColor="#000000"
-        android:textSize="80sp"/>
     </RelativeLayout>
     <!--<RelativeLayout
                 android:id="@+id/smallSliderLayout"
@@ -326,18 +317,18 @@
         android:id="@+id/slidersBox1"
         android:layout_width="176dp"
         android:layout_height="262dp"
-        android:background="@drawable/sliderBoxR"
+        android:background="@drawable/slidersbox1"
         android:layout_below="@id/sideBox"
         android:layout_toRightOf="@id/flipper"
         android:layout_marginTop="8dp"
         android:layout_marginLeft="8dp"
-        android:paddingTop="25dp"
-        android:paddingRight="39dp"
-        android:paddingLeft="91dp">
+        android:paddingTop="30dp"
+        android:paddingRight="30dp"
+        android:paddingLeft="99dp">
       <RelativeLayout
-          android:id="@+id/smallSlider0"
+          android:id="@+id/smallSlider1"
           android:layout_width="44dp"
-          android:layout_height="205dp">
+          android:layout_height="202dp">
         <oml_app.SliderControls
               android:id="@+id/sliderControls1"
               android:layout_width="fill_parent"
