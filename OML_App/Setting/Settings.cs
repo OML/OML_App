@@ -10,7 +10,7 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 
-namespace OML_App.Settings
+namespace OML_App.Setting
 {
     class Settings
     {

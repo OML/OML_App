@@ -57,7 +57,7 @@ namespace OML_App
             {
                 case MotionEventActions.Down:
                     //save the ID of this pointer
-                    mActivePointerId = (int)(events.Action & MotionEventActions.PointerIdMask) >> (int)MotionEventActions.PointerIdShift;
+                    mActivePointerId = ((int)events.Action & (int)MotionEventActions.PointerIdMask) >> (int)MotionEventActions.PointerIdShift;
 
                     //remember where we started
                     mLastTouchY = events.GetY(mActivePointerId);
