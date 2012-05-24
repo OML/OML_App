@@ -32,24 +32,25 @@ namespace OML_App.Connection
         byte[] packet;
         public bool connected = false;
         string Ip_Adress;
+        //data buffer
         private byte[] byteData = new byte[1024];
+        //temp checking if changed
+        byte[] Temp = new byte[1024];
+        //port
         int Port;
+        //if first time
+
         int result_opcode;
         #endregion
 
         #region Setting_Up_Client
         public TCPClient(string ip_adress, int port)
         {
-            bool connect = false;
-            this.Ip_Adress = "192.168.1.152"; //"192.168.1.103";
-            this.Port = 1337;
+            this.Ip_Adress = "192.168.1.103"; //"192.168.1.103";
+            this.Port = 1337;//port
             Connect();
             Thread newThread = new Thread(new ThreadStart(Run));
             newThread.Start();
-            if (!connect)
-            {
-                //please an error message
-            }
         }
         #endregion
 
@@ -63,6 +64,17 @@ namespace OML_App.Connection
                 IPEndPoint ipEndPoint = new IPEndPoint(ipAddress, Port);
                 //Connect to the server
 
+                clientSocket.BeginSend(byteData, 0, byteData.Length, SocketFlags.None, new AsyncCallback(OnSend), null);
+
+                byteData = new byte[1024];
+                //Start listening to the data asynchronously
+                clientSocket.BeginReceive(byteData,
+                                           0,
+                                           byteData.Length,
+                                           SocketFlags.None,
+                                           new AsyncCallback(OnReceive),
+                                           null);
+
 
                 Send();
                 clientSocket.Connect(ipEndPoint);
@@ -75,12 +87,15 @@ namespace OML_App.Connection
 
             }
         }
-
+        #region send
         private void OnSend(IAsyncResult ar)
         {
             try
             {
                 clientSocket.EndSend(ar);
+            }
+            catch (ObjectDisposedException)
+            { 
             }
             catch (Exception ex)
             {
@@ -88,28 +103,38 @@ namespace OML_App.Connection
             }
         }
 
-
-
-
-
         private void Send()
         {
             try
             {
-                //byte[] buffer = new byte[Marshal.SizeOf(packet)];
-
-                ////Console.WriteLine(Marshal.SizeOf(packet));
-                //unsafe
-                //{
-                //    GCHandle gch = GCHandle.Alloc(buffer, GCHandleType.Pinned);
-                //    Marshal.StructureToPtr(packet, gch.AddrOfPinnedObject(), false);
-                //    gch.Free();
-                //}
-                clientSocket.BeginSend(packet, 0, packet.Length, SocketFlags.None, null, null);
+                clientSocket.BeginSend(packet, 0, packet.Length, SocketFlags.None, new AsyncCallback(OnSend), null);
             }
             catch (Exception ex)
             {
                 System.Console.WriteLine("@ OnConnect:" + ex.Message);
+            }
+        }
+        #endregion
+
+        private void OnReceive(IAsyncResult ar)
+        {
+            try
+            {
+                clientSocket.EndReceive(ar);
+                byteData = new byte[1024];
+                clientSocket.BeginReceive(byteData,
+                                          0,
+                                          byteData.Length,
+                                          SocketFlags.None,
+                                          new AsyncCallback(OnReceive),
+                                          null);
+
+            }
+            catch (ObjectDisposedException)
+            { 
+            }
+            catch (Exception ex)
+            {
             }
         }
 
@@ -118,7 +143,6 @@ namespace OML_App.Connection
             try
             {
                 byteData = new byte[1024];
-                //clientSocket.Receive(byteData);
                 clientSocket.BeginReceive(byteData,
                                            0,
                                            byteData.Length,
@@ -126,6 +150,7 @@ namespace OML_App.Connection
                                            null,
                                            null);
                 result_opcode = Liefdes_brief.GetPackage(byteData);
+                Receive();
 
             }
             catch (ObjectDisposedException)
@@ -136,25 +161,92 @@ namespace OML_App.Connection
             }
         }
 
-        //i want a loop from uno second
+        #region ischanged
+        /// <summary>
+        /// Check if the incoming data has changed
+        /// </summary>
+        /// <returns>boolean if changed returns a true</returns>
+        public bool isChanged()
+        {
+            bool ischanged = false;
+            
+            if (Temp == byteData)
+            {
+                ischanged = false;
+            }
+            else
+            {
+                Temp = byteData;
+                ischanged = true;
+            }
+            return ischanged;
+
+        }
+#endregion
+
+        #region keepalive
+        public bool keepalive()
+        {
+            bool alive = false;
+
+            packet = Liefdes_brief.SendPackage(4);
+            Send();
+            Thread.Sleep(50);
+
+            if(Liefdes_brief.GetPackage(byteData) == 1)
+            {
+                alive = true;
+            }
+            else{
+                keepalive();
+            }
+            return alive;
+
+        }
+#endregion
+
+        #region report
+        public bool Reporting()
+        {
+            bool report = false;
+            packet = Liefdes_brief.SendPackage(3);
+            Send();
+            Thread.Sleep(50);
+
+            if (Liefdes_brief.GetPackage(byteData) == 3)
+            {
+                report = true;
+            }
+            else
+            {
+                keepalive();
+            }
+            return report;
+        }
+        #endregion
+
         public void Run()
         {
+
+            int count = 0;
+            keepalive();
+            Reporting();
             while (true)
             {
-                packet = Liefdes_brief.SendPackage(4);
-                Send();
-                //Receive();
-                Thread.Sleep(1000);
-                //Send();
-
-                //Send();
-                //packet = Liefdes_brief.SendPackage(3);
-                //Send();
-                //packet = Liefdes_brief.SendPackage(2);
-                //Send();
-                //SetPacket(2, 0, 25, 25, 0, 10, 0);
-                //Receive();
+                Thread.Sleep(200);
+                //counter to get once a 800ms a keepalive
+                count++;
+                if (count >= 4) {
+                    keepalive();
+                    count = 0;
+                }
+                try
+                {
+                    packet = Liefdes_brief.SendPackage(2);
+                    Send();
+                }
             }
-        }
+            
+            }
     }
 }

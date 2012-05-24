@@ -9,6 +9,10 @@ namespace OML_App.Data
         private static volatile Receive_Singleton instance;
         private static object syncRoot = new Object();
 
+        public List<Sensor> Current_Sensors;
+
+        public Session Current_ses;
+
         //4x motor Voltages
         private Sensor M0V;
         private Sensor M1V;
@@ -53,6 +57,7 @@ namespace OML_App.Data
 
         public void init()
         {
+
             //4x motor Voltages
             M0V = new Sensor("Voltage_motor_0", "M0V", "V", 0, 50);
             M1V = new Sensor("Voltage_motor_1", "M1V", "V", 0, 50);
