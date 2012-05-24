@@ -46,7 +46,7 @@ namespace OML_App.Connection
         #region Setting_Up_Client
         public TCPClient(string ip_adress, int port)
         {
-            this.Ip_Adress = "192.168.1.103"; //"192.168.1.103";
+            this.Ip_Adress = "192.168.1.100"; //"192.168.1.103";
             this.Port = 1337;//port
             Connect();
             Thread newThread = new Thread(new ThreadStart(Run));
@@ -95,7 +95,7 @@ namespace OML_App.Connection
                 clientSocket.EndSend(ar);
             }
             catch (ObjectDisposedException)
-            { 
+            {
             }
             catch (Exception ex)
             {
@@ -131,35 +131,35 @@ namespace OML_App.Connection
 
             }
             catch (ObjectDisposedException)
-            { 
+            {
             }
             catch (Exception ex)
             {
             }
         }
 
-        private void Receive()
-        {
-            try
-            {
-                byteData = new byte[1024];
-                clientSocket.BeginReceive(byteData,
-                                           0,
-                                           byteData.Length,
-                                           SocketFlags.None,
-                                           null,
-                                           null);
-                result_opcode = Liefdes_brief.GetPackage(byteData);
-                Receive();
+        //private void Receive()
+        //{
+        //    try
+        //    {
+        //        byteData = new byte[1024];
+        //        clientSocket.BeginReceive(byteData,
+        //                                   0,
+        //                                   byteData.Length,
+        //                                   SocketFlags.None,
+        //                                   null,
+        //                                   null);
+        //        //result_opcode = Liefdes_brief.GetPackage(byteData);
+        //        Receive();
 
-            }
-            catch (ObjectDisposedException)
-            { }
-            catch (Exception ex)
-            {
-                System.Console.WriteLine("@ OnReceive:" + ex.Message);
-            }
-        }
+        //    }
+        //    catch (ObjectDisposedException)
+        //    { }
+        //    catch (Exception ex)
+        //    {
+        //        System.Console.WriteLine("@ OnReceive:" + ex.Message);
+        //    }
+        //}
 
         #region ischanged
         /// <summary>
@@ -169,7 +169,7 @@ namespace OML_App.Connection
         public bool isChanged()
         {
             bool ischanged = false;
-            
+
             if (Temp == byteData)
             {
                 ischanged = false;
@@ -182,7 +182,7 @@ namespace OML_App.Connection
             return ischanged;
 
         }
-#endregion
+        #endregion
 
         #region keepalive
         public bool keepalive()
@@ -193,17 +193,18 @@ namespace OML_App.Connection
             Send();
             Thread.Sleep(50);
 
-            if(Liefdes_brief.GetPackage(byteData) == 1)
+            if (Liefdes_brief.GetPackage(byteData) == 1)
             {
                 alive = true;
             }
-            else{
+            else
+            {
                 keepalive();
             }
             return alive;
 
         }
-#endregion
+        #endregion
 
         #region report
         public bool Reporting()
@@ -247,16 +248,38 @@ namespace OML_App.Connection
 
         public void Run()
         {
-
+            int opc = 0;
             int count = 0;
             keepalive();
             Reporting();
             while (true)
             {
+
+                if (isChanged())
+                {
+                    opc = Liefdes_brief.GetPackage(byteData);
+                    switch (opc)
+                    {
+                        case 0:
+                            //execute last command
+                            break;
+                        case 1:
+                            //code accepted
+                            break;
+                        case 2:
+                            //sync ok
+                            break;
+                        case 3:
+                            //do nothing save code
+                            break;
+                    }
+                }
+
                 Thread.Sleep(200);
                 //counter to get once a 800ms a keepalive
                 count++;
-                if (count >= 4) {
+                if (count >= 4)
+                {
                     keepalive();
                     count = 0;
                 }
@@ -264,10 +287,9 @@ namespace OML_App.Connection
                 {
                     packet = Liefdes_brief.SendPackage(2);
                     Send();
-
                 }
+                catch{} 
             }
-            
-            }
-    }
+        }
+    }           
 }
