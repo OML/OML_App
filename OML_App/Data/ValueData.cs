@@ -12,7 +12,7 @@ using Android.Widget;
 
 namespace OML_App.Data
 {
-    class ValueData
+    public class ValueData
     {
         public float Value;
         public DateTime Time;

@@ -12,7 +12,7 @@ using Android.Widget;
 
 namespace OML_App.Data
 {
-    class Sensor
+    public class Sensor
     {
         public readonly string Name; //Name from sensor
         public readonly string NameShort; //Short Name 3 char max
