@@ -26,7 +26,6 @@ namespace OML_App
 
             flipper = FindViewById<ViewFlipper>(Resource.Id.flipper);
 
-
             //Setup Connect Button
             Button btnOpenNewActivity1 = FindViewById<Button>(Resource.Id.overviewButton);
             btnOpenNewActivity1.Click += new EventHandler(FlipToOverView);
@@ -43,7 +42,7 @@ namespace OML_App
         /// <param name="e"></param>
         public void FlipToOverView(object sender, EventArgs e)
         {
-            flipper.DisplayedChild = 0;
+            flipper.DisplayedChild = 1;
         }
 
         /// <summary>
@@ -53,7 +52,7 @@ namespace OML_App
         /// <param name="e"></param>
         public void FlipToBattery(object sender, EventArgs e)
         {
-            flipper.DisplayedChild = 1;
+            flipper.DisplayedChild = 2;
         }
 
         /// <summary>
