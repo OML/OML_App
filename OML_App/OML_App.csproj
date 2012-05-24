@@ -175,6 +175,7 @@
     <AndroidResource Include="Resources\Drawable\startbutton.png" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Resources\Drawable\midbox.png" />
     <Content Include="Properties\AndroidManifest.xml" />
     <AndroidResource Include="Resources\Drawable\AchtergrondAppGrijs.png" />
     <AndroidResource Include="Resources\Drawable\sliderBoxL.png" />
@@ -188,6 +189,8 @@
     <AndroidResource Include="Resources\Drawable\Icon.png" />
     <AndroidResource Include="Resources\Drawable\slidersbox1.png" />
     <AndroidResource Include="Resources\Drawable\slidersbox0.png" />
+    <AndroidResource Include="Resources\Drawable\background1.png" />
+    <AndroidResource Include="Resources\Drawable\Overview_Carmen.png" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />

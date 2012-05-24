@@ -3,7 +3,7 @@
     android:orientation="vertical"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="@drawable/background">
+    android:background="@drawable/background1">
   <RelativeLayout
       android:minWidth="25px"
       android:minHeight="25px"
@@ -38,7 +38,7 @@
           android:layout_width="44dp"
           android:layout_height="202dp">
         <oml_app.SliderControls
-                    android:id="@+id/sliderControls1"
+                    android:id="@+id/sliderControls0"
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"/>
       </RelativeLayout>
@@ -93,12 +93,13 @@
         android:layout_height="520dp"
         android:layout_toRightOf="@id/menuBox"
         android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp">
+        android:layout_marginTop="8dp"
+        android:background="@drawable/midbox">
       <RelativeLayout
           android:id="@+id/overView"
           android:layout_width="fill_parent"
           android:layout_height="fill_parent"
-          android:background="@drawable/OverViewBG">
+          android:background="@drawable/Overview_Carmen">
         <TextView
             android:id="@+id/EngLF1"
             android:layout_width="wrap_content"

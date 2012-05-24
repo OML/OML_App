@@ -26,7 +26,6 @@ namespace OML_App
 
             flipper = FindViewById<ViewFlipper>(Resource.Id.flipper);
 
-
             //Setup Connect Button
             Button btnOpenNewActivity1 = FindViewById<Button>(Resource.Id.overviewButton);
             btnOpenNewActivity1.Click += new EventHandler(FlipToOverView);
