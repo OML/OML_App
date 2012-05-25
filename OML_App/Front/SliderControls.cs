@@ -25,6 +25,7 @@ namespace OML_App
 
         private float mLastTouchY;
         private int mActivePointerId;
+        private int activePointers;
 
         public SliderControls(Context context, IAttributeSet attrs) :
             base(context, attrs)
@@ -56,19 +57,16 @@ namespace OML_App
             switch (events.Action & events.ActionMasked)
             {
                 case MotionEventActions.Down:
-                    //save the ID of this pointer
-                    mActivePointerId = ((int)events.Action & (int)MotionEventActions.PointerIdMask) >> (int)MotionEventActions.PointerIdShift;
+                    //save the ID of the active pointer
+                    mActivePointerId = events.PointerCount - 1;
 
                     //remember where we started
                     mLastTouchY = events.GetY(mActivePointerId);
                     break;
 
                 case MotionEventActions.Move:
-                    //find the index of the activepointer and fetch its position
-                    int activePointerIndex = events.FindPointerIndex(mActivePointerId);
-                    
                     //only get the vertical movement
-                    float y = events.GetY(activePointerIndex);
+                    float y = events.GetY(mActivePointerId);
 
                     //set touchingpoint
                     _touchingPoint.Y = (int)y;
