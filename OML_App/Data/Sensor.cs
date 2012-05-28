@@ -20,7 +20,7 @@ namespace OML_App.Data
         public readonly float Min;//Min value Set on start!
         public readonly float Max;//Max value Set on start!
 
-        public List<ValueData> Values;
+        public ValueData[] Values;
 
         public Sensor(string name, string nameshort, string unity, float min, float max)
         {
@@ -28,9 +28,26 @@ namespace OML_App.Data
             this.NameShort = nameshort; //Assign short name
             this.Unity = unity; //Set unity
             this.Min = min; //Set min
-            this.Max = max; //Set max
+            this.Max = max; //Set max            
+        }
 
-            Values = new List<ValueData>();//initialize list
+        public void AddValueDataToArray(ValueData valdata)
+        {
+            int newLength = 0;
+            ValueData[] newList;
+            if (Values != null)
+            {
+                newLength = Values.Length;
+                newList = new ValueData[newLength + 1];
+                Values.CopyTo(newList, 0);
+            }
+            else
+            {
+                newList = new ValueData[1];
+            }
+            newList[newList.GetUpperBound(0)] = valdata;
+            Values = newList;
+
         }
     }
 }

@@ -10,6 +10,8 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.Content.PM;
+using OML_App.net.ukct.reintjan1;
+using System.Collections;
 
 namespace OML_App
 {
@@ -22,6 +24,15 @@ namespace OML_App
 
             // Set our view from the "settings" layout resource
             SetContentView(Resource.Layout.Setting);
+
+            TextView Text1 = FindViewById<TextView>(Resource.Id.textView1);
+
+            WebService ws = new WebService();
+
+            // Set security for the web service - may not be required in all environments
+            ws.Credentials = System.Net.CredentialCache.DefaultCredentials;            
+            
+            RunOnUiThread(() => Text1.Text = "bla");
         }
-    }
+    }   
 }

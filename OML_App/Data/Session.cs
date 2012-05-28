@@ -15,12 +15,12 @@ namespace OML_App.Data
     public class Session
     {
         public string Vehicle_Name;
-        public List<Sensor> Sensors;
+        public Sensor[] Sensors;
         public DateTime StartTime;
         public DateTime EndTime;
 
         //Create a Live Session!
-        public Session(string vehicle_Name, List<Sensor> sensors)
+        public Session(string vehicle_Name, Sensor[] sensors)
         {
             this.Vehicle_Name = vehicle_Name;
             this.Sensors = sensors;
@@ -28,12 +28,31 @@ namespace OML_App.Data
         }
 
         //Create a Recorded Session
-        public Session(string vehicle_Name, List<Sensor> sensors, DateTime start, DateTime end)
+        public Session(string vehicle_Name, Sensor[] sensors, DateTime start, DateTime end)
         {
             this.Vehicle_Name = vehicle_Name;
             this.Sensors = sensors;
             this.StartTime = start;
             this.EndTime = end;
+        }
+
+        public void AddSensorToArray(Sensor s)
+        {
+            int newLength = 0;
+			Sensor[] newList;
+			if (Sensors != null)
+			{
+				newLength = Sensors.Length;
+				newList  = new Sensor[newLength + 1];
+				Sensors.CopyTo(newList, 0);
+			}
+			else
+			{
+				 newList = new Sensor[1];
+			}
+			newList[newList.GetUpperBound(0)] = s;
+			Sensors = newList;
+
         }
 
     }
