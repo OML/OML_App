@@ -39,20 +39,19 @@ namespace OML_App.Data
         public void AddSensorToArray(Sensor s)
         {
             int newLength = 0;
-			Sensor[] newList;
-			if (Sensors != null)
-			{
-				newLength = Sensors.Length;
-				newList  = new Sensor[newLength + 1];
-				Sensors.CopyTo(newList, 0);
-			}
-			else
-			{
-				 newList = new Sensor[1];
-			}
-			newList[newList.GetUpperBound(0)] = s;
-			Sensors = newList;
-
+            Sensor[] newList;
+            if (Sensors != null)
+            {
+                newLength = Sensors.Length;
+                newList = new Sensor[newLength + 1];
+                Sensors.CopyTo(newList, 0);
+            }
+            else
+            {
+                newList = new Sensor[1];
+            }
+            newList[newList.GetUpperBound(0)] = s;
+            Sensors = newList;
         }
 
     }

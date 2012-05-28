@@ -215,7 +215,67 @@ namespace OML_App.net.ukct.reintjan1 {
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://reintjan.ukct.net/rtm")]
     public partial class Sensor {
         
+        private string nameField;
+        
+        private string nameShortField;
+        
+        private string unityField;
+        
+        private float minField;
+        
+        private float maxField;
+        
         private ValueData[] valuesField;
+        
+        /// <remarks/>
+        public string Name {
+            get {
+                return this.nameField;
+            }
+            set {
+                this.nameField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string NameShort {
+            get {
+                return this.nameShortField;
+            }
+            set {
+                this.nameShortField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Unity {
+            get {
+                return this.unityField;
+            }
+            set {
+                this.unityField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public float Min {
+            get {
+                return this.minField;
+            }
+            set {
+                this.minField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public float Max {
+            get {
+                return this.maxField;
+            }
+            set {
+                this.maxField = value;
+            }
+        }
         
         /// <remarks/>
         public ValueData[] Values {
