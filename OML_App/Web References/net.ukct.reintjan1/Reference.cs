@@ -31,9 +31,11 @@ namespace OML_App.net.ukct.reintjan1 {
         
         private System.Threading.SendOrPostCallback HelloWorldOperationCompleted;
         
-        private System.Threading.SendOrPostCallback SaveNewSesOperationCompleted;
+        private System.Threading.SendOrPostCallback SaveNewSessionOperationCompleted;
         
-        private System.Threading.SendOrPostCallback ReturnLastSesOperationCompleted;
+        private System.Threading.SendOrPostCallback GetSessionListOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback GetAllSessionOperationCompleted;
         
         private bool useDefaultCredentialsSetExplicitly;
         
@@ -77,10 +79,13 @@ namespace OML_App.net.ukct.reintjan1 {
         public event HelloWorldCompletedEventHandler HelloWorldCompleted;
         
         /// <remarks/>
-        public event SaveNewSesCompletedEventHandler SaveNewSesCompleted;
+        public event SaveNewSessionCompletedEventHandler SaveNewSessionCompleted;
         
         /// <remarks/>
-        public event ReturnLastSesCompletedEventHandler ReturnLastSesCompleted;
+        public event GetSessionListCompletedEventHandler GetSessionListCompleted;
+        
+        /// <remarks/>
+        public event GetAllSessionCompletedEventHandler GetAllSessionCompleted;
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://reintjan.ukct.net/rtm/HelloWorld", RequestNamespace="http://reintjan.ukct.net/rtm", ResponseNamespace="http://reintjan.ukct.net/rtm", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
@@ -110,60 +115,87 @@ namespace OML_App.net.ukct.reintjan1 {
         }
         
         /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://reintjan.ukct.net/rtm/SaveNewSes", RequestNamespace="http://reintjan.ukct.net/rtm", ResponseNamespace="http://reintjan.ukct.net/rtm", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public bool SaveNewSes(Session Ses) {
-            object[] results = this.Invoke("SaveNewSes", new object[] {
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://reintjan.ukct.net/rtm/SaveNewSession", RequestNamespace="http://reintjan.ukct.net/rtm", ResponseNamespace="http://reintjan.ukct.net/rtm", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public bool SaveNewSession(Session Ses) {
+            object[] results = this.Invoke("SaveNewSession", new object[] {
                         Ses});
             return ((bool)(results[0]));
         }
         
         /// <remarks/>
-        public void SaveNewSesAsync(Session Ses) {
-            this.SaveNewSesAsync(Ses, null);
+        public void SaveNewSessionAsync(Session Ses) {
+            this.SaveNewSessionAsync(Ses, null);
         }
         
         /// <remarks/>
-        public void SaveNewSesAsync(Session Ses, object userState) {
-            if ((this.SaveNewSesOperationCompleted == null)) {
-                this.SaveNewSesOperationCompleted = new System.Threading.SendOrPostCallback(this.OnSaveNewSesOperationCompleted);
+        public void SaveNewSessionAsync(Session Ses, object userState) {
+            if ((this.SaveNewSessionOperationCompleted == null)) {
+                this.SaveNewSessionOperationCompleted = new System.Threading.SendOrPostCallback(this.OnSaveNewSessionOperationCompleted);
             }
-            this.InvokeAsync("SaveNewSes", new object[] {
-                        Ses}, this.SaveNewSesOperationCompleted, userState);
+            this.InvokeAsync("SaveNewSession", new object[] {
+                        Ses}, this.SaveNewSessionOperationCompleted, userState);
         }
         
-        private void OnSaveNewSesOperationCompleted(object arg) {
-            if ((this.SaveNewSesCompleted != null)) {
+        private void OnSaveNewSessionOperationCompleted(object arg) {
+            if ((this.SaveNewSessionCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.SaveNewSesCompleted(this, new SaveNewSesCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+                this.SaveNewSessionCompleted(this, new SaveNewSessionCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
         /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://reintjan.ukct.net/rtm/ReturnLastSes", RequestNamespace="http://reintjan.ukct.net/rtm", ResponseNamespace="http://reintjan.ukct.net/rtm", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public Session[] ReturnLastSes(int number) {
-            object[] results = this.Invoke("ReturnLastSes", new object[] {
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://reintjan.ukct.net/rtm/GetSessionList", RequestNamespace="http://reintjan.ukct.net/rtm", ResponseNamespace="http://reintjan.ukct.net/rtm", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public Session[] GetSessionList(int number) {
+            object[] results = this.Invoke("GetSessionList", new object[] {
                         number});
             return ((Session[])(results[0]));
         }
         
         /// <remarks/>
-        public void ReturnLastSesAsync(int number) {
-            this.ReturnLastSesAsync(number, null);
+        public void GetSessionListAsync(int number) {
+            this.GetSessionListAsync(number, null);
         }
         
         /// <remarks/>
-        public void ReturnLastSesAsync(int number, object userState) {
-            if ((this.ReturnLastSesOperationCompleted == null)) {
-                this.ReturnLastSesOperationCompleted = new System.Threading.SendOrPostCallback(this.OnReturnLastSesOperationCompleted);
+        public void GetSessionListAsync(int number, object userState) {
+            if ((this.GetSessionListOperationCompleted == null)) {
+                this.GetSessionListOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetSessionListOperationCompleted);
             }
-            this.InvokeAsync("ReturnLastSes", new object[] {
-                        number}, this.ReturnLastSesOperationCompleted, userState);
+            this.InvokeAsync("GetSessionList", new object[] {
+                        number}, this.GetSessionListOperationCompleted, userState);
         }
         
-        private void OnReturnLastSesOperationCompleted(object arg) {
-            if ((this.ReturnLastSesCompleted != null)) {
+        private void OnGetSessionListOperationCompleted(object arg) {
+            if ((this.GetSessionListCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.ReturnLastSesCompleted(this, new ReturnLastSesCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+                this.GetSessionListCompleted(this, new GetSessionListCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://reintjan.ukct.net/rtm/GetAllSession", RequestNamespace="http://reintjan.ukct.net/rtm", ResponseNamespace="http://reintjan.ukct.net/rtm", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public Session[] GetAllSession() {
+            object[] results = this.Invoke("GetAllSession", new object[0]);
+            return ((Session[])(results[0]));
+        }
+        
+        /// <remarks/>
+        public void GetAllSessionAsync() {
+            this.GetAllSessionAsync(null);
+        }
+        
+        /// <remarks/>
+        public void GetAllSessionAsync(object userState) {
+            if ((this.GetAllSessionOperationCompleted == null)) {
+                this.GetAllSessionOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetAllSessionOperationCompleted);
+            }
+            this.InvokeAsync("GetAllSession", new object[0], this.GetAllSessionOperationCompleted, userState);
+        }
+        
+        private void OnGetAllSessionOperationCompleted(object arg) {
+            if ((this.GetAllSessionCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.GetAllSessionCompleted(this, new GetAllSessionCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -385,17 +417,17 @@ namespace OML_App.net.ukct.reintjan1 {
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.1")]
-    public delegate void SaveNewSesCompletedEventHandler(object sender, SaveNewSesCompletedEventArgs e);
+    public delegate void SaveNewSessionCompletedEventHandler(object sender, SaveNewSessionCompletedEventArgs e);
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.1")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class SaveNewSesCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+    public partial class SaveNewSessionCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
         
         private object[] results;
         
-        internal SaveNewSesCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+        internal SaveNewSessionCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }
@@ -411,17 +443,43 @@ namespace OML_App.net.ukct.reintjan1 {
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.1")]
-    public delegate void ReturnLastSesCompletedEventHandler(object sender, ReturnLastSesCompletedEventArgs e);
+    public delegate void GetSessionListCompletedEventHandler(object sender, GetSessionListCompletedEventArgs e);
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.1")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class ReturnLastSesCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+    public partial class GetSessionListCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
         
         private object[] results;
         
-        internal ReturnLastSesCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+        internal GetSessionListCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public Session[] Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((Session[])(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.1")]
+    public delegate void GetAllSessionCompletedEventHandler(object sender, GetAllSessionCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.1")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class GetAllSessionCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal GetAllSessionCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }
