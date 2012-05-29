@@ -83,17 +83,23 @@
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
     <None Include="Assets\AboutAssets.txt" />
-    <AndroidResource Include="Resources\Layout\Info.axml" />
-    <AndroidResource Include="Resources\Layout\Live.axml" />
-    <AndroidResource Include="Resources\Layout\Setting.axml" />
+    <AndroidResource Include="Resources\Layout\Info.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\Layout\Live.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\Layout\Setting.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
     <AndroidResource Include="Resources\Layout\Controller.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\Layout\Recorded.axml">
-      <SubType>AndroidResource</SubType>
+      <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\Layout\Analyse.axml">
-      <SubType>AndroidResource</SubType>
+      <SubType>Designer</SubType>
     </AndroidResource>
     <None Include="Web References\net.ukct.reintjan1\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
@@ -216,6 +222,7 @@
     <AndroidResource Include="Resources\Drawable\recordedbutton_pressed.png" />
     <AndroidResource Include="Resources\Drawable\settingsbutton_pressed.png" />
     <AndroidResource Include="Resources\Drawable\connectbutton_pressed.png" />
+    <AndroidResource Include="Resources\Drawable\background2.png" />
   </ItemGroup>
   <ItemGroup>
     <WebReferences Include="Web References\" />
