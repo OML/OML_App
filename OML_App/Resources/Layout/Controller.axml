@@ -21,7 +21,22 @@
         android:paddingLeft="17dp"
         android:paddingRight="17dp"
         android:paddingTop="32dp"
-        android:paddingBottom="32dp" />
+        android:paddingBottom="32dp" >
+      <TextView
+        android:id="@+id/powerView0"
+        android:layout_width="142dp"
+        android:layout_height="55dp"
+        android:background="#000000"
+        android:textColor="#ffffff"/>
+      <TextView
+        android:id="@+id/powerView1"
+        android:layout_width="142dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="8dp"
+        android:layout_below="@id/powerView0"
+        android:background="#000000"
+        android:textColor="#ffffff"/>
+    </RelativeLayout>
     <!-- SliderBox layout, contains sliders to control CARMEN -->
     <RelativeLayout
         android:id="@+id/slidersBox0"

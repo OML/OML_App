@@ -11,6 +11,7 @@ using Android.Util;
 using Android.Views;
 using Android.Widget;
 using Android.Graphics;
+using OML_App.Data;
 
 namespace OML_App
 {
@@ -21,11 +22,12 @@ namespace OML_App
 	
 	    public PointF _touchingPoint = new PointF(INIT_X, INIT_Y);
 	
-	    public int _power = 0;
+	    public float _power = 0;
 
         private float mLastTouchY;
         private int mActivePointerId;
-        private int activePointers;
+
+        TextView tv;
 
         public SliderControls(Context context, IAttributeSet attrs) :
             base(context, attrs)
@@ -114,6 +116,11 @@ namespace OML_App
 
             if (_power < -100)
                 _power = -100;
+
+            if (this.Id == Resource.Id.sliderControls0)
+                Send_Singleton.Instance.left = (int)_power;
+            else if (this.Id == Resource.Id.sliderControls1)
+                Send_Singleton.Instance.right = (int)_power;
 	    }
 
         protected override void OnDraw(Canvas canvas)
@@ -123,7 +130,18 @@ namespace OML_App
             {
                 //draw the y with minus 13 to make it center.
                 canvas.DrawBitmap(BitmapFactory.DecodeResource(Resources, Resource.Drawable.slidersmall), _touchingPoint.X, _touchingPoint.Y - 13, null);
-            }
+
+                if (this.Id == Resource.Id.sliderControls0)
+                {
+                    tv = ((RelativeLayout)this.Parent.Parent.Parent).FindViewById<TextView>(Resource.Id.powerView0);
+                    tv.Text = "Power Left: " + _power;
+                }//end if
+                else if (this.Id == Resource.Id.sliderControls1)
+                {
+                    tv = ((RelativeLayout)this.Parent.Parent.Parent).FindViewById<TextView>(Resource.Id.powerView1);
+                    tv.Text = "Power Right: " + _power;
+                }//end else if
+            }//end if
             //for debugging purposes
             else
             {
