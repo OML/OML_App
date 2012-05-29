@@ -46,9 +46,9 @@ namespace OML_App.Connection
             switch (ludevedu)
             {
                 //Reject
-                //case 0:
-                //    Reject();
-                //    break;
+                case 0:
+                    Reject();
+                    break;
                 ////ok
                 //case 1:
                 //    buffer = new byte[Marshal.SizeOf(ok())];
@@ -99,10 +99,10 @@ namespace OML_App.Connection
         #endregion
 
         #region Reject
-        //public void Reject()
-        //{
+        public void Reject()
+        {
 
-        //}
+        }
         #endregion
 
         #region OK
@@ -148,14 +148,15 @@ namespace OML_App.Connection
         {
             SendStructPackage sync = new SendStructPackage();
             sync.opcode = 2;
-            sync.speed = Convert.ToByte(Send_Singleton.Instance.speed);
-            sync.left = Convert.ToSByte(Send_Singleton.Instance.left);
-            sync.right = Convert.ToSByte(Send_Singleton.Instance.right);
-            sync.Calibration_mode = Convert.ToByte(Send_Singleton.Instance.Calibration_mode);
-            sync.engine_0 = Convert.ToByte(Send_Singleton.Instance.engine0);
-            sync.engine_1 = Convert.ToByte(Send_Singleton.Instance.engine1);
-            sync.engine_2 = Convert.ToByte(Send_Singleton.Instance.engine2);
-            sync.engine_3 = Convert.ToByte(Send_Singleton.Instance.engine3);
+            sync.speed = 1;//Convert.ToByte(Send_Singleton.Instance.speed);
+            sync.left = 1;// Convert.ToSByte(Send_Singleton.Instance.left);
+            sync.right = 1;//Convert.ToSByte(Send_Singleton.Instance.right);
+            sync.Calibration_mode = 1;// Convert.ToByte(Send_Singleton.Instance.Calibration_mode);
+            sync.engine_0 = 1;//(ushort)Send_Singleton.Instance.engine0;
+            sync.engine_1 = 1;// (ushort)Send_Singleton.Instance.engine1;
+            sync.engine_2 = 1;// (ushort)Send_Singleton.Instance.engine2;
+            sync.engine_3 = 1;//(ushort)Send_Singleton.Instance.engine3;
+            //sync.engines = 5;
             sync.sound = Convert.ToByte(Send_Singleton.Instance.sound);
             return sync;
 
@@ -172,12 +173,11 @@ namespace OML_App.Connection
             public sbyte left; //left int -100 t/m 100 //left wheel values
             public sbyte right; //Right int -100 t/m 100 //Right wheel values
             public byte Calibration_mode; //boolean calibration mode //possibility to move each engine separate
-
-            public ushort engine_0; //engine int[4] -100 t/m 100
-            public ushort engine_1;
-            public ushort engine_2;
-            public ushort engine_3;
-
+            public short engine_0; //engine int[4] -100 t/m 100
+            public short engine_1;
+            public short engine_2;
+            public short engine_3;
+            //public Int16 engines;
             public byte sound; //sound int //playing sounds array[99] possibility of max 99 sounds SO Sounds[0] gets first sound
         }
 
@@ -199,13 +199,23 @@ namespace OML_App.Connection
         public ReportStructPackage Report()
         {
             ReportStructPackage report = new ReportStructPackage();
-            report.opcode = 3;
-            report.padding = 1;
-            report.throttle = Convert.ToInt16(Send_Singleton.Instance.throttle);
-            report.voltage = Convert.ToUInt16(Send_Singleton.Instance.voltage);
-            report.current = Convert.ToUInt16(Send_Singleton.Instance.current);
-            report.temperature = Convert.ToInt16(Send_Singleton.Instance.temperature);
-            report.Gyro = Convert.ToInt16(Send_Singleton.Instance.Gyro);
+            try
+            {
+                
+                report.opcode = 3;
+                report.padding = 1;
+                report.throttle = 10;//Convert.ToInt16(Send_Singleton.Instance.throttle);
+                report.voltage = 11;///Convert.ToUInt16(Send_Singleton.Instance.voltage);
+                report.current = 11;//Convert.ToUInt16(Send_Singleton.Instance.current);
+                report.temperature = 11;//Convert.ToInt16(Send_Singleton.Instance.temperature);
+                report.Gyro = 11;///Convert.ToInt16(Send_Singleton.Instance.Gyro);
+                Console.WriteLine("succesfully setup Report structpackage");
+                
+                
+            }
+            catch {
+                Console.WriteLine("Abort structpackage");
+            }
             return report;
         }
 
@@ -267,7 +277,13 @@ namespace OML_App.Connection
         public int GetPackage(byte[] data)
         {
             int return_opcode = 0;
-            opcode = data[0];
+            try
+            {
+                opcode = data[0];
+            }
+            catch {
+                Console.WriteLine("unable to read opcode");
+            }
             if (opcode == 0)
             {
                 //data reject
@@ -277,6 +293,7 @@ namespace OML_App.Connection
             {
                 //data ok
                 return_opcode = 1;
+                
             }
             else if (opcode == 2)
             {
@@ -288,11 +305,12 @@ namespace OML_App.Connection
                     unsafe
                     {
                         SyncStructPackage* p;
-                        GCHandle gch = GCHandle.Alloc(data);
+                        GCHandle gch = GCHandle.Alloc(data, GCHandleType.Pinned);
                         p = (SyncStructPackage*)gch.AddrOfPinnedObject().ToPointer();
                         pack = *p;
                         gch.Free();
                     }
+                    Console.WriteLine("succesfully synced");
 
                 }
                 catch (Exception e)
@@ -340,14 +358,15 @@ namespace OML_App.Connection
                 try
                 {
                     //
-                    SyncStructPackage keepalive = new SyncStructPackage();
+                    keepaliveStructPackage keepalive = new keepaliveStructPackage();
                     unsafe
                     {
-                        SyncStructPackage* p;
-                        GCHandle gch = GCHandle.Alloc(data);
-                        p = (SyncStructPackage*)gch.AddrOfPinnedObject().ToPointer();
+                        keepaliveStructPackage* p;
+                        GCHandle gch = GCHandle.Alloc(data, GCHandleType.Pinned);
+                        p = (keepaliveStructPackage*)gch.AddrOfPinnedObject().ToPointer();
                         keepalive = *p;
                         gch.Free();
+                        Console.WriteLine("Read Keep alive package");
                     }
 
                 }
@@ -357,6 +376,9 @@ namespace OML_App.Connection
                 }
                 return_opcode = 4;
             }
+            else { return_opcode = 99; }
+            Console.WriteLine("0==reject 1==ok 2==sync 3==report 4==keepalive");
+            Console.WriteLine("received kinda package : " + return_opcode);
             return return_opcode;
         }
 

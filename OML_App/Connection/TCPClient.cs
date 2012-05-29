@@ -16,6 +16,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
 using System.Runtime.InteropServices;
 using OML_App.Data;
+using System.Diagnostics;
 
 namespace OML_App.Connection
 {
@@ -24,272 +25,151 @@ namespace OML_App.Connection
     /// </summary>
     public class TCPClient
     {
-        #region Variables
-
-        public Socket clientSocket;
+        #region variable
+        //client sock
+        Socket m_socClient;
         Data Liefdes_brief = new Data();
-        //Data.SendStructPackage packet;
-        byte[] packet;
+
+        string IP_Adress;
+        int Port;
         public bool connected = false;
-        string Ip_Adress;
+
         //data buffer
         private byte[] byteData = new byte[1024];
         //temp checking if changed
         byte[] Temp = new byte[1024];
-        //port
-        int Port;
-        //if first time
-
-        int result_opcode;
         #endregion
 
-        #region Setting_Up_Client
-        public TCPClient(string ip_adress, int port)
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="ipadress">give up ipadress</param>
+        /// <param name="port">Port name</param>
+        public TCPClient(string ipadress, int port)
         {
-            this.Ip_Adress = "192.168.1.100"; //"192.168.1.103";
-            this.Port = 1337;//port
-            Connect();
+            this.IP_Adress = "192.168.1.101";//ipadress;
+            this.Port = 1337;//port;
+            cmdConnect();
             Thread newThread = new Thread(new ThreadStart(Run));
             newThread.Start();
         }
-        #endregion
 
-        public void Connect()
-        {
-            try
-            {
-                clientSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-                IPAddress ipAddress = IPAddress.Parse(Ip_Adress);
-                //Server is listening on port 1000
-                IPEndPoint ipEndPoint = new IPEndPoint(ipAddress, Port);
-                //Connect to the server
-
-                clientSocket.BeginSend(byteData, 0, byteData.Length, SocketFlags.None, new AsyncCallback(OnSend), null);
-
-                byteData = new byte[1024];
-                //Start listening to the data asynchronously
-                clientSocket.BeginReceive(byteData,
-                                           0,
-                                           byteData.Length,
-                                           SocketFlags.None,
-                                           new AsyncCallback(OnReceive),
-                                           null);
-
-
-                Send();
-                clientSocket.Connect(ipEndPoint);
-                connected = true;
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex);
-                connected = true;
-
-            }
-        }
-        #region send
-        private void OnSend(IAsyncResult ar)
-        {
-            try
-            {
-                clientSocket.EndSend(ar);
-            }
-            catch (ObjectDisposedException)
-            {
-            }
-            catch (Exception ex)
-            {
-                System.Console.WriteLine("@ OnSend:" + ex.Message);
-            }
-        }
-
-        private void Send()
-        {
-            try
-            {
-                clientSocket.BeginSend(packet, 0, packet.Length, SocketFlags.None, new AsyncCallback(OnSend), null);
-            }
-            catch (Exception ex)
-            {
-                System.Console.WriteLine("@ OnConnect:" + ex.Message);
-            }
-        }
-        #endregion
-
-        private void OnReceive(IAsyncResult ar)
-        {
-            try
-            {
-                clientSocket.EndReceive(ar);
-                byteData = new byte[1024];
-                clientSocket.BeginReceive(byteData,
-                                          0,
-                                          byteData.Length,
-                                          SocketFlags.None,
-                                          new AsyncCallback(OnReceive),
-                                          null);
-
-            }
-            catch (ObjectDisposedException)
-            {
-            }
-            catch (Exception ex)
-            {
-            }
-        }
-
-        //private void Receive()
-        //{
-        //    try
-        //    {
-        //        byteData = new byte[1024];
-        //        clientSocket.BeginReceive(byteData,
-        //                                   0,
-        //                                   byteData.Length,
-        //                                   SocketFlags.None,
-        //                                   null,
-        //                                   null);
-        //        //result_opcode = Liefdes_brief.GetPackage(byteData);
-        //        Receive();
-
-        //    }
-        //    catch (ObjectDisposedException)
-        //    { }
-        //    catch (Exception ex)
-        //    {
-        //        System.Console.WriteLine("@ OnReceive:" + ex.Message);
-        //    }
-        //}
-
-        #region ischanged
         /// <summary>
-        /// Check if the incoming data has changed
+        /// Setup an connection
         /// </summary>
-        /// <returns>boolean if changed returns a true</returns>
-        public bool isChanged()
+        private void cmdConnect()
         {
-            bool ischanged = false;
-
-            if (Temp == byteData)
+            try
             {
-                ischanged = false;
-            }
-            else
-            {
-                Temp = byteData;
-                ischanged = true;
-            }
-            return ischanged;
+                //create a new client socket ...
+                m_socClient = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+                String szIPSelected = IP_Adress;
+                int alPort = Port;
+                System.Net.IPAddress remoteIPAddress = System.Net.IPAddress.Parse(szIPSelected);
+                System.Net.IPEndPoint remoteEndPoint = new System.Net.IPEndPoint(remoteIPAddress, alPort);
+                m_socClient.Connect(remoteEndPoint);
+                byteData = Liefdes_brief.SendPackage(4);
+                m_socClient.Send(byteData);
+                connected = true;
 
+            }
+            catch (SocketException se)
+            {
+                Console.WriteLine(se);
+                connected = false;
+            }
         }
-        #endregion
 
-        #region keepalive
-        public bool keepalive()
+        /// <summary>
+        /// Sending data
+        /// </summary>
+        /// <param name="Pack">0==reject 1==ok 2==sync 3==report 4==keepalive</param>
+        private void cmdSendData(int Pack)
         {
-            bool alive = false;
-
-            packet = Liefdes_brief.SendPackage(4);
-            Send();
-            Thread.Sleep(50);
-
-            if (Liefdes_brief.GetPackage(byteData) == 1)
+            try
             {
-                alive = true;
+                byteData = Liefdes_brief.SendPackage(Pack);
+                m_socClient.Send(byteData);
             }
-            else
+            catch (SocketException se)
             {
-                keepalive();
+                Console.WriteLine(se);
+                connected = false;
             }
-            return alive;
-
         }
-        #endregion
 
-        #region report
-        public bool Reporting()
+        /// <summary>
+        /// Receive data
+        /// </summary>
+        private void cmdReceiveData()
         {
-            bool report = false;
-            packet = Liefdes_brief.SendPackage(3);
-            Send();
-            Thread.Sleep(50);
-
-            if (Liefdes_brief.GetPackage(byteData) == 3)
+            try
             {
-                report = true;
+                byte[] buffer = new byte[1024];
+                
+                int irx = m_socClient.Receive(buffer);
+                if (irx == 0)
+                {
+                    Console.WriteLine("no data available");
+                }
+                else
+                {
+                    Console.WriteLine("wat is irx?: " + irx);
+                    int opcode = Liefdes_brief.GetPackage(buffer);
+                    Console.WriteLine(opcode);
+                }
             }
-            else
+            catch (SocketException se)
             {
-                keepalive();
+                Console.WriteLine(se);
             }
-            return report;
         }
-        #endregion
 
-        #region syncing
-        public bool syncing()
+        /// <summary>
+        /// Close data connection
+        /// </summary>
+        private void cmdClose()
         {
-            bool syncing = false;
-            packet = Liefdes_brief.SendPackage(3);
-            Send();
-            Thread.Sleep(50);
-
-            if (Liefdes_brief.GetPackage(byteData) == 2)
-            {
-                syncing = true;
-            }
-            else
-            {
-                keepalive();
-            }
-            return syncing;
+            m_socClient.Close();
         }
-        #endregion
 
+       /// <summary>
+       /// run data connection
+       /// </summary>
         public void Run()
         {
-            int opc = 0;
-            int count = 0;
-            keepalive();
-            Reporting();
+            Stopwatch stopwatch = new Stopwatch();
+            stopwatch.Start();
             while (true)
             {
-
-                if (isChanged())
+                if (connected)
                 {
-                    opc = Liefdes_brief.GetPackage(byteData);
-                    switch (opc)
-                    {
-                        case 0:
-                            //execute last command
-                            break;
-                        case 1:
-                            //code accepted
-                            break;
-                        case 2:
-                            //sync ok
-                            break;
-                        case 3:
-                            //do nothing save code
-                            break;
+                    if (stopwatch.ElapsedMilliseconds > 800) { cmdSendData(4); 
+                        stopwatch.Reset();
+                        stopwatch.Start(); 
                     }
+                    
+                    
+                    Thread.Sleep(100);
+                    cmdReceiveData();
+                    cmdSendData(2);
+                    //Thread.Sleep(500);
+                    //cmdReceiveData();
+                    
                 }
-
-                Thread.Sleep(200);
-                //counter to get once a 800ms a keepalive
-                count++;
-                if (count >= 4)
+                else 
                 {
-                    keepalive();
-                    count = 0;
+                    cmdClose();
+                    Thread.Sleep(250);
+                    //AlertDialog AlertaMensagem = new AlertDialog.Builder(this).SetIcon(Resource.Drawable.Icon).SetTitle("Connextion lost!").SetMessage(IP_Adress);
+                    cmdConnect();
                 }
-                try
-                {
-                    packet = Liefdes_brief.SendPackage(2);
-                    Send();
-                }
-                catch{} 
             }
+
+
         }
-    }           
+    }
+    
+
+
 }
