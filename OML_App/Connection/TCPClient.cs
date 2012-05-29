@@ -48,7 +48,7 @@ namespace OML_App.Connection
         /// <param name="port">Port name</param>
         public TCPClient(string ipadress, int port)
         {
-            this.IP_Adress = "192.168.1.101";//ipadress;
+            this.IP_Adress = "192.168.1.100";//ipadress;
             this.Port = 1337;//port;
             cmdConnect();
             Thread newThread = new Thread(new ThreadStart(Run));
@@ -148,15 +148,18 @@ namespace OML_App.Connection
 
                 if (connected)
                 {
-                    if (stopwatch.ElapsedMilliseconds > 800) 
+                    if (stopwatch.ElapsedMilliseconds > 1000) 
                     { 
-                        cmdSendData(4); 
+                        cmdSendData(4);
+                        Thread.Sleep(100);
+                        cmdReceiveData();
                         stopwatch.Reset();
                         stopwatch.Start(); 
                     }
+                    cmdSendData(2);
                     Thread.Sleep(100);
                     cmdReceiveData();
-                    cmdSendData(2);
+                    
                 }
                 else 
                 {

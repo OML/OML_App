@@ -148,14 +148,14 @@ namespace OML_App.Connection
         {
             SendStructPackage sync = new SendStructPackage();
             sync.opcode = 2;
-            sync.speed = 1;//Convert.ToByte(Send_Singleton.Instance.speed);
-            sync.left = 1;// Convert.ToSByte(Send_Singleton.Instance.left);
-            sync.right = 1;//Convert.ToSByte(Send_Singleton.Instance.right);
-            sync.Calibration_mode = 1;// Convert.ToByte(Send_Singleton.Instance.Calibration_mode);
-            sync.engine_0 = 1;//(ushort)Send_Singleton.Instance.engine0;
-            sync.engine_1 = 1;// (ushort)Send_Singleton.Instance.engine1;
-            sync.engine_2 = 1;// (ushort)Send_Singleton.Instance.engine2;
-            sync.engine_3 = 1;//(ushort)Send_Singleton.Instance.engine3;
+            sync.speed = Convert.ToByte(Send_Singleton.Instance.speed);
+            sync.left =  Convert.ToSByte(Send_Singleton.Instance.left);
+            sync.right = Convert.ToSByte(Send_Singleton.Instance.right);
+            sync.Calibration_mode = Convert.ToByte(Send_Singleton.Instance.Calibration_mode);
+            sync.engine_0 = Convert.ToSByte( Send_Singleton.Instance.engine0);
+            sync.engine_1 = Convert.ToSByte(Send_Singleton.Instance.engine1);
+            sync.engine_2 = Convert.ToSByte(Send_Singleton.Instance.engine2);
+            sync.engine_3 = Convert.ToSByte(Send_Singleton.Instance.engine3);
             //sync.engines = 5;
             sync.sound = Convert.ToByte(Send_Singleton.Instance.sound);
             return sync;
