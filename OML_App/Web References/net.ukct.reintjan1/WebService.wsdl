@@ -12,13 +12,10 @@
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:element name="ReturnLastSes">
-        <s:complexType />
-      </s:element>
-      <s:element name="ReturnLastSesResponse">
+      <s:element name="SaveNewSes">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="ReturnLastSesResult" type="tns:Session" />
+            <s:element minOccurs="0" maxOccurs="1" name="Ses" type="tns:Session" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -56,8 +53,34 @@
           <s:element minOccurs="1" maxOccurs="1" name="Time" type="s:dateTime" />
         </s:sequence>
       </s:complexType>
+      <s:element name="SaveNewSesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="SaveNewSesResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ReturnLastSes">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="number" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ReturnLastSesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ReturnLastSesResult" type="tns:ArrayOfSession" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfSession">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Session" nillable="true" type="tns:Session" />
+        </s:sequence>
+      </s:complexType>
       <s:element name="string" nillable="true" type="s:string" />
-      <s:element name="Session" nillable="true" type="tns:Session" />
+      <s:element name="ArrayOfSession" nillable="true" type="tns:ArrayOfSession" />
     </s:schema>
   </wsdl:types>
   <wsdl:message name="HelloWorldSoapIn">
@@ -65,6 +88,12 @@
   </wsdl:message>
   <wsdl:message name="HelloWorldSoapOut">
     <wsdl:part name="parameters" element="tns:HelloWorldResponse" />
+  </wsdl:message>
+  <wsdl:message name="SaveNewSesSoapIn">
+    <wsdl:part name="parameters" element="tns:SaveNewSes" />
+  </wsdl:message>
+  <wsdl:message name="SaveNewSesSoapOut">
+    <wsdl:part name="parameters" element="tns:SaveNewSesResponse" />
   </wsdl:message>
   <wsdl:message name="ReturnLastSesSoapIn">
     <wsdl:part name="parameters" element="tns:ReturnLastSes" />
@@ -76,22 +105,30 @@
   <wsdl:message name="HelloWorldHttpGetOut">
     <wsdl:part name="Body" element="tns:string" />
   </wsdl:message>
-  <wsdl:message name="ReturnLastSesHttpGetIn" />
+  <wsdl:message name="ReturnLastSesHttpGetIn">
+    <wsdl:part name="number" type="s:string" />
+  </wsdl:message>
   <wsdl:message name="ReturnLastSesHttpGetOut">
-    <wsdl:part name="Body" element="tns:Session" />
+    <wsdl:part name="Body" element="tns:ArrayOfSession" />
   </wsdl:message>
   <wsdl:message name="HelloWorldHttpPostIn" />
   <wsdl:message name="HelloWorldHttpPostOut">
     <wsdl:part name="Body" element="tns:string" />
   </wsdl:message>
-  <wsdl:message name="ReturnLastSesHttpPostIn" />
+  <wsdl:message name="ReturnLastSesHttpPostIn">
+    <wsdl:part name="number" type="s:string" />
+  </wsdl:message>
   <wsdl:message name="ReturnLastSesHttpPostOut">
-    <wsdl:part name="Body" element="tns:Session" />
+    <wsdl:part name="Body" element="tns:ArrayOfSession" />
   </wsdl:message>
   <wsdl:portType name="WebServiceSoap">
     <wsdl:operation name="HelloWorld">
       <wsdl:input message="tns:HelloWorldSoapIn" />
       <wsdl:output message="tns:HelloWorldSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SaveNewSes">
+      <wsdl:input message="tns:SaveNewSesSoapIn" />
+      <wsdl:output message="tns:SaveNewSesSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="ReturnLastSes">
       <wsdl:input message="tns:ReturnLastSesSoapIn" />
@@ -129,6 +166,15 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="SaveNewSes">
+      <soap:operation soapAction="http://reintjan.ukct.net/rtm/SaveNewSes" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="ReturnLastSes">
       <soap:operation soapAction="http://reintjan.ukct.net/rtm/ReturnLastSes" style="document" />
       <wsdl:input>
@@ -143,6 +189,15 @@
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
     <wsdl:operation name="HelloWorld">
       <soap12:operation soapAction="http://reintjan.ukct.net/rtm/HelloWorld" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaveNewSes">
+      <soap12:operation soapAction="http://reintjan.ukct.net/rtm/SaveNewSes" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
