@@ -3,7 +3,7 @@
     android:orientation="vertical"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="@drawable/background1">
+    android:background="@drawable/background2">
   <RelativeLayout
       android:minWidth="25px"
       android:minHeight="25px"
@@ -318,6 +318,13 @@
           android:layout_marginTop="8dp"
           android:layout_below="@id/overviewButton"
           android:background="@drawable/batterybutton" />
+      <Button
+          android:id="@+id/cameraButton"
+          android:layout_width="142dp"
+          android:layout_height="55dp"
+          android:layout_marginTop="8dp"
+          android:layout_below="@id/batteryButton"
+          android:background="@drawable/camerabutton" />
     </RelativeLayout>
     <RelativeLayout
         android:id="@+id/slidersBox1"

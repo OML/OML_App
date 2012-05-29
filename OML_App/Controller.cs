@@ -10,6 +10,7 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.Content.PM;
+using Android.Graphics.Drawables;
 
 namespace OML_App
 {
@@ -17,6 +18,12 @@ namespace OML_App
     public class Controller : Activity
     {
         private ViewFlipper flipper;
+
+        //control buttons
+        Button overview;
+        Button battery;
+        Button camera;
+
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
@@ -26,13 +33,15 @@ namespace OML_App
 
             flipper = FindViewById<ViewFlipper>(Resource.Id.flipper);
 
-            //Setup Connect Button
-            Button btnOpenNewActivity1 = FindViewById<Button>(Resource.Id.overviewButton);
-            btnOpenNewActivity1.Click += new EventHandler(FlipToOverView);
+            //set buttons
+            overview = FindViewById<Button>(Resource.Id.overviewButton);
+            overview.Click += new EventHandler(FlipToOverView);
 
-            Button btnOpenNewActivity = FindViewById<Button>(Resource.Id.batteryButton);
-            btnOpenNewActivity.Click += new EventHandler(FlipToBattery);
+            battery = FindViewById<Button>(Resource.Id.batteryButton);
+            battery.Click += new EventHandler(FlipToBattery);
 
+            camera = FindViewById<Button>(Resource.Id.cameraButton);
+            camera.Click += new EventHandler(FlipToCamera);
         }
 
         /// <summary>
@@ -43,6 +52,11 @@ namespace OML_App
         public void FlipToOverView(object sender, EventArgs e)
         {
             flipper.DisplayedChild = 1;
+
+            //change the backgrounds on click
+            overview.SetBackgroundResource(Resource.Drawable.overviewbutton_pressed);
+            battery.SetBackgroundResource(Resource.Drawable.batterybutton);
+            camera.SetBackgroundResource(Resource.Drawable.camerabutton);
         }
 
         /// <summary>
@@ -53,6 +67,26 @@ namespace OML_App
         public void FlipToBattery(object sender, EventArgs e)
         {
             flipper.DisplayedChild = 2;
+
+            //change the backgrounds on click
+            battery.SetBackgroundResource(Resource.Drawable.batterybutton_pressed);
+            overview.SetBackgroundResource(Resource.Drawable.overviewbutton);
+            camera.SetBackgroundResource(Resource.Drawable.camerabutton);
+        }
+
+        /// <summary>
+        /// Flips the Current View to Third
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        public void FlipToCamera(object sender, EventArgs e)
+        {
+            flipper.DisplayedChild = 2;
+
+            //change the backgrounds on click
+            battery.SetBackgroundResource(Resource.Drawable.batterybutton);
+            overview.SetBackgroundResource(Resource.Drawable.overviewbutton);
+            camera.SetBackgroundResource(Resource.Drawable.camerabutton_pressed);
         }
 
         /// <summary>
