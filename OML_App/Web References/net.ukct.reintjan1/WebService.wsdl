@@ -12,7 +12,7 @@
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:element name="SaveNewSes">
+      <s:element name="SaveNewSession">
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="0" maxOccurs="1" name="Ses" type="tns:Session" />
@@ -53,24 +53,24 @@
           <s:element minOccurs="1" maxOccurs="1" name="Time" type="s:dateTime" />
         </s:sequence>
       </s:complexType>
-      <s:element name="SaveNewSesResponse">
+      <s:element name="SaveNewSessionResponse">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="1" maxOccurs="1" name="SaveNewSesResult" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="SaveNewSessionResult" type="s:boolean" />
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:element name="ReturnLastSes">
+      <s:element name="GetSessionList">
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="1" maxOccurs="1" name="number" type="s:int" />
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:element name="ReturnLastSesResponse">
+      <s:element name="GetSessionListResponse">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="ReturnLastSesResult" type="tns:ArrayOfSession" />
+            <s:element minOccurs="0" maxOccurs="1" name="GetSessionListResult" type="tns:ArrayOfSession" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -79,6 +79,20 @@
           <s:element minOccurs="0" maxOccurs="unbounded" name="Session" nillable="true" type="tns:Session" />
         </s:sequence>
       </s:complexType>
+      <s:element name="GetAllSession">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="number" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAllSessionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAllSessionResult" type="tns:ArrayOfSession" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="string" nillable="true" type="s:string" />
       <s:element name="ArrayOfSession" nillable="true" type="tns:ArrayOfSession" />
     </s:schema>
@@ -89,36 +103,54 @@
   <wsdl:message name="HelloWorldSoapOut">
     <wsdl:part name="parameters" element="tns:HelloWorldResponse" />
   </wsdl:message>
-  <wsdl:message name="SaveNewSesSoapIn">
-    <wsdl:part name="parameters" element="tns:SaveNewSes" />
+  <wsdl:message name="SaveNewSessionSoapIn">
+    <wsdl:part name="parameters" element="tns:SaveNewSession" />
   </wsdl:message>
-  <wsdl:message name="SaveNewSesSoapOut">
-    <wsdl:part name="parameters" element="tns:SaveNewSesResponse" />
+  <wsdl:message name="SaveNewSessionSoapOut">
+    <wsdl:part name="parameters" element="tns:SaveNewSessionResponse" />
   </wsdl:message>
-  <wsdl:message name="ReturnLastSesSoapIn">
-    <wsdl:part name="parameters" element="tns:ReturnLastSes" />
+  <wsdl:message name="GetSessionListSoapIn">
+    <wsdl:part name="parameters" element="tns:GetSessionList" />
   </wsdl:message>
-  <wsdl:message name="ReturnLastSesSoapOut">
-    <wsdl:part name="parameters" element="tns:ReturnLastSesResponse" />
+  <wsdl:message name="GetSessionListSoapOut">
+    <wsdl:part name="parameters" element="tns:GetSessionListResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetAllSessionSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAllSession" />
+  </wsdl:message>
+  <wsdl:message name="GetAllSessionSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAllSessionResponse" />
   </wsdl:message>
   <wsdl:message name="HelloWorldHttpGetIn" />
   <wsdl:message name="HelloWorldHttpGetOut">
     <wsdl:part name="Body" element="tns:string" />
   </wsdl:message>
-  <wsdl:message name="ReturnLastSesHttpGetIn">
+  <wsdl:message name="GetSessionListHttpGetIn">
     <wsdl:part name="number" type="s:string" />
   </wsdl:message>
-  <wsdl:message name="ReturnLastSesHttpGetOut">
+  <wsdl:message name="GetSessionListHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfSession" />
+  </wsdl:message>
+  <wsdl:message name="GetAllSessionHttpGetIn">
+    <wsdl:part name="number" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetAllSessionHttpGetOut">
     <wsdl:part name="Body" element="tns:ArrayOfSession" />
   </wsdl:message>
   <wsdl:message name="HelloWorldHttpPostIn" />
   <wsdl:message name="HelloWorldHttpPostOut">
     <wsdl:part name="Body" element="tns:string" />
   </wsdl:message>
-  <wsdl:message name="ReturnLastSesHttpPostIn">
+  <wsdl:message name="GetSessionListHttpPostIn">
     <wsdl:part name="number" type="s:string" />
   </wsdl:message>
-  <wsdl:message name="ReturnLastSesHttpPostOut">
+  <wsdl:message name="GetSessionListHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfSession" />
+  </wsdl:message>
+  <wsdl:message name="GetAllSessionHttpPostIn">
+    <wsdl:part name="number" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetAllSessionHttpPostOut">
     <wsdl:part name="Body" element="tns:ArrayOfSession" />
   </wsdl:message>
   <wsdl:portType name="WebServiceSoap">
@@ -126,13 +158,17 @@
       <wsdl:input message="tns:HelloWorldSoapIn" />
       <wsdl:output message="tns:HelloWorldSoapOut" />
     </wsdl:operation>
-    <wsdl:operation name="SaveNewSes">
-      <wsdl:input message="tns:SaveNewSesSoapIn" />
-      <wsdl:output message="tns:SaveNewSesSoapOut" />
+    <wsdl:operation name="SaveNewSession">
+      <wsdl:input message="tns:SaveNewSessionSoapIn" />
+      <wsdl:output message="tns:SaveNewSessionSoapOut" />
     </wsdl:operation>
-    <wsdl:operation name="ReturnLastSes">
-      <wsdl:input message="tns:ReturnLastSesSoapIn" />
-      <wsdl:output message="tns:ReturnLastSesSoapOut" />
+    <wsdl:operation name="GetSessionList">
+      <wsdl:input message="tns:GetSessionListSoapIn" />
+      <wsdl:output message="tns:GetSessionListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllSession">
+      <wsdl:input message="tns:GetAllSessionSoapIn" />
+      <wsdl:output message="tns:GetAllSessionSoapOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:portType name="WebServiceHttpGet">
@@ -140,9 +176,13 @@
       <wsdl:input message="tns:HelloWorldHttpGetIn" />
       <wsdl:output message="tns:HelloWorldHttpGetOut" />
     </wsdl:operation>
-    <wsdl:operation name="ReturnLastSes">
-      <wsdl:input message="tns:ReturnLastSesHttpGetIn" />
-      <wsdl:output message="tns:ReturnLastSesHttpGetOut" />
+    <wsdl:operation name="GetSessionList">
+      <wsdl:input message="tns:GetSessionListHttpGetIn" />
+      <wsdl:output message="tns:GetSessionListHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllSession">
+      <wsdl:input message="tns:GetAllSessionHttpGetIn" />
+      <wsdl:output message="tns:GetAllSessionHttpGetOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:portType name="WebServiceHttpPost">
@@ -150,9 +190,13 @@
       <wsdl:input message="tns:HelloWorldHttpPostIn" />
       <wsdl:output message="tns:HelloWorldHttpPostOut" />
     </wsdl:operation>
-    <wsdl:operation name="ReturnLastSes">
-      <wsdl:input message="tns:ReturnLastSesHttpPostIn" />
-      <wsdl:output message="tns:ReturnLastSesHttpPostOut" />
+    <wsdl:operation name="GetSessionList">
+      <wsdl:input message="tns:GetSessionListHttpPostIn" />
+      <wsdl:output message="tns:GetSessionListHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllSession">
+      <wsdl:input message="tns:GetAllSessionHttpPostIn" />
+      <wsdl:output message="tns:GetAllSessionHttpPostOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="WebServiceSoap" type="tns:WebServiceSoap">
@@ -166,8 +210,8 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="SaveNewSes">
-      <soap:operation soapAction="http://reintjan.ukct.net/rtm/SaveNewSes" style="document" />
+    <wsdl:operation name="SaveNewSession">
+      <soap:operation soapAction="http://reintjan.ukct.net/rtm/SaveNewSession" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -175,8 +219,17 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="ReturnLastSes">
-      <soap:operation soapAction="http://reintjan.ukct.net/rtm/ReturnLastSes" style="document" />
+    <wsdl:operation name="GetSessionList">
+      <soap:operation soapAction="http://reintjan.ukct.net/rtm/GetSessionList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllSession">
+      <soap:operation soapAction="http://reintjan.ukct.net/rtm/GetAllSession" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -196,8 +249,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="SaveNewSes">
-      <soap12:operation soapAction="http://reintjan.ukct.net/rtm/SaveNewSes" style="document" />
+    <wsdl:operation name="SaveNewSession">
+      <soap12:operation soapAction="http://reintjan.ukct.net/rtm/SaveNewSession" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -205,8 +258,17 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="ReturnLastSes">
-      <soap12:operation soapAction="http://reintjan.ukct.net/rtm/ReturnLastSes" style="document" />
+    <wsdl:operation name="GetSessionList">
+      <soap12:operation soapAction="http://reintjan.ukct.net/rtm/GetSessionList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllSession">
+      <soap12:operation soapAction="http://reintjan.ukct.net/rtm/GetAllSession" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -226,8 +288,17 @@
         <mime:mimeXml part="Body" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="ReturnLastSes">
-      <http:operation location="/ReturnLastSes" />
+    <wsdl:operation name="GetSessionList">
+      <http:operation location="/GetSessionList" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllSession">
+      <http:operation location="/GetAllSession" />
       <wsdl:input>
         <http:urlEncoded />
       </wsdl:input>
@@ -247,8 +318,17 @@
         <mime:mimeXml part="Body" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="ReturnLastSes">
-      <http:operation location="/ReturnLastSes" />
+    <wsdl:operation name="GetSessionList">
+      <http:operation location="/GetSessionList" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllSession">
+      <http:operation location="/GetAllSession" />
       <wsdl:input>
         <mime:content type="application/x-www-form-urlencoded" />
       </wsdl:input>
