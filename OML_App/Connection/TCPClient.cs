@@ -1,4 +1,4 @@
-using System;
+ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -33,6 +33,7 @@ namespace OML_App.Connection
         string IP_Adress;
         int Port;
         public bool connected = false;
+        public bool connection_impossible = false;
 
         //data buffer
         private byte[] byteData = new byte[1024];
@@ -140,29 +141,37 @@ namespace OML_App.Connection
         {
             Stopwatch stopwatch = new Stopwatch();
             stopwatch.Start();
+            int counter = 0;
+            
             while (true)
             {
+
                 if (connected)
                 {
-                    if (stopwatch.ElapsedMilliseconds > 800) { cmdSendData(4); 
+                    if (stopwatch.ElapsedMilliseconds > 800) 
+                    { 
+                        cmdSendData(4); 
                         stopwatch.Reset();
                         stopwatch.Start(); 
                     }
-                    
-                    
                     Thread.Sleep(100);
                     cmdReceiveData();
                     cmdSendData(2);
-                    //Thread.Sleep(500);
-                    //cmdReceiveData();
-                    
                 }
                 else 
                 {
-                    cmdClose();
-                    Thread.Sleep(250);
-                    //AlertDialog AlertaMensagem = new AlertDialog.Builder(this).SetIcon(Resource.Drawable.Icon).SetTitle("Connextion lost!").SetMessage(IP_Adress);
-                    cmdConnect();
+                    counter++;
+                    if (counter <= 25)
+                    {
+                        cmdClose();
+                        Thread.Sleep(250);
+                        //AlertDialog AlertaMensagem = new AlertDialog.Builder(this).SetIcon(Resource.Drawable.Icon).SetTitle("Connextion lost!").SetMessage(IP_Adress);
+                        cmdConnect();
+                    }
+                    else
+                    {
+                        connection_impossible = true;
+                    }
                 }
             }
 

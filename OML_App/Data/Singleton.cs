@@ -8,56 +8,15 @@ namespace OML_App.Data
     {
         private static volatile Receive_Singleton instance;
         private static object syncRoot = new Object();
-
-        private Sensor[] Current_Sensors;
-        public Session Current_ses;
-
-        //4x motor Voltages
-        private Sensor M0V;
-        private Sensor M1V;
-        private Sensor M2V;
-        private Sensor M3V;
-
-        //4x motor Current
-        private Sensor M0A;
-        private Sensor M1A;
-        private Sensor M2A;
-        private Sensor M3A;
-
-        //4x motor Temperature
-        private Sensor M0T;
-        private Sensor M1T;
-        private Sensor M2T;
-        private Sensor M3T;
-
-        //4x motor Throttle
-        private Sensor M0Th;
-        private Sensor M1Th;
-        private Sensor M2Th;
-        private Sensor M3Th;
-
-        //Accu values 0
-        private Sensor A0V;
-        private Sensor A0A;
-        private Sensor A0T;
-
-        //Accu values 1 wont be used at first hand (no support from hardware)
-        private Sensor A1V;
-        private Sensor A1A;
-        private Sensor A1T;
-
-        //Gyro
-        private Sensor G0X;
-        private Sensor G0Y;
-        private Sensor G0Z;
-
+       
+        public Session Current_ses;        
 
         private Receive_Singleton() { }
 
         public void init()
         {
             Current_ses = new Session("OML Carmen");
-
+            
             //4x motor Voltages            
             Current_ses.AddSensorToArray(new Sensor("Voltage_motor_0", "M0V", "V", 0, 50));
             Current_ses.AddSensorToArray(new Sensor("Voltage_motor_1", "M1V", "V", 0, 50));
@@ -81,7 +40,7 @@ namespace OML_App.Data
             Current_ses.AddSensorToArray(new Sensor("Throttle_motor_1", "M1Th", "%", 0, 100));
             Current_ses.AddSensorToArray(new Sensor("Throttle_motor_2", "M2Th", "%", 0, 100));
             Current_ses.AddSensorToArray(new Sensor("Throttle_motor_3", "M3Th", "%", 0, 100));
-
+            
             //Accu values 0
             Current_ses.AddSensorToArray(new Sensor("Voltage_accu_0", "A0V", "V", 0, 50));
             Current_ses.AddSensorToArray(new Sensor("Current_accu_1", "A0A", "A", 0, 25));

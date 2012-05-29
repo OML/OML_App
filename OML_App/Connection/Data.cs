@@ -259,6 +259,35 @@ namespace OML_App.Connection
         #endregion
 
         #region Getpackage
+
+        /*
+             * 0    M0V
+             * 1    M1V
+             * 2    M2V
+             * 3    M3V
+             * 4    MOA
+             * 5    M1A
+             * 6    M2A
+             * 7    M3A
+             * 8    M0T
+             * 9    M1T
+             * 10   M2T
+             * 11   M3T
+             * 12   M0TH
+             * 13   M1TH
+             * 14   M2TH
+             * 15   M3TH
+             * 16   A0V
+             * 17   A0A
+             * 18   A0T
+             * 19   A1V
+             * 20   A1A
+             * 21   A1T
+             * 22   G0X
+             * 23   G0Y
+             * 25   G0Z
+             */ 
+
         //Converts the bytes into an object of type Data
         /// <summary>
         /// TODO Fix that the data is setup in the singleton classes the data gets stored in our
@@ -310,8 +339,34 @@ namespace OML_App.Connection
                         pack = *p;
                         gch.Free();
                     }
+                    DateTime this_time = DateTime.Now;
                     Console.WriteLine("succesfully synced");
-
+                    Receive_Singleton.Instance.Current_ses.Sensors[0].AddValueDataToArray(new ValueData(pack.voltage_motor_0, this_time));
+                    Receive_Singleton.Instance.Current_ses.Sensors[1].AddValueDataToArray(new ValueData(pack.voltage_motor_1, this_time));
+                    Receive_Singleton.Instance.Current_ses.Sensors[2].AddValueDataToArray(new ValueData(pack.voltage_motor_2, this_time));
+                    Receive_Singleton.Instance.Current_ses.Sensors[3].AddValueDataToArray(new ValueData(pack.voltage_motor_3, this_time));
+                    Receive_Singleton.Instance.Current_ses.Sensors[4].AddValueDataToArray(new ValueData(pack.current_motor_0, this_time));
+                    Receive_Singleton.Instance.Current_ses.Sensors[5].AddValueDataToArray(new ValueData(pack.current_motor_1, this_time));
+                    Receive_Singleton.Instance.Current_ses.Sensors[6].AddValueDataToArray(new ValueData(pack.current_motor_2, this_time));
+                    Receive_Singleton.Instance.Current_ses.Sensors[7].AddValueDataToArray(new ValueData(pack.current_motor_3, this_time));
+                    Receive_Singleton.Instance.Current_ses.Sensors[8].AddValueDataToArray(new ValueData(pack.Temp_0, this_time));
+                    Receive_Singleton.Instance.Current_ses.Sensors[9].AddValueDataToArray(new ValueData(pack.Temp_1, this_time));
+                    Receive_Singleton.Instance.Current_ses.Sensors[10].AddValueDataToArray(new ValueData(pack.Temp_2, this_time));
+                    Receive_Singleton.Instance.Current_ses.Sensors[11].AddValueDataToArray(new ValueData(pack.Temp_3, this_time));
+                    Receive_Singleton.Instance.Current_ses.Sensors[12].AddValueDataToArray(new ValueData(pack.throttle_0, this_time));
+                    Receive_Singleton.Instance.Current_ses.Sensors[13].AddValueDataToArray(new ValueData(pack.throttle_1, this_time));
+                    Receive_Singleton.Instance.Current_ses.Sensors[14].AddValueDataToArray(new ValueData(pack.throttle_2, this_time));
+                    Receive_Singleton.Instance.Current_ses.Sensors[15].AddValueDataToArray(new ValueData(pack.throttle_3, this_time));
+                    Receive_Singleton.Instance.Current_ses.Sensors[16].AddValueDataToArray(new ValueData(pack.accu_voltage, this_time));
+                    Receive_Singleton.Instance.Current_ses.Sensors[17].AddValueDataToArray(new ValueData(pack.accu_current, this_time));
+                    Receive_Singleton.Instance.Current_ses.Sensors[18].AddValueDataToArray(new ValueData(pack.accu_temp1, this_time));
+                    Receive_Singleton.Instance.Current_ses.Sensors[19].AddValueDataToArray(new ValueData(pack.accu_voltage, this_time));
+                    Receive_Singleton.Instance.Current_ses.Sensors[20].AddValueDataToArray(new ValueData(pack.accu_current, this_time));
+                    Receive_Singleton.Instance.Current_ses.Sensors[21].AddValueDataToArray(new ValueData(pack.accu_temp1, this_time));
+                    Receive_Singleton.Instance.Current_ses.Sensors[22].AddValueDataToArray(new ValueData(pack.gyro_x, this_time));
+                    Receive_Singleton.Instance.Current_ses.Sensors[23].AddValueDataToArray(new ValueData(pack.gyro_y, this_time));
+                    Receive_Singleton.Instance.Current_ses.Sensors[24].AddValueDataToArray(new ValueData(pack.gyro_z, this_time));
+                    //Receive_Singleton.Instance.Current_ses.Sensors[25].AddValueDataToArray(new ValueData(pack.voltage_motor_0, this_time));
                 }
                 catch (Exception e)
                 {
@@ -383,7 +438,31 @@ namespace OML_App.Connection
         }
 
 
-
+        /* Carmen Send:
+         * response (request opcode = sync, calibrate = 1)
+         * 		Type C / C#					    Name
+         * 		--------------------------------------
+         * 		8bit							opcode = sync
+         * 		32bit unsigned / UInt32			timestamp (ms since start server)
+         * 		for n = 0 .. 3:
+         * 			16bit signed / Int16		throttle motor n [percent]
+         * 			16bit unsigned / UInt16		current motor n [milliamps]
+         * 			16bit unsigned / UInt16		voltage motor n [millivolts]
+         * 			16bit / Int16				temperature motor n [tenth degrees]
+         * 
+         * 		16bit signed / Int16			gyro X (G / 100)
+         * 		16bit signed / Int16			gyro Y (G / 100)
+         * 		16bit signed / Int16			gyro Z (G / 100)
+         *
+         * 		16bit unsigned / UInt16			accu voltage [millivolts]
+         * 		16bit unsigned / UInt16			accu current [milliamps]
+         *      16bit signed / Int16  			accu temperature accu 1 [tenth degrees]
+         *      16bit signed / Int16  			accu temperature accu 2 [tenth degrees]
+         *      16bit signed / Int16  			cable temperature 1 [tenth degrees]
+         *      16bit signed / Int16  			cable temperature 2 [tenth degrees]
+         *      16bit signed / Int16  			cable temperature 3 [tenth degrees]
+         *      16bit signed / Int16  			cable temperature 4 [tenth degrees]
+         */
         /// <summary>
         /// syncstruct package
         /// </summary>
@@ -393,33 +472,39 @@ namespace OML_App.Connection
             public byte opcode; //opcode
             public UInt32 timestamp;
 
-            public short throttle_0;
-            public ushort current_motor_0;
-            public ushort voltage_motor_0;
-            public short Temp_0;
+            public Int16 throttle_0;
+            public UInt16 current_motor_0;
+            public UInt16 voltage_motor_0;
+            public Int16 Temp_0;
 
-            public short throttle_1;
-            public ushort current_motor_1;
-            public ushort voltage_motor_1;
-            public short Temp_1;
+            public Int16 throttle_1;
+            public UInt16 current_motor_1;
+            public UInt16 voltage_motor_1;
+            public Int16 Temp_1;
 
-            public short throttle_2;
-            public ushort current_motor_2;
-            public ushort voltage_motor_2;
-            public short Temp_2;
+            public Int16 throttle_2;
+            public UInt16 current_motor_2;
+            public UInt16 voltage_motor_2;
+            public Int16 Temp_2;
 
-            public short throttle_3;
-            public ushort current_motor_3;
-            public ushort voltage_motor_3;
-            public short Temp_3;
+            public Int16 throttle_3;
+            public UInt16 current_motor_3;
+            public UInt16 voltage_motor_3;
+            public Int16 Temp_3;
 
-            public short gyro_x;
-            public short gyro_y;
-            public short gyro_z;
+            public Int16 gyro_x;
+            public Int16 gyro_y;
+            public Int16 gyro_z;
 
-            public short accu_voltage; //millivolts
-            public short accu_current; //milliamps
-            public short accu_temp;
+            public UInt16 accu_voltage; //millivolts
+            public UInt16 accu_current; //milliamps
+            public Int16 accu_temp1;
+            public Int16 accu_temp2;
+
+            public Int16 Cable_temp_0;
+            public Int16 Cable_temp_1;
+            public Int16 Cable_temp_2;
+            public Int16 Cable_temp_3;
         }
 
         #endregion
