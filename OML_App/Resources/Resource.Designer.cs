@@ -48,115 +48,121 @@ namespace OML_App
 			public const int bottombox = 2130837510;
 			
 			// aapt resource value: 0x7f020007
-			public const int connectbutton = 2130837511;
+			public const int camerabutton = 2130837511;
 			
 			// aapt resource value: 0x7f020008
-			public const int exitbutton = 2130837512;
+			public const int camerabutton_pressed = 2130837512;
 			
 			// aapt resource value: 0x7f020009
-			public const int Icon = 2130837513;
+			public const int connectbutton = 2130837513;
 			
 			// aapt resource value: 0x7f02000a
-			public const int infobutton = 2130837514;
+			public const int exitbutton = 2130837514;
 			
 			// aapt resource value: 0x7f02000b
-			public const int interface02 = 2130837515;
+			public const int Icon = 2130837515;
 			
 			// aapt resource value: 0x7f02000c
-			public const int joybox = 2130837516;
+			public const int infobutton = 2130837516;
 			
 			// aapt resource value: 0x7f02000d
-			public const int joystick = 2130837517;
+			public const int interface02 = 2130837517;
 			
 			// aapt resource value: 0x7f02000e
-			public const int joystick_bg = 2130837518;
+			public const int joybox = 2130837518;
 			
 			// aapt resource value: 0x7f02000f
-			public const int livebutton = 2130837519;
+			public const int joystick = 2130837519;
 			
 			// aapt resource value: 0x7f020010
-			public const int menubox = 2130837520;
+			public const int joystick_bg = 2130837520;
 			
 			// aapt resource value: 0x7f020011
-			public const int menubox2 = 2130837521;
+			public const int livebutton = 2130837521;
 			
 			// aapt resource value: 0x7f020012
-			public const int menubox3 = 2130837522;
+			public const int menubox = 2130837522;
 			
 			// aapt resource value: 0x7f020013
-			public const int midbox = 2130837523;
+			public const int menubox2 = 2130837523;
 			
 			// aapt resource value: 0x7f020014
-			public const int minibutton = 2130837524;
+			public const int menubox3 = 2130837524;
 			
 			// aapt resource value: 0x7f020015
-			public const int minibuttonpressed = 2130837525;
+			public const int midbox = 2130837525;
 			
 			// aapt resource value: 0x7f020016
-			public const int nhl_logo = 2130837526;
+			public const int minibutton = 2130837526;
 			
 			// aapt resource value: 0x7f020017
-			public const int Overview_Carmen = 2130837527;
+			public const int minibuttonpressed = 2130837527;
 			
 			// aapt resource value: 0x7f020018
-			public const int Overview_Carmen1 = 2130837528;
+			public const int nhl_logo = 2130837528;
 			
 			// aapt resource value: 0x7f020019
-			public const int Overview_Carmen2 = 2130837529;
+			public const int Overview_Carmen = 2130837529;
 			
 			// aapt resource value: 0x7f02001a
-			public const int Overview_Carmen3 = 2130837530;
+			public const int Overview_Carmen1 = 2130837530;
 			
 			// aapt resource value: 0x7f02001b
-			public const int OverViewBG = 2130837531;
+			public const int Overview_Carmen2 = 2130837531;
 			
 			// aapt resource value: 0x7f02001c
-			public const int overviewbutton = 2130837532;
+			public const int Overview_Carmen3 = 2130837532;
 			
 			// aapt resource value: 0x7f02001d
-			public const int overviewbutton_pressed = 2130837533;
+			public const int OverViewBG = 2130837533;
 			
 			// aapt resource value: 0x7f02001e
-			public const int recordedbutton = 2130837534;
+			public const int overviewbutton = 2130837534;
 			
 			// aapt resource value: 0x7f02001f
-			public const int replaybutton = 2130837535;
+			public const int overviewbutton_pressed = 2130837535;
 			
 			// aapt resource value: 0x7f020020
-			public const int settingsbutton = 2130837536;
+			public const int recordedbutton = 2130837536;
 			
 			// aapt resource value: 0x7f020021
-			public const int sidebox = 2130837537;
+			public const int replaybutton = 2130837537;
 			
 			// aapt resource value: 0x7f020022
-			public const int sidebox2 = 2130837538;
+			public const int settingsbutton = 2130837538;
 			
 			// aapt resource value: 0x7f020023
-			public const int sliderbig = 2130837539;
+			public const int sidebox = 2130837539;
 			
 			// aapt resource value: 0x7f020024
-			public const int sliderBoxL = 2130837540;
+			public const int sidebox2 = 2130837540;
 			
 			// aapt resource value: 0x7f020025
-			public const int sliderBoxR = 2130837541;
+			public const int sliderbig = 2130837541;
 			
 			// aapt resource value: 0x7f020026
-			public const int slidersbox = 2130837542;
+			public const int sliderBoxL = 2130837542;
 			
 			// aapt resource value: 0x7f020027
-			public const int slidersbox0 = 2130837543;
+			public const int sliderBoxR = 2130837543;
 			
 			// aapt resource value: 0x7f020028
-			public const int slidersbox1 = 2130837544;
+			public const int slidersbox = 2130837544;
 			
 			// aapt resource value: 0x7f020029
-			public const int slidersbox2 = 2130837545;
+			public const int slidersbox0 = 2130837545;
 			
 			// aapt resource value: 0x7f02002a
-			public const int slidersmall = 2130837546;
+			public const int slidersbox1 = 2130837546;
 			
 			// aapt resource value: 0x7f02002b
-			public const int startbutton = 2130837547;
+			public const int slidersbox2 = 2130837547;
+			
+			// aapt resource value: 0x7f02002c
+			public const int slidersmall = 2130837548;
+			
+			// aapt resource value: 0x7f02002d
+			public const int startbutton = 2130837549;
 			
 			private Drawable()
 			{
@@ -220,8 +226,8 @@ namespace OML_App
 			// aapt resource value: 0x7f050013
 			public const int EngRR3 = 2131034131;
 			
-			// aapt resource value: 0x7f05002f
-			public const int back_button1 = 2131034159;
+			// aapt resource value: 0x7f050030
+			public const int back_button1 = 2131034160;
 			
 			// aapt resource value: 0x7f05001a
 			public const int battery = 2131034138;
@@ -232,29 +238,32 @@ namespace OML_App
 			// aapt resource value: 0x7f05001b
 			public const int battext = 2131034139;
 			
-			// aapt resource value: 0x7f050028
-			public const int connectbutton = 2131034152;
+			// aapt resource value: 0x7f05001f
+			public const int cameraButton = 2131034143;
+			
+			// aapt resource value: 0x7f050029
+			public const int connectbutton = 2131034153;
 			
 			// aapt resource value: 0x7f050006
 			public const int flipper = 2131034118;
 			
-			// aapt resource value: 0x7f05002d
-			public const int ip_adress = 2131034157;
+			// aapt resource value: 0x7f05002e
+			public const int ip_adress = 2131034158;
 			
-			// aapt resource value: 0x7f050025
-			public const int ipaddress = 2131034149;
+			// aapt resource value: 0x7f050026
+			public const int ipaddress = 2131034150;
 			
-			// aapt resource value: 0x7f05002a
-			public const int liveButton = 2131034154;
+			// aapt resource value: 0x7f05002b
+			public const int liveButton = 2131034155;
 			
 			// aapt resource value: 0x7f050002
 			public const int menuBox = 2131034114;
 			
-			// aapt resource value: 0x7f050029
-			public const int menuBoxMain = 2131034153;
+			// aapt resource value: 0x7f05002a
+			public const int menuBoxMain = 2131034154;
 			
-			// aapt resource value: 0x7f050022
-			public const int nhl_image = 2131034146;
+			// aapt resource value: 0x7f050023
+			public const int nhl_image = 2131034147;
 			
 			// aapt resource value: 0x7f050007
 			public const int overView = 2131034119;
@@ -262,20 +271,20 @@ namespace OML_App
 			// aapt resource value: 0x7f05001d
 			public const int overviewButton = 2131034141;
 			
-			// aapt resource value: 0x7f050027
-			public const int port = 2131034151;
+			// aapt resource value: 0x7f050028
+			public const int port = 2131034152;
 			
-			// aapt resource value: 0x7f05002e
-			public const int port_adress = 2131034158;
+			// aapt resource value: 0x7f05002f
+			public const int port_adress = 2131034159;
 			
-			// aapt resource value: 0x7f05002b
-			public const int recordedButton = 2131034155;
+			// aapt resource value: 0x7f05002c
+			public const int recordedButton = 2131034156;
 			
 			// aapt resource value: 0x7f050000
 			public const int relativeLayout1 = 2131034112;
 			
-			// aapt resource value: 0x7f05002c
-			public const int settingsButton = 2131034156;
+			// aapt resource value: 0x7f05002d
+			public const int settingsButton = 2131034157;
 			
 			// aapt resource value: 0x7f05001c
 			public const int sideBox = 2131034140;
@@ -283,32 +292,32 @@ namespace OML_App
 			// aapt resource value: 0x7f050005
 			public const int sliderControls0 = 2131034117;
 			
-			// aapt resource value: 0x7f050021
-			public const int sliderControls1 = 2131034145;
+			// aapt resource value: 0x7f050022
+			public const int sliderControls1 = 2131034146;
 			
 			// aapt resource value: 0x7f050003
 			public const int slidersBox0 = 2131034115;
 			
-			// aapt resource value: 0x7f05001f
-			public const int slidersBox1 = 2131034143;
+			// aapt resource value: 0x7f050020
+			public const int slidersBox1 = 2131034144;
 			
 			// aapt resource value: 0x7f050004
 			public const int smallSlider0 = 2131034116;
 			
-			// aapt resource value: 0x7f050020
-			public const int smallSlider1 = 2131034144;
+			// aapt resource value: 0x7f050021
+			public const int smallSlider1 = 2131034145;
 			
 			// aapt resource value: 0x7f050001
 			public const int startlayout = 2131034113;
 			
-			// aapt resource value: 0x7f050023
-			public const int textView1 = 2131034147;
-			
 			// aapt resource value: 0x7f050024
-			public const int textView2 = 2131034148;
+			public const int textView1 = 2131034148;
 			
-			// aapt resource value: 0x7f050026
-			public const int textView3 = 2131034150;
+			// aapt resource value: 0x7f050025
+			public const int textView2 = 2131034149;
+			
+			// aapt resource value: 0x7f050027
+			public const int textView3 = 2131034151;
 			
 			private Id()
 			{
