@@ -31,6 +31,8 @@ namespace OML_App.net.ukct.reintjan1 {
         
         private System.Threading.SendOrPostCallback HelloWorldOperationCompleted;
         
+        private System.Threading.SendOrPostCallback SaveNewSesOperationCompleted;
+        
         private System.Threading.SendOrPostCallback ReturnLastSesOperationCompleted;
         
         private bool useDefaultCredentialsSetExplicitly;
@@ -75,6 +77,9 @@ namespace OML_App.net.ukct.reintjan1 {
         public event HelloWorldCompletedEventHandler HelloWorldCompleted;
         
         /// <remarks/>
+        public event SaveNewSesCompletedEventHandler SaveNewSesCompleted;
+        
+        /// <remarks/>
         public event ReturnLastSesCompletedEventHandler ReturnLastSesCompleted;
         
         /// <remarks/>
@@ -105,23 +110,54 @@ namespace OML_App.net.ukct.reintjan1 {
         }
         
         /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://reintjan.ukct.net/rtm/SaveNewSes", RequestNamespace="http://reintjan.ukct.net/rtm", ResponseNamespace="http://reintjan.ukct.net/rtm", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public bool SaveNewSes(Session Ses) {
+            object[] results = this.Invoke("SaveNewSes", new object[] {
+                        Ses});
+            return ((bool)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void SaveNewSesAsync(Session Ses) {
+            this.SaveNewSesAsync(Ses, null);
+        }
+        
+        /// <remarks/>
+        public void SaveNewSesAsync(Session Ses, object userState) {
+            if ((this.SaveNewSesOperationCompleted == null)) {
+                this.SaveNewSesOperationCompleted = new System.Threading.SendOrPostCallback(this.OnSaveNewSesOperationCompleted);
+            }
+            this.InvokeAsync("SaveNewSes", new object[] {
+                        Ses}, this.SaveNewSesOperationCompleted, userState);
+        }
+        
+        private void OnSaveNewSesOperationCompleted(object arg) {
+            if ((this.SaveNewSesCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.SaveNewSesCompleted(this, new SaveNewSesCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://reintjan.ukct.net/rtm/ReturnLastSes", RequestNamespace="http://reintjan.ukct.net/rtm", ResponseNamespace="http://reintjan.ukct.net/rtm", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public Session ReturnLastSes() {
-            object[] results = this.Invoke("ReturnLastSes", new object[0]);
-            return ((Session)(results[0]));
+        public Session[] ReturnLastSes(int number) {
+            object[] results = this.Invoke("ReturnLastSes", new object[] {
+                        number});
+            return ((Session[])(results[0]));
         }
         
         /// <remarks/>
-        public void ReturnLastSesAsync() {
-            this.ReturnLastSesAsync(null);
+        public void ReturnLastSesAsync(int number) {
+            this.ReturnLastSesAsync(number, null);
         }
         
         /// <remarks/>
-        public void ReturnLastSesAsync(object userState) {
+        public void ReturnLastSesAsync(int number, object userState) {
             if ((this.ReturnLastSesOperationCompleted == null)) {
                 this.ReturnLastSesOperationCompleted = new System.Threading.SendOrPostCallback(this.OnReturnLastSesOperationCompleted);
             }
-            this.InvokeAsync("ReturnLastSes", new object[0], this.ReturnLastSesOperationCompleted, userState);
+            this.InvokeAsync("ReturnLastSes", new object[] {
+                        number}, this.ReturnLastSesOperationCompleted, userState);
         }
         
         private void OnReturnLastSesOperationCompleted(object arg) {
@@ -349,6 +385,32 @@ namespace OML_App.net.ukct.reintjan1 {
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.1")]
+    public delegate void SaveNewSesCompletedEventHandler(object sender, SaveNewSesCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.1")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class SaveNewSesCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal SaveNewSesCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public bool Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((bool)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.1")]
     public delegate void ReturnLastSesCompletedEventHandler(object sender, ReturnLastSesCompletedEventArgs e);
     
     /// <remarks/>
@@ -365,10 +427,10 @@ namespace OML_App.net.ukct.reintjan1 {
         }
         
         /// <remarks/>
-        public Session Result {
+        public Session[] Result {
             get {
                 this.RaiseExceptionIfNecessary();
-                return ((Session)(this.results[0]));
+                return ((Session[])(this.results[0]));
             }
         }
     }
