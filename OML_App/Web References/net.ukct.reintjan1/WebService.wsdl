@@ -80,11 +80,7 @@
         </s:sequence>
       </s:complexType>
       <s:element name="GetAllSession">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="1" maxOccurs="1" name="number" type="s:int" />
-          </s:sequence>
-        </s:complexType>
+        <s:complexType />
       </s:element>
       <s:element name="GetAllSessionResponse">
         <s:complexType>
@@ -131,9 +127,7 @@
   <wsdl:message name="GetSessionListHttpGetOut">
     <wsdl:part name="Body" element="tns:ArrayOfSession" />
   </wsdl:message>
-  <wsdl:message name="GetAllSessionHttpGetIn">
-    <wsdl:part name="number" type="s:string" />
-  </wsdl:message>
+  <wsdl:message name="GetAllSessionHttpGetIn" />
   <wsdl:message name="GetAllSessionHttpGetOut">
     <wsdl:part name="Body" element="tns:ArrayOfSession" />
   </wsdl:message>
@@ -147,9 +141,7 @@
   <wsdl:message name="GetSessionListHttpPostOut">
     <wsdl:part name="Body" element="tns:ArrayOfSession" />
   </wsdl:message>
-  <wsdl:message name="GetAllSessionHttpPostIn">
-    <wsdl:part name="number" type="s:string" />
-  </wsdl:message>
+  <wsdl:message name="GetAllSessionHttpPostIn" />
   <wsdl:message name="GetAllSessionHttpPostOut">
     <wsdl:part name="Body" element="tns:ArrayOfSession" />
   </wsdl:message>

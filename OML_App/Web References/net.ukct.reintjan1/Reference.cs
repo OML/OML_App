@@ -174,24 +174,22 @@ namespace OML_App.net.ukct.reintjan1 {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://reintjan.ukct.net/rtm/GetAllSession", RequestNamespace="http://reintjan.ukct.net/rtm", ResponseNamespace="http://reintjan.ukct.net/rtm", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public Session[] GetAllSession(int number) {
-            object[] results = this.Invoke("GetAllSession", new object[] {
-                        number});
+        public Session[] GetAllSession() {
+            object[] results = this.Invoke("GetAllSession", new object[0]);
             return ((Session[])(results[0]));
         }
         
         /// <remarks/>
-        public void GetAllSessionAsync(int number) {
-            this.GetAllSessionAsync(number, null);
+        public void GetAllSessionAsync() {
+            this.GetAllSessionAsync(null);
         }
         
         /// <remarks/>
-        public void GetAllSessionAsync(int number, object userState) {
+        public void GetAllSessionAsync(object userState) {
             if ((this.GetAllSessionOperationCompleted == null)) {
                 this.GetAllSessionOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetAllSessionOperationCompleted);
             }
-            this.InvokeAsync("GetAllSession", new object[] {
-                        number}, this.GetAllSessionOperationCompleted, userState);
+            this.InvokeAsync("GetAllSession", new object[0], this.GetAllSessionOperationCompleted, userState);
         }
         
         private void OnGetAllSessionOperationCompleted(object arg) {
