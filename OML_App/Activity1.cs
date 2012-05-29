@@ -13,6 +13,11 @@ namespace OML_App
     [Activity(Label = "OML_App", MainLauncher = true, Icon = "@drawable/icon", ScreenOrientation = ScreenOrientation.Landscape)]
     public class Activity1 : Activity
     {
+        //buttons
+        Button live;
+        Button recorded;
+        Button settings;
+
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
@@ -23,24 +28,36 @@ namespace OML_App
             /**
              * Create start
              */
-            Button btnOpenNewActivity1 = FindViewById<Button>(Resource.Id.liveButton);
-            btnOpenNewActivity1.Click += new EventHandler(LiveClick);
+            live = FindViewById<Button>(Resource.Id.liveButton);
+            live.Click += new EventHandler(LiveClick);
 
             /**
             * Create info sometimes
             */
-            Button btnOpenNewActivity = FindViewById<Button>(Resource.Id.recordedButton);
-            btnOpenNewActivity.Click += new EventHandler(RecordedClick);
+            recorded = FindViewById<Button>(Resource.Id.recordedButton);
+            recorded.Click += new EventHandler(RecordedClick);
 
             /**
              * Create settings
              */
-            Button btnOpenNewActivity2 = FindViewById<Button>(Resource.Id.settingsButton);
-            btnOpenNewActivity2.Click += new EventHandler(SettingsClick);
+            settings = FindViewById<Button>(Resource.Id.settingsButton);
+            settings.Click += new EventHandler(SettingsClick);
+        }
+
+        protected override void OnResume()
+        {
+            base.OnResume();
+
+            //reset backgrounds on resume
+            live.SetBackgroundResource(Resource.Drawable.livebutton);
+            recorded.SetBackgroundResource(Resource.Drawable.recordedbutton);
+            settings.SetBackgroundResource(Resource.Drawable.settingsbutton);
         }
 
         void LiveClick(object sender, EventArgs e)
         {
+            //set background to pressed
+            live.SetBackgroundResource(Resource.Drawable.livebutton_pressed);
             Intent i = new Intent();
             i.SetClass(this, typeof(Live));
             i.AddFlags(ActivityFlags.NewTask);
@@ -49,6 +66,8 @@ namespace OML_App
 
         void RecordedClick(object sender, EventArgs e)
         {
+            //set background to pressed
+            recorded.SetBackgroundResource(Resource.Drawable.recordedbutton_pressed);
             Intent i = new Intent();
             i.SetClass(this, typeof(Recorded));
             i.AddFlags(ActivityFlags.NewTask);
@@ -57,6 +76,8 @@ namespace OML_App
 
         void SettingsClick(object sender, EventArgs e)
         {
+            //set background to pressed
+            settings.SetBackgroundResource(Resource.Drawable.settingsbutton_pressed);
             Intent i = new Intent();
             i.SetClass(this, typeof(Settings));
             i.AddFlags(ActivityFlags.NewTask);

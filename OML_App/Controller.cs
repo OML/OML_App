@@ -52,7 +52,8 @@ namespace OML_App
         public void FlipToOverView(object sender, EventArgs e)
         {
             flipper.DisplayedChild = 1;
-            //change the background on click
+
+            //change the backgrounds on click
             overview.SetBackgroundResource(Resource.Drawable.overviewbutton_pressed);
             battery.SetBackgroundResource(Resource.Drawable.batterybutton);
             camera.SetBackgroundResource(Resource.Drawable.camerabutton);
@@ -66,7 +67,8 @@ namespace OML_App
         public void FlipToBattery(object sender, EventArgs e)
         {
             flipper.DisplayedChild = 2;
-            //change the background on click
+
+            //change the backgrounds on click
             battery.SetBackgroundResource(Resource.Drawable.batterybutton_pressed);
             overview.SetBackgroundResource(Resource.Drawable.overviewbutton);
             camera.SetBackgroundResource(Resource.Drawable.camerabutton);
@@ -80,7 +82,8 @@ namespace OML_App
         public void FlipToCamera(object sender, EventArgs e)
         {
             flipper.DisplayedChild = 2;
-            //change the background on click
+
+            //change the backgrounds on click
             battery.SetBackgroundResource(Resource.Drawable.batterybutton);
             overview.SetBackgroundResource(Resource.Drawable.overviewbutton);
             camera.SetBackgroundResource(Resource.Drawable.camerabutton_pressed);

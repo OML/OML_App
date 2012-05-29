@@ -21,6 +21,10 @@ namespace OML_App
         public EditText ipaddress;
         public EditText port;
         public TCPClient connect;
+
+        //connect button
+        Button connectB;
+
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
@@ -29,15 +33,23 @@ namespace OML_App
             SetContentView(Resource.Layout.Live);
 
             //Setup Connect Button
-            Button btnOpenNewActivity1 = FindViewById<Button>(Resource.Id.connectbutton);
+            connectB = FindViewById<Button>(Resource.Id.connectbutton);
 
-            btnOpenNewActivity1.Click += new EventHandler(ConnectButton);
+            connectB.Click += new EventHandler(ConnectButton);
 
 
             //Find Text Input
             ipaddress = FindViewById<EditText>(Resource.Id.ipaddress);
 
             port = FindViewById<EditText>(Resource.Id.port);
+        }
+
+        protected override void OnResume()
+        {
+            base.OnResume();
+
+            //reset the background on resume
+            connectB.SetBackgroundResource(Resource.Drawable.connectbutton);
         }
 
         private string[] CreateSpinnerList()
@@ -48,6 +60,9 @@ namespace OML_App
 
         private void ConnectButton(object sender, EventArgs e)
         {
+            //set background to pressed
+            connectB.SetBackgroundResource(Resource.Drawable.connectbutton_pressed);
+
             //TODO!
             //Make Ip Check and more!
             if (CheckIP())

@@ -212,6 +212,10 @@
     <AndroidResource Include="Resources\Drawable\midbox.png" />
     <AndroidResource Include="Resources\Drawable\camerabutton.png" />
     <AndroidResource Include="Resources\Drawable\camerabutton_pressed.png" />
+    <AndroidResource Include="Resources\Drawable\livebutton_pressed.png" />
+    <AndroidResource Include="Resources\Drawable\recordedbutton_pressed.png" />
+    <AndroidResource Include="Resources\Drawable\settingsbutton_pressed.png" />
+    <AndroidResource Include="Resources\Drawable\connectbutton_pressed.png" />
   </ItemGroup>
   <ItemGroup>
     <WebReferences Include="Web References\" />
