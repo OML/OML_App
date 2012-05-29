@@ -23,6 +23,13 @@ namespace OML_App.Data
         public Session() { }
 
         //Create a Live Session!
+        public Session(string vehicle_Name)
+        {
+            this.Vehicle_Name = vehicle_Name;
+            this.StartTime = DateTime.Now;
+        }
+
+        //Create a Live Session!
         public Session(string vehicle_Name, Sensor[] sensors)
         {
             this.Vehicle_Name = vehicle_Name;
