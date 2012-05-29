@@ -46,9 +46,9 @@ namespace OML_App.Connection
             switch (ludevedu)
             {
                 //Reject
-                //case 0:
-                //    Reject();
-                //    break;
+                case 0:
+                    Reject();
+                    break;
                 ////ok
                 //case 1:
                 //    buffer = new byte[Marshal.SizeOf(ok())];
@@ -99,10 +99,10 @@ namespace OML_App.Connection
         #endregion
 
         #region Reject
-        //public void Reject()
-        //{
+        public void Reject()
+        {
 
-        //}
+        }
         #endregion
 
         #region OK
