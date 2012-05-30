@@ -24,7 +24,7 @@ namespace OML_App.Setting
         public int UpdateRate;//Update Rate TCP
         public int IpAdress; //Default Ip , CurrentSession
         public int Port; //Default port, CurrentSession
-        public bool ControllingCarmen = false; //True if Besturen eigen auto
+        public bool ControllingCarmen = true; //True if Besturen eigen auto
         public int Camera_Port; //Port from Camera
 
         //** -- Sensor Values
