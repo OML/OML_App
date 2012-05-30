@@ -40,7 +40,6 @@ namespace OML_App.Setting
                         {
                             instance = new Settings_Singleton();
                         }
-
                     }
                 }
                 return instance;
