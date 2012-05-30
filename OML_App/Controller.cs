@@ -34,6 +34,10 @@ namespace OML_App
         //dialog textview
         TextView dialogTxt;
 
+        /// <summary>
+        /// Method thats called when the activity is first created
+        /// </summary>
+        /// <param name="bundle"></param>
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
@@ -52,40 +56,58 @@ namespace OML_App
 
             camera = FindViewById<Button>(Resource.Id.cameraButton);
             camera.Click += new EventHandler(FlipToCamera);
-        }
+        }//end overrided method OnCreate
 
-        public override bool  OnKeyDown(Keycode keyCode, KeyEvent e)
+        /// <summary>
+        /// overrided bool to show a dialog window 
+        /// when trying to exit the controller
+        /// </summary>
+        /// <param name="keyCode"></param>
+        /// <param name="e"></param>
+        /// <returns></returns>
+        public override bool OnKeyDown(Keycode keyCode, KeyEvent e)
         {
+            //if the back key is pressed
             if (keyCode == Keycode.Back)
             {
+                //set the content view to the dialogwindow content
+                //outside this contentview we are unable to find our resources
                 SetContentView(Resource.Layout.DialogWindow);
+
+                //create a new dialog
                 dialog = new Dialog(this);
                 dialog.SetContentView(Resource.Layout.DialogWindow);
                 dialog.SetTitle("OML");
                 dialog.SetCancelable(true);
 
+                //set the dialog text
                 dialogTxt = FindViewById<TextView>(Resource.Id.dialogText);
                 dialogTxt.Text = "By leaving the controller interface you will exit the current session. \n\n Do you wish to continue?";
 
+                //set the buttons
                 okButton = FindViewById<Button>(Resource.Id.okButton);
                 cancelButton = FindViewById<Button>(Resource.Id.cancelButton);
 
+                //handle click events
                 okButton.Click += delegate
                 {
+                    //change the background and finish the current activity (controller)
                     okButton.SetBackgroundResource(Resource.Drawable.okbutton_pressed);
                     Finish();
-                };
+                };//end delegate
                 cancelButton.Click += delegate
                 {
+                    //change the background, cancel the dialog and set the contentview back to the controller
+                    //so we can continue with our activity
                     cancelButton.SetBackgroundResource(Resource.Drawable.cancelbutton_pressed);
                     dialog.Cancel();
                     SetContentView(Resource.Layout.Controller);
-                };
+                };//end delegate
 
                 return true;
-            }
+            }//end if
  	        return base.OnKeyDown(keyCode, e);
-        }
+        }//end overrided method OnKeyDown
 
         /// <summary>
         /// Flips the Current View to First
@@ -100,7 +122,7 @@ namespace OML_App
             overview.SetBackgroundResource(Resource.Drawable.overviewbutton_pressed);
             battery.SetBackgroundResource(Resource.Drawable.batterybutton);
             camera.SetBackgroundResource(Resource.Drawable.camerabutton);
-        }
+        }//end method FlipToOverView
 
         /// <summary>
         /// Flips the Current View to Second
@@ -115,7 +137,7 @@ namespace OML_App
             battery.SetBackgroundResource(Resource.Drawable.batterybutton_pressed);
             overview.SetBackgroundResource(Resource.Drawable.overviewbutton);
             camera.SetBackgroundResource(Resource.Drawable.camerabutton);
-        }
+        }//end method FlipToBattery
 
         /// <summary>
         /// Flips the Current View to Third
@@ -130,7 +152,7 @@ namespace OML_App
             battery.SetBackgroundResource(Resource.Drawable.batterybutton);
             overview.SetBackgroundResource(Resource.Drawable.overviewbutton);
             camera.SetBackgroundResource(Resource.Drawable.camerabutton_pressed);
-        }
+        }//end method FlipToCamera
 
         /// <summary>
         /// Call Update to update The Views
@@ -145,9 +167,8 @@ namespace OML_App
                 case 1:
                     UpdateBattery();
                     break;
-            }
-
-        }
+            }//end switch
+        }//end method Update
 
         /// <summary>
         /// Call UpdateOverView to only update the OverView GUI
@@ -160,7 +181,7 @@ namespace OML_App
             UpdateEningeRR();
             UpdateBattery1();
             UpdateBattery2();
-        }
+        }//end method UpdateOverView
 
 
         /// <summary>
@@ -178,7 +199,7 @@ namespace OML_App
             RunOnUiThread(() => Eng_Curr.Text = _Eng_Curr + "A");
             RunOnUiThread(() => Eng_Volt.Text = _Eng_Volt + "V");
             RunOnUiThread(() => Eng_Temp.Text = _Eng_Temp + "C");
-        }
+        }//end method UpdateEngineLF
 
         /// <summary>
         /// Call to update Engine XX on the Overview GUI
@@ -195,7 +216,7 @@ namespace OML_App
             RunOnUiThread(() => Eng_Curr.Text = _Eng_Curr + "A");
             RunOnUiThread(() => Eng_Volt.Text = _Eng_Volt + "V");
             RunOnUiThread(() => Eng_Temp.Text = _Eng_Temp + "C");
-        }
+        }//end method UpdateEngineRF
 
         /// <summary>
         /// Call to update Engine XX on the Overview GUI
@@ -212,7 +233,7 @@ namespace OML_App
             RunOnUiThread(() => Eng_Curr.Text = _Eng_Curr + "A");
             RunOnUiThread(() => Eng_Volt.Text = _Eng_Volt + "V");
             RunOnUiThread(() => Eng_Temp.Text = _Eng_Temp + "C");
-        }
+        }//end method UpdateEngineLR
 
         /// <summary>
         /// Call to update Engine XX on the Overview GUI
@@ -229,7 +250,7 @@ namespace OML_App
             RunOnUiThread(() => Eng_Curr.Text = _Eng_Curr + "A");
             RunOnUiThread(() => Eng_Volt.Text = _Eng_Volt + "V");
             RunOnUiThread(() => Eng_Temp.Text = _Eng_Temp + "C");
-        }
+        }//end method UpdateEngineRR
 
         /// <summary>
         /// Call to update Battery X on the Overview GUI
@@ -246,7 +267,7 @@ namespace OML_App
             RunOnUiThread(() => Accu_Curr.Text = _Accu_Curr + "A");
             RunOnUiThread(() => Accu_Volt.Text = _Accu_Volt + "V");
             RunOnUiThread(() => Accu_Temp.Text = _Accu_Temp + "C");
-        }
+        }//end method UpdateBattery1
 
         /// <summary>
         /// Call to update Engine XX on the Overview GUI
@@ -263,7 +284,7 @@ namespace OML_App
             RunOnUiThread(() => Accu_Curr.Text = _Accu_Curr + "A");
             RunOnUiThread(() => Accu_Volt.Text = _Accu_Volt + "V");
             RunOnUiThread(() => Accu_Temp.Text = _Accu_Temp + "C");
-        }
+        }//end method UpdateBattery2
 
         /// <summary>
         /// Call to update The Battery GUI
@@ -271,6 +292,6 @@ namespace OML_App
         public void UpdateBattery()
         {
 
-        }
-    }
-}
+        }//end method UpdateBattery
+    }//end class Controller
+}//end namepsace OML_App
