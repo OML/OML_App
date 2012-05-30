@@ -97,7 +97,7 @@ namespace OML_App
                     okButton.SetBackgroundResource(Resource.Drawable.okbutton_pressed);
                     Finish();
                     //Ends the Current Session!
-                    Receive_Singleton.Instance.EndSession();
+                    Settings_Singleton.Instance.CloseCurrentSession();
                 };//end delegate
                 cancelButton.Click += delegate
                 {

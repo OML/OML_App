@@ -91,6 +91,18 @@ namespace OML_App.Setting
         }
 
         /// <summary>
+        /// Main Methode to Close the Current Session!
+        /// </summary>
+        public void CloseCurrentSession()
+        {
+            LiveSession = false;
+            //End the Recieve Session
+            Receive_Singleton.Instance.EndSession();
+            //Log the Recieve Session on the webserver !! Can be Laggy !!
+            SessionToWeb(Receive_Singleton.Instance.Current_ses);
+        }
+
+        /// <summary>
         /// Sends a Session to the Webservice! It will be saved over there
         /// </summary>
         /// <param name="ses"></param>

@@ -62,8 +62,7 @@ namespace OML_App.Data
         /// End Session and Close Connection!
         /// </summary>
         public void EndSession()
-        {
-            Settings_Singleton.Instance.LiveSession = false;
+        {            
             Current_ses.EndTime = DateTime.Now;
         }
 
