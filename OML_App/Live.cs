@@ -11,6 +11,7 @@ using Android.Views;
 using Android.Widget;
 using OML_App.Connection;
 using OML_App.Data;
+using OML_App.Setting;
 
 
 namespace OML_App
@@ -108,12 +109,13 @@ namespace OML_App
                 Send_Singleton.Instance.temperature = 1;
                 Send_Singleton.Instance.throttle = 1;
 
-
                 connect = new TCPClient(ip, 1337);
 
                 if (connect.connected)
                 {
-                    return true;
+                    //Set Settings Session Live
+                    Settings_Singleton.Instance.LiveSession = true;
+                    return true;                    
                 }
                 else
                 {

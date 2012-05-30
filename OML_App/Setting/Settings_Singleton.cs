@@ -20,8 +20,9 @@ namespace OML_App.Setting
         private static object syncRoot = new Object();
 
         public List<OML_App.Data.Session> _Session = new List<OML_App.Data.Session>();
-        public int Thershold;//Thershold Rate TCP
-        public int UpdateRate;//Update Rate TCP
+        public int Thershold = 2000;//Thershold Rate TCP
+        public int UpdateRate = 5;//Update Rate TCP
+        public bool LiveSession = false;
         public int IpAdress; //Default Ip , CurrentSession
         public int Port; //Default port, CurrentSession
         public bool ControllingCarmen = true; //True if Besturen eigen auto
