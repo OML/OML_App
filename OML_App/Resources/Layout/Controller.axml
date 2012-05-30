@@ -3,7 +3,7 @@
     android:orientation="vertical"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="@drawable/background2">
+    android:background="@drawable/background1">
   <RelativeLayout
       android:minWidth="25px"
       android:minHeight="25px"
@@ -22,20 +22,6 @@
         android:paddingRight="17dp"
         android:paddingTop="32dp"
         android:paddingBottom="32dp" >
-      <TextView
-        android:id="@+id/powerView0"
-        android:layout_width="142dp"
-        android:layout_height="55dp"
-        android:background="#000000"
-        android:textColor="#ffffff"/>
-      <TextView
-        android:id="@+id/powerView1"
-        android:layout_width="142dp"
-        android:layout_height="55dp"
-        android:layout_marginTop="8dp"
-        android:layout_below="@id/powerView0"
-        android:background="#000000"
-        android:textColor="#ffffff"/>
     </RelativeLayout>
     <!-- SliderBox layout, contains sliders to control CARMEN -->
     <RelativeLayout
@@ -47,7 +33,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginLeft="8dp"
         android:paddingTop="30dp"
-        android:paddingLeft="33dp">
+        android:paddingLeft="32dp">
       <RelativeLayout
           android:id="@+id/smallSlider0"
           android:layout_width="44dp"
@@ -57,6 +43,15 @@
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"/>
       </RelativeLayout>
+      <TextView
+        android:id="@+id/powerView0"
+        android:layout_width="55dp"
+        android:layout_height="30dp"
+        android:layout_toRightOf="@id/smallSlider0"
+        android:layout_marginLeft="11dp"
+        android:background="@drawable/powerframe"
+        android:padding="5dp"
+        android:textColor="#00ff00"/>
     </RelativeLayout>
     <!--<RelativeLayout
                 android:id="@+id/smallSliderLayout"
@@ -124,8 +119,8 @@
             android:id="@+id/EngLF1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="105dp"
-            android:layout_marginLeft="105dp"
+            android:layout_marginTop="86dp"
+            android:layout_marginLeft="55dp"
             android:textColor="#000000"
             android:text="2.58A"
             android:textSize="20sp" />
@@ -133,8 +128,8 @@
               android:id="@+id/EngLF2"
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
-              android:layout_marginTop="155dp"
-              android:layout_marginLeft="105dp"
+              android:layout_marginTop="139dp"
+              android:layout_marginLeft="55dp"
               android:textColor="#000000"
               android:text="18.43V"
               android:textSize="20sp" />
@@ -142,8 +137,8 @@
               android:id="@+id/EngLF3"
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
-              android:layout_marginTop="200dp"
-              android:layout_marginLeft="105dp"
+              android:layout_marginTop="192dp"
+              android:layout_marginLeft="55dp"
               android:textColor="#000000"
               android:text="43C"
               android:textSize="20sp" />
@@ -151,8 +146,8 @@
              android:id="@+id/EngLR1"
              android:layout_width="wrap_content"
              android:layout_height="wrap_content"
-             android:layout_marginTop="370dp"
-             android:layout_marginLeft="105dp"
+             android:layout_marginTop="353dp"
+             android:layout_marginLeft="55dp"
              android:textColor="#000000"
              android:text="2.58A"
              android:textSize="20sp" />
@@ -160,8 +155,8 @@
               android:id="@+id/EngLR2"
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
-              android:layout_marginTop="420dp"
-              android:layout_marginLeft="105dp"
+              android:layout_marginTop="406dp"
+              android:layout_marginLeft="55dp"
               android:textColor="#000000"
               android:text="18.30V"
               android:textSize="20sp" />
@@ -169,8 +164,8 @@
               android:id="@+id/EngLR3"
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
-              android:layout_marginTop="465dp"
-              android:layout_marginLeft="105dp"
+              android:layout_marginTop="459dp"
+              android:layout_marginLeft="55dp"
               android:textColor="#000000"
               android:text="38C"
               android:textSize="20sp" />
@@ -178,8 +173,8 @@
               android:id="@+id/EngRF1"
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
-              android:layout_marginTop="105dp"
-              android:layout_marginLeft="470dp"
+              android:layout_marginTop="86dp"
+              android:layout_marginLeft="477dp"
               android:textColor="#000000"
               android:text="1.98A"
               android:textSize="20sp" />
@@ -187,8 +182,8 @@
               android:id="@+id/EngRF2"
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
-              android:layout_marginTop="155dp"
-              android:layout_marginLeft="470dp"
+              android:layout_marginTop="139dp"
+              android:layout_marginLeft="477dp"
               android:textColor="#000000"
               android:text="5.00V"
               android:textSize="20sp" />
@@ -196,8 +191,8 @@
               android:id="@+id/EngRF3"
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
-              android:layout_marginTop="200dp"
-              android:layout_marginLeft="470dp"
+              android:layout_marginTop="192dp"
+              android:layout_marginLeft="477dp"
               android:textColor="#000000"
               android:text="27C"
               android:textSize="20sp" />
@@ -205,8 +200,8 @@
              android:id="@+id/EngRR1"
              android:layout_width="wrap_content"
              android:layout_height="wrap_content"
-             android:layout_marginTop="370dp"
-             android:layout_marginLeft="470dp"
+             android:layout_marginTop="353dp"
+             android:layout_marginLeft="477dp"
              android:textColor="#000000"
              android:text="1.84A"
              android:textSize="20sp" />
@@ -214,8 +209,8 @@
               android:id="@+id/EngRR2"
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
-              android:layout_marginTop="420dp"
-              android:layout_marginLeft="470dp"
+              android:layout_marginTop="406dp"
+              android:layout_marginLeft="477dp"
               android:textColor="#000000"
               android:text="5.00V"
               android:textSize="20sp" />
@@ -223,8 +218,8 @@
               android:id="@+id/EngRR3"
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
-              android:layout_marginTop="465dp"
-              android:layout_marginLeft="470dp"
+              android:layout_marginTop="459dp"
+              android:layout_marginLeft="477dp"
               android:textColor="#000000"
               android:text="25C"
               android:textSize="20sp" />
@@ -232,8 +227,8 @@
               android:id="@+id/Accu1Curr"
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
-              android:layout_marginTop="240dp"
-              android:layout_marginLeft="210dp"
+              android:layout_marginTop="230dp"
+              android:layout_marginLeft="215dp"
               android:textColor="#000000"
               android:text="4.58A"
               android:textSize="20sp" />
@@ -241,8 +236,8 @@
               android:id="@+id/Accu1Voltage"
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
-              android:layout_marginTop="265dp"
-              android:layout_marginLeft="210dp"
+              android:layout_marginTop="255dp"
+              android:layout_marginLeft="215dp"
               android:textColor="#000000"
               android:text="21.08V"
               android:textSize="20sp" />
@@ -250,8 +245,8 @@
               android:id="@+id/Accu1Temp"
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
-              android:layout_marginTop="290dp"
-              android:layout_marginLeft="210dp"
+              android:layout_marginTop="280dp"
+              android:layout_marginLeft="215dp"
               android:textColor="#000000"
               android:text="25C"
               android:textSize="20sp" />
@@ -259,8 +254,8 @@
               android:id="@+id/Accu2Curr"
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
-              android:layout_marginTop="240dp"
-              android:layout_marginLeft="350dp"
+              android:layout_marginTop="230dp"
+              android:layout_marginLeft="338dp"
               android:textColor="#000000"
               android:text="4.58A"
               android:textSize="20sp" />
@@ -268,8 +263,8 @@
               android:id="@+id/Accu2Voltage"
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
-              android:layout_marginTop="265dp"
-              android:layout_marginLeft="350dp"
+              android:layout_marginTop="255dp"
+              android:layout_marginLeft="338dp"
               android:textColor="#000000"
               android:text="21.20V"
               android:textSize="20sp" />
@@ -277,8 +272,8 @@
               android:id="@+id/Accu2Temp"
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
-              android:layout_marginTop="290dp"
-              android:layout_marginLeft="350dp"
+              android:layout_marginTop="280dp"
+              android:layout_marginLeft="338dp"
               android:textColor="#000000"
               android:text="28C"
               android:textSize="20sp" />
@@ -352,11 +347,20 @@
         android:layout_marginLeft="8dp"
         android:paddingTop="30dp"
         android:paddingRight="30dp"
-        android:paddingLeft="99dp">
+        android:paddingLeft="29dp">
+      <TextView
+        android:id="@+id/powerView1"
+        android:layout_width="55dp"
+        android:layout_height="30dp"
+        android:background="@drawable/powerframe"
+        android:padding="5dp"
+        android:textColor="#00ff00"/>
       <RelativeLayout
           android:id="@+id/smallSlider1"
           android:layout_width="44dp"
-          android:layout_height="202dp">
+          android:layout_height="202dp"
+          android:layout_toRightOf="@id/powerView1"
+          android:layout_marginLeft="14dp">
         <oml_app.SliderControls
               android:id="@+id/sliderControls1"
               android:layout_width="fill_parent"

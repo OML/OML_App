@@ -132,52 +132,55 @@ namespace OML_App
 			public const int overviewbutton_pressed = 2130837538;
 			
 			// aapt resource value: 0x7f020023
-			public const int recordedbutton = 2130837539;
+			public const int powerframe = 2130837539;
 			
 			// aapt resource value: 0x7f020024
-			public const int recordedbutton_pressed = 2130837540;
+			public const int recordedbutton = 2130837540;
 			
 			// aapt resource value: 0x7f020025
-			public const int replaybutton = 2130837541;
+			public const int recordedbutton_pressed = 2130837541;
 			
 			// aapt resource value: 0x7f020026
-			public const int settingsbutton = 2130837542;
+			public const int replaybutton = 2130837542;
 			
 			// aapt resource value: 0x7f020027
-			public const int settingsbutton_pressed = 2130837543;
+			public const int settingsbutton = 2130837543;
 			
 			// aapt resource value: 0x7f020028
-			public const int sidebox = 2130837544;
+			public const int settingsbutton_pressed = 2130837544;
 			
 			// aapt resource value: 0x7f020029
-			public const int sidebox2 = 2130837545;
+			public const int sidebox = 2130837545;
 			
 			// aapt resource value: 0x7f02002a
-			public const int sliderbig = 2130837546;
+			public const int sidebox2 = 2130837546;
 			
 			// aapt resource value: 0x7f02002b
-			public const int sliderBoxL = 2130837547;
+			public const int sliderbig = 2130837547;
 			
 			// aapt resource value: 0x7f02002c
-			public const int sliderBoxR = 2130837548;
+			public const int sliderBoxL = 2130837548;
 			
 			// aapt resource value: 0x7f02002d
-			public const int slidersbox = 2130837549;
+			public const int sliderBoxR = 2130837549;
 			
 			// aapt resource value: 0x7f02002e
-			public const int slidersbox0 = 2130837550;
+			public const int slidersbox = 2130837550;
 			
 			// aapt resource value: 0x7f02002f
-			public const int slidersbox1 = 2130837551;
+			public const int slidersbox0 = 2130837551;
 			
 			// aapt resource value: 0x7f020030
-			public const int slidersbox2 = 2130837552;
+			public const int slidersbox1 = 2130837552;
 			
 			// aapt resource value: 0x7f020031
-			public const int slidersmall = 2130837553;
+			public const int slidersbox2 = 2130837553;
 			
 			// aapt resource value: 0x7f020032
-			public const int startbutton = 2130837554;
+			public const int slidersmall = 2130837554;
+			
+			// aapt resource value: 0x7f020033
+			public const int startbutton = 2130837555;
 			
 			private Drawable()
 			{
@@ -187,80 +190,80 @@ namespace OML_App
 		public partial class Id
 		{
 			
-			// aapt resource value: 0x7f050016
-			public const int Accu1Curr = 2131034134;
-			
-			// aapt resource value: 0x7f050018
-			public const int Accu1Temp = 2131034136;
+			// aapt resource value: 0x7f050015
+			public const int Accu1Curr = 2131034133;
 			
 			// aapt resource value: 0x7f050017
-			public const int Accu1Voltage = 2131034135;
+			public const int Accu1Temp = 2131034135;
 			
-			// aapt resource value: 0x7f050019
-			public const int Accu2Curr = 2131034137;
+			// aapt resource value: 0x7f050016
+			public const int Accu1Voltage = 2131034134;
 			
-			// aapt resource value: 0x7f05001b
-			public const int Accu2Temp = 2131034139;
+			// aapt resource value: 0x7f050018
+			public const int Accu2Curr = 2131034136;
 			
 			// aapt resource value: 0x7f05001a
-			public const int Accu2Voltage = 2131034138;
+			public const int Accu2Temp = 2131034138;
+			
+			// aapt resource value: 0x7f050019
+			public const int Accu2Voltage = 2131034137;
+			
+			// aapt resource value: 0x7f050009
+			public const int EngLF1 = 2131034121;
 			
 			// aapt resource value: 0x7f05000a
-			public const int EngLF1 = 2131034122;
+			public const int EngLF2 = 2131034122;
 			
 			// aapt resource value: 0x7f05000b
-			public const int EngLF2 = 2131034123;
+			public const int EngLF3 = 2131034123;
 			
 			// aapt resource value: 0x7f05000c
-			public const int EngLF3 = 2131034124;
+			public const int EngLR1 = 2131034124;
 			
 			// aapt resource value: 0x7f05000d
-			public const int EngLR1 = 2131034125;
+			public const int EngLR2 = 2131034125;
 			
 			// aapt resource value: 0x7f05000e
-			public const int EngLR2 = 2131034126;
+			public const int EngLR3 = 2131034126;
 			
 			// aapt resource value: 0x7f05000f
-			public const int EngLR3 = 2131034127;
+			public const int EngRF1 = 2131034127;
 			
 			// aapt resource value: 0x7f050010
-			public const int EngRF1 = 2131034128;
+			public const int EngRF2 = 2131034128;
 			
 			// aapt resource value: 0x7f050011
-			public const int EngRF2 = 2131034129;
+			public const int EngRF3 = 2131034129;
 			
 			// aapt resource value: 0x7f050012
-			public const int EngRF3 = 2131034130;
+			public const int EngRR1 = 2131034130;
 			
 			// aapt resource value: 0x7f050013
-			public const int EngRR1 = 2131034131;
+			public const int EngRR2 = 2131034131;
 			
 			// aapt resource value: 0x7f050014
-			public const int EngRR2 = 2131034132;
-			
-			// aapt resource value: 0x7f050015
-			public const int EngRR3 = 2131034133;
+			public const int EngRR3 = 2131034132;
 			
 			// aapt resource value: 0x7f050032
 			public const int back_button1 = 2131034162;
 			
+			// aapt resource value: 0x7f05001b
+			public const int battery = 2131034139;
+			
+			// aapt resource value: 0x7f05001f
+			public const int batteryButton = 2131034143;
+			
 			// aapt resource value: 0x7f05001c
-			public const int battery = 2131034140;
+			public const int battext = 2131034140;
 			
 			// aapt resource value: 0x7f050020
-			public const int batteryButton = 2131034144;
-			
-			// aapt resource value: 0x7f05001d
-			public const int battext = 2131034141;
-			
-			// aapt resource value: 0x7f050021
-			public const int cameraButton = 2131034145;
+			public const int cameraButton = 2131034144;
 			
 			// aapt resource value: 0x7f05002b
 			public const int connectbutton = 2131034155;
 			
-			// aapt resource value: 0x7f050008
-			public const int flipper = 2131034120;
+			// aapt resource value: 0x7f050007
+			public const int flipper = 2131034119;
 			
 			// aapt resource value: 0x7f050030
 			public const int ip_adress = 2131034160;
@@ -280,11 +283,11 @@ namespace OML_App
 			// aapt resource value: 0x7f050025
 			public const int nhl_image = 2131034149;
 			
-			// aapt resource value: 0x7f050009
-			public const int overView = 2131034121;
+			// aapt resource value: 0x7f050008
+			public const int overView = 2131034120;
 			
-			// aapt resource value: 0x7f05001f
-			public const int overviewButton = 2131034143;
+			// aapt resource value: 0x7f05001e
+			public const int overviewButton = 2131034142;
 			
 			// aapt resource value: 0x7f05002a
 			public const int port = 2131034154;
@@ -292,11 +295,11 @@ namespace OML_App
 			// aapt resource value: 0x7f050031
 			public const int port_adress = 2131034161;
 			
-			// aapt resource value: 0x7f050003
-			public const int powerView0 = 2131034115;
+			// aapt resource value: 0x7f050006
+			public const int powerView0 = 2131034118;
 			
-			// aapt resource value: 0x7f050004
-			public const int powerView1 = 2131034116;
+			// aapt resource value: 0x7f050022
+			public const int powerView1 = 2131034146;
 			
 			// aapt resource value: 0x7f05002e
 			public const int recordedButton = 2131034158;
@@ -307,23 +310,23 @@ namespace OML_App
 			// aapt resource value: 0x7f05002f
 			public const int settingsButton = 2131034159;
 			
-			// aapt resource value: 0x7f05001e
-			public const int sideBox = 2131034142;
+			// aapt resource value: 0x7f05001d
+			public const int sideBox = 2131034141;
 			
-			// aapt resource value: 0x7f050007
-			public const int sliderControls0 = 2131034119;
+			// aapt resource value: 0x7f050005
+			public const int sliderControls0 = 2131034117;
 			
 			// aapt resource value: 0x7f050024
 			public const int sliderControls1 = 2131034148;
 			
-			// aapt resource value: 0x7f050005
-			public const int slidersBox0 = 2131034117;
+			// aapt resource value: 0x7f050003
+			public const int slidersBox0 = 2131034115;
 			
-			// aapt resource value: 0x7f050022
-			public const int slidersBox1 = 2131034146;
+			// aapt resource value: 0x7f050021
+			public const int slidersBox1 = 2131034145;
 			
-			// aapt resource value: 0x7f050006
-			public const int smallSlider0 = 2131034118;
+			// aapt resource value: 0x7f050004
+			public const int smallSlider0 = 2131034116;
 			
 			// aapt resource value: 0x7f050023
 			public const int smallSlider1 = 2131034147;

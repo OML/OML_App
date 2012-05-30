@@ -223,6 +223,7 @@
     <AndroidResource Include="Resources\Drawable\settingsbutton_pressed.png" />
     <AndroidResource Include="Resources\Drawable\connectbutton_pressed.png" />
     <AndroidResource Include="Resources\Drawable\background2.png" />
+    <AndroidResource Include="Resources\Drawable\powerframe.png" />
   </ItemGroup>
   <ItemGroup>
     <WebReferences Include="Web References\" />
