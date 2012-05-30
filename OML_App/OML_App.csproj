@@ -100,6 +100,9 @@
     <AndroidResource Include="Resources\Layout\Analyse.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
+    <AndroidResource Include="Resources\Layout\DialogWindow.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
     <None Include="Web References\net.ukct.reintjan1\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
@@ -223,6 +226,11 @@
     <AndroidResource Include="Resources\Drawable\connectbutton_pressed.png" />
     <AndroidResource Include="Resources\Drawable\background2.png" />
     <AndroidResource Include="Resources\Drawable\powerframe.png" />
+    <AndroidResource Include="Resources\Drawable\okbutton.png" />
+    <AndroidResource Include="Resources\Drawable\okbutton_pressed.png" />
+    <AndroidResource Include="Resources\Drawable\cancelbutton.png" />
+    <AndroidResource Include="Resources\Drawable\cancelbutton_pressed.png" />
+    <AndroidResource Include="Resources\Drawable\DialogInterface.png" />
   </ItemGroup>
   <ItemGroup>
     <WebReferences Include="Web References\" />

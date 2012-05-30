@@ -24,6 +24,16 @@ namespace OML_App
         Button battery;
         Button camera;
 
+        //dialog for exit message
+        Dialog dialog;
+
+        //dialog buttons
+        Button okButton;
+        Button cancelButton;
+        
+        //dialog textview
+        TextView dialogTxt;
+
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
@@ -42,6 +52,39 @@ namespace OML_App
 
             camera = FindViewById<Button>(Resource.Id.cameraButton);
             camera.Click += new EventHandler(FlipToCamera);
+        }
+
+        public override bool  OnKeyDown(Keycode keyCode, KeyEvent e)
+        {
+            if (keyCode == Keycode.Back)
+            {
+                SetContentView(Resource.Layout.DialogWindow);
+                dialog = new Dialog(this);
+                dialog.SetContentView(Resource.Layout.DialogWindow);
+                dialog.SetTitle("OML");
+                dialog.SetCancelable(true);
+
+                dialogTxt = FindViewById<TextView>(Resource.Id.dialogText);
+                dialogTxt.Text = "By leaving the controller interface you will exit the current session. \n\n Do you wish to continue?";
+
+                okButton = FindViewById<Button>(Resource.Id.okButton);
+                cancelButton = FindViewById<Button>(Resource.Id.cancelButton);
+
+                okButton.Click += delegate
+                {
+                    okButton.SetBackgroundResource(Resource.Drawable.okbutton_pressed);
+                    Finish();
+                };
+                cancelButton.Click += delegate
+                {
+                    cancelButton.SetBackgroundResource(Resource.Drawable.cancelbutton_pressed);
+                    dialog.Cancel();
+                    SetContentView(Resource.Layout.Controller);
+                };
+
+                return true;
+            }
+ 	        return base.OnKeyDown(keyCode, e);
         }
 
         /// <summary>
