@@ -26,6 +26,8 @@ namespace OML_App
 
         private float mLastTouchY;
         private int mActivePointerId;
+        int redvalue;
+        int greenvalue;
 
         TextView tv;
 
@@ -99,11 +101,11 @@ namespace OML_App
 
             //make sure we can return a power value for the engine between 100 and - 100
             //100 being max power forwards, -100 max power reverse.
-            if (_power < -2)
+            if (_power < -1)
             {
                 _power = Convert.ToInt32((Math.Abs(_power / 88)) * 100);
             }
-            else if (_power > 2)
+            else if (_power > 1)
             {
                 _power = Convert.ToInt32((_power / 88) * 100);
                 _power *= -1;
@@ -131,15 +133,31 @@ namespace OML_App
                 //draw the y with minus 13 to make it center.
                 canvas.DrawBitmap(BitmapFactory.DecodeResource(Resources, Resource.Drawable.slidersmall), _touchingPoint.X, _touchingPoint.Y - 13, null);
 
+                //determine the textcolor (green -> red)
+                if (Math.Abs(_power) < 50)
+                {
+                    redvalue = (int)(5.1f * Math.Abs(_power));
+                    greenvalue = 255;
+                }//end if
+                else
+                {
+                    redvalue = 255;
+                    greenvalue = 255 - (int)(5.1f * Math.Abs(_power));
+                }//end else
+
+                Color custom = Color.Argb(255, redvalue, greenvalue, 0);
+
                 if (this.Id == Resource.Id.sliderControls0)
                 {
                     tv = ((RelativeLayout)this.Parent.Parent.Parent).FindViewById<TextView>(Resource.Id.powerView0);
-                    tv.Text = "Power Left: " + _power;
+                    tv.Text = _power.ToString();
+                    tv.SetTextColor(custom);
                 }//end if
                 else if (this.Id == Resource.Id.sliderControls1)
                 {
                     tv = ((RelativeLayout)this.Parent.Parent.Parent).FindViewById<TextView>(Resource.Id.powerView1);
-                    tv.Text = "Power Right: " + _power;
+                    tv.Text = _power.ToString();
+                    tv.SetTextColor(custom);
                 }//end else if
             }//end if
             //for debugging purposes
