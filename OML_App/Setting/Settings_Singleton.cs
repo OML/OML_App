@@ -25,6 +25,7 @@ namespace OML_App.Setting
         public int IpAdress; //Default Ip , CurrentSession
         public int Port; //Default port, CurrentSession
         public bool Carmen = false; //True if Besturen eigen auto
+        public int Camera_Port; //Port from Camera
 
         public WebService Ws = new WebService();
 
