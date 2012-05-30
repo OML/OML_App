@@ -13,6 +13,7 @@ using Android.Content.PM;
 using Android.Graphics.Drawables;
 using OML_App.Data;
 using OML_App.Setting;
+using System.Threading;
 
 namespace OML_App
 {
@@ -20,7 +21,7 @@ namespace OML_App
     public class Controller : Activity
     {
         private ViewFlipper flipper;
-
+        private Thread updateThread;
         //control buttons
         Button overview;
         Button battery;
@@ -58,6 +59,11 @@ namespace OML_App
 
             camera = FindViewById<Button>(Resource.Id.cameraButton);
             camera.Click += new EventHandler(FlipToCamera);
+
+            
+            //Start Update Thread
+            updateThread = new Thread(new ThreadStart(Update));
+            updateThread.Start();
         }//end overrided method OnCreate
 
         /// <summary>
@@ -163,15 +169,20 @@ namespace OML_App
         /// </summary>
         public void Update()
         {
-            switch (flipper.CurrentView.Id)
+            while (true)
             {
-                case 1:
-                    UpdateOverView();
-                    break;
-                case 2:
-                    UpdateBattery();
-                    break;
-            }//end switch
+                switch (flipper.CurrentView.Id)
+                {
+                    case 1:
+                        UpdateOverView();
+                        break;
+                    case 2:
+                        UpdateBattery();
+                        break;
+                }//end switch
+                Thread.Sleep(Settings_Singleton.Instance.Controller_UpdateRate);
+            }            
+
         }//end method Update
 
         /// <summary>

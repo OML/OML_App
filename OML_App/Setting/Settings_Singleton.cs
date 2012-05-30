@@ -20,8 +20,9 @@ namespace OML_App.Setting
         private static object syncRoot = new Object();
 
         public List<OML_App.Data.Session> _Session = new List<OML_App.Data.Session>();
-        public int Thershold = 2000;//Thershold Rate TCP
-        public int UpdateRate = 5;//Update Rate TCP
+        public int TCP_Thershold = 2000;//Thershold Rate TCP
+        public int TCP_UpdateRate = 5;//Update Rate TCP
+        public int Controller_UpdateRate = 250; //SleepTime Controller
         public bool LiveSession = false;
         public int IpAdress; //Default Ip , CurrentSession
         public int Port; //Default port, CurrentSession
