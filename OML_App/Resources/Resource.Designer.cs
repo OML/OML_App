@@ -448,9 +448,6 @@ namespace OML_App
 			// aapt resource value: 0x7f050047
 			public const int textView3 = 2131034183;
 			
-			// aapt resource value: 0x7f05003a
-			public const int textView3 = 2131034170;
-			
 			// aapt resource value: 0x7f05001d
 			public const int voltbutton0 = 2131034141;
 			

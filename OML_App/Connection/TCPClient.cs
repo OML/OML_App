@@ -157,7 +157,7 @@ namespace OML_App.Connection
                         stopwatch.Start(); 
                     }
                     cmdSendData(2);
-                    Thread.Sleep(100);
+                    Thread.Sleep(250);
                     cmdReceiveData();
                     
                 }
