@@ -15,8 +15,8 @@ namespace OML_App.Front
     public class GraphValue
     {
         //list values
-        float value;
-        TimeSpan time;
+        public float value;
+        public TimeSpan time;
 
         public GraphValue(float value, TimeSpan time)
         {

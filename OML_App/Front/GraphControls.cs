@@ -37,6 +37,13 @@ namespace OML_App
         float temp1 = 0;
         TimeSpan time;
 
+        //paint to draw with
+        Paint paint = new Paint();
+
+        //int representing the active graph within the batteryview
+        //0 if batteryview is not active, otherwise 1 - 6
+        int activeIndex = 0;
+
         //two-dimensional arraylists to hold our graph values
         //[value][time]
         ArrayList voltvalue0 = new ArrayList();
@@ -66,6 +73,8 @@ namespace OML_App
         {
             base.OnDraw(canvas);
 
+            paint.SetARGB(0,0,0,0);
+
             //set the time
             time = DateTime.Now - Receive_Singleton.Instance.Current_ses.StartTime;
 
@@ -74,36 +83,74 @@ namespace OML_App
             {
                 volt0 = Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.A0V].Values[Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.A0V].Values.Length].Value;
                 voltvalue0.Add(new GraphValue(volt0, time));
+
+                //if we exceed 100 elements remove the first
+                if (voltvalue0.Count > 100)
+                    voltvalue0.RemoveAt(0);
+
+                //draw the graph volt0 graph is the currently viewed graph
+                if (activeIndex == 1)
+                    drawGraph(canvas, voltvalue0);
             }//end if
 
             if (volt1 != Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.A1V].Values[Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.A1V].Values.Length].Value)
             {
                 volt1 = Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.A1V].Values[Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.A1V].Values.Length].Value;
                 voltvalue1.Add(new GraphValue(volt1, time));
+
+                if (voltvalue1.Count > 100)
+                    voltvalue1.RemoveAt(0);
+
+                if (activeIndex == 2)
+                    drawGraph(canvas, voltvalue1);
             }//end if
 
             if (amp0 != Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.A0A].Values[Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.A0A].Values.Length].Value)
             {
                 amp0 = Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.A0A].Values[Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.A0A].Values.Length].Value;
                 ampvalue0.Add(new GraphValue(amp0, time));
+
+                if (ampvalue0.Count > 100)
+                    ampvalue0.RemoveAt(0);
+
+                if (activeIndex == 3)
+                    drawGraph(canvas, ampvalue0);
             }//end if
 
             if (amp1 != Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.A1A].Values[Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.A1A].Values.Length].Value)
             {
                 amp1 = Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.A1A].Values[Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.A1A].Values.Length].Value;
                 ampvalue1.Add(new GraphValue(amp1, time));
+
+                if (ampvalue1.Count > 100)
+                    ampvalue1.RemoveAt(0);
+
+                if (activeIndex == 4)
+                    drawGraph(canvas, ampvalue1);
             }//end if
 
             if (temp0 != Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.A0T].Values[Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.A0T].Values.Length].Value)
             {
                 temp0 = Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.A0T].Values[Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.A0T].Values.Length].Value;
                 tempvalue0.Add(new GraphValue(temp0, time));
+
+                if (tempvalue0.Count > 100)
+                    tempvalue0.RemoveAt(0);
+
+                if (activeIndex == 5)
+                    drawGraph(canvas, tempvalue0);
             }//end if
 
             if (temp1 != Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.A1T].Values[Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.A1T].Values.Length].Value)
             {
                 temp1 = Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.A1T].Values[Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.A1T].Values.Length].Value;
                 tempvalue1.Add(new GraphValue(temp1, time));
+
+                if (tempvalue1.Count > 100)
+                    tempvalue1.RemoveAt(0);
+
+                if (activeIndex == 6)
+                    drawGraph(canvas, tempvalue1);
             }//end if
             
 
@@ -125,60 +172,26 @@ namespace OML_App
 
             //invalidate to request a redraw
             Invalidate();
-        }
+        }//end overrided method OnDraw
 
         /// <summary>
         /// method to draw the voltage graph for battery 1
         /// </summary>
         /// <param name="canvas"></param>
-        private void drawVolt0Graph(Canvas canvas)
+        private void drawGraph(Canvas canvas, ArrayList list)
         {
+            //loop through all values in our array
+            for (int i = 0; i < 99; i++)
+            {
+                //get our y-axis value from the arraylist
+                GraphValue value0 = (GraphValue)list[i];
+                GraphValue value1 = (GraphValue)list[i + 1];
+                float yValue0 = value0.value;
+                float yValue1 = value1.value;
 
-        }
-
-        /// <summary>
-        /// method to draw the voltage graph for battery 2
-        /// </summary>
-        /// <param name="canvas"></param>
-        private void drawVolt1Graph(Canvas canvas)
-        {
-
-        }
-
-        /// <summary>
-        /// method to draw the ampere graph for battery 1
-        /// </summary>
-        /// <param name="canvas"></param>
-        private void drawAmp0Graph(Canvas canvas)
-        {
-
-        }
-
-        /// <summary>
-        /// method to draw the ampere graph for battery 2
-        /// </summary>
-        /// <param name="canvas"></param>
-        private void drawAmp1Graph(Canvas canvas)
-        {
-
-        }
-
-        /// <summary>
-        /// method to draw the temperature graph for battery 1
-        /// </summary>
-        /// <param name="canvas"></param>
-        private void drawTemp0Graph(Canvas canvas)
-        {
-
-        }
-
-        /// <summary>
-        /// method to draw the temperature graph for battery 2
-        /// </summary>
-        /// <param name="canvas"></param>
-        private void drawTemp1Graph(Canvas canvas)
-        {
-
-        }
-    }
-}
+                //draw the point on our graph
+                canvas.DrawLine(i * 5.5f, yValue0, (i + 1) * 5.5f, yValue1, paint);
+            }//end for
+        }//end method drawVolt0Graph
+    }//end class GraphControls
+}//end namespace OML_App
