@@ -232,6 +232,7 @@
     <AndroidResource Include="Resources\Drawable\cancelbutton.png" />
     <AndroidResource Include="Resources\Drawable\cancelbutton_pressed.png" />
     <AndroidResource Include="Resources\Drawable\DialogInterface.png" />
+    <AndroidResource Include="Resources\Drawable\batterybar.png" />
   </ItemGroup>
   <ItemGroup>
     <WebReferences Include="Web References\" />

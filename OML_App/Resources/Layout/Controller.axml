@@ -281,16 +281,13 @@
       <RelativeLayout
           android:id="@+id/battery"
           android:layout_width="fill_parent"
-          android:layout_height="fill_parent"
-          android:background="@drawable/AchtergrondAppGrijs">
-        <TextView
-            android:id="@+id/battext"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:textColor="#000000"
-            android:text ="An other (Flipper) view"
-            android:textSize="25sp" />
+          android:layout_height="fill_parent">
+        <RelativeLayout
+          android:id="@+id/batterybar"
+          android:layout_width="640dp"
+          android:layout_height="168dp"
+          android:background="@drawable/batterybar">
+        </RelativeLayout>
       </RelativeLayout>
     </ViewFlipper>
     <!--<RelativeLayout
