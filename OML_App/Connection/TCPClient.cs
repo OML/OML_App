@@ -48,7 +48,7 @@ namespace OML_App.Connection
         /// <param name="port">Port name</param>
         public TCPClient(string ipadress, int port)
         {
-            this.IP_Adress = "192.168.1.100";//ipadress;
+            this.IP_Adress = ipadress;
             this.Port = 1337;//port;
             cmdConnect();
             Thread newThread = new Thread(new ThreadStart(Run));
