@@ -11,6 +11,9 @@ using Android.Views;
 using Android.Widget;
 using Android.Content.PM;
 using Android.Graphics.Drawables;
+using OML_App.Data;
+using OML_App.Setting;
+using System.Threading;
 
 namespace OML_App
 {
@@ -18,7 +21,7 @@ namespace OML_App
     public class Controller : Activity
     {
         private ViewFlipper flipper;
-
+        private Thread updateThread;
         //control buttons
         Button overview;
         Button battery;
@@ -56,6 +59,11 @@ namespace OML_App
 
             camera = FindViewById<Button>(Resource.Id.cameraButton);
             camera.Click += new EventHandler(FlipToCamera);
+
+            
+            //Start Update Thread
+            updateThread = new Thread(new ThreadStart(Update));
+            updateThread.Start();
         }//end overrided method OnCreate
 
         /// <summary>
@@ -94,6 +102,8 @@ namespace OML_App
                     //change the background and finish the current activity (controller)
                     okButton.SetBackgroundResource(Resource.Drawable.okbutton_pressed);
                     Finish();
+                    //Ends the Current Session!
+                    Settings_Singleton.Instance.CloseCurrentSession();
                 };//end delegate
                 cancelButton.Click += delegate
                 {
@@ -159,15 +169,20 @@ namespace OML_App
         /// </summary>
         public void Update()
         {
-            switch (flipper.CurrentView.Id)
+            while (true)
             {
-                case 0:
-                    UpdateOverView();
-                    break;
-                case 1:
-                    UpdateBattery();
-                    break;
-            }//end switch
+                switch (flipper.CurrentView.Id)
+                {
+                    case 1:
+                        UpdateOverView();
+                        break;
+                    case 2:
+                        UpdateBattery();
+                        break;
+                }//end switch
+                Thread.Sleep(Settings_Singleton.Instance.Controller_UpdateRate);
+            }            
+
         }//end method Update
 
         /// <summary>
@@ -189,9 +204,9 @@ namespace OML_App
         /// </summary>
         public void UpdateEngineLF()
         {
-            float _Eng_Curr = 2.30f; //A
-            float _Eng_Volt = 2.3f; //V
-            float _Eng_Temp = 34.4f; //C
+            float _Eng_Curr = Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.M0A].Values[Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.M0A].Values.Length].Value; //A
+            float _Eng_Volt = Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.M0V].Values[Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.M0V].Values.Length].Value; //V
+            float _Eng_Temp = Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.M0T].Values[Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.M0T].Values.Length].Value; //C
 
             TextView Eng_Curr = FindViewById<TextView>(Resource.Id.EngLF1);
             TextView Eng_Volt = FindViewById<TextView>(Resource.Id.EngLF2);
@@ -206,9 +221,9 @@ namespace OML_App
         /// </summary>
         public void UpdateEningeRF()
         {
-            float _Eng_Curr = 2.30f; //A
-            float _Eng_Volt = 2.3f; //V
-            float _Eng_Temp = 34.4f; //C
+            float _Eng_Curr = Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.M1A].Values[Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.M1A].Values.Length].Value; //A
+            float _Eng_Volt = Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.M1V].Values[Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.M1V].Values.Length].Value; //V
+            float _Eng_Temp = Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.M1T].Values[Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.M1T].Values.Length].Value; //C
 
             TextView Eng_Curr = FindViewById<TextView>(Resource.Id.EngRF1);
             TextView Eng_Volt = FindViewById<TextView>(Resource.Id.EngRF2);
@@ -223,9 +238,9 @@ namespace OML_App
         /// </summary>
         public void UpdateEningeLR()
         {
-            float _Eng_Curr = 2.30f; //A
-            float _Eng_Volt = 2.3f; //V
-            float _Eng_Temp = 34.4f; //C
+            float _Eng_Curr = Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.M2A].Values[Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.M2A].Values.Length].Value; //A
+            float _Eng_Volt = Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.M2V].Values[Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.M2V].Values.Length].Value; //V
+            float _Eng_Temp = Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.M2T].Values[Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.M2T].Values.Length].Value; //C
 
             TextView Eng_Curr = FindViewById<TextView>(Resource.Id.EngLR1);
             TextView Eng_Volt = FindViewById<TextView>(Resource.Id.EngLR2);
@@ -240,10 +255,10 @@ namespace OML_App
         /// </summary>
         public void UpdateEningeRR()
         {
-            float _Eng_Curr = 2.30f; //A
-            float _Eng_Volt = 2.3f; //V
-            float _Eng_Temp = 34.4f; //C
-
+            float _Eng_Curr = Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.M0A].Values[Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.M0A].Values.Length].Value; //A
+            float _Eng_Volt = Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.M0V].Values[Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.M0V].Values.Length].Value; //V
+            float _Eng_Temp = Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.M0T].Values[Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.M0T].Values.Length].Value; //C
+            
             TextView Eng_Curr = FindViewById<TextView>(Resource.Id.EngRR1);
             TextView Eng_Volt = FindViewById<TextView>(Resource.Id.EngRR2);
             TextView Eng_Temp = FindViewById<TextView>(Resource.Id.EngRR3);
@@ -257,10 +272,10 @@ namespace OML_App
         /// </summary>
         public void UpdateBattery1()
         {
-            float _Accu_Curr = 2.30f; //A
-            float _Accu_Volt = 2.3f; //V
-            float _Accu_Temp = 34.4f; //C
-
+            float _Accu_Curr = Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.A0A].Values[Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.A0A].Values.Length].Value; //A
+            float _Accu_Volt = Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.A0V].Values[Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.A0V].Values.Length].Value; //A
+            float _Accu_Temp = Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.A0T].Values[Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.A0T].Values.Length].Value; //A
+            
             TextView Accu_Curr = FindViewById<TextView>(Resource.Id.Accu1Curr);
             TextView Accu_Volt = FindViewById<TextView>(Resource.Id.Accu1Voltage);
             TextView Accu_Temp = FindViewById<TextView>(Resource.Id.Accu1Temp);
@@ -274,10 +289,10 @@ namespace OML_App
         /// </summary>
         public void UpdateBattery2()
         {
-            float _Accu_Curr = 2.30f; //A
-            float _Accu_Volt = 2.3f; //V
-            float _Accu_Temp = 34.4f; //C
-
+            float _Accu_Curr = Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.A1A].Values[Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.A1A].Values.Length].Value; //A
+            float _Accu_Volt = Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.A1V].Values[Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.A1V].Values.Length].Value; //A
+            float _Accu_Temp = Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.A1T].Values[Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.A1T].Values.Length].Value; //A
+            
             TextView Accu_Curr = FindViewById<TextView>(Resource.Id.Accu2Curr);
             TextView Accu_Volt = FindViewById<TextView>(Resource.Id.Accu2Voltage);
             TextView Accu_Temp = FindViewById<TextView>(Resource.Id.Accu2Temp);

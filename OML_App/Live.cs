@@ -1,5 +1,5 @@
 using System;
-using System.Collections.Generic;
+using System.Collections.Generc;
 using System.Linq;
 using System.Text;
 
@@ -11,6 +11,7 @@ using Android.Views;
 using Android.Widget;
 using OML_App.Connection;
 using OML_App.Data;
+using OML_App.Setting;
 
 
 namespace OML_App
@@ -40,8 +41,10 @@ namespace OML_App
 
             //Find Text Input
             ipaddress = FindViewById<EditText>(Resource.Id.ipaddress);
+            ipaddress.Text = "192.168.1.101";
 
             port = FindViewById<EditText>(Resource.Id.port);
+            port.Text = "1337";
         }
 
         protected override void OnResume()
@@ -80,10 +83,11 @@ namespace OML_App
         private bool CheckIP()
         {
             string ip = ipaddress.Text;
-            //if (port = null)
-            //{
-            //    int portnr = Convert.ToInt16(port.Text);
-            //}
+            int portnr = 0;
+            if (port != null)
+            {
+                portnr = Convert.ToInt16(port.Text);
+            }
             if (ip == "1234")
                 return true;
             else
@@ -108,12 +112,13 @@ namespace OML_App
                 Send_Singleton.Instance.temperature = 1;
                 Send_Singleton.Instance.throttle = 1;
 
-
-                connect = new TCPClient(ip, 1337);
+                connect = new TCPClient(ip, portnr);
 
                 if (connect.connected)
                 {
-                    return true;
+                    //Set Settings Session Live
+                    Settings_Singleton.Instance.LiveSession = true;
+                    return true;                    
                 }
                 else
                 {

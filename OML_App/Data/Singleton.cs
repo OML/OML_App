@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using OML_App.Setting;
 
 namespace OML_App.Data
 {
@@ -55,9 +56,14 @@ namespace OML_App.Data
             Current_ses.AddSensorToArray(new Sensor("Gyro_x", "G0X", "G", 0, 100));
             Current_ses.AddSensorToArray(new Sensor("Gyro_y", "G0Y", "G", 0, 100));
             Current_ses.AddSensorToArray(new Sensor("Gyro_z", "G0Z", "G", 0, 100));
+        }
 
-            
-            
+        /// <summary>
+        /// End Session and Close Connection!
+        /// </summary>
+        public void EndSession()
+        {            
+            Current_ses.EndTime = DateTime.Now;
         }
 
         public static Receive_Singleton Instance
