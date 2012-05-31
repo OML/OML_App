@@ -60,7 +60,6 @@ namespace OML_App
             camera = FindViewById<Button>(Resource.Id.cameraButton);
             camera.Click += new EventHandler(FlipToCamera);
 
-            
             //Start Update Thread
             updateThread = new Thread(new ThreadStart(Update));
             updateThread.Start();

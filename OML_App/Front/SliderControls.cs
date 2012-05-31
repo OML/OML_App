@@ -12,6 +12,7 @@ using Android.Views;
 using Android.Widget;
 using Android.Graphics;
 using OML_App.Data;
+using OML_App.Setting;
 
 namespace OML_App
 {
@@ -36,6 +37,10 @@ namespace OML_App
         //ints to save our textcolor values
         private int redvalue;
         private int greenvalue;
+
+
+        private DateTime LastUpdate = DateTime.Now;
+        TimeSpan interval = TimeSpan.FromMilliseconds(250);
 
         //textview to show our current power value
         TextView tv;
@@ -139,10 +144,15 @@ namespace OML_App
                 _power = -100;
 
             //set the power value in our singleton class so we can send it to CARMEN
-            if (this.Id == Resource.Id.sliderControls0)
-                Send_Singleton.Instance.left = (int)_power;
-            else if (this.Id == Resource.Id.sliderControls1)
-                Send_Singleton.Instance.right = (int)_power;
+            //Make sure we dont update too often, so we dont lock the thread
+            if (DateTime.Now - LastUpdate > interval)
+            {
+                LastUpdate = DateTime.Now;
+                if (this.Id == Resource.Id.sliderControls0)
+                    Send_Singleton.Instance.left = (int)_power;
+                else if (this.Id == Resource.Id.sliderControls1)
+                    Send_Singleton.Instance.right = (int)_power;
+            }//end if
 	    }//end method Update
 
         /// <summary>

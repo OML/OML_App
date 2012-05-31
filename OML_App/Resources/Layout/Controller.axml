@@ -299,7 +299,8 @@
             android:layout_width="46dp"
             android:layout_height="16dp"
             android:layout_marginTop="103dp"
-            android:layout_marginLeft="41dp"/>
+            android:layout_marginLeft="41dp"
+            android:textColor="#000000"/>
           <Button
             android:id="@+id/ampbutton0"
             android:layout_width="80dp"
@@ -314,7 +315,8 @@
             android:layout_height="16dp"
             android:layout_toRightOf="@id/volttxt0"
             android:layout_marginTop="103dp"
-            android:layout_marginLeft="54dp"/>
+            android:layout_marginLeft="54dp"
+            android:textColor="#000000"/>
           <Button
             android:id="@+id/tempbutton0"
             android:layout_width="80dp"
@@ -329,7 +331,8 @@
             android:layout_height="16dp"
             android:layout_toRightOf="@id/amptxt0"
             android:layout_marginTop="103dp"
-            android:layout_marginLeft="54dp"/>
+            android:layout_marginLeft="54dp"
+            android:textColor="#000000"/>
 
           <Button
             android:id="@+id/voltbutton1"
@@ -345,7 +348,8 @@
             android:layout_height="16dp"
             android:layout_toRightOf="@id/temptxt0"
             android:layout_marginTop="103dp"
-            android:layout_marginLeft="66dp"/>
+            android:layout_marginLeft="66dp"
+            android:textColor="#000000"/>
           <Button
             android:id="@+id/ampbutton1"
             android:layout_width="80dp"
@@ -360,7 +364,8 @@
             android:layout_height="16dp"
             android:layout_toRightOf="@id/volttxt1"
             android:layout_marginTop="103dp"
-            android:layout_marginLeft="54dp"/>
+            android:layout_marginLeft="54dp"
+            android:textColor="#000000"/>
           <Button
             android:id="@+id/tempbutton1"
             android:layout_width="80dp"
@@ -375,7 +380,8 @@
             android:layout_height="16dp"
             android:layout_toRightOf="@id/amptxt1"
             android:layout_marginTop="103dp"
-            android:layout_marginLeft="54dp"/>
+            android:layout_marginLeft="54dp"
+            android:textColor="#000000"/>
         </RelativeLayout>
         <RelativeLayout
           android:id="@+id/graphview"

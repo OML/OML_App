@@ -11,6 +11,10 @@ using Android.Views;
 using Android.Widget;
 using Android.Util;
 using Android.Graphics;
+using OML_App.Data;
+using OML_App.Setting;
+using System.Collections;
+using OML_App.Front;
 
 namespace OML_App
 {
@@ -31,6 +35,16 @@ namespace OML_App
         float amp1;
         float temp0;
         float temp1;
+        TimeSpan time;
+
+        //two-dimensional arraylists to hold our graph values
+        //[value][time]
+        ArrayList voltvalue0 = new ArrayList();
+        ArrayList voltvalue1 = new ArrayList();
+        ArrayList ampvalue0 = new ArrayList();
+        ArrayList ampvalue1 = new ArrayList();
+        ArrayList tempvalue0 = new ArrayList();
+        ArrayList tempvalue1 = new ArrayList();
 
         public GraphControls(Context context, IAttributeSet attrs) :
             base(context, attrs)
@@ -52,13 +66,19 @@ namespace OML_App
         {
             base.OnDraw(canvas);
 
-            //get the updated textview values
-            volt0 = 11.7f;
-            volt1 = 8.3f;
-            amp0 = 8.9f;
-            amp1 = 4.3f;
-            temp0 = 40.1f;
-            temp1 = 42.4f;
+            //set the updated textview values
+            //Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.M0A].Values[Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.M0A].Values.Length].Value;
+            volt0 = Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.A0V].Values[Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.A0V].Values.Length].Value;
+            volt1 = Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.A1V].Values[Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.A1V].Values.Length].Value;
+            amp0 = Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.A0A].Values[Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.A0A].Values.Length].Value;
+            amp1 = Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.A1A].Values[Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.A1A].Values.Length].Value;
+            temp0 = Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.A0T].Values[Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.A0T].Values.Length].Value;
+            temp1 = Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.A1T].Values[Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.A1T].Values.Length].Value;
+
+            //set the time
+            time = DateTime.Now - Receive_Singleton.Instance.Current_ses.StartTime;
+
+            voltvalue0.Add(new GraphValue(volt0, time));
 
             //set the textviews (didnt work in the initialize method...
             v0 = ((RelativeLayout)this.Parent.Parent.Parent.Parent).FindViewById<TextView>(Resource.Id.volttxt0);
@@ -75,6 +95,63 @@ namespace OML_App
             a1.Text = amp1.ToString();
             t0.Text = temp0.ToString();
             t1.Text = temp1.ToString();
+
+            //invalidate to request a redraw
+            Invalidate();
+        }
+
+        /// <summary>
+        /// method to draw the voltage graph for battery 1
+        /// </summary>
+        /// <param name="canvas"></param>
+        private void drawVolt0Graph(Canvas canvas)
+        {
+
+        }
+
+        /// <summary>
+        /// method to draw the voltage graph for battery 2
+        /// </summary>
+        /// <param name="canvas"></param>
+        private void drawVolt1Graph(Canvas canvas)
+        {
+
+        }
+
+        /// <summary>
+        /// method to draw the ampere graph for battery 1
+        /// </summary>
+        /// <param name="canvas"></param>
+        private void drawAmp0Graph(Canvas canvas)
+        {
+
+        }
+
+        /// <summary>
+        /// method to draw the ampere graph for battery 2
+        /// </summary>
+        /// <param name="canvas"></param>
+        private void drawAmp1Graph(Canvas canvas)
+        {
+
+        }
+
+        /// <summary>
+        /// method to draw the temperature graph for battery 1
+        /// </summary>
+        /// <param name="canvas"></param>
+        private void drawTemp0Graph(Canvas canvas)
+        {
+
+        }
+
+        /// <summary>
+        /// method to draw the temperature graph for battery 2
+        /// </summary>
+        /// <param name="canvas"></param>
+        private void drawTemp1Graph(Canvas canvas)
+        {
+
         }
     }
 }
