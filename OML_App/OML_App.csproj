@@ -66,6 +66,7 @@
     <Compile Include="Data\Session.cs" />
     <Compile Include="Data\Singleton.cs" />
     <Compile Include="Data\ValueData.cs" />
+    <Compile Include="Front\GraphControls.cs" />
     <Compile Include="Front\SliderControls.cs" />
     <Compile Include="Live.cs" />
     <Compile Include="Recorded.cs" />
