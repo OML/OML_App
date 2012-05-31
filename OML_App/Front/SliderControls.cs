@@ -152,50 +152,38 @@ namespace OML_App
         protected override void OnDraw(Canvas canvas)
         {
             base.OnDraw(canvas);
-            if (!this.IsInEditMode)
+
+            //draw the y with minus 13 to make it center.
+            canvas.DrawBitmap(BitmapFactory.DecodeResource(Resources, Resource.Drawable.slidersmall), _touchingPoint.X, _touchingPoint.Y - 13, null);
+
+            //determine the textcolor (green -> red) depending on the power value
+            if (Math.Abs(_power) < 50)
             {
-                //draw the y with minus 13 to make it center.
-                canvas.DrawBitmap(BitmapFactory.DecodeResource(Resources, Resource.Drawable.slidersmall), _touchingPoint.X, _touchingPoint.Y - 13, null);
-
-                //determine the textcolor (green -> red) depending on the power value
-                if (Math.Abs(_power) < 50)
-                {
-                    redvalue = (int)(5.1f * Math.Abs(_power));
-                    greenvalue = 255;
-                }//end if
-                else
-                {
-                    redvalue = 255;
-                    greenvalue = 255 - (int)(5.1f * Math.Abs(_power));
-                }//end else
-
-                //create the custom text color
-                Color custom = Color.Argb(255, redvalue, greenvalue, 0);
-
-                //check which slider we are controlling and act accordingly
-                if (this.Id == Resource.Id.sliderControls0)
-                {
-                    tv = ((RelativeLayout)this.Parent.Parent.Parent).FindViewById<TextView>(Resource.Id.powerView0);
-                    tv.Text = _power.ToString();
-                    tv.SetTextColor(custom);
-                }//end if
-                else if (this.Id == Resource.Id.sliderControls1)
-                {
-                    tv = ((RelativeLayout)this.Parent.Parent.Parent).FindViewById<TextView>(Resource.Id.powerView1);
-                    tv.Text = _power.ToString();
-                    tv.SetTextColor(custom);
-                }//end else if
+                redvalue = (int)(5.1f * Math.Abs(_power));
+                greenvalue = 255;
             }//end if
-            //for debugging purposes
             else
             {
-                Paint innerCirclePaint = new Paint();
-                innerCirclePaint.SetARGB(255, 255, 255, 255);
-                innerCirclePaint.AntiAlias = true;
-
-                innerCirclePaint.SetStyle(Paint.Style.Fill);
-                canvas.DrawLine(21, 0, 21, 205, innerCirclePaint);
+                redvalue = 255;
+                greenvalue = 255 - (int)(5.1f * Math.Abs(_power));
             }//end else
+
+            //create the custom text color
+            Color custom = Color.Argb(255, redvalue, greenvalue, 0);
+
+            //check which slider we are controlling and act accordingly
+            if (this.Id == Resource.Id.sliderControls0)
+            {
+                tv = ((RelativeLayout)this.Parent.Parent.Parent).FindViewById<TextView>(Resource.Id.powerView0);
+                tv.Text = _power.ToString();
+                tv.SetTextColor(custom);
+            }//end if
+            else if (this.Id == Resource.Id.sliderControls1)
+            {
+                tv = ((RelativeLayout)this.Parent.Parent.Parent).FindViewById<TextView>(Resource.Id.powerView1);
+                tv.Text = _power.ToString();
+                tv.SetTextColor(custom);
+            }//end else if
         }//end method OnDraw
     }//end Class SliderControls
 }//end namespace OML_App
