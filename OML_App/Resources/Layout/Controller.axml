@@ -384,7 +384,11 @@
           android:layout_below="@id/batterybar"
           android:layout_marginTop="8dp"
           android:background="@drawable/graphview">
-
+          <ViewFlipper
+            android:id="@+id/flipper1"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+          </ViewFlipper>
         </RelativeLayout>
       </RelativeLayout>
     </ViewFlipper>
