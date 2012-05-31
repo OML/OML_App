@@ -233,6 +233,13 @@
     <AndroidResource Include="Resources\Drawable\cancelbutton_pressed.png" />
     <AndroidResource Include="Resources\Drawable\DialogInterface.png" />
     <AndroidResource Include="Resources\Drawable\batterybar.png" />
+    <AndroidResource Include="Resources\Drawable\ampbutton_pressed.png" />
+    <AndroidResource Include="Resources\Drawable\tempbutton.png" />
+    <AndroidResource Include="Resources\Drawable\tempbutton_pressed.png" />
+    <AndroidResource Include="Resources\Drawable\voltbutton.png" />
+    <AndroidResource Include="Resources\Drawable\voltbutton_pressed.png" />
+    <AndroidResource Include="Resources\Drawable\ampbutton.png" />
+    <AndroidResource Include="Resources\Drawable\graphview.png" />
   </ItemGroup>
   <ItemGroup>
     <WebReferences Include="Web References\" />
