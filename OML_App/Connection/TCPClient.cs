@@ -49,7 +49,7 @@ namespace OML_App.Connection
         public TCPClient(string ipadress, int port)
         {
             this.IP_Adress = ipadress;
-            this.Port = 1337;//port;
+            this.Port = port;//port;
             cmdConnect();
             Thread newThread = new Thread(new ThreadStart(Run));
             newThread.Start();
@@ -157,7 +157,7 @@ namespace OML_App.Connection
                         stopwatch.Start(); 
                     }
                     cmdSendData(2);
-                    Thread.Sleep(100);
+                    Thread.Sleep(250);
                     cmdReceiveData();
                     
                 }
