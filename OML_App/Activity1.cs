@@ -29,7 +29,7 @@ namespace OML_App
              * Create start
              */
             live = FindViewById<Button>(Resource.Id.liveButton);
-            live.Click += new EventHandler(LiveClick);
+            live.Click += new EventHandler(LiveClick);            
 
             /**
             * Create info sometimes
