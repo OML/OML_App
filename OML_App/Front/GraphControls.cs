@@ -29,12 +29,12 @@ namespace OML_App
         TextView t1;
 
         //values for our textviews
-        float volt0;
-        float volt1;
-        float amp0;
-        float amp1;
-        float temp0;
-        float temp1;
+        float volt0 = 0;
+        float volt1 = 0;
+        float amp0 = 0;
+        float amp1 = 0;
+        float temp0 = 0;
+        float temp1 = 0;
         TimeSpan time;
 
         //two-dimensional arraylists to hold our graph values
@@ -66,19 +66,46 @@ namespace OML_App
         {
             base.OnDraw(canvas);
 
-            //set the updated textview values
-            //Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.M0A].Values[Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.M0A].Values.Length].Value;
-            volt0 = Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.A0V].Values[Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.A0V].Values.Length].Value;
-            volt1 = Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.A1V].Values[Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.A1V].Values.Length].Value;
-            amp0 = Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.A0A].Values[Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.A0A].Values.Length].Value;
-            amp1 = Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.A1A].Values[Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.A1A].Values.Length].Value;
-            temp0 = Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.A0T].Values[Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.A0T].Values.Length].Value;
-            temp1 = Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.A1T].Values[Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.A1T].Values.Length].Value;
-
             //set the time
             time = DateTime.Now - Receive_Singleton.Instance.Current_ses.StartTime;
 
-            voltvalue0.Add(new GraphValue(volt0, time));
+            //set the updated textview values
+            if (volt0 != Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.A0V].Values[Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.A0V].Values.Length].Value)
+            {
+                volt0 = Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.A0V].Values[Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.A0V].Values.Length].Value;
+                voltvalue0.Add(new GraphValue(volt0, time));
+            }//end if
+
+            if (volt1 != Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.A1V].Values[Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.A1V].Values.Length].Value)
+            {
+                volt1 = Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.A1V].Values[Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.A1V].Values.Length].Value;
+                voltvalue1.Add(new GraphValue(volt1, time));
+            }//end if
+
+            if (amp0 != Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.A0A].Values[Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.A0A].Values.Length].Value)
+            {
+                amp0 = Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.A0A].Values[Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.A0A].Values.Length].Value;
+                ampvalue0.Add(new GraphValue(amp0, time));
+            }//end if
+
+            if (amp1 != Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.A1A].Values[Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.A1A].Values.Length].Value)
+            {
+                amp1 = Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.A1A].Values[Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.A1A].Values.Length].Value;
+                ampvalue1.Add(new GraphValue(amp1, time));
+            }//end if
+
+            if (temp0 != Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.A0T].Values[Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.A0T].Values.Length].Value)
+            {
+                temp0 = Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.A0T].Values[Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.A0T].Values.Length].Value;
+                tempvalue0.Add(new GraphValue(temp0, time));
+            }//end if
+
+            if (temp1 != Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.A1T].Values[Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.A1T].Values.Length].Value)
+            {
+                temp1 = Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.A1T].Values[Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.A1T].Values.Length].Value;
+                tempvalue1.Add(new GraphValue(temp1, time));
+            }//end if
+            
 
             //set the textviews (didnt work in the initialize method...
             v0 = ((RelativeLayout)this.Parent.Parent.Parent.Parent).FindViewById<TextView>(Resource.Id.volttxt0);
