@@ -100,7 +100,7 @@ namespace OML_App.Setting
             //End the Recieve Session
             Receive_Singleton.Instance.EndSession();
             //Log the Recieve Session on the webserver !! Can be Laggy !!
-            SessionToWeb(Receive_Singleton.Instance.Current_ses);
+            //SessionToWeb(Receive_Singleton.Instance.Current_ses);
         }
 
         /// <summary>

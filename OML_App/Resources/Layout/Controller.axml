@@ -398,55 +398,55 @@
               android:id="@+id/voltgraph0"
               android:layout_width="fill_parent"
               android:layout_height="fill_parent">
-              <oml_app.GraphControls
+              <!--<oml_app.GraphControls
                     android:id="@+id/voltgraphControls0"
                     android:layout_width="fill_parent"
-                    android:layout_height="fill_parent"/>
+                    android:layout_height="fill_parent"/>-->
             </RelativeLayout>
             <RelativeLayout
               android:id="@+id/voltgraph1"
               android:layout_width="fill_parent"
               android:layout_height="fill_parent">
-              <oml_app.GraphControls
+              <!--<oml_app.GraphControls
                     android:id="@+id/voltgraphControls1"
                     android:layout_width="fill_parent"
-                    android:layout_height="fill_parent"/>
+                    android:layout_height="fill_parent"/>-->
             </RelativeLayout>
             <RelativeLayout
               android:id="@+id/ampgraph0"
               android:layout_width="fill_parent"
               android:layout_height="fill_parent">
-              <oml_app.GraphControls
+              <!--<oml_app.GraphControls
                     android:id="@+id/ampgraphControls0"
                     android:layout_width="fill_parent"
-                    android:layout_height="fill_parent"/>
+                    android:layout_height="fill_parent"/>-->
             </RelativeLayout>
             <RelativeLayout
               android:id="@+id/ampgraph1"
               android:layout_width="fill_parent"
               android:layout_height="fill_parent">
-              <oml_app.GraphControls
+              <!--<oml_app.GraphControls
                     android:id="@+id/ampgraphControls1"
                     android:layout_width="fill_parent"
-                    android:layout_height="fill_parent"/>
+                    android:layout_height="fill_parent"/>-->
             </RelativeLayout>
             <RelativeLayout
               android:id="@+id/tempgraph0"
               android:layout_width="fill_parent"
               android:layout_height="fill_parent">
-              <oml_app.GraphControls
+              <!--<oml_app.GraphControls
                     android:id="@+id/tempgraphControls0"
                     android:layout_width="fill_parent"
-                    android:layout_height="fill_parent"/>
+                    android:layout_height="fill_parent"/>-->
             </RelativeLayout>
             <RelativeLayout
               android:id="@+id/tempgraph1"
               android:layout_width="fill_parent"
               android:layout_height="fill_parent">
-              <oml_app.GraphControls
+              <!--<oml_app.GraphControls
                     android:id="@+id/tempgraphControls1"
                     android:layout_width="fill_parent"
-                    android:layout_height="fill_parent"/>
+                    android:layout_height="fill_parent"/>-->
             </RelativeLayout>
           </ViewFlipper>
         </RelativeLayout>
