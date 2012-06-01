@@ -390,6 +390,44 @@
           android:layout_below="@id/batterybar"
           android:layout_marginTop="8dp"
           android:background="@drawable/graphview">
+          <TextView
+            android:id="@+id/maxY"
+            android:layout_width="35dp"
+            android:layout_height="15dp"
+            android:text="maxY"
+            android:textColor="#000000"
+            android:textSize="10dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginLeft="10dp"/>
+          <TextView
+            android:id="@+id/minY"
+            android:layout_width="35dp"
+            android:layout_height="15dp"
+            android:text="minY"
+            android:textColor="#000000"
+            android:textSize="10dp"
+            android:layout_below="@id/maxY"
+            android:layout_marginTop="225dp"
+            android:layout_marginLeft="10dp"/>
+          <TextView
+            android:id="@+id/minX"
+            android:layout_width="100dp"
+            android:layout_height="15dp"
+            android:text="minX"
+            android:textColor="#000000"
+            android:textSize="10dp"
+            android:layout_marginTop="305dp"
+            android:layout_marginLeft="35dp"/>
+          <TextView
+            android:id="@+id/maxX"
+            android:layout_width="100dp"
+            android:layout_height="15dp"
+            android:text="maxX"
+            android:textColor="#000000"
+            android:textSize="10dp"
+            android:layout_toRightOf="@id/minX"
+            android:layout_marginTop="305dp"
+            android:layout_marginLeft="365dp"/>
           <oml_app.GraphControls
               android:id="@+id/graphControls"
               android:layout_width="fill_parent"

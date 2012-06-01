@@ -44,6 +44,13 @@ namespace OML_App
         //dialog textview
         TextView dialogTxt;
 
+        //graphview layout
+        RelativeLayout graphview;
+
+        Bundle bundle;
+
+        public static int activeIndex { get; set; }
+
         /// <summary>
         /// Method thats called when the activity is first created
         /// </summary>
@@ -52,11 +59,19 @@ namespace OML_App
         {
             base.OnCreate(bundle);
 
+            this.bundle = bundle;
+
+            //set the activeIndex to 0
+            activeIndex = 0;
+
             // Create your application here
             SetContentView(Resource.Layout.Controller);
 
             //midbox viewflipper
             flipper = FindViewById<ViewFlipper>(Resource.Id.flipper);
+
+            //graphview
+            graphview = FindViewById<RelativeLayout>(Resource.Id.graphview);
 
             //set buttons
             overview = FindViewById<Button>(Resource.Id.overviewButton);
@@ -136,7 +151,7 @@ namespace OML_App
                     //so we can continue with our activity
                     cancelButton.SetBackgroundResource(Resource.Drawable.cancelbutton_pressed);
                     dialog.Cancel();
-                    SetContentView(Resource.Layout.Controller);
+                    this.OnCreate(bundle);
                 };//end delegate
 
                 return true;
@@ -191,6 +206,8 @@ namespace OML_App
 
         public void FlipToVolt0(object sender, EventArgs e)
         {
+            activeIndex = 1;
+
             //change background on click
             volt0.SetBackgroundResource(Resource.Drawable.voltbutton_pressed);
             volt1.SetBackgroundResource(Resource.Drawable.voltbutton);
@@ -198,10 +215,15 @@ namespace OML_App
             amp1.SetBackgroundResource(Resource.Drawable.ampbutton);
             temp0.SetBackgroundResource(Resource.Drawable.tempbutton);
             temp1.SetBackgroundResource(Resource.Drawable.tempbutton);
+
+            //change graphview backgroud
+            graphview.SetBackgroundResource(Resource.Drawable.basegraph);
         }//end method FlipToVolt0
 
         public void FlipToVolt1(object sender, EventArgs e)
         {
+            activeIndex = 2;
+
             //change background on click
             volt1.SetBackgroundResource(Resource.Drawable.voltbutton_pressed);
             volt0.SetBackgroundResource(Resource.Drawable.voltbutton);
@@ -213,6 +235,8 @@ namespace OML_App
 
         public void FlipToAmp0(object sender, EventArgs e)
         {
+            activeIndex = 3;
+
             //change background on click
             amp0.SetBackgroundResource(Resource.Drawable.ampbutton_pressed);
             volt0.SetBackgroundResource(Resource.Drawable.voltbutton);
@@ -224,6 +248,8 @@ namespace OML_App
 
         public void FlipToAmp1(object sender, EventArgs e)
         {
+            activeIndex = 4;
+
             //change background on click
             amp1.SetBackgroundResource(Resource.Drawable.ampbutton_pressed);
             volt0.SetBackgroundResource(Resource.Drawable.voltbutton);
@@ -235,6 +261,8 @@ namespace OML_App
 
         public void FlipToTemp0(object sender, EventArgs e)
         {
+            activeIndex = 5;
+
             //change background on click
             temp0.SetBackgroundResource(Resource.Drawable.tempbutton_pressed);
             volt0.SetBackgroundResource(Resource.Drawable.voltbutton);
@@ -246,6 +274,8 @@ namespace OML_App
 
         public void FlipToTemp1(object sender, EventArgs e)
         {
+            activeIndex = 6;
+
             //change background on click
             temp1.SetBackgroundResource(Resource.Drawable.tempbutton_pressed);
             volt0.SetBackgroundResource(Resource.Drawable.voltbutton);

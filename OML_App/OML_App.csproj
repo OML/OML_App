@@ -242,6 +242,7 @@
     <AndroidResource Include="Resources\Drawable\voltbutton_pressed.png" />
     <AndroidResource Include="Resources\Drawable\ampbutton.png" />
     <AndroidResource Include="Resources\Drawable\graphview.png" />
+    <AndroidResource Include="Resources\Drawable\basegraph.png" />
   </ItemGroup>
   <ItemGroup>
     <WebReferences Include="Web References\" />

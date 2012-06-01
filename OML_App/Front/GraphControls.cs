@@ -29,8 +29,11 @@ namespace OML_App
         TextView t0;
         TextView t1;
 
+        TextView minX;
+        TextView maxX;
+
         //values for our textviews
-        float volt0 = 0;
+        float volt0 = 0.1f;
         float volt1 = 0;
         float amp0 = 0;
         float amp1 = 0;
@@ -38,12 +41,17 @@ namespace OML_App
         float temp1 = 0;
         TimeSpan time;
 
+        DateTime start = DateTime.Now;
+
+        const int originX = 50;
+        const int originY = 290;
+
         //paint to draw with
         Paint paint = new Paint();
 
         //int representing the active graph within the batteryview
         //0 if batteryview is not active, otherwise 1 - 6
-        public int activeIndex { get; set; }
+        //public int activeIndex;
 
         //two-dimensional arraylists to hold our graph values
         //[value][time]
@@ -78,40 +86,28 @@ namespace OML_App
             paint.SetARGB(255,0,0,0);
 
             //set the time
-            time = DateTime.Now - Receive_Singleton.Instance.Current_ses.StartTime;
+            time = DateTime.Now - start;// Receive_Singleton.Instance.Current_ses.StartTime;
 
-            //check which button is pressed to determine our active index, which will determine which graph to draw
-            if (((RelativeLayout)this.Parent.Parent.Parent).FindViewById<Button>(Resource.Id.voltbutton0).Background == (Drawable)Resource.Drawable.voltbutton_pressed)
-                activeIndex = 1;
-            else if (((RelativeLayout)this.Parent.Parent.Parent).FindViewById<Button>(Resource.Id.voltbutton1).Background == (Drawable)Resource.Drawable.voltbutton_pressed)
-                activeIndex = 2;
-            else if (((RelativeLayout)this.Parent.Parent.Parent).FindViewById<Button>(Resource.Id.ampbutton0).Background == (Drawable)Resource.Drawable.ampbutton_pressed)
-                activeIndex = 3;
-            else if (((RelativeLayout)this.Parent.Parent.Parent).FindViewById<Button>(Resource.Id.ampbutton1).Background == (Drawable)Resource.Drawable.ampbutton_pressed)
-                activeIndex = 4;
-            else if (((RelativeLayout)this.Parent.Parent.Parent).FindViewById<Button>(Resource.Id.tempbutton0).Background == (Drawable)Resource.Drawable.tempbutton_pressed)
-                activeIndex = 5;
-            else if (((RelativeLayout)this.Parent.Parent.Parent).FindViewById<Button>(Resource.Id.tempbutton1).Background == (Drawable)Resource.Drawable.tempbutton_pressed)
-                activeIndex = 6;
-            else
-                activeIndex = 0;
+            //set the updated textview values
+            if (volt0 != 0)//Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.A0V].Values[Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.A0V].Values.Length].Value)
+            {
+                volt0 += 0.001f;// Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.A0V].Values[Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.A0V].Values.Length].Value;
+                voltvalue0.Add(new GraphValue(volt0, time));
 
-            ////set the updated textview values
-            //if (volt0 != Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.A0V].Values[Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.A0V].Values.Length].Value)
-            //{
-            //    volt0 = Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.A0V].Values[Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.A0V].Values.Length].Value;
-            //    voltvalue0.Add(new GraphValue(volt0, time));
+                //set the textviews 9didnt work in the initialize method...)
+                v0 = ((RelativeLayout)this.Parent.Parent.Parent.Parent).FindViewById<TextView>(Resource.Id.volttxt0);
 
-            //    //set the textviews 9didnt work in the initialize method...)
-            //    v0 = ((RelativeLayout)this.Parent.Parent.Parent.Parent).FindViewById<TextView>(Resource.Id.volttxt0);
+                //set the values in the textviews, showing them on the screen
+                v0.Text = volt0.ToString();
 
-            //    //set the values in the textviews, showing them on the screen
-            //    v0.Text = volt0.ToString();
+                //get the textviews so we can set the text in the graph draw
+                minX = ((RelativeLayout)this.Parent).FindViewById<TextView>(Resource.Id.minX);
+                maxX = ((RelativeLayout)this.Parent).FindViewById<TextView>(Resource.Id.maxX);
 
-            //    //if we exceed 100 elements remove the first
-            //    if (voltvalue0.Count > 100)
-            //        voltvalue0.RemoveAt(0);
-            //}//end if
+                //if we exceed 100 elements remove the first
+                if (voltvalue0.Count > 100)
+                    voltvalue0.RemoveAt(0);
+            }//end if
 
             //if (volt1 != Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.A1V].Values[Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.A1V].Values.Length].Value)
             //{
@@ -174,7 +170,7 @@ namespace OML_App
             //}//end if
 
             //switch the activeIndex to see which graph to draw
-            switch (activeIndex)
+            switch (Controller.activeIndex)
             {
                 //draw the voltage graph for battery 1
                 case 1:
@@ -202,6 +198,7 @@ namespace OML_App
                     break;
                 //dont do anything
                 default:
+                    ((RelativeLayout)this.Parent).SetBackgroundResource(Resource.Drawable.graphview);
                     break;
             }//end switch
 
@@ -228,7 +225,12 @@ namespace OML_App
                     float yValue1 = value1.value;
 
                     //draw the point on our graph
-                    canvas.DrawLine(i * 5.5f, yValue0, (i + 1) * 5.5f, yValue1, paint);
+                    canvas.DrawLine(originX + (i * 5.5f), originY - (yValue0 * ((float)250/6)), originX + ((i + 1) * 5.5f), originY - (yValue1 * ((float)250/6)), paint);
+
+                    if (i == 0)
+                        minX.Text = value0.time.ToString();
+                    if (i == list.Count - 2)
+                        maxX.Text = value1.time.ToString();
                 }//end for
             }//end if
         }//end method drawVolt0Graph
