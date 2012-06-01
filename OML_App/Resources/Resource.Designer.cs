@@ -316,7 +316,7 @@ namespace OML_App
 			// aapt resource value: 0x7f050038
 			public const int cancelButton = 2131034168;
 			
-			// aapt resource value: 0x7f05003f
+			// aapt resource value: 0x7f050039
 			public const int connectbutton = 2131034175;
 			
 			// aapt resource value: 0x7f050036
@@ -423,13 +423,11 @@ namespace OML_App
 			
 			// aapt resource value: 0x7f05003a
 			public const int textView1 = 2131034170;
-			
 			// aapt resource value: 0x7f05003b
 			public const int textView2 = 2131034171;
 			
 			// aapt resource value: 0x7f05003d
 			public const int textView3 = 2131034173;
-			
 			// aapt resource value: 0x7f05001e
 			public const int voltbutton0 = 2131034142;
 			

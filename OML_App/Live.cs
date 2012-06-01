@@ -89,18 +89,23 @@ namespace OML_App
                 portnr = Convert.ToInt16(port.Text);
             }
             if (ip == "1234")
+            {
+                Receive_Singleton.Instance.init();
+
+                //some hardcoded values
+                Send_Singleton.Instance.sound = 0;                
                 return true;
+            }
             else
             {
                 //Dirty H@ck
                 Receive_Singleton.Instance.init();
 
                 //some hardcoded values
-
                 Send_Singleton.Instance.speed = 1;
                 Send_Singleton.Instance.sound = 0;
-                Send_Singleton.Instance.right = 50;
-                Send_Singleton.Instance.left = 50;
+                Send_Singleton.Instance.right = 0;
+                Send_Singleton.Instance.left = 0;
                 Send_Singleton.Instance.engine0 = 10;
                 Send_Singleton.Instance.engine1 = 10;
                 Send_Singleton.Instance.engine2 = 10;
@@ -118,7 +123,7 @@ namespace OML_App
                 {
                     //Set Settings Session Live
                     Settings_Singleton.Instance.LiveSession = true;
-                    return true;                    
+                    return true;
                 }
                 else
                 {
