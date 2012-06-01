@@ -63,7 +63,7 @@ namespace OML_App.Data
         /// </summary>
         public void EndSession()
         {            
-            //Current_ses.EndTime = DateTime.Now;
+            Current_ses.EndTime = DateTime.Now;
         }
 
         public static Receive_Singleton Instance
