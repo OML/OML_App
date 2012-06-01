@@ -155,7 +155,7 @@ namespace OML_App
         /// <param name="e"></param>
         public void FlipToCamera(object sender, EventArgs e)
         {
-            flipper.DisplayedChild = 2;
+            flipper.DisplayedChild = 3;
 
             //change the backgrounds on click
             battery.SetBackgroundResource(Resource.Drawable.batterybutton);
