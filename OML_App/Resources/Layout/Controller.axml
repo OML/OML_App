@@ -390,12 +390,10 @@
           android:layout_below="@id/batterybar"
           android:layout_marginTop="8dp"
           android:background="@drawable/graphview">
-          <!--
           <oml_app.GraphControls
               android:id="@+id/graphControls"
               android:layout_width="fill_parent"
               android:layout_height="fill_parent"/>
-          -->
         </RelativeLayout>
       </RelativeLayout>
       <RelativeLayout

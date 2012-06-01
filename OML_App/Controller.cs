@@ -22,10 +22,17 @@ namespace OML_App
     {
         private ViewFlipper flipper;
         private Thread updateThread;
+
         //control buttons
         Button overview;
         Button battery;
         Button camera;
+        Button volt0;
+        Button amp0;
+        Button temp0;
+        Button volt1;
+        Button amp1;
+        Button temp1;
 
         //dialog for exit message
         Dialog dialog;
@@ -48,6 +55,7 @@ namespace OML_App
             // Create your application here
             SetContentView(Resource.Layout.Controller);
 
+            //midbox viewflipper
             flipper = FindViewById<ViewFlipper>(Resource.Id.flipper);
 
             //set buttons
@@ -59,6 +67,24 @@ namespace OML_App
 
             camera = FindViewById<Button>(Resource.Id.cameraButton);
             camera.Click += new EventHandler(FlipToCamera);
+
+            volt0 = FindViewById<Button>(Resource.Id.voltbutton0);
+            volt0.Click += new EventHandler(FlipToVolt0);
+
+            volt1 = FindViewById<Button>(Resource.Id.voltbutton1);
+            volt1.Click += new EventHandler(FlipToVolt1);
+
+            amp0 = FindViewById<Button>(Resource.Id.ampbutton0);
+            amp0.Click += new EventHandler(FlipToAmp0);
+
+            amp1 = FindViewById<Button>(Resource.Id.ampbutton1);
+            amp1.Click += new EventHandler(FlipToAmp1);
+
+            temp0 = FindViewById<Button>(Resource.Id.tempbutton0);
+            temp0.Click += new EventHandler(FlipToTemp0);
+
+            temp1 = FindViewById<Button>(Resource.Id.tempbutton1);
+            temp1.Click += new EventHandler(FlipToTemp1);
 
             //Start Update Thread
             updateThread = new Thread(new ThreadStart(Update));
@@ -162,6 +188,72 @@ namespace OML_App
             overview.SetBackgroundResource(Resource.Drawable.overviewbutton);
             camera.SetBackgroundResource(Resource.Drawable.camerabutton_pressed);
         }//end method FlipToCamera
+
+        public void FlipToVolt0(object sender, EventArgs e)
+        {
+            //change background on click
+            volt0.SetBackgroundResource(Resource.Drawable.voltbutton_pressed);
+            volt1.SetBackgroundResource(Resource.Drawable.voltbutton);
+            amp0.SetBackgroundResource(Resource.Drawable.ampbutton);
+            amp1.SetBackgroundResource(Resource.Drawable.ampbutton);
+            temp0.SetBackgroundResource(Resource.Drawable.tempbutton);
+            temp1.SetBackgroundResource(Resource.Drawable.tempbutton);
+        }//end method FlipToVolt0
+
+        public void FlipToVolt1(object sender, EventArgs e)
+        {
+            //change background on click
+            volt1.SetBackgroundResource(Resource.Drawable.voltbutton_pressed);
+            volt0.SetBackgroundResource(Resource.Drawable.voltbutton);
+            amp0.SetBackgroundResource(Resource.Drawable.ampbutton);
+            amp1.SetBackgroundResource(Resource.Drawable.ampbutton);
+            temp0.SetBackgroundResource(Resource.Drawable.tempbutton);
+            temp1.SetBackgroundResource(Resource.Drawable.tempbutton);
+        }//end method
+
+        public void FlipToAmp0(object sender, EventArgs e)
+        {
+            //change background on click
+            amp0.SetBackgroundResource(Resource.Drawable.ampbutton_pressed);
+            volt0.SetBackgroundResource(Resource.Drawable.voltbutton);
+            volt1.SetBackgroundResource(Resource.Drawable.voltbutton);
+            amp1.SetBackgroundResource(Resource.Drawable.ampbutton);
+            temp0.SetBackgroundResource(Resource.Drawable.tempbutton);
+            temp1.SetBackgroundResource(Resource.Drawable.tempbutton);
+        }//end method FlipToAmp0
+
+        public void FlipToAmp1(object sender, EventArgs e)
+        {
+            //change background on click
+            amp1.SetBackgroundResource(Resource.Drawable.ampbutton_pressed);
+            volt0.SetBackgroundResource(Resource.Drawable.voltbutton);
+            volt1.SetBackgroundResource(Resource.Drawable.voltbutton);
+            amp0.SetBackgroundResource(Resource.Drawable.ampbutton);
+            temp0.SetBackgroundResource(Resource.Drawable.tempbutton);
+            temp1.SetBackgroundResource(Resource.Drawable.tempbutton);
+        }//end method FlipToAmp1
+
+        public void FlipToTemp0(object sender, EventArgs e)
+        {
+            //change background on click
+            temp0.SetBackgroundResource(Resource.Drawable.tempbutton_pressed);
+            volt0.SetBackgroundResource(Resource.Drawable.voltbutton);
+            volt1.SetBackgroundResource(Resource.Drawable.voltbutton);
+            amp0.SetBackgroundResource(Resource.Drawable.ampbutton);
+            amp1.SetBackgroundResource(Resource.Drawable.ampbutton);
+            temp1.SetBackgroundResource(Resource.Drawable.tempbutton);
+        }//end method FlipToTemp0
+
+        public void FlipToTemp1(object sender, EventArgs e)
+        {
+            //change background on click
+            temp1.SetBackgroundResource(Resource.Drawable.tempbutton_pressed);
+            volt0.SetBackgroundResource(Resource.Drawable.voltbutton);
+            volt1.SetBackgroundResource(Resource.Drawable.voltbutton);
+            amp0.SetBackgroundResource(Resource.Drawable.ampbutton);
+            amp1.SetBackgroundResource(Resource.Drawable.ampbutton);
+            temp0.SetBackgroundResource(Resource.Drawable.tempbutton);
+        }//end method FlipToTemp1
 
         /// <summary>
         /// Call Update to update The Views
