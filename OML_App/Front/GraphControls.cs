@@ -73,7 +73,8 @@ namespace OML_App
         {
             base.OnDraw(canvas);
 
-            paint.SetARGB(0,0,0,0);
+            //set the paint to black
+            paint.SetARGB(255,0,0,0);
 
             //set the time
             time = DateTime.Now - Receive_Singleton.Instance.Current_ses.StartTime;
@@ -84,13 +85,15 @@ namespace OML_App
                 volt0 = Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.A0V].Values[Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.A0V].Values.Length].Value;
                 voltvalue0.Add(new GraphValue(volt0, time));
 
+                //set the textviews 9didnt work in the initialize method...)
+                v0 = ((RelativeLayout)this.Parent.Parent.Parent.Parent).FindViewById<TextView>(Resource.Id.volttxt0);
+
+                //set the values in the textviews, showing them on the screen
+                v0.Text = volt0.ToString();
+
                 //if we exceed 100 elements remove the first
                 if (voltvalue0.Count > 100)
                     voltvalue0.RemoveAt(0);
-
-                //draw the graph volt0 graph is the currently viewed graph
-                if (activeIndex == 1)
-                    drawGraph(canvas, voltvalue0);
             }//end if
 
             if (volt1 != Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.A1V].Values[Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.A1V].Values.Length].Value)
@@ -98,11 +101,11 @@ namespace OML_App
                 volt1 = Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.A1V].Values[Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.A1V].Values.Length].Value;
                 voltvalue1.Add(new GraphValue(volt1, time));
 
+                v1 = ((RelativeLayout)this.Parent.Parent.Parent.Parent).FindViewById<TextView>(Resource.Id.volttxt1);
+                v1.Text = volt1.ToString();
+
                 if (voltvalue1.Count > 100)
                     voltvalue1.RemoveAt(0);
-
-                if (activeIndex == 2)
-                    drawGraph(canvas, voltvalue1);
             }//end if
 
             if (amp0 != Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.A0A].Values[Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.A0A].Values.Length].Value)
@@ -110,11 +113,11 @@ namespace OML_App
                 amp0 = Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.A0A].Values[Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.A0A].Values.Length].Value;
                 ampvalue0.Add(new GraphValue(amp0, time));
 
+                a0 = ((RelativeLayout)this.Parent.Parent.Parent.Parent).FindViewById<TextView>(Resource.Id.amptxt0);
+                a0.Text = amp0.ToString();
+
                 if (ampvalue0.Count > 100)
                     ampvalue0.RemoveAt(0);
-
-                if (activeIndex == 3)
-                    drawGraph(canvas, ampvalue0);
             }//end if
 
             if (amp1 != Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.A1A].Values[Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.A1A].Values.Length].Value)
@@ -122,11 +125,11 @@ namespace OML_App
                 amp1 = Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.A1A].Values[Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.A1A].Values.Length].Value;
                 ampvalue1.Add(new GraphValue(amp1, time));
 
+                a1 = ((RelativeLayout)this.Parent.Parent.Parent.Parent).FindViewById<TextView>(Resource.Id.amptxt1);
+                a1.Text = amp1.ToString();
+
                 if (ampvalue1.Count > 100)
                     ampvalue1.RemoveAt(0);
-
-                if (activeIndex == 4)
-                    drawGraph(canvas, ampvalue1);
             }//end if
 
             if (temp0 != Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.A0T].Values[Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.A0T].Values.Length].Value)
@@ -134,11 +137,11 @@ namespace OML_App
                 temp0 = Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.A0T].Values[Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.A0T].Values.Length].Value;
                 tempvalue0.Add(new GraphValue(temp0, time));
 
+                t0 = ((RelativeLayout)this.Parent.Parent.Parent.Parent).FindViewById<TextView>(Resource.Id.temptxt0);
+                t0.Text = temp0.ToString();
+
                 if (tempvalue0.Count > 100)
                     tempvalue0.RemoveAt(0);
-
-                if (activeIndex == 5)
-                    drawGraph(canvas, tempvalue0);
             }//end if
 
             if (temp1 != Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.A1T].Values[Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.A1T].Values.Length].Value)
@@ -146,29 +149,41 @@ namespace OML_App
                 temp1 = Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.A1T].Values[Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.A1T].Values.Length].Value;
                 tempvalue1.Add(new GraphValue(temp1, time));
 
+                t1 = ((RelativeLayout)this.Parent.Parent.Parent.Parent).FindViewById<TextView>(Resource.Id.temptxt1);
+                t1.Text = temp1.ToString();
+
                 if (tempvalue1.Count > 100)
                     tempvalue1.RemoveAt(0);
-
-                if (activeIndex == 6)
-                    drawGraph(canvas, tempvalue1);
             }//end if
-            
 
-            //set the textviews (didnt work in the initialize method...
-            v0 = ((RelativeLayout)this.Parent.Parent.Parent.Parent).FindViewById<TextView>(Resource.Id.volttxt0);
-            v1 = ((RelativeLayout)this.Parent.Parent.Parent.Parent).FindViewById<TextView>(Resource.Id.volttxt1);
-            a0 = ((RelativeLayout)this.Parent.Parent.Parent.Parent).FindViewById<TextView>(Resource.Id.amptxt0);
-            a1 = ((RelativeLayout)this.Parent.Parent.Parent.Parent).FindViewById<TextView>(Resource.Id.amptxt1);
-            t0 = ((RelativeLayout)this.Parent.Parent.Parent.Parent).FindViewById<TextView>(Resource.Id.temptxt0);
-            t1 = ((RelativeLayout)this.Parent.Parent.Parent.Parent).FindViewById<TextView>(Resource.Id.temptxt1);
-
-            //set the values in the textviews, showing them on the screen
-            v0.Text = volt0.ToString();
-            v1.Text = volt1.ToString();
-            a0.Text = amp0.ToString();
-            a1.Text = amp1.ToString();
-            t0.Text = temp0.ToString();
-            t1.Text = temp1.ToString();
+            //switch the activeIndex to see which graph to draw
+            switch (activeIndex)
+            {
+                //draw the voltage graph for battery 1
+                case 1:
+                    drawGraph(canvas, voltvalue0);
+                    break;
+                //draw the voltage graph for battery 2
+                case 2:
+                    drawGraph(canvas, voltvalue1);
+                    break;
+                //draw the ampere graph for battery 1
+                case 3:
+                    drawGraph(canvas, ampvalue0);
+                    break;
+                //draw the ampere graph for battery 2
+                case 4:
+                    drawGraph(canvas, ampvalue1);
+                    break;
+                //draw the temperature graph for battery 1
+                case 5:
+                    drawGraph(canvas, tempvalue0);
+                    break;
+                //draw the temperature graph for battery 2
+                case 6:
+                    drawGraph(canvas, tempvalue1);
+                    break;
+            }//end switch
 
             //invalidate to request a redraw
             Invalidate();
@@ -180,18 +195,22 @@ namespace OML_App
         /// <param name="canvas"></param>
         private void drawGraph(Canvas canvas, ArrayList list)
         {
-            //loop through all values in our array
-            for (int i = 0; i < 99; i++)
+            //check if our list isnt empty
+            if (list.Count > 0)
             {
-                //get our y-axis value from the arraylist
-                GraphValue value0 = (GraphValue)list[i];
-                GraphValue value1 = (GraphValue)list[i + 1];
-                float yValue0 = value0.value;
-                float yValue1 = value1.value;
+                //loop through all values in our array
+                for (int i = 0; i < list.Count - 1; i++)
+                {
+                    //get our y-axis value from the arraylist
+                    GraphValue value0 = (GraphValue)list[i];
+                    GraphValue value1 = (GraphValue)list[i + 1];
+                    float yValue0 = value0.value;
+                    float yValue1 = value1.value;
 
-                //draw the point on our graph
-                canvas.DrawLine(i * 5.5f, yValue0, (i + 1) * 5.5f, yValue1, paint);
-            }//end for
+                    //draw the point on our graph
+                    canvas.DrawLine(i * 5.5f, yValue0, (i + 1) * 5.5f, yValue1, paint);
+                }//end for
+            }//end if
         }//end method drawVolt0Graph
     }//end class GraphControls
 }//end namespace OML_App
