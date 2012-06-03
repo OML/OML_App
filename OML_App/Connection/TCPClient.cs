@@ -17,6 +17,7 @@ using System.IO;
 using System.Runtime.InteropServices;
 using OML_App.Data;
 using System.Diagnostics;
+using System.Net.NetworkInformation;
 
 namespace OML_App.Connection
 {
@@ -34,11 +35,16 @@ namespace OML_App.Connection
         int Port;
         public bool connected = false;
         public bool connection_impossible = false;
+        public bool quit = false;
 
         //data buffer
         private byte[] byteData = new byte[1024];
         //temp checking if changed
         byte[] Temp = new byte[1024];
+
+        //Thread for the run loop and one for the connect
+        Thread runThread;
+        Thread connectThread;
         #endregion
 
         /// <summary>
@@ -48,12 +54,12 @@ namespace OML_App.Connection
         /// <param name="port">Port name</param>
         public TCPClient(string ipadress, int port)
         {
-            this.IP_Adress = ipadress;
+            this.IP_Adress = ipadress;//ipadress 'string'
             this.Port = port;//port;
-            cmdConnect();
-            Thread newThread = new Thread(new ThreadStart(Run));
-            newThread.Start();
-        }
+            connectThread = new Thread(new ThreadStart(cmdConnect));
+            connectThread.Start();
+            runThread = new Thread(new ThreadStart(Run)); //Will be started when connected           
+        }        
 
         /// <summary>
         /// Setup an connection
@@ -69,10 +75,13 @@ namespace OML_App.Connection
                 System.Net.IPAddress remoteIPAddress = System.Net.IPAddress.Parse(szIPSelected);
                 System.Net.IPEndPoint remoteEndPoint = new System.Net.IPEndPoint(remoteIPAddress, alPort);
                 m_socClient.Connect(remoteEndPoint);
+                //Create / Send welcome message
                 byteData = Liefdes_brief.SendPackage(4);
                 m_socClient.Send(byteData);
+                //Connection succesfull
                 connected = true;
-
+                //Start the Run Thread / methode
+                runThread.Start();
             }
             catch (SocketException se)
             {
@@ -154,12 +163,12 @@ namespace OML_App.Connection
                         Thread.Sleep(100);
                         cmdReceiveData();
                         stopwatch.Reset();
-                        stopwatch.Start(); 
+                        stopwatch.Start();
+                        counter = 0;
                     }
                     cmdSendData(2);
                     Thread.Sleep(250);
-                    cmdReceiveData();
-                    
+                    cmdReceiveData();                    
                 }
                 else 
                 {
@@ -167,8 +176,7 @@ namespace OML_App.Connection
                     if (counter <= 25)
                     {
                         cmdClose();
-                        Thread.Sleep(250);
-                        //AlertDialog AlertaMensagem = new AlertDialog.Builder(this).SetIcon(Resource.Drawable.Icon).SetTitle("Connextion lost!").SetMessage(IP_Adress);
+                        Thread.Sleep(250);                        
                         cmdConnect();
                     }
                     else

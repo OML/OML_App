@@ -24,8 +24,8 @@ namespace OML_App.Setting
         public int TCP_UpdateRate = 5;//Update Rate TCP
         public int Controller_UpdateRate = 250; //SleepTime Controller
         public bool LiveSession = false;
-        public int IpAdress; //Default Ip , CurrentSession
-        public int Port; //Default port, CurrentSession
+        public string IpAdress = "192.168.1.101"; //Default Ip , CurrentSession
+        public string Port = "1337"; //Default port, CurrentSession
         public bool ControllingCarmen = true; //True if Besturen eigen auto
         public int Camera_Port; //Port from Camera
 
