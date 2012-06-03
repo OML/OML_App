@@ -213,7 +213,7 @@ namespace OML_App
                     }
                     else if (dots == 1)
                     {
-                        RunOnUiThread(() => dialogTxt.Text = "Connection ...");
+                        RunOnUiThread(() => dialogTxt.Text = "Connection ..");
                     }
                     else
                     {
