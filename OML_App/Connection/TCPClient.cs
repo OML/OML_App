@@ -56,10 +56,18 @@ namespace OML_App.Connection
         {
             this.IP_Adress = ipadress;//ipadress 'string'
             this.Port = port;//port;
-            connectThread = new Thread(new ThreadStart(cmdConnect));
+            connectThread = new Thread(new ThreadStart(firstConnect));
             connectThread.Start();
             runThread = new Thread(new ThreadStart(Run)); //Will be started when connected           
-        }        
+        }
+
+        private void firstConnect()
+        {
+            //Start Connection
+            cmdConnect();
+            //Start the Run Thread / methode
+            runThread.Start();
+        }
 
         /// <summary>
         /// Setup an connection
@@ -79,9 +87,7 @@ namespace OML_App.Connection
                 byteData = Liefdes_brief.SendPackage(4);
                 m_socClient.Send(byteData);
                 //Connection succesfull
-                connected = true;
-                //Start the Run Thread / methode
-                runThread.Start();
+                connected = true;               
             }
             catch (SocketException se)
             {
