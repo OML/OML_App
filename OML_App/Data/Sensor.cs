@@ -31,7 +31,10 @@ namespace OML_App.Data
             this.NameShort = nameshort; //Assign short name
             this.Unity = unity; //Set unity
             this.Min = min; //Set min
-            this.Max = max; //Set max            
+            this.Max = max; //Set max
+            //Add first Value
+            Values = new ValueData[1];
+            Values[0] = new ValueData((min+max)/ 2);
         }
 
         public void AddValueDataToArray(ValueData valdata)
