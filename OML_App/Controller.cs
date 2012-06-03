@@ -20,6 +20,8 @@ namespace OML_App
     [Activity(Label = "My Activity", ScreenOrientation = ScreenOrientation.Landscape, Icon = "@drawable/icon")]
     public class Controller : Activity
     {
+
+        #region Variables
         private ViewFlipper flipper;
         private Thread updateThread;
 
@@ -47,10 +49,15 @@ namespace OML_App
         //graphview layout
         RelativeLayout graphview;
 
+        //Bundle to be able to return from Dialog
         Bundle bundle;
 
+        //ActiveIndex for Batteryview
         public static int activeIndex { get; set; }
 
+        #endregion
+
+        #region OnCreate
         /// <summary>
         /// Method thats called when the activity is first created
         /// </summary>
@@ -106,6 +113,9 @@ namespace OML_App
             updateThread.Start();
         }//end overrided method OnCreate
 
+        #endregion
+
+        #region OnKeyDown (Back key)
         /// <summary>
         /// overrided bool to show a dialog window 
         /// when trying to exit the controller
@@ -159,6 +169,9 @@ namespace OML_App
  	        return base.OnKeyDown(keyCode, e);
         }//end overrided method OnKeyDown
 
+        #endregion
+
+        #region Flippers
         /// <summary>
         /// Flips the Current View to First
         /// </summary>
@@ -188,6 +201,8 @@ namespace OML_App
             overview.SetBackgroundResource(Resource.Drawable.overviewbutton);
             camera.SetBackgroundResource(Resource.Drawable.camerabutton);
         }//end method FlipToBattery
+
+        #region Sub-Flips Battery
 
         /// <summary>
         /// Flips the Current View to Third
@@ -285,6 +300,11 @@ namespace OML_App
             temp0.SetBackgroundResource(Resource.Drawable.tempbutton);
         }//end method FlipToTemp1
 
+        #endregion
+
+        #endregion
+
+        #region Update
         /// <summary>
         /// Call Update to update The Views
         /// </summary>
@@ -306,6 +326,7 @@ namespace OML_App
 
         }//end method Update
 
+        #region UpdateOverView
         /// <summary>
         /// Call UpdateOverView to only update the OverView GUI
         /// </summary>
@@ -422,6 +443,9 @@ namespace OML_App
             RunOnUiThread(() => Accu_Temp.Text = _Accu_Temp + "C");
         }//end method UpdateBattery2
 
+        #endregion
+
+        #region UpdateBattery
         /// <summary>
         /// Call to update The Battery GUI
         /// </summary>
@@ -429,5 +453,9 @@ namespace OML_App
         {
 
         }//end method UpdateBattery
+
+        #endregion
+
+        #endregion
     }//end class Controller
 }//end namepsace OML_App
