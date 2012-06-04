@@ -11,6 +11,7 @@ using Android.Views;
 using Android.Widget;
 using OML_App.Data;
 using OML_App.net.ukct.reintjan1;
+using OML_App.Connection;
 
 namespace OML_App.Setting
 {
@@ -22,6 +23,7 @@ namespace OML_App.Setting
         public List<OML_App.Data.Session> _Session = new List<OML_App.Data.Session>();
         public int TCP_Thershold = 2000;//Thershold Rate TCP
         public int TCP_UpdateRate = 5;//Update Rate TCP
+        public TCPClient TCP_Current;
         public int Controller_UpdateRate = 250; //SleepTime Controller
         public bool LiveSession = false;
         public string IpAdress = "192.168.1.101"; //Default Ip , CurrentSession
@@ -99,8 +101,13 @@ namespace OML_App.Setting
             LiveSession = false;
             //End the Recieve Session
             Receive_Singleton.Instance.EndSession();
-            //Log the Recieve Session on the webserver !! Can be Laggy !!
-            //SessionToWeb(Receive_Singleton.Instance.Current_ses);
+            //Close Session
+            if (TCP_Current != null)
+            {
+                TCP_Current.cmdClose();
+                TCP_Current = null;
+            }
+
         }
 
         /// <summary>

@@ -163,6 +163,8 @@ namespace OML_App
 
             //Start connecting
             connect = new TCPClient(ip, portnr);
+            //Set TCP in Settings_Singleton
+            Settings_Singleton.Instance.TCP_Current = connect;
             updateDialog.Start();
         }
 
