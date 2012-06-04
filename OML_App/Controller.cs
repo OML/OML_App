@@ -128,6 +128,7 @@ namespace OML_App
             //if the back key is pressed
             if (keyCode == Keycode.Back)
             {
+                updateThread.Abort();
                 //set the content view to the dialogwindow content
                 //outside this contentview we are unable to find our resources
                 SetContentView(Resource.Layout.DialogWindow);
@@ -150,7 +151,8 @@ namespace OML_App
                 okButton.Click += delegate
                 {
                     //change the background and finish the current activity (controller)
-                    okButton.SetBackgroundResource(Resource.Drawable.okbutton_pressed);
+                    okButton.SetBackgroundResource(Resource.Drawable.okbutton_pressed);                    
+                    //Close the Activity
                     Finish();
                     //Ends the Current Session!
                     Settings_Singleton.Instance.CloseCurrentSession();
@@ -161,7 +163,7 @@ namespace OML_App
                     //so we can continue with our activity
                     cancelButton.SetBackgroundResource(Resource.Drawable.cancelbutton_pressed);
                     dialog.Cancel();
-                    this.OnCreate(bundle);
+                    this.OnCreate(bundle);                    
                 };//end delegate
 
                 return true;

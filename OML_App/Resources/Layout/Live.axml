@@ -35,6 +35,8 @@
             android:id="@+id/ipaddress"
             android:layout_marginTop="72.0dp"
             android:layout_marginLeft="10.0dp"
+            android:singleLine="true"
+            android:imeOptions="actionNext"
             android:enabled="true"
             android:visibility="visible" />
         <TextView
@@ -56,6 +58,8 @@
             android:id="@+id/port"
             android:layout_below="@id/ipaddress"
             android:layout_marginLeft="68.0dp"
+            android:singleLine="true"
+            android:imeOptions="actionNext"
             android:enabled="true"
             android:visibility="visible"
             android:layout_marginTop="16.0dp" />
