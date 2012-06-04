@@ -194,7 +194,7 @@ namespace OML_App
 
 
                     //Display an Error message!
-                    RunOnUiThread(() => dialogTxt.Text = "Not able to Connect!, Ip / Port not reachable");
+                    RunOnUiThread(() => dialogTxt.Text = "Unable to Connect: IP / Port not reachable");
 
                     //Stop the loop, Connection not possible
                     tryConnect = false;
