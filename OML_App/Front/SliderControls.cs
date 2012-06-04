@@ -110,6 +110,7 @@ namespace OML_App
                     //reset our touching point on release
                     _touchingPoint = new PointF(INIT_X, INIT_Y);
                     mLastTouchY = 0;
+                    _power = 0;
                     break;
             }//end switch
 
