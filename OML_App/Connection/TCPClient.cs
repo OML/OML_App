@@ -166,6 +166,7 @@ namespace OML_App.Connection
             while (true)
             {
 
+
                 if (connected)
                 {
                     if (stopwatch.ElapsedMilliseconds > 1000)

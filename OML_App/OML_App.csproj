@@ -60,6 +60,8 @@
     <Compile Include="Analyse.cs" />
     <Compile Include="Connection\Data.cs" />
     <Compile Include="Connection\TCPClient.cs" />
+    <Compile Include="Connection\Viewer\TCPViewer.cs" />
+    <Compile Include="Connection\Viewer\ViewerData.cs" />
     <Compile Include="Data\Carmen.cs" />
     <Compile Include="Data\Send_Singleton.cs" />
     <Compile Include="Data\Sensor.cs" />
