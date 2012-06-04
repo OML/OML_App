@@ -56,10 +56,6 @@ namespace OML_App
         //paint to draw with
         Paint paint = new Paint();
 
-        //int representing the active graph within the batteryview
-        //0 if batteryview is not active, otherwise 1 - 6
-        //public int activeIndex;
-
         //two-dimensional arraylists to hold our graph values
         //[value][time]
         ArrayList voltvalue0 = new ArrayList();
