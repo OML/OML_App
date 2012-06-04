@@ -248,6 +248,9 @@ namespace OML_App
             amp1.SetBackgroundResource(Resource.Drawable.ampbutton);
             temp0.SetBackgroundResource(Resource.Drawable.tempbutton);
             temp1.SetBackgroundResource(Resource.Drawable.tempbutton);
+
+            //change graphview backgroud
+            graphview.SetBackgroundResource(Resource.Drawable.basegraph);
         }//end method
 
         public void FlipToAmp0(object sender, EventArgs e)
@@ -261,6 +264,9 @@ namespace OML_App
             amp1.SetBackgroundResource(Resource.Drawable.ampbutton);
             temp0.SetBackgroundResource(Resource.Drawable.tempbutton);
             temp1.SetBackgroundResource(Resource.Drawable.tempbutton);
+
+            //change graphview backgroud
+            graphview.SetBackgroundResource(Resource.Drawable.basegraph);
         }//end method FlipToAmp0
 
         public void FlipToAmp1(object sender, EventArgs e)
@@ -274,6 +280,9 @@ namespace OML_App
             amp0.SetBackgroundResource(Resource.Drawable.ampbutton);
             temp0.SetBackgroundResource(Resource.Drawable.tempbutton);
             temp1.SetBackgroundResource(Resource.Drawable.tempbutton);
+
+            //change graphview backgroud
+            graphview.SetBackgroundResource(Resource.Drawable.basegraph);
         }//end method FlipToAmp1
 
         public void FlipToTemp0(object sender, EventArgs e)
@@ -287,6 +296,9 @@ namespace OML_App
             amp0.SetBackgroundResource(Resource.Drawable.ampbutton);
             amp1.SetBackgroundResource(Resource.Drawable.ampbutton);
             temp1.SetBackgroundResource(Resource.Drawable.tempbutton);
+
+            //change graphview backgroud
+            graphview.SetBackgroundResource(Resource.Drawable.basegraph);
         }//end method FlipToTemp0
 
         public void FlipToTemp1(object sender, EventArgs e)
@@ -300,6 +312,9 @@ namespace OML_App
             amp0.SetBackgroundResource(Resource.Drawable.ampbutton);
             amp1.SetBackgroundResource(Resource.Drawable.ampbutton);
             temp0.SetBackgroundResource(Resource.Drawable.tempbutton);
+
+            //change graphview backgroud
+            graphview.SetBackgroundResource(Resource.Drawable.basegraph);
         }//end method FlipToTemp1
 
         #endregion

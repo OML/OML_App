@@ -316,6 +316,5 @@ namespace OML_App
             i.AddFlags(ActivityFlags.NewTask);
             StartActivity(i);
         }
-
     }
 }

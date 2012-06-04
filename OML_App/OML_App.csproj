@@ -76,6 +76,7 @@
     <Compile Include="Settings.cs" />
     <Compile Include="Controller.cs" />
     <Compile Include="Setting\Settings_Singleton.cs" />
+    <Compile Include="Spectate.cs" />
     <Compile Include="Viewer.cs" />
     <Compile Include="Web References\net.ukct.reintjan1\Reference.cs">
       <AutoGen>True</AutoGen>
@@ -108,6 +109,9 @@
       <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\Layout\Viewer.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\Layout\Spectate.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
     <None Include="Web References\net.ukct.reintjan1\Reference.map">
@@ -247,6 +251,13 @@
     <AndroidResource Include="Resources\Drawable\ampbutton.png" />
     <AndroidResource Include="Resources\Drawable\graphview.png" />
     <AndroidResource Include="Resources\Drawable\basegraph.png" />
+    <AndroidResource Include="Resources\Drawable\spectatebutton_pressed.png" />
+    <AndroidResource Include="Resources\Drawable\controlbutton.png" />
+    <AndroidResource Include="Resources\Drawable\controlbutton_pressed.png" />
+    <AndroidResource Include="Resources\Drawable\spectatebutton.png" />
+    <AndroidResource Include="Resources\Drawable\viewbutton.png" />
+    <AndroidResource Include="Resources\Drawable\viewbutton_pressed.png" />
+    <AndroidResource Include="Resources\Drawable\spectatebg.png" />
   </ItemGroup>
   <ItemGroup>
     <WebReferences Include="Web References\" />

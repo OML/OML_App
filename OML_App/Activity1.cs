@@ -15,8 +15,10 @@ namespace OML_App
     {
         //buttons
         Button live;
-        Button recorded;
-        Button settings;
+        Button viewer;
+
+        //bool to check wether were viewing or controlling
+        public static bool controller;
 
         protected override void OnCreate(Bundle bundle)
         {
@@ -34,14 +36,8 @@ namespace OML_App
             /**
             * Create info sometimes
             */
-            recorded = FindViewById<Button>(Resource.Id.recordedButton);
-            recorded.Click += new EventHandler(RecordedClick);
-
-            /**
-             * Create settings
-             */
-            settings = FindViewById<Button>(Resource.Id.settingsButton);
-            settings.Click += new EventHandler(SettingsClick);
+            viewer = FindViewById<Button>(Resource.Id.viewerButton);
+            viewer.Click += new EventHandler(ViewClick);
         }
 
         protected override void OnResume()
@@ -50,36 +46,27 @@ namespace OML_App
 
             //reset backgrounds on resume
             live.SetBackgroundResource(Resource.Drawable.livebutton);
-            recorded.SetBackgroundResource(Resource.Drawable.recordedbutton);
-            settings.SetBackgroundResource(Resource.Drawable.settingsbutton);
+            viewer.SetBackgroundResource(Resource.Drawable.viewbutton);
         }
 
         void LiveClick(object sender, EventArgs e)
         {
             //set background to pressed
             live.SetBackgroundResource(Resource.Drawable.livebutton_pressed);
+            controller = true;
             Intent i = new Intent();
             i.SetClass(this, typeof(Live));
             i.AddFlags(ActivityFlags.NewTask);
             StartActivity(i);
         }
 
-        void RecordedClick(object sender, EventArgs e)
+        void ViewClick(object sender, EventArgs e)
         {
             //set background to pressed
-            recorded.SetBackgroundResource(Resource.Drawable.recordedbutton_pressed);
+            viewer.SetBackgroundResource(Resource.Drawable.viewbutton_pressed);
+            controller = false;
             Intent i = new Intent();
-            i.SetClass(this, typeof(Recorded));
-            i.AddFlags(ActivityFlags.NewTask);
-            StartActivity(i);
-        }
-
-        void SettingsClick(object sender, EventArgs e)
-        {
-            //set background to pressed
-            settings.SetBackgroundResource(Resource.Drawable.settingsbutton_pressed);
-            Intent i = new Intent();
-            i.SetClass(this, typeof(Settings));
+            i.SetClass(this, typeof(Viewer));
             i.AddFlags(ActivityFlags.NewTask);
             StartActivity(i);
         }

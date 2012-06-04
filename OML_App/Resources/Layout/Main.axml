@@ -19,18 +19,18 @@
             android:layout_height="55dp"
             android:background="@drawable/livebutton" />
         <Button
-            android:id="@+id/recordedButton"
+            android:id="@+id/viewerButton"
             android:layout_width="142dp"
             android:layout_height="55dp"
             android:layout_below="@id/liveButton"
             android:layout_marginTop="10dp"
-            android:background="@drawable/recordedbutton" />
-        <Button
+            android:background="@drawable/viewbutton" />
+    <!--<Button
             android:id="@+id/settingsButton"
             android:layout_width="142dp"
             android:layout_height="55dp"
             android:layout_below="@id/recordedButton"
             android:layout_marginTop="10dp"
-            android:background="@drawable/settingsbutton" />
+            android:background="@drawable/settingsbutton" />-->
     </RelativeLayout>
 </RelativeLayout>
