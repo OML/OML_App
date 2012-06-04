@@ -29,8 +29,15 @@ namespace OML_App
         TextView t0;
         TextView t1;
 
+        //textviews representing our x and y values on the axis
         TextView minX;
         TextView maxX;
+        TextView minY;
+        TextView maxY;
+
+        //integers to hold our max and min Y-axis values
+        float minimumY;
+        float maximumY;
 
         //values for our textviews
         float volt0 = 0.1f;
@@ -48,10 +55,6 @@ namespace OML_App
 
         //paint to draw with
         Paint paint = new Paint();
-
-        //int representing the active graph within the batteryview
-        //0 if batteryview is not active, otherwise 1 - 6
-        //public int activeIndex;
 
         //two-dimensional arraylists to hold our graph values
         //[value][time]
@@ -85,13 +88,19 @@ namespace OML_App
             //set the paint to black
             paint.SetARGB(255,0,0,0);
 
+            //get the textviews so we can set the text in the graph draw
+            minX = ((RelativeLayout)this.Parent).FindViewById<TextView>(Resource.Id.minX);
+            maxX = ((RelativeLayout)this.Parent).FindViewById<TextView>(Resource.Id.maxX);
+            minY = ((RelativeLayout)this.Parent).FindViewById<TextView>(Resource.Id.minY);
+            maxY = ((RelativeLayout)this.Parent).FindViewById<TextView>(Resource.Id.maxY);
+
             //set the time
             time = DateTime.Now - start;// Receive_Singleton.Instance.Current_ses.StartTime;
 
             //set the updated textview values
-            if (volt0 != 0)//Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.A0V].Values[Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.A0V].Values.Length].Value)
+            if (volt0 != Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.A0V].Values[Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.A0V].Values.Length].Value)
             {
-                volt0 += 0.001f;// Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.A0V].Values[Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.A0V].Values.Length].Value;
+                volt0 = Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.A0V].Values[Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.A0V].Values.Length].Value;
                 voltvalue0.Add(new GraphValue(volt0, time));
 
                 //set the textviews 9didnt work in the initialize method...)
@@ -100,105 +109,143 @@ namespace OML_App
                 //set the values in the textviews, showing them on the screen
                 v0.Text = volt0.ToString();
 
-                //get the textviews so we can set the text in the graph draw
-                minX = ((RelativeLayout)this.Parent).FindViewById<TextView>(Resource.Id.minX);
-                maxX = ((RelativeLayout)this.Parent).FindViewById<TextView>(Resource.Id.maxX);
+                //get the min and max Y
+                minimumY = Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.A0V].Min;
+                maximumY = Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.A0V].Max;
+
+                //show the min and max Y on the graph
+                minY.Text = minimumY.ToString();
+                maxY.Text = maximumY.ToString();
 
                 //if we exceed 100 elements remove the first
                 if (voltvalue0.Count > 100)
                     voltvalue0.RemoveAt(0);
             }//end if
 
-            //if (volt1 != Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.A1V].Values[Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.A1V].Values.Length].Value)
-            //{
-            //    volt1 = Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.A1V].Values[Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.A1V].Values.Length].Value;
-            //    voltvalue1.Add(new GraphValue(volt1, time));
+            if (volt1 != Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.A1V].Values[Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.A1V].Values.Length].Value)
+            {
+                volt1 = Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.A1V].Values[Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.A1V].Values.Length].Value;
+                voltvalue1.Add(new GraphValue(volt1, time));
 
-            //    v1 = ((RelativeLayout)this.Parent.Parent.Parent.Parent).FindViewById<TextView>(Resource.Id.volttxt1);
-            //    v1.Text = volt1.ToString();
+                v1 = ((RelativeLayout)this.Parent.Parent.Parent.Parent).FindViewById<TextView>(Resource.Id.volttxt1);
+                v1.Text = volt1.ToString();
 
-            //    if (voltvalue1.Count > 100)
-            //        voltvalue1.RemoveAt(0);
-            //}//end if
+                minimumY = Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.A1V].Min;
+                maximumY = Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.A1V].Max;
 
-            //if (amp0 != Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.A0A].Values[Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.A0A].Values.Length].Value)
-            //{
-            //    amp0 = Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.A0A].Values[Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.A0A].Values.Length].Value;
-            //    ampvalue0.Add(new GraphValue(amp0, time));
+                minY.Text = minimumY.ToString();
+                maxY.Text = maximumY.ToString();
 
-            //    a0 = ((RelativeLayout)this.Parent.Parent.Parent.Parent).FindViewById<TextView>(Resource.Id.amptxt0);
-            //    a0.Text = amp0.ToString();
+                if (voltvalue1.Count > 100)
+                    voltvalue1.RemoveAt(0);
+            }//end if
 
-            //    if (ampvalue0.Count > 100)
-            //        ampvalue0.RemoveAt(0);
-            //}//end if
+            if (amp0 != Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.A0A].Values[Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.A0A].Values.Length].Value)
+            {
+                amp0 = Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.A0A].Values[Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.A0A].Values.Length].Value;
+                ampvalue0.Add(new GraphValue(amp0, time));
 
-            //if (amp1 != Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.A1A].Values[Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.A1A].Values.Length].Value)
-            //{
-            //    amp1 = Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.A1A].Values[Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.A1A].Values.Length].Value;
-            //    ampvalue1.Add(new GraphValue(amp1, time));
+                a0 = ((RelativeLayout)this.Parent.Parent.Parent.Parent).FindViewById<TextView>(Resource.Id.amptxt0);
+                a0.Text = amp0.ToString();
 
-            //    a1 = ((RelativeLayout)this.Parent.Parent.Parent.Parent).FindViewById<TextView>(Resource.Id.amptxt1);
-            //    a1.Text = amp1.ToString();
+                minimumY = Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.A0A].Min;
+                maximumY = Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.A0A].Max;
 
-            //    if (ampvalue1.Count > 100)
-            //        ampvalue1.RemoveAt(0);
-            //}//end if
+                minY.Text = minimumY.ToString();
+                maxY.Text = maximumY.ToString();
 
-            //if (temp0 != Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.A0T].Values[Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.A0T].Values.Length].Value)
-            //{
-            //    temp0 = Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.A0T].Values[Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.A0T].Values.Length].Value;
-            //    tempvalue0.Add(new GraphValue(temp0, time));
+                if (ampvalue0.Count > 100)
+                    ampvalue0.RemoveAt(0);
+            }//end if
 
-            //    t0 = ((RelativeLayout)this.Parent.Parent.Parent.Parent).FindViewById<TextView>(Resource.Id.temptxt0);
-            //    t0.Text = temp0.ToString();
+            if (amp1 != Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.A1A].Values[Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.A1A].Values.Length].Value)
+            {
+                amp1 = Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.A1A].Values[Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.A1A].Values.Length].Value;
+                ampvalue1.Add(new GraphValue(amp1, time));
 
-            //    if (tempvalue0.Count > 100)
-            //        tempvalue0.RemoveAt(0);
-            //}//end if
+                a1 = ((RelativeLayout)this.Parent.Parent.Parent.Parent).FindViewById<TextView>(Resource.Id.amptxt1);
+                a1.Text = amp1.ToString();
 
-            //if (temp1 != Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.A1T].Values[Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.A1T].Values.Length].Value)
-            //{
-            //    temp1 = Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.A1T].Values[Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.A1T].Values.Length].Value;
-            //    tempvalue1.Add(new GraphValue(temp1, time));
+                minimumY = Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.A1A].Min;
+                maximumY = Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.A1A].Max;
 
-            //    t1 = ((RelativeLayout)this.Parent.Parent.Parent.Parent).FindViewById<TextView>(Resource.Id.temptxt1);
-            //    t1.Text = temp1.ToString();
+                minY.Text = minimumY.ToString();
+                maxY.Text = maximumY.ToString();
 
-            //    if (tempvalue1.Count > 100)
-            //        tempvalue1.RemoveAt(0);
-            //}//end if
+                if (ampvalue1.Count > 100)
+                    ampvalue1.RemoveAt(0);
+            }//end if
+
+            if (temp0 != Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.A0T].Values[Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.A0T].Values.Length].Value)
+            {
+                temp0 = Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.A0T].Values[Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.A0T].Values.Length].Value;
+                tempvalue0.Add(new GraphValue(temp0, time));
+
+                t0 = ((RelativeLayout)this.Parent.Parent.Parent.Parent).FindViewById<TextView>(Resource.Id.temptxt0);
+                t0.Text = temp0.ToString();
+
+                minimumY = Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.A0T].Min;
+                maximumY = Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.A0T].Max;
+
+                minY.Text = minimumY.ToString();
+                maxY.Text = maximumY.ToString();
+
+                if (tempvalue0.Count > 100)
+                    tempvalue0.RemoveAt(0);
+            }//end if
+
+            if (temp1 != Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.A1T].Values[Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.A1T].Values.Length].Value)
+            {
+                temp1 = Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.A1T].Values[Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.A1T].Values.Length].Value;
+                tempvalue1.Add(new GraphValue(temp1, time));
+
+                t1 = ((RelativeLayout)this.Parent.Parent.Parent.Parent).FindViewById<TextView>(Resource.Id.temptxt1);
+                t1.Text = temp1.ToString();
+
+                minimumY = Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.A1T].Min;
+                maximumY = Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.A1T].Max;
+
+                minY.Text = minimumY.ToString();
+                maxY.Text = maximumY.ToString();
+
+                if (tempvalue1.Count > 100)
+                    tempvalue1.RemoveAt(0);
+            }//end if
 
             //switch the activeIndex to see which graph to draw
             switch (Controller.activeIndex)
             {
                 //draw the voltage graph for battery 1
                 case 1:
-                    drawGraph(canvas, voltvalue0);
+                    drawGraph(canvas, voltvalue0, minimumY, maximumY);
                     break;
                 //draw the voltage graph for battery 2
                 case 2:
-                    drawGraph(canvas, voltvalue1);
+                    drawGraph(canvas, voltvalue1, minimumY, maximumY);
                     break;
                 //draw the ampere graph for battery 1
                 case 3:
-                    drawGraph(canvas, ampvalue0);
+                    drawGraph(canvas, ampvalue0, minimumY, maximumY);
                     break;
                 //draw the ampere graph for battery 2
                 case 4:
-                    drawGraph(canvas, ampvalue1);
+                    drawGraph(canvas, ampvalue1, minimumY, maximumY);
                     break;
                 //draw the temperature graph for battery 1
                 case 5:
-                    drawGraph(canvas, tempvalue0);
+                    drawGraph(canvas, tempvalue0, minimumY, maximumY);
                     break;
                 //draw the temperature graph for battery 2
                 case 6:
-                    drawGraph(canvas, tempvalue1);
+                    drawGraph(canvas, tempvalue1, minimumY, maximumY);
                     break;
-                //dont do anything
+                //if were not drawing anything, "clear" the screen
                 default:
                     ((RelativeLayout)this.Parent).SetBackgroundResource(Resource.Drawable.graphview);
+                    minX.Text = "";
+                    maxX.Text = "";
+                    minY.Text = "";
+                    maxY.Text = "";
                     break;
             }//end switch
 
@@ -210,8 +257,11 @@ namespace OML_App
         /// method to draw the voltage graph for battery 1
         /// </summary>
         /// <param name="canvas"></param>
-        private void drawGraph(Canvas canvas, ArrayList list)
+        private void drawGraph(Canvas canvas, ArrayList list, float minimumY, float maximumY)
         {
+            //delta-y
+            float dY = maximumY - minimumY;
+
             //check if our list isnt empty
             if (list.Count > 0)
             {
@@ -225,8 +275,13 @@ namespace OML_App
                     float yValue1 = value1.value;
 
                     //draw the point on our graph
-                    canvas.DrawLine(originX + (i * 5.5f), originY - (yValue0 * ((float)250/6)), originX + ((i + 1) * 5.5f), originY - (yValue1 * ((float)250/6)), paint);
+                    canvas.DrawLine(originX + (i * 5.5f), 
+                        originY - (yValue0 * ((float)250/dY)), 
+                        originX + ((i + 1) * 5.5f), 
+                        originY - (yValue1 * ((float)250/dY)), 
+                        paint);
 
+                    //show the min and max x-axis value's
                     if (i == 0)
                         minX.Text = value0.time.ToString();
                     if (i == list.Count - 2)
