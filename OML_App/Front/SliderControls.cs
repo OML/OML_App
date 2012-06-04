@@ -109,6 +109,7 @@ namespace OML_App
                 case MotionEventActions.Up:
                     //reset our touching point on release
                     _touchingPoint = new PointF(INIT_X, INIT_Y);
+                    mLastTouchY = 0;
                     break;
             }//end switch
 
