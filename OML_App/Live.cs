@@ -15,11 +15,12 @@ using OML_App.Setting;
 using System.Threading;
 using System.Diagnostics;
 using Android.Views.InputMethods;
+using Android.Content.PM;
 
 
 namespace OML_App
 {
-    [Activity(Label = "My Activity")]
+    [Activity(Label = "My Activity", ScreenOrientation = ScreenOrientation.Landscape, Icon = "@drawable/icon")]
     public class Live : Activity
     {
         //TextBox to input ipaddress / port

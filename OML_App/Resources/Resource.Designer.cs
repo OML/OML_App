@@ -489,6 +489,9 @@ namespace OML_App
 			// aapt resource value: 0x7f030007
 			public const int Setting = 2130903047;
 			
+			// aapt resource value: 0x7f030008
+			public const int Viewer = 2130903048;
+			
 			private Layout()
 			{
 			}

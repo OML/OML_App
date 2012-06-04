@@ -76,6 +76,7 @@
     <Compile Include="Settings.cs" />
     <Compile Include="Controller.cs" />
     <Compile Include="Setting\Settings_Singleton.cs" />
+    <Compile Include="Viewer.cs" />
     <Compile Include="Web References\net.ukct.reintjan1\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -104,6 +105,9 @@
       <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\Layout\DialogWindow.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\Layout\Viewer.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
     <None Include="Web References\net.ukct.reintjan1\Reference.map">
