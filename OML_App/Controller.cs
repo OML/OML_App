@@ -151,6 +151,9 @@ namespace OML_App
                 {
                     //change the background and finish the current activity (controller)
                     okButton.SetBackgroundResource(Resource.Drawable.okbutton_pressed);
+                    //Close UpdateThread!
+                    updateThread.Abort();
+                    //Close the Activity
                     Finish();
                     //Ends the Current Session!
                     Settings_Singleton.Instance.CloseCurrentSession();

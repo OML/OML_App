@@ -14,6 +14,7 @@ using OML_App.Data;
 using OML_App.Setting;
 using System.Threading;
 using System.Diagnostics;
+using Android.Views.InputMethods;
 
 
 namespace OML_App
@@ -225,6 +226,11 @@ namespace OML_App
 
         private void DisplayDialogOkey()
         {
+            //Close Keyboard
+            InputMethodManager inputMgr = GetSystemService(InputMethodService) as InputMethodManager;
+            if (CurrentFocus != null)
+                inputMgr.HideSoftInputFromWindow(CurrentFocus.WindowToken, 0);
+            
             //Open Connect Dialog!
             //set the content view to the dialogwindow content
             //outside this contentview we are unable to find our resources
@@ -261,6 +267,11 @@ namespace OML_App
 
         private void DisplayDialogCancel()
         {
+            //Close Keyboard
+            InputMethodManager inputMgr = GetSystemService(InputMethodService) as InputMethodManager;
+            if(CurrentFocus != null)
+                inputMgr.HideSoftInputFromWindow(CurrentFocus.WindowToken, 0);
+
             //Open Connect Dialog!
             //set the content view to the dialogwindow content
             //outside this contentview we are unable to find our resources
