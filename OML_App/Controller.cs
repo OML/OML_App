@@ -156,6 +156,7 @@ namespace OML_App
                     Finish();
                     //Ends the Current Session!
                     Settings_Singleton.Instance.CloseCurrentSession();
+                    
                 };//end delegate
                 cancelButton.Click += delegate
                 {

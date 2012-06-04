@@ -83,6 +83,9 @@ namespace OML_App.Connection
                 System.Net.IPAddress remoteIPAddress = System.Net.IPAddress.Parse(szIPSelected);
                 System.Net.IPEndPoint remoteEndPoint = new System.Net.IPEndPoint(remoteIPAddress, alPort);
                 m_socClient.Connect(remoteEndPoint);
+                //Setup Recieve TimeOut               
+                m_socClient.ReceiveTimeout = 100;
+
                 //Create / Send welcome message
                 byteData = Liefdes_brief.SendPackage(4);
                 m_socClient.Send(byteData);
@@ -144,8 +147,10 @@ namespace OML_App.Connection
         /// <summary>
         /// Close data connection
         /// </summary>
-        private void cmdClose()
+        public void cmdClose()
         {
+            connected = false;
+            runThread.Abort();
             m_socClient.Close();
         }
 
@@ -163,17 +168,17 @@ namespace OML_App.Connection
 
                 if (connected)
                 {
-                    if (stopwatch.ElapsedMilliseconds > 1000) 
-                    { 
+                    if (stopwatch.ElapsedMilliseconds > 1000)
+                    {
                         cmdSendData(4);
                         Thread.Sleep(100);
                         cmdReceiveData();
                         stopwatch.Reset();
                         stopwatch.Start();
                         counter = 0;
-                    }
+                    }                    
                     cmdSendData(2);
-                    Thread.Sleep(250);
+                    //Thread.Sleep(100);
                     cmdReceiveData();                    
                 }
                 else 
