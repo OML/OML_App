@@ -30,22 +30,5 @@ namespace OML_App.Data
             this.Value = value;
             this.Time = time;
         }
-
-        public static explicit operator ValueData(net.ukct.reintjan1.ValueData valueData)
-        {
-            ValueData vd = new ValueData();
-            vd.Value = valueData.Value;
-            vd.Time = valueData.Time;
-            return vd;
-        }
-
-        public static explicit operator net.ukct.reintjan1.ValueData(ValueData valueData)
-        {
-            net.ukct.reintjan1.ValueData vd = new net.ukct.reintjan1.ValueData();
-            vd.Value = valueData.Value;
-            vd.Time = valueData.Time;
-            return vd;
-        }
-
     }
 }

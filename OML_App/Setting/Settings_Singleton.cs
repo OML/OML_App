@@ -10,7 +10,6 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using OML_App.Data;
-using OML_App.net.ukct.reintjan1;
 using OML_App.Connection;
 
 namespace OML_App.Setting
@@ -73,8 +72,6 @@ namespace OML_App.Setting
 
         //--** End Sensors
 
-        public WebService Ws = new WebService();
-
         public static Settings_Singleton Instance
         {
             get
@@ -108,40 +105,6 @@ namespace OML_App.Setting
                 TCP_Current = null;
             }
 
-        }
-
-        /// <summary>
-        /// Sends a Session to the Webservice! It will be saved over there
-        /// </summary>
-        /// <param name="ses"></param>
-        public void SessionToWeb(OML_App.Data.Session ses) 
-        {
-            Ws.SaveNewSession((OML_App.net.ukct.reintjan1.Session)ses);
-        }
-
-        /// <summary>
-        /// Get a #sessions in a List of Sessions from the WebService! Keep in mind there will be L@gg!!
-        /// </summary>
-        /// <param name="number">#numbers</param>
-        public void GetList(int number)
-        {
-            OML_App.net.ukct.reintjan1.Session[] _ses = Ws.GetSessionList(number).ToArray<OML_App.net.ukct.reintjan1.Session>();
-            foreach (OML_App.net.ukct.reintjan1.Session ses in _ses)
-            {
-                _Session.Add((OML_App.Data.Session)ses);
-            }
-        }
-
-        /// <summary>
-        /// Get a List of Sessions of all the Sessions from the WebService! Keep in mind there will be L@gg!!
-        /// </summary>
-        public void GetAllList()
-        {
-            OML_App.net.ukct.reintjan1.Session[] _ses = Ws.GetAllSession().ToArray<OML_App.net.ukct.reintjan1.Session>();
-            foreach (OML_App.net.ukct.reintjan1.Session ses in _ses)
-            {
-                _Session.Add((OML_App.Data.Session)ses);
-            }
         }
     }
 }

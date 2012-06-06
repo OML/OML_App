@@ -63,36 +63,5 @@ namespace OML_App.Data
             newList[newList.GetUpperBound(0)] = s;
             Sensors = newList;
         }
-
-        public static explicit operator Session(net.ukct.reintjan1.Session session)
-        {
-            Session ses = new Session();
-            foreach (net.ukct.reintjan1.Sensor sensor in session.Sensors)
-            {
-                ses.AddSensorToArray((Sensor)sensor);
-            }
-            ses.EndTime = session.EndTime;
-            ses.StartTime = session.StartTime;
-            ses.Vehicle_Name = session.Vehicle_Name;
-            return ses;
-        }
-
-        public static explicit operator net.ukct.reintjan1.Session(Session session)
-        {
-            net.ukct.reintjan1.Session ses = new net.ukct.reintjan1.Session();
-
-            ArrayList sensors = new ArrayList();
-            foreach (Sensor sensor in session.Sensors)
-            {
-                sensors.Add((net.ukct.reintjan1.Sensor)sensor);
-            }
-
-            ses.Sensors = (net.ukct.reintjan1.Sensor[])sensors.ToArray(typeof(net.ukct.reintjan1.Sensor[]));
-            ses.EndTime = session.EndTime;
-            ses.StartTime = session.StartTime;
-            ses.Vehicle_Name = session.Vehicle_Name;
-            return ses;
-        }
-
     }
 }
