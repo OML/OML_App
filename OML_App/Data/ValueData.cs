@@ -30,8 +30,5 @@ namespace OML_App.Data
             this.Value = value;
             this.Time = time;
         }
-
-        
-
     }
 }

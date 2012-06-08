@@ -72,7 +72,6 @@ namespace OML_App.Setting
 
         //--** End Sensors
 
-
         public static Settings_Singleton Instance
         {
             get
@@ -107,7 +106,5 @@ namespace OML_App.Setting
             }
 
         }
-
-       
     }
 }

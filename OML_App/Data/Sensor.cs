@@ -54,7 +54,6 @@ namespace OML_App.Data
             newList[newList.GetUpperBound(0)] = valdata;
             Values = newList;
 
-        }       
-        
+        }
     }
 }

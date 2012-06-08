@@ -38,6 +38,8 @@ namespace OML_App
         private int redvalue;
         private int greenvalue;
 
+        //bool to determine wether we have stopped touching the tablet
+        private bool release;
 
         private DateTime LastUpdate = DateTime.Now;
         TimeSpan interval = TimeSpan.FromMilliseconds(250);
@@ -71,6 +73,7 @@ namespace OML_App
         /// <returns></returns>
         public bool OnTouch(View v, MotionEvent events) 
 	    {
+            release = false;
 		    update(events);
             this.Invalidate();
 		    return true;
@@ -110,7 +113,7 @@ namespace OML_App
                     //reset our touching point on release
                     _touchingPoint = new PointF(INIT_X, INIT_Y);
                     mLastTouchY = 0;
-                    _power = 0;
+                    release = true;
                     break;
             }//end switch
 
@@ -196,6 +199,15 @@ namespace OML_App
                 tv.Text = _power.ToString();
                 tv.SetTextColor(custom);
             }//end else if
+
+            //hotfix for resetting our power to 0
+            if (release)
+            {
+                if (this.Id == Resource.Id.sliderControls0)
+                    Send_Singleton.Instance.left = (int)_power;
+                else if (this.Id == Resource.Id.sliderControls1)
+                    Send_Singleton.Instance.right = (int)_power;
+            }//end if
         }//end method OnDraw
     }//end Class SliderControls
 }//end namespace OML_App
