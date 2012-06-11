@@ -172,11 +172,13 @@ namespace OML_App.Connection.Viewer
                 {
                     result.AddRange(BitConverter.GetBytes((int)1));
                     Settings_Singleton.Instance.TCP_View_State = true;
+                    Settings_Singleton.Instance.TCP_View_IsServer = true;
                 }
                 else
                 {
                     result.AddRange(BitConverter.GetBytes((int)0));
                     Settings_Singleton.Instance.TCP_View_State = false;
+                    Settings_Singleton.Instance.TCP_View_IsServer = false;
                 }
 
                 byte[] byteData = result.ToArray();
