@@ -11,7 +11,6 @@ using Android.Views;
 using Android.Widget;
 using OML_App.Data;
 using OML_App.Connection;
-using OML_App.Connection.Viewer;
 
 namespace OML_App.Setting
 {
@@ -23,15 +22,10 @@ namespace OML_App.Setting
         public List<OML_App.Data.Session> _Session = new List<OML_App.Data.Session>();
         public int TCP_Thershold = 2000;//Thershold Rate TCP
         public int TCP_UpdateRate = 5;//Update Rate TCP
-        public TCPClient TCP_Current; //TCP Carmen
-        public bool TCP_View_State = false;
-        public string TCP_View_IP = "77.170.34.17";
-        public int TCP_View_Port = 12000;
-        public TCPViewer TCP_Viewer; //TCP Viewer
-        
+        public TCPClient TCP_Current;
         public int Controller_UpdateRate = 250; //SleepTime Controller
         public bool LiveSession = false;
-        public string IpAdress = "192.168.1.104"; //Default Ip , CurrentSession
+        public string IpAdress = "192.168.1.101"; //Default Ip , CurrentSession
         public string Port = "1337"; //Default port, CurrentSession
         public bool ControllingCarmen = true; //True if Besturen eigen auto
         public int Camera_Port; //Port from Camera
@@ -78,6 +72,10 @@ namespace OML_App.Setting
 
         //--** End Sensors
 
+<<<<<<< HEAD
+
+=======
+>>>>>>> 348c39593dcaa7373035b5a2b913e0fedbdc1f17
         public static Settings_Singleton Instance
         {
             get
@@ -112,5 +110,10 @@ namespace OML_App.Setting
             }
 
         }
+<<<<<<< HEAD
+
+       
+=======
+>>>>>>> 348c39593dcaa7373035b5a2b913e0fedbdc1f17
     }
 }
