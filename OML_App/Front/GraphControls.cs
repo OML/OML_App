@@ -316,7 +316,7 @@ namespace OML_App
         }//end overrided method OnDraw
 
         /// <summary>
-        /// method to draw the voltage graph for battery 1
+        /// method to draw the graphs
         /// </summary>
         /// <param name="canvas"></param>
         private void drawGraph(Canvas canvas, ArrayList list, float minimumY, float maximumY)
@@ -350,6 +350,6 @@ namespace OML_App
                         maxX.Text = value1.time.ToString();
                 }//end for
             }//end if
-        }//end method drawVolt0Graph
+        }//end method drawGraph
     }//end class GraphControls
 }//end namespace OML_App
