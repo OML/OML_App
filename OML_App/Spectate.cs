@@ -10,6 +10,9 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.Content.PM;
+using OML_App.Front;
+using Java.IO;
+using Android.Media;
 
 namespace OML_App
 {
@@ -36,11 +39,21 @@ namespace OML_App
         //ActiveIndex for Batteryview
         public static int activeIndex;
 
+        private VideoView video;
+        private MediaController ctlr;
+        string path = "http://192.168.1.105:8082/stream.mp4";
+
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
 
             SetContentView(Resource.Layout.Spectate);
+
+            video = FindViewById<VideoView>(Resource.Id.vidview);
+            ctlr = new MediaController(this);
+            ctlr.SetMediaPlayer(video);
+            video.SetMediaController(ctlr);
+            video.SetVideoPath(path);
 
             //set the activeIndex to 0
             activeIndex = 0;
@@ -124,6 +137,9 @@ namespace OML_App
             battery.SetBackgroundResource(Resource.Drawable.batterybutton);
             overview.SetBackgroundResource(Resource.Drawable.overviewbutton);
             camera.SetBackgroundResource(Resource.Drawable.camerabutton_pressed);
+
+            video.RequestFocus();
+            video.Start();
         }//end method FlipToCamera
 
         #region Sub-Flips Battery

@@ -385,8 +385,8 @@ namespace OML_App
 			// aapt resource value: 0x7f05003a
 			public const int okButton = 2131034170;
 			
-			// aapt resource value: 0x7f050059
-			public const int onofflinetxt = 2131034201;
+			// aapt resource value: 0x7f05005a
+			public const int onofflinetxt = 2131034202;
 			
 			// aapt resource value: 0x7f050008
 			public const int overView = 2131034120;
@@ -436,20 +436,20 @@ namespace OML_App
 			// aapt resource value: 0x7f050049
 			public const int spec_battery = 2131034185;
 			
-			// aapt resource value: 0x7f050055
-			public const int spec_batteryButton = 2131034197;
+			// aapt resource value: 0x7f050056
+			public const int spec_batteryButton = 2131034198;
 			
 			// aapt resource value: 0x7f05004a
 			public const int spec_batterybar = 2131034186;
 			
-			// aapt resource value: 0x7f050053
-			public const int spec_buttonbox = 2131034195;
+			// aapt resource value: 0x7f050054
+			public const int spec_buttonbox = 2131034196;
 			
 			// aapt resource value: 0x7f050052
 			public const int spec_camera = 2131034194;
 			
-			// aapt resource value: 0x7f050056
-			public const int spec_cameraButton = 2131034198;
+			// aapt resource value: 0x7f050057
+			public const int spec_cameraButton = 2131034199;
 			
 			// aapt resource value: 0x7f050051
 			public const int spec_graphview = 2131034193;
@@ -460,8 +460,8 @@ namespace OML_App
 			// aapt resource value: 0x7f050048
 			public const int spec_overView = 2131034184;
 			
-			// aapt resource value: 0x7f050054
-			public const int spec_overviewButton = 2131034196;
+			// aapt resource value: 0x7f050055
+			public const int spec_overviewButton = 2131034197;
 			
 			// aapt resource value: 0x7f05004d
 			public const int spec_tempbutton0 = 2131034189;
@@ -475,8 +475,8 @@ namespace OML_App
 			// aapt resource value: 0x7f05004e
 			public const int spec_voltbutton1 = 2131034190;
 			
-			// aapt resource value: 0x7f05005a
-			public const int spectateButton = 2131034202;
+			// aapt resource value: 0x7f05005b
+			public const int spectateButton = 2131034203;
 			
 			// aapt resource value: 0x7f050046
 			public const int spectateflipper = 2131034182;
@@ -505,14 +505,17 @@ namespace OML_App
 			// aapt resource value: 0x7f050040
 			public const int textView3 = 2131034176;
 			
+			// aapt resource value: 0x7f050053
+			public const int vidview = 2131034195;
+			
 			// aapt resource value: 0x7f050045
 			public const int viewerButton = 2131034181;
 			
-			// aapt resource value: 0x7f050057
-			public const int viewerLayout = 2131034199;
-			
 			// aapt resource value: 0x7f050058
-			public const int viewertxt = 2131034200;
+			public const int viewerLayout = 2131034200;
+			
+			// aapt resource value: 0x7f050059
+			public const int viewertxt = 2131034201;
 			
 			// aapt resource value: 0x7f05001d
 			public const int voltbutton0 = 2131034141;
