@@ -61,6 +61,9 @@ namespace OML_App.Connection
             runThread = new Thread(new ThreadStart(Run)); //Will be started when connected           
         }
 
+        /// <summary>
+        /// First connect to setup the Connection
+        /// </summary>
         private void firstConnect()
         {
             //Start Connection

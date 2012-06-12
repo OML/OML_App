@@ -37,6 +37,10 @@ namespace OML_App.Data
             Values[0] = new ValueData((min+max)/ 2);
         }
 
+        /// <summary>
+        /// Add Value to Data Array, Create new List
+        /// </summary>
+        /// <param name="valdata"></param>
         public void AddValueDataToArray(ValueData valdata)
         {
             int newLength = 0;

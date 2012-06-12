@@ -36,6 +36,10 @@ namespace OML_App.Connection.Viewer
             Connect(Settings_Singleton.Instance.TCP_View_IP);
         }
 
+        /// <summary>
+        /// First Connect To Server
+        /// </summary>
+        /// <param name="ip">Ip address</param>
         private void Connect(string ip)
         {
             if (clientSocket == null)
@@ -51,6 +55,10 @@ namespace OML_App.Connection.Viewer
             }
         }
 
+        /// <summary>
+        /// OnConnect : connect to server. Send Connect Message
+        /// </summary>
+        /// <param name="ar"></param>
         private void OnConnect(IAsyncResult ar)
         {
             try
@@ -73,6 +81,10 @@ namespace OML_App.Connection.Viewer
             }
         }
 
+        /// <summary>
+        /// OnSend : Send an TCP packet!
+        /// </summary>
+        /// <param name="ar"></param>
         private void OnSend(IAsyncResult ar)
         {
             try
@@ -98,6 +110,10 @@ namespace OML_App.Connection.Viewer
             }
         }
 
+        /// <summary>
+        /// Handle Recieved TCP Packet
+        /// </summary>
+        /// <param name="ar"></param>
         private void OnReceive(IAsyncResult ar)
         {
             try
@@ -138,6 +154,9 @@ namespace OML_App.Connection.Viewer
             }
         }
 
+        /// <summary>
+        /// Close the TCP Connection
+        /// </summary>
         public void OnClose()
         {
             try
@@ -161,6 +180,10 @@ namespace OML_App.Connection.Viewer
             }
         }
 
+        /// <summary>
+        /// Send a Pack to the TCP Viewer Server to gain server acces
+        /// </summary>
+        /// <param name="state">True / False to set server</param>
         public void SendAppServerPack(bool state)
         {
             try
@@ -192,6 +215,10 @@ namespace OML_App.Connection.Viewer
             }
         }
 
+        /// <summary>
+        /// Send a (Data) pack to the TCP Viewer
+        /// </summary>
+        /// <param name="pack">byte[1020] pack</param>
         public void SendDataPack(byte[] pack)
         {
             try

@@ -46,6 +46,10 @@ namespace OML_App.Data
             this.EndTime = end;
         }
 
+        /// <summary>
+        /// Add Sensor to Array (new Sensor(...))
+        /// </summary>
+        /// <param name="s"></param>
         public void AddSensorToArray(Sensor s)
         {
             int newLength = 0;
