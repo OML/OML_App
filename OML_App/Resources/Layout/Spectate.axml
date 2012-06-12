@@ -7,12 +7,28 @@
   <RelativeLayout
     android:layout_width="fill_parent"
     android:layout_height="fill_parent">
+    <RelativeLayout
+      android:id="@+id/buttonbox0"
+      android:layout_width="176dp"
+      android:layout_height="249dp"
+      android:paddingTop="32dp"
+      android:paddingLeft="17dp"
+      android:layout_marginLeft="8dp"
+      android:layout_marginTop="8dp"
+      android:background="@drawable/menubox2">
+      <Button
+        android:id="@+id/spec_orientbutton"
+        android:layout_width="142dp"
+        android:layout_height="55dp"
+        android:background="@drawable/orientbutton"/>
+    </RelativeLayout>
     <ViewFlipper
           android:id="@+id/spectateflipper"
           android:layout_width="640dp"
           android:layout_height="520dp"
-          android:layout_marginLeft="192dp"
-          android:layout_marginTop="8dp">
+          android:layout_marginLeft="8dp"
+          android:layout_marginTop="8dp"
+          android:layout_toRightOf="@id/buttonbox0">
       <RelativeLayout
           android:id="@+id/spec_midbox"
           android:layout_width="fill_parent"
@@ -352,6 +368,57 @@
           android:id="@+id/vidview"
           android:layout_width="fill_parent"
           android:layout_height="fill_parent"/>
+      </RelativeLayout>
+      <RelativeLayout
+          android:id="@+id/spec_orient"
+          android:layout_width="fill_parent"
+          android:layout_height="fill_parent"
+          android:background="@drawable/pitchview0">
+        <oml_app.GaugeGraphControls
+          android:id="@+id/rollControls"
+          android:layout_width="fill_parent"
+          android:layout_height="fill_parent"/>
+        <RelativeLayout
+          android:id="@+id/pitchbox"
+          android:layout_width="540dp"
+          android:layout_height="230dp"
+          android:layout_marginTop="260dp"
+          android:layout_marginLeft="50dp"
+          android:background="@drawable/pitchbox">
+          <RelativeLayout
+            android:id="@+id/pitch"
+            android:layout_width="170dp"
+            android:layout_height="170dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="30dp">
+            <oml_app.PitchControls
+              android:id="@+id/rollControls"
+              android:layout_width="fill_parent"
+              android:layout_height="fill_parent"/>
+            <RelativeLayout
+              android:id="@+id/pitchoverlay"
+              android:layout_width="fill_parent"
+              android:layout_height="fill_parent"
+              android:background="@drawable/pitchline0"/>
+          </RelativeLayout>
+          <RelativeLayout
+            android:id="@+id/roll"
+            android:layout_width="170dp"
+            android:layout_height="170dp"
+            android:layout_toRightOf="@id/pitch"
+            android:layout_marginLeft="140dp"
+            android:layout_marginTop="30dp">
+            <oml_app.RollControls
+              android:id="@+id/rollControls"
+              android:layout_width="fill_parent"
+              android:layout_height="fill_parent"/>
+            <RelativeLayout
+              android:id="@+id/rolloverlay"
+              android:layout_width="fill_parent"
+              android:layout_height="fill_parent"
+              android:background="@drawable/rollline0"/>
+          </RelativeLayout>
+        </RelativeLayout>
       </RelativeLayout>
     </ViewFlipper>
     <RelativeLayout

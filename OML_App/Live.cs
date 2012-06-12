@@ -184,6 +184,9 @@ namespace OML_App
                     //Start Session / Close Dialog / Open Controller
                     Settings_Singleton.Instance.LiveSession = true;
                     dialog.Cancel();
+                    //Set TCP Viewer at server
+                    if (Settings_Singleton.Instance.TCP_Viewer.clientSocket.Connected)
+                        Settings_Singleton.Instance.TCP_Viewer.SendAppServerPack(true);
                     LoadController();
                     //Close Loop
                     tryConnect = false;

@@ -67,8 +67,11 @@
     <Compile Include="Data\Session.cs" />
     <Compile Include="Data\Singleton.cs" />
     <Compile Include="Data\ValueData.cs" />
+    <Compile Include="Front\GaugeGraphControls.cs" />
     <Compile Include="Front\GraphControls.cs" />
     <Compile Include="Front\GraphValue.cs" />
+    <Compile Include="Front\PitchControls.cs" />
+    <Compile Include="Front\RollControls.cs" />
     <Compile Include="Front\SliderControls.cs" />
     <Compile Include="Live.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
@@ -184,6 +187,8 @@
     <AndroidResource Include="Resources\Drawable\startbutton.png" />
   </ItemGroup>
   <ItemGroup>
+    <AndroidResource Include="Resources\Drawable\pitchbox.png" />
+    <AndroidResource Include="Resources\Drawable\pitchline.png" />
     <Content Include="Properties\AndroidManifest.xml" />
     <AndroidResource Include="Resources\Drawable\AchtergrondAppGrijs.png" />
     <AndroidResource Include="Resources\Drawable\sliderBoxL.png" />
@@ -232,6 +237,14 @@
     <AndroidResource Include="Resources\Drawable\viewbutton.png" />
     <AndroidResource Include="Resources\Drawable\viewbutton_pressed.png" />
     <AndroidResource Include="Resources\Drawable\spectatebg.png" />
+    <AndroidResource Include="Resources\Drawable\orientbutton.png" />
+    <AndroidResource Include="Resources\Drawable\orientbutton_pressed.png" />
+    <AndroidResource Include="Resources\Drawable\rollline.png" />
+    <AndroidResource Include="Resources\Drawable\pitchview0.png" />
+    <AndroidResource Include="Resources\Drawable\pitchline0.png" />
+    <AndroidResource Include="Resources\Drawable\rollline0.png" />
+    <AndroidResource Include="Resources\Drawable\rollline1.png" />
+    <AndroidResource Include="Resources\Drawable\pitchbg0.png" />
   </ItemGroup>
   <ItemGroup>
     <WebReferences Include="Web References\" />

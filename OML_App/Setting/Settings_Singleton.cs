@@ -25,6 +25,7 @@ namespace OML_App.Setting
         public int TCP_UpdateRate = 5;//Update Rate TCP
         public TCPClient TCP_Current; //TCP Carmen
         public bool TCP_View_State = false;
+        public bool TCP_View_IsServer = false;
         public string TCP_View_IP = "77.170.34.17";
         public int TCP_View_Port = 12000;
         public TCPViewer TCP_Viewer; //TCP Viewer
@@ -109,6 +110,11 @@ namespace OML_App.Setting
             {
                 TCP_Current.cmdClose();
                 TCP_Current = null;
+            }
+
+            if (TCP_Viewer != null)
+            {
+                TCP_Viewer.SendAppServerPack(false);
             }
 
         }
