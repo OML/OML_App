@@ -14,6 +14,7 @@ namespace OML_App.Data
 {
     public class ValueData
     {
+        //Variabelen
         public float Value;
         public DateTime Time;
 
