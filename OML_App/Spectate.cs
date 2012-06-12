@@ -41,8 +41,7 @@ namespace OML_App
         public static int activeIndex;
 
         private VideoView video;
-        private MediaController ctlr;
-        string path = "http://192.168.1.102:8090/webcam.asf";
+        string path = "rtsp://192.168.1.102:8090/webcam.asf";
 
         protected override void OnCreate(Bundle bundle)
         {
@@ -51,10 +50,9 @@ namespace OML_App
             SetContentView(Resource.Layout.Spectate);
 
             video = FindViewById<VideoView>(Resource.Id.vidview);
-            ctlr = new MediaController(this);
-            ctlr.SetMediaPlayer(video);
-            video.SetMediaController(ctlr);
+
             video.SetVideoPath(path);
+            video.SetMediaController(new MediaController(this));
 
             //set the activeIndex to 0
             activeIndex = 0;
@@ -112,6 +110,8 @@ namespace OML_App
             battery.SetBackgroundResource(Resource.Drawable.batterybutton);
             camera.SetBackgroundResource(Resource.Drawable.camerabutton);
             orient.SetBackgroundResource(Resource.Drawable.orientbutton);
+
+            video.StopPlayback();
         }//end method FlipToOverView
 
         /// <summary>
@@ -128,6 +128,8 @@ namespace OML_App
             overview.SetBackgroundResource(Resource.Drawable.overviewbutton);
             camera.SetBackgroundResource(Resource.Drawable.camerabutton);
             orient.SetBackgroundResource(Resource.Drawable.orientbutton);
+
+            video.StopPlayback();
         }//end method FlipToBattery
 
         /// <summary>
@@ -145,7 +147,6 @@ namespace OML_App
             camera.SetBackgroundResource(Resource.Drawable.camerabutton_pressed);
             orient.SetBackgroundResource(Resource.Drawable.orientbutton);
 
-            video.RequestFocus();
             video.Start();
         }//end method FlipToCamera
 
@@ -163,6 +164,8 @@ namespace OML_App
             battery.SetBackgroundResource(Resource.Drawable.batterybutton);
             overview.SetBackgroundResource(Resource.Drawable.overviewbutton);
             camera.SetBackgroundResource(Resource.Drawable.camerabutton);
+
+            video.StopPlayback();
         }//end method FlipToPitch
 
         #region Sub-Flips Battery

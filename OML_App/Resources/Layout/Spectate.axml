@@ -378,6 +378,44 @@
           android:id="@+id/rollControls"
           android:layout_width="fill_parent"
           android:layout_height="fill_parent"/>
+        <TextView
+          android:id="@+id/orient_maxY"
+          android:layout_width="35dp"
+          android:layout_height="15dp"
+          android:text="maxY"
+          android:textColor="#000000"
+          android:textSize="10dp"
+          android:layout_marginTop="15dp"
+          android:layout_marginLeft="50dp"/>
+        <TextView
+          android:id="@+id/orient_minY"
+          android:layout_width="35dp"
+          android:layout_height="15dp"
+          android:text="minY"
+          android:textColor="#000000"
+          android:textSize="10dp"
+          android:layout_below="@id/orient_maxY"
+          android:layout_marginTop="180dp"
+          android:layout_marginLeft="50dp"/>
+        <TextView
+          android:id="@+id/orient_minX"
+          android:layout_width="100dp"
+          android:layout_height="15dp"
+          android:text="minX"
+          android:textColor="#000000"
+          android:textSize="10dp"
+          android:layout_marginTop="225dp"
+          android:layout_marginLeft="100dp"/>
+        <TextView
+          android:id="@+id/orient_maxX"
+          android:layout_width="100dp"
+          android:layout_height="15dp"
+          android:text="maxX"
+          android:textColor="#000000"
+          android:textSize="10dp"
+          android:layout_toRightOf="@id/orient_minX"
+          android:layout_marginTop="225dp"
+          android:layout_marginLeft="315dp"/>
         <RelativeLayout
           android:id="@+id/pitchbox"
           android:layout_width="540dp"

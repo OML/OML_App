@@ -13,6 +13,8 @@ using Android.Util;
 using Android.Graphics;
 using System.Collections;
 using OML_App.Front;
+using OML_App.Data;
+using OML_App.Setting;
 
 namespace OML_App
 {
@@ -73,27 +75,27 @@ namespace OML_App
             paint1.SetARGB(255, 0, 255, 255);
 
             //get the textviews so we can set the text in the graph draw
-            //minX = ((RelativeLayout)this.Parent).FindViewById<TextView>(Resource.Id.minX);
-            //maxX = ((RelativeLayout)this.Parent).FindViewById<TextView>(Resource.Id.maxX);
-            //minY = ((RelativeLayout)this.Parent).FindViewById<TextView>(Resource.Id.minY);
-            //maxY = ((RelativeLayout)this.Parent).FindViewById<TextView>(Resource.Id.maxY);
+            minX = ((RelativeLayout)this.Parent).FindViewById<TextView>(Resource.Id.orient_minX);
+            maxX = ((RelativeLayout)this.Parent).FindViewById<TextView>(Resource.Id.orient_maxX);
+            minY = ((RelativeLayout)this.Parent).FindViewById<TextView>(Resource.Id.orient_minY);
+            maxY = ((RelativeLayout)this.Parent).FindViewById<TextView>(Resource.Id.orient_maxY);
 
             //set the time
             time = DateTime.Now - start;// Receive_Singleton.Instance.Current_ses.StartTime;
 
             //set the updated textview values
-            if (pitchval != 0)//Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.A0V].Values[Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.A0V].Values.Length].Value)
+            if (pitchval != 0)//Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.G0X].Values[Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.G0X].Values.Length].Value)
             {
-                pitchval += 0.01f;// Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.A0V].Values[Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.A0V].Values.Length].Value;
+                pitchval += 0.01f;// Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.G0X].Values[Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.G0X].Values.Length].Value;
                 pitchvalue.Add(new GraphValue(pitchval, time));
 
                 //get the min and max Y
-                minimumY = -10;// Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.A0V].Min;
-                maximumY = 10;// Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.A0V].Max;
+                minimumY = -10;// Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.G0X].Min;
+                maximumY = 10;// Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.G0X].Max;
 
-                ////show the min and max Y on the graph
-                //minY.Text = minimumY.ToString();
-                //maxY.Text = maximumY.ToString();
+                //show the min and max Y on the graph
+                minY.Text = minimumY.ToString();
+                maxY.Text = maximumY.ToString();
 
                 //if we exceed 100 elements remove the first
                 if (pitchvalue.Count > 100)
@@ -103,18 +105,18 @@ namespace OML_App
             }//end if
 
             //set the updated textview values
-            if (rollval != 0)//Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.A0V].Values[Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.A0V].Values.Length].Value)
+            if (rollval != 0)//Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.G0Y].Values[Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.G0Y].Values.Length].Value)
             {
-                rollval -= 0.01f;// Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.A0V].Values[Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.A0V].Values.Length].Value;
+                rollval -= 0.01f;// Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.G0Y].Values[Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.G0Y].Values.Length].Value;
                 rollvalue.Add(new GraphValue(rollval, time));
 
                 //get the min and max Y
-                minimumY = -10;// Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.A0V].Min;
-                maximumY = 10;// Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.A0V].Max;
+                minimumY = -10;// Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.G0Y].Min;
+                maximumY = 10;// Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.G0Y].Max;
 
-                ////show the min and max Y on the graph
-                //minY.Text = minimumY.ToString();
-                //maxY.Text = maximumY.ToString();
+                //show the min and max Y on the graph
+                minY.Text = minimumY.ToString();
+                maxY.Text = maximumY.ToString();
 
                 //if we exceed 100 elements remove the first
                 if (rollvalue.Count > 100)
@@ -154,11 +156,11 @@ namespace OML_App
                         originY - (yValue1 * ((float)200 / dY)),
                         thepaint);
 
-                    ////show the min and max x-axis value's
-                    //if (i == 0)
-                    //    minX.Text = value0.time.ToString();
-                    //if (i == list.Count - 2)
-                    //    maxX.Text = value1.time.ToString();
+                    //show the min and max x-axis value's
+                    if (i == 0)
+                        minX.Text = value0.time.ToString();
+                    if (i == list.Count - 2)
+                        maxX.Text = value1.time.ToString();
                 }//end for
             }//end if
         }//end method drawGraph
