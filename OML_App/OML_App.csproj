@@ -57,21 +57,21 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Activity1.cs" />
-    <Compile Include="Connection\Data.cs" />
-    <Compile Include="Connection\TCPClient.cs" />
+    <Compile Include="Connection\Carmen\Data.cs" />
+    <Compile Include="Connection\Carmen\TCPClient.cs" />
     <Compile Include="Connection\Viewer\TCPViewer.cs" />
     <Compile Include="Connection\Viewer\ViewerData.cs" />
     <Compile Include="Data\Send_Singleton.cs" />
     <Compile Include="Data\Sensor.cs" />
     <Compile Include="Data\Session.cs" />
-    <Compile Include="Data\Singleton.cs" />
+    <Compile Include="Data\Receive_Singleton.cs" />
     <Compile Include="Data\ValueData.cs" />
-    <Compile Include="Front\GaugeGraphControls.cs" />
-    <Compile Include="Front\GraphControls.cs" />
-    <Compile Include="Front\GraphValue.cs" />
-    <Compile Include="Front\PitchControls.cs" />
-    <Compile Include="Front\RollControls.cs" />
-    <Compile Include="Front\SliderControls.cs" />
+    <Compile Include="Front\Graph\GaugeGraphControls.cs" />
+    <Compile Include="Front\Graph\GraphControls.cs" />
+    <Compile Include="Front\Graph\GraphValue.cs" />
+    <Compile Include="Front\Contoller\PitchControls.cs" />
+    <Compile Include="Front\Contoller\RollControls.cs" />
+    <Compile Include="Front\Contoller\SliderControls.cs" />
     <Compile Include="Live.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
