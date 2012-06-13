@@ -18,6 +18,7 @@ using System.Runtime.InteropServices;
 using OML_App.Data;
 using System.Diagnostics;
 using System.Net.NetworkInformation;
+using OML_App.Setting;
 
 namespace OML_App.Connection
 {
@@ -87,7 +88,7 @@ namespace OML_App.Connection
                 System.Net.IPEndPoint remoteEndPoint = new System.Net.IPEndPoint(remoteIPAddress, alPort);
                 m_socClient.Connect(remoteEndPoint);
                 //Setup Recieve TimeOut               
-                m_socClient.ReceiveTimeout = 100;
+                m_socClient.ReceiveTimeout = Settings_Singleton.Instance.TCP_TimeoutTime;
 
                 //Create / Send welcome message
                 byteData = Liefdes_brief.SendPackage(4);
@@ -172,10 +173,11 @@ namespace OML_App.Connection
 
                 if (connected)
                 {
-                    if (stopwatch.ElapsedMilliseconds > 1000)
+                    //Max 1 Sec for time out (10 * time out
+                    if (stopwatch.ElapsedMilliseconds > (Settings_Singleton.Instance.TCP_TimeoutTime * 10))
                     {
                         cmdSendData(4);
-                        Thread.Sleep(100);
+                        Thread.Sleep(Settings_Singleton.Instance.TCP_TimeoutTime);
                         cmdReceiveData();
                         stopwatch.Reset();
                         stopwatch.Start();
@@ -191,7 +193,8 @@ namespace OML_App.Connection
                     if (counter <= 25)
                     {
                         cmdClose();
-                        Thread.Sleep(250);                        
+                        //TCP Timeout 2 keer wait a moment before reconnect
+                        Thread.Sleep((Settings_Singleton.Instance.TCP_TimeoutTime * 2));                        
                         cmdConnect();
                     }
                     else
