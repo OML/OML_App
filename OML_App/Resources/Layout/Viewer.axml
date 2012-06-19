@@ -4,34 +4,36 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:background="@drawable/background2">
-  <RelativeLayout
-    android:id="@+id/viewerLayout"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent">
-    <TextView
-      android:id="@+id/viewertxt"
-      android:text="C.A.R.M.E.N. is currently: "
-      android:layout_width="wrap_content"
-      android:layout_height="30dp"
-      android:layout_marginLeft="20dp"
-      android:layout_marginTop="30dp"
-      android:textSize="20px" />
-    <TextView
-      android:id="@+id/onofflinetxt"
-      android:text="OFFLINE"
-      android:textColor="#ff0000"
-      android:layout_toRightOf="@id/viewertxt"
-      android:layout_width="wrap_content"
-      android:layout_height="30dp"
-      android:layout_marginTop="30dp"
-      android:textSize="20px" />
-    <Button
-      android:id="@+id/spectateButton"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_below="@id/viewertxt"
-      android:layout_marginLeft="30dp"
-      android:layout_marginTop="20.0dp"
-      android:background="@drawable/spectatebutton" />
-  </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/viewerLayout"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+        <TextView
+            android:id="@+id/viewertxt"
+            android:text="C.A.R.M.E.N. is currently: "
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="30dp"
+            android:textSize="20px"
+            android:textColor="#ffffff" />
+        <TextView
+            android:id="@+id/onofflinetxt"
+            android:text="OFFLINE"
+            android:textColor="#ff0000"
+            android:layout_toRightOf="@id/viewertxt"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_marginTop="30dp"
+            android:textSize="20px" />
+        <Button
+            android:id="@+id/spectateButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/viewertxt"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="20.0dp"
+            android:background="@drawable/spectatebutton"
+            android:visibility="invisible" />
+    </RelativeLayout>
 </LinearLayout>
