@@ -58,7 +58,7 @@ namespace OML_App
                 init = false;
             }//end if
 
-            yDiff = Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.G0Y].Values[Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.G0Y].Values.Length].Value;
+            yDiff = Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.G0Y].Values[Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.G0Y].Values.Length - 1].Value;
 
             m.SetTranslate(xOffCenter, yOffCenter + yDiff);
 

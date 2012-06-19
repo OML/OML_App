@@ -84,14 +84,14 @@ namespace OML_App
             time = DateTime.Now - start;// Receive_Singleton.Instance.Current_ses.StartTime;
 
             //set the updated textview values
-            if (pitchval != 0)//Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.G0X].Values[Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.G0X].Values.Length].Value)
+            if (pitchval != Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.G0X].Values[Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.G0X].Values.Length - 1].Value)
             {
-                pitchval += 0.01f;// Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.G0X].Values[Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.G0X].Values.Length].Value;
+                pitchval = Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.G0X].Values[Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.G0X].Values.Length - 1].Value;
                 pitchvalue.Add(new GraphValue(pitchval, time));
 
                 //get the min and max Y
-                minimumY = -10;// Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.G0X].Min;
-                maximumY = 10;// Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.G0X].Max;
+                minimumY = Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.G0X].Min;
+                maximumY = Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.G0X].Max;
 
                 //show the min and max Y on the graph
                 minY.Text = minimumY.ToString();
@@ -105,14 +105,14 @@ namespace OML_App
             }//end if
 
             //set the updated textview values
-            if (rollval != 0)//Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.G0Y].Values[Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.G0Y].Values.Length].Value)
+            if (rollval != Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.G0Y].Values[Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.G0Y].Values.Length - 1].Value)
             {
-                rollval -= 0.01f;// Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.G0Y].Values[Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.G0Y].Values.Length].Value;
+                rollval = Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.G0Y].Values[Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.G0Y].Values.Length - 1].Value;
                 rollvalue.Add(new GraphValue(rollval, time));
 
                 //get the min and max Y
-                minimumY = -10;// Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.G0Y].Min;
-                maximumY = 10;// Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.G0Y].Max;
+                minimumY = Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.G0Y].Min;
+                maximumY = Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.G0Y].Max;
 
                 //show the min and max Y on the graph
                 minY.Text = minimumY.ToString();
@@ -158,9 +158,9 @@ namespace OML_App
 
                     //show the min and max x-axis value's
                     if (i == 0)
-                        minX.Text = value0.time.ToString();
+                        minX.Text = value0.time.Seconds.ToString();
                     if (i == list.Count - 2)
-                        maxX.Text = value1.time.ToString();
+                        maxX.Text = value1.time.Seconds.ToString();
                 }//end for
             }//end if
         }//end method drawGraph

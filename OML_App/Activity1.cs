@@ -54,7 +54,7 @@ namespace OML_App
             viewerThread = new Thread(new ThreadStart(ConnectViewer));
             viewerThread.Start(); 
         }
-
+        
         /// <summary>
         /// Android Function OnResume
         /// </summary>

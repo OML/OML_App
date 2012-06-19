@@ -269,6 +269,12 @@ namespace OML_App
 
         public void releaseClick(object sender, EventArgs e)
         {
+            updateThread.Abort();
+
+            //set the content view to the dialogwindow content
+            //outside this contentview we are unable to find our resources
+            SetContentView(Resource.Layout.DialogWindow);
+
             //create a new dialog
             dialog = new Dialog(this);
             dialog.SetContentView(Resource.Layout.DialogWindow);
@@ -292,9 +298,10 @@ namespace OML_App
                 //set bool true to get carmen to release the ring
                 Send_Singleton.Instance.releaseRing = true;
 
+                SetContentView(Resource.Layout.Controller);
+                this.OnCreate(bundle);
                 //Close the dialog
                 dialog.Cancel();
-                this.OnCreate(bundle);
             };//end delegate
             cancelButton.Click += delegate
             {

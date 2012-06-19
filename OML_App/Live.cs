@@ -122,7 +122,7 @@ namespace OML_App
                 Send_Singleton.Instance.Calibration_mode = 0;
                 Send_Singleton.Instance.voltage = 1;
                 Send_Singleton.Instance.Calibration_mode = 1;
-                Send_Singleton.Instance.Gyro = 1;
+                Send_Singleton.Instance.Gyro = 0;
                 Send_Singleton.Instance.temperature = 1;
                 Send_Singleton.Instance.throttle = 1;
                 Send_Singleton.Instance.releaseRing = false;

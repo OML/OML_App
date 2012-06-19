@@ -89,7 +89,7 @@ namespace OML_App.Connection
                 m_socClient.Connect(remoteEndPoint);
                 //Setup Recieve TimeOut               
                 m_socClient.ReceiveTimeout = Settings_Singleton.Instance.TCP_TimeoutTime;
-
+                m_socClient.Blocking = true;
                 //Create / Send welcome message
                 byteData = Liefdes_brief.SendPackage(4);
                 m_socClient.Send(byteData);
@@ -98,7 +98,8 @@ namespace OML_App.Connection
             }
             catch (SocketException se)
             {
-                Console.WriteLine(se);
+                //Console.WriteLine(se);
+                Console.WriteLine("Try to connect failed cmdConnect");
                 connected = false;
             }
         }
@@ -116,7 +117,8 @@ namespace OML_App.Connection
             }
             catch (SocketException se)
             {
-                Console.WriteLine(se);
+                Console.WriteLine("Cmd send data failed");
+                //Console.WriteLine(se);
                 connected = false;
             }
         }
@@ -131,6 +133,7 @@ namespace OML_App.Connection
                 byte[] buffer = new byte[1024];
                 
                 int irx = m_socClient.Receive(buffer);
+                Console.WriteLine("dit lukt wel");
                 if (irx == 0)
                 {
                     Console.WriteLine("no data available");
@@ -144,7 +147,8 @@ namespace OML_App.Connection
             }
             catch (SocketException se)
             {
-                Console.WriteLine(se);
+                Console.WriteLine("Cmd Receive failed");
+                //Console.WriteLine(se);
             }
         }
 

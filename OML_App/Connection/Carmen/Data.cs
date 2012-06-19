@@ -371,7 +371,7 @@ namespace OML_App.Connection
                 }
                 catch (Exception e)
                 {
-                    Console.WriteLine(e);
+                    Console.WriteLine("het lezen van syncpackage is mislukt");
                 }
                 return_opcode = 2;
             }
@@ -428,6 +428,7 @@ namespace OML_App.Connection
                 }
                 catch (Exception e)
                 {
+                    Console.WriteLine("Unable to read keap alive");
                     Console.WriteLine(e);
                 }
                 return_opcode = 4;
@@ -509,7 +510,15 @@ namespace OML_App.Connection
 
             public override string ToString()
             {
-                return "Pack: op:" + opcode + "time:" + timestamp + "throttle" + throttle_0 + "Current" + current_motor_0 + "Voltage" + voltage_motor_0 + "Temp" + Temp_0 + "gyro_x" + gyro_x + "throttle 3" + throttle_3 ;
+                return "Package pack: \n " 
+                    + "Opcode:     "+ opcode 
+                    + "\n time:        "+ timestamp 
+                    + "\n throttles:   "+ throttle_0 + " "      +throttle_1 +" "+           throttle_2 + " " +      throttle_3 
+                    + "\n Current      "+ current_motor_0 + " " + current_motor_1 +" "+     current_motor_2 +" "+   current_motor_3 
+                    + "\n Voltage:     "+ voltage_motor_0 +" "  + voltage_motor_1 +" "+     voltage_motor_2 +" "+   voltage_motor_3
+                    + "\n Temprature:  "+ Temp_0 +" "           + Temp_1 +" " +             Temp_2 +" "+            Temp_3 
+                    + "\n Gyro values: "+ gyro_x +" "           + gyro_y +" "+              gyro_z 
+                    + "\n accu values: "+ accu_current +" "     + accu_temp1+" "+           accu_temp2 +" "+        accu_voltage  ;
             }
         }
 
