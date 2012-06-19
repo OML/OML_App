@@ -45,8 +45,6 @@ namespace OML_App
         //ActiveIndex for Batteryview
         public static int activeIndex;
 
-        CamThread cam;
-
         private WebView wView;
 
         Android.Net.Uri uri = Android.Net.Uri.Parse("http://192.168.1.102:8090/webcam.asf");
@@ -62,8 +60,6 @@ namespace OML_App
             SetContentView(Resource.Layout.Spectate);
 
             wView = FindViewById<WebView>(Resource.Id.vidview);
-
-            cam = new CamThread(wView,path);
 
             //set the activeIndex to 0
             activeIndex = 0;
@@ -121,8 +117,6 @@ namespace OML_App
             battery.SetBackgroundResource(Resource.Drawable.batterybutton);
             camera.SetBackgroundResource(Resource.Drawable.camerabutton);
             orient.SetBackgroundResource(Resource.Drawable.orientbutton);
-
-            cam.stopCamera();
         }//end method FlipToOverView
 
         /// <summary>
@@ -139,8 +133,6 @@ namespace OML_App
             overview.SetBackgroundResource(Resource.Drawable.overviewbutton);
             camera.SetBackgroundResource(Resource.Drawable.camerabutton);
             orient.SetBackgroundResource(Resource.Drawable.orientbutton);
-
-            cam.stopCamera();
         }//end method FlipToBattery
 
         /// <summary>
@@ -157,8 +149,6 @@ namespace OML_App
             overview.SetBackgroundResource(Resource.Drawable.overviewbutton);
             camera.SetBackgroundResource(Resource.Drawable.camerabutton_pressed);
             orient.SetBackgroundResource(Resource.Drawable.orientbutton);
-
-            cam.startCamera();
         }//end method FlipToCamera
 
         /// <summary>
@@ -175,8 +165,6 @@ namespace OML_App
             battery.SetBackgroundResource(Resource.Drawable.batterybutton);
             overview.SetBackgroundResource(Resource.Drawable.overviewbutton);
             camera.SetBackgroundResource(Resource.Drawable.camerabutton);
-
-            cam.stopCamera();
         }//end method FlipToPitch
 
         #region Sub-Flips Battery
