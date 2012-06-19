@@ -371,9 +371,9 @@ namespace OML_App
             TextView Eng_Curr = FindViewById<TextView>(Resource.Id.EngLF1);
             TextView Eng_Volt = FindViewById<TextView>(Resource.Id.EngLF2);
             TextView Eng_Temp = FindViewById<TextView>(Resource.Id.EngLF3);
-            RunOnUiThread(() => Eng_Curr.Text = _Eng_Curr + "A");
-            RunOnUiThread(() => Eng_Volt.Text = _Eng_Volt + "V");
-            RunOnUiThread(() => Eng_Temp.Text = _Eng_Temp + "C");
+            RunOnUiThread(() => Eng_Curr.Text = _Eng_Curr + Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.M0A].Unity);
+            RunOnUiThread(() => Eng_Volt.Text = _Eng_Volt + Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.M0V].Unity);
+            RunOnUiThread(() => Eng_Temp.Text = _Eng_Temp + Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.M0T].Unity);
         }//end method UpdateEngineLF
 
         /// <summary>
@@ -388,9 +388,9 @@ namespace OML_App
             TextView Eng_Curr = FindViewById<TextView>(Resource.Id.EngRF1);
             TextView Eng_Volt = FindViewById<TextView>(Resource.Id.EngRF2);
             TextView Eng_Temp = FindViewById<TextView>(Resource.Id.EngRF3);
-            RunOnUiThread(() => Eng_Curr.Text = _Eng_Curr + "A");
-            RunOnUiThread(() => Eng_Volt.Text = _Eng_Volt + "V");
-            RunOnUiThread(() => Eng_Temp.Text = _Eng_Temp + "C");
+            RunOnUiThread(() => Eng_Curr.Text = _Eng_Curr + Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.M1A].Unity);
+            RunOnUiThread(() => Eng_Volt.Text = _Eng_Volt + Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.M1V].Unity);
+            RunOnUiThread(() => Eng_Temp.Text = _Eng_Temp + Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.M1T].Unity);
         }//end method UpdateEngineRF
 
         /// <summary>
@@ -405,9 +405,9 @@ namespace OML_App
             TextView Eng_Curr = FindViewById<TextView>(Resource.Id.EngLR1);
             TextView Eng_Volt = FindViewById<TextView>(Resource.Id.EngLR2);
             TextView Eng_Temp = FindViewById<TextView>(Resource.Id.EngLR3);
-            RunOnUiThread(() => Eng_Curr.Text = _Eng_Curr + "A");
-            RunOnUiThread(() => Eng_Volt.Text = _Eng_Volt + "V");
-            RunOnUiThread(() => Eng_Temp.Text = _Eng_Temp + "C");
+            RunOnUiThread(() => Eng_Curr.Text = _Eng_Curr + Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.M2A].Unity);
+            RunOnUiThread(() => Eng_Volt.Text = _Eng_Volt + Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.M2V].Unity);
+            RunOnUiThread(() => Eng_Temp.Text = _Eng_Temp + Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.M2T].Unity);
         }//end method UpdateEngineLR
 
         /// <summary>
@@ -415,16 +415,16 @@ namespace OML_App
         /// </summary>
         public void UpdateEningeRR()
         {
-            float _Eng_Curr = Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.M0A].Values[Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.M0A].Values.Length - 1].Value; //A
-            float _Eng_Volt = Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.M0V].Values[Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.M0V].Values.Length - 1].Value; //V
-            float _Eng_Temp = Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.M0T].Values[Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.M0T].Values.Length - 1].Value; //C
+            float _Eng_Curr = Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.M0A].Values[Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.M3A].Values.Length - 1].Value; //A
+            float _Eng_Volt = Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.M0V].Values[Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.M3V].Values.Length - 1].Value; //V
+            float _Eng_Temp = Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.M0T].Values[Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.M3T].Values.Length - 1].Value; //C
             
             TextView Eng_Curr = FindViewById<TextView>(Resource.Id.EngRR1);
             TextView Eng_Volt = FindViewById<TextView>(Resource.Id.EngRR2);
             TextView Eng_Temp = FindViewById<TextView>(Resource.Id.EngRR3);
-            RunOnUiThread(() => Eng_Curr.Text = _Eng_Curr + "A");
-            RunOnUiThread(() => Eng_Volt.Text = _Eng_Volt + "V");
-            RunOnUiThread(() => Eng_Temp.Text = _Eng_Temp + "C");
+            RunOnUiThread(() => Eng_Curr.Text = _Eng_Curr + Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.M3A].Unity);
+            RunOnUiThread(() => Eng_Volt.Text = _Eng_Volt + Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.M3V].Unity);
+            RunOnUiThread(() => Eng_Temp.Text = _Eng_Temp + Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.M3T].Unity);
         }//end method UpdateEngineRR
 
         /// <summary>
@@ -439,9 +439,9 @@ namespace OML_App
             TextView Accu_Curr = FindViewById<TextView>(Resource.Id.Accu1Curr);
             TextView Accu_Volt = FindViewById<TextView>(Resource.Id.Accu1Voltage);
             TextView Accu_Temp = FindViewById<TextView>(Resource.Id.Accu1Temp);
-            RunOnUiThread(() => Accu_Curr.Text = _Accu_Curr + "A");
-            RunOnUiThread(() => Accu_Volt.Text = _Accu_Volt + "V");
-            RunOnUiThread(() => Accu_Temp.Text = _Accu_Temp + "C");
+            RunOnUiThread(() => Accu_Curr.Text = _Accu_Curr + Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.A0A].Unity);
+            RunOnUiThread(() => Accu_Volt.Text = _Accu_Volt + Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.A0V].Unity);
+            RunOnUiThread(() => Accu_Temp.Text = _Accu_Temp + Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.A0T].Unity);
         }//end method UpdateBattery1
 
         /// <summary>
@@ -456,9 +456,9 @@ namespace OML_App
             TextView Accu_Curr = FindViewById<TextView>(Resource.Id.Accu2Curr);
             TextView Accu_Volt = FindViewById<TextView>(Resource.Id.Accu2Voltage);
             TextView Accu_Temp = FindViewById<TextView>(Resource.Id.Accu2Temp);
-            RunOnUiThread(() => Accu_Curr.Text = _Accu_Curr + "A");
-            RunOnUiThread(() => Accu_Volt.Text = _Accu_Volt + "V");
-            RunOnUiThread(() => Accu_Temp.Text = _Accu_Temp + "C");
+            RunOnUiThread(() => Accu_Curr.Text = _Accu_Curr + Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.A1A].Unity);
+            RunOnUiThread(() => Accu_Volt.Text = _Accu_Volt + Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.A1V].Unity);
+            RunOnUiThread(() => Accu_Temp.Text = _Accu_Temp + Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.A1T].Unity);
         }//end method UpdateBattery2
 
         #endregion

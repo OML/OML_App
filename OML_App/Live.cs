@@ -156,6 +156,7 @@ namespace OML_App
         {
             //Get all the info
             string ip = ipaddress.Text;
+            Settings_Singleton.Instance.IpAdress = ipaddress.Text;
             int portnr = Convert.ToInt16(port.Text);
 
             //Start the timer ( to time Timeouts )

@@ -23,6 +23,7 @@ namespace OML_App.Setting
         public List<OML_App.Data.Session> _Session = new List<OML_App.Data.Session>();
         public int TCP_Thershold = 2000;//Thershold Rate TCP
         public int TCP_UpdateRate = 5;//Update Rate TCP
+        public int TCP_TimeoutTime = 100;
         public TCPClient TCP_Current; //TCP Carmen
         public bool TCP_View_State = false;
         public bool TCP_View_IsServer = false;
