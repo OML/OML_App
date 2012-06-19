@@ -51,18 +51,18 @@ namespace OML_App
             if (Settings_Singleton.Instance.TCP_View_State)
             {
                 //graphview
-                textonoff.Text = "Online";
-                textonoff.SetTextColor(Color.Green);
+                RunOnUiThread(() =>textonoff.Text = "Online");
+                RunOnUiThread(() =>textonoff.SetTextColor(Color.Green));
 
-                spectate.Visibility = ViewStates.Visible;
+                RunOnUiThread(() =>spectate.Visibility = ViewStates.Visible);
             }
             else
             {
                 //graphview
-                textonoff.Text = "Offline";
-                textonoff.SetTextColor(Color.Red);
+                RunOnUiThread(() =>textonoff.Text = "Offline");
+                RunOnUiThread(() =>textonoff.SetTextColor(Color.Red));
 
-                spectate.Visibility = ViewStates.Invisible;
+                RunOnUiThread(() =>spectate.Visibility = ViewStates.Invisible);
             }
         }
 

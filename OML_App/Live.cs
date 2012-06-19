@@ -16,6 +16,7 @@ using System.Threading;
 using System.Diagnostics;
 using Android.Views.InputMethods;
 using Android.Content.PM;
+using System.Net;
 
 
 namespace OML_App
@@ -128,7 +129,15 @@ namespace OML_App
 
 
                 //Get Ipadress and Port                
-                if (port.Text == "")
+                if (!IsValidIP(ipaddress.Text))
+                {
+                    //Display Diaglog box , Needs a valid port number!                    
+                    //Display Dialog
+                    DisplayDialogOkey();
+                    //Okey button only!
+                    dialogTxt.Text = "In-valid ip number";
+                }
+                else if (!IsValidPort(port.Text))
                 {
                     //Display Diaglog box , Needs a valid port number!                    
                     //Display Dialog
@@ -140,16 +149,79 @@ namespace OML_App
                 {
                     //Start the Connection in a different Thread! (so you can still control all the buttons)
                     connectThread = new Thread(new ThreadStart(Connect));
-                    connectThread.Start();                    
+                    connectThread.Start();
 
                     //Start the Update Dialog to wait for the connection!
                     updateDialog = new Thread(new ThreadStart(WaitForConnection)); //Will be started by the ConnectThread
-                    
 
                     //Open Connect Dialog
                     DisplayDialogCancel();
                 }
             }
+        }
+        
+
+        //<summary>
+        //method to validate an IP address using
+        //the TryParse Method of the IPAddress class
+        //</summary>
+        //<param name="addr">address to validate</param>
+        //<returns></returns>
+        public bool IsValidIP(string addr)
+        {
+            //create an IPAddress variable, TryParse
+            //requires an "out" value that is of
+            //the type IPAddress
+            IPAddress ip;
+            //boolean variable to hold the status
+            bool valid = false;
+            //check to make sure an ip address was provided
+            if (string.IsNullOrEmpty(addr))
+            {
+                //address wasnt provided so return false
+                valid = false;
+            }
+            else
+            {
+                //use TryParse to see if this is a 
+                //valid ip address. TryParse returns a
+                //boolean based on the validity of the
+                //provided address, so assign that value
+                //to our boolean variable
+                valid = IPAddress.TryParse(addr, out ip);
+            }
+            //return the value
+            return valid;
+        }
+
+        //<summary>
+        //method to validate an Port number using
+        //the TryParse Method of the Int class
+        //</summary>
+        //<param name="port">address to validate</param>
+        //<returns></returns>
+        public bool IsValidPort(string port)
+        {            
+            //boolean variable to hold the status
+            bool valid = false;
+            //check to make sure a port was provided
+            if (string.IsNullOrEmpty(port))
+            {
+                //port wasnt provided so return false
+                valid = false;
+            }
+            else
+            {
+                //use TryParse to see if this is a 
+                //valid ip address. TryParse returns a
+                //boolean based on the validity of the
+                //provided port, so assign that value
+                //to our boolean variable
+                int isNumber;
+                valid = int.TryParse(port, out isNumber);
+            }
+            //return the value
+            return valid;
         }
 
         private void Connect()
