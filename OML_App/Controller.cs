@@ -86,6 +86,9 @@ namespace OML_App
             //set the activeIndex to 0
             activeIndex = 0;
 
+            //set grabber off (also reinitialisation of the grabber)
+            Send_Singleton.Instance.releaseRing = 0;
+
             // Create your application here
             SetContentView(Resource.Layout.Controller);
 
@@ -296,7 +299,7 @@ namespace OML_App
                 okButton.SetBackgroundResource(Resource.Drawable.okbutton_pressed);
                 
                 //set bool true to get carmen to release the ring
-                Send_Singleton.Instance.releaseRing = true;
+                Send_Singleton.Instance.releaseRing = 1;
 
                 SetContentView(Resource.Layout.Controller);
                 this.OnCreate(bundle);

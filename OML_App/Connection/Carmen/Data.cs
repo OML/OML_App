@@ -158,6 +158,7 @@ namespace OML_App.Connection
             sync.engine_3 = Convert.ToSByte(Send_Singleton.Instance.engine3);
             //sync.engines = 5;
             sync.sound = Convert.ToByte(Send_Singleton.Instance.sound);
+            sync.IOModule = Convert.ToByte(Send_Singleton.Instance.releaseRing);
             return sync;
 
         }
@@ -179,6 +180,7 @@ namespace OML_App.Connection
             public short engine_3;
             //public Int16 engines;
             public byte sound; //sound int //playing sounds array[99] possibility of max 99 sounds SO Sounds[0] gets first sound
+            public byte IOModule;
         }
 
         #endregion

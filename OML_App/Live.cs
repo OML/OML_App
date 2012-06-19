@@ -125,7 +125,7 @@ namespace OML_App
                 Send_Singleton.Instance.Gyro = 0;
                 Send_Singleton.Instance.temperature = 1;
                 Send_Singleton.Instance.throttle = 1;
-                Send_Singleton.Instance.releaseRing = false;
+                Send_Singleton.Instance.releaseRing = 0;
 
 
                 //Get Ipadress and Port                
