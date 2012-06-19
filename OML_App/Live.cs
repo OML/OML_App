@@ -65,7 +65,6 @@ namespace OML_App
 
             connectB.Click += new EventHandler(ConnectButton);
 
-
             //Find Text Input
             ipaddress = FindViewById<EditText>(Resource.Id.ipaddress);
             ipaddress.Text = Settings_Singleton.Instance.IpAdress; //Default IP Address
@@ -125,6 +124,7 @@ namespace OML_App
                 Send_Singleton.Instance.Gyro = 1;
                 Send_Singleton.Instance.temperature = 1;
                 Send_Singleton.Instance.throttle = 1;
+                Send_Singleton.Instance.releaseRing = false;
 
 
                 //Get Ipadress and Port                

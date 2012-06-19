@@ -29,6 +29,8 @@ namespace OML_App
         Button overview;
         Button battery;
         Button camera;
+        Button orient;
+        Button release;
         Button volt0;
         Button amp0;
         Button temp0;
@@ -89,6 +91,12 @@ namespace OML_App
 
             camera = FindViewById<Button>(Resource.Id.cameraButton);
             camera.Click += new EventHandler(FlipToCamera);
+
+            orient = FindViewById<Button>(Resource.Id.orientbutton);
+            orient.Click += new EventHandler(FlipToPitch);
+
+            release = FindViewById<Button>(Resource.Id.releasebutton);
+            release.Click += new EventHandler(releaseClick);
 
             volt0 = FindViewById<Button>(Resource.Id.voltbutton0);
             volt0.Click += new EventHandler(FlipToVolt0);
@@ -189,6 +197,7 @@ namespace OML_App
             overview.SetBackgroundResource(Resource.Drawable.overviewbutton_pressed);
             battery.SetBackgroundResource(Resource.Drawable.batterybutton);
             camera.SetBackgroundResource(Resource.Drawable.camerabutton);
+            orient.SetBackgroundResource(Resource.Drawable.orientbutton);
         }//end method FlipToOverView
 
         /// <summary>
@@ -204,6 +213,7 @@ namespace OML_App
             battery.SetBackgroundResource(Resource.Drawable.batterybutton_pressed);
             overview.SetBackgroundResource(Resource.Drawable.overviewbutton);
             camera.SetBackgroundResource(Resource.Drawable.camerabutton);
+            orient.SetBackgroundResource(Resource.Drawable.orientbutton);
         }//end method FlipToBattery
 
         /// <summary>
@@ -219,7 +229,63 @@ namespace OML_App
             battery.SetBackgroundResource(Resource.Drawable.batterybutton);
             overview.SetBackgroundResource(Resource.Drawable.overviewbutton);
             camera.SetBackgroundResource(Resource.Drawable.camerabutton_pressed);
+            orient.SetBackgroundResource(Resource.Drawable.orientbutton);
         }//end method FlipToCamera
+
+        /// <summary>
+        /// Flips the Current View to Fourth
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        public void FlipToPitch(object sender, EventArgs e)
+        {
+            flipper.DisplayedChild = 4;
+
+            //change the background on click
+            orient.SetBackgroundResource(Resource.Drawable.orientbutton_pressed);
+            battery.SetBackgroundResource(Resource.Drawable.batterybutton);
+            overview.SetBackgroundResource(Resource.Drawable.overviewbutton);
+            camera.SetBackgroundResource(Resource.Drawable.camerabutton);
+        }//end method FlipToPitch
+
+        public void releaseClick(object sender, EventArgs e)
+        {
+            //create a new dialog
+            dialog = new Dialog(this);
+            dialog.SetContentView(Resource.Layout.DialogWindow);
+            dialog.SetTitle("Release ring");
+            dialog.SetCancelable(true);
+
+            //set the dialog text
+            dialogTxt = FindViewById<TextView>(Resource.Id.dialogText);
+            dialogTxt.Text = "Are you sure you want to release the ring?";
+
+            //set the buttons
+            okButton = FindViewById<Button>(Resource.Id.okButton);
+            cancelButton = FindViewById<Button>(Resource.Id.cancelButton);
+
+            //handle click events
+            okButton.Click += delegate
+            {
+                //change the background and finish the current activity (controller)
+                okButton.SetBackgroundResource(Resource.Drawable.okbutton_pressed);
+                
+                //set bool true to get carmen to release the ring
+                Send_Singleton.Instance.releaseRing = true;
+
+                //Close the dialog
+                dialog.Cancel();
+                this.OnCreate(bundle);
+            };//end delegate
+            cancelButton.Click += delegate
+            {
+                //change the background, cancel the dialog and set the contentview back to the controller
+                //so we can continue with our activity
+                cancelButton.SetBackgroundResource(Resource.Drawable.cancelbutton_pressed);
+                dialog.Cancel();
+                this.OnCreate(bundle);
+            };//end delegate
+        }//end method releaseClick
 
         #region Sub-Flips Battery
         public void FlipToVolt0(object sender, EventArgs e)

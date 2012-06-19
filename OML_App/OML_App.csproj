@@ -248,6 +248,8 @@
     <AndroidResource Include="Resources\Drawable\rollline0.png" />
     <AndroidResource Include="Resources\Drawable\rollline1.png" />
     <AndroidResource Include="Resources\Drawable\pitchbg0.png" />
+    <AndroidResource Include="Resources\Drawable\releasebutton.png" />
+    <AndroidResource Include="Resources\Drawable\releasebutton_pressed.png" />
   </ItemGroup>
   <ItemGroup>
     <WebReferences Include="Web References\" />

@@ -26,6 +26,7 @@ namespace OML_App.Data
         public int current { get; set; }
         public int temperature { get; set; }
         public int Gyro { get; set; }
+        public bool releaseRing { get; set; }
 
 
         public static Send_Singleton Instance
@@ -40,7 +41,6 @@ namespace OML_App.Data
                         {
                             instance = new Send_Singleton();
                         }
-
                     }
                 }
                 return instance;

@@ -1,0 +1,274 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{DAE481E2-0EB4-4CEB-AEAD-89CE833FE5E3}</ProjectGuid>
+    <ProjectTypeGuids>{EFBA0AD7-5A72-4C68-AF49-83D382785DCF};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>OML_App</RootNamespace>
+    <AssemblyName>OML_App</AssemblyName>
+    <FileAlignment>512</FileAlignment>
+    <AndroidApplication>true</AndroidApplication>
+    <AndroidResgenFile>Resources\Resource.Designer.cs</AndroidResgenFile>
+    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
+    <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
+    <DeployExternal>False</DeployExternal>
+    <AndroidSupportedAbis>armeabi%3barmeabi-v7a%3bx86</AndroidSupportedAbis>
+    <AndroidStoreUncompressedFileExtensions />
+    <TargetFrameworkVersion>v2.3</TargetFrameworkVersion>
+    <MandroidI18n />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AndroidUseSharedRuntime>True</AndroidUseSharedRuntime>
+    <AndroidLinkMode>None</AndroidLinkMode>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AndroidUseSharedRuntime>False</AndroidUseSharedRuntime>
+    <AndroidLinkMode>SdkOnly</AndroidLinkMode>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Mono.Android" />
+    <Reference Include="mscorlib" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Activity1.cs" />
+    <Compile Include="Connection\Carmen\Data.cs" />
+    <Compile Include="Connection\Carmen\TCPClient.cs" />
+    <Compile Include="Connection\Viewer\TCPViewer.cs" />
+    <Compile Include="Connection\Viewer\ViewerData.cs" />
+    <Compile Include="Data\Send_Singleton.cs" />
+    <Compile Include="Data\Sensor.cs" />
+    <Compile Include="Data\Session.cs" />
+    <Compile Include="Data\Receive_Singleton.cs" />
+    <Compile Include="Data\ValueData.cs" />
+<<<<<<< HEAD
+    <Compile Include="Front\Webcam\CamThread.cs" />
+    <Compile Include="Front\GaugeGraphControls.cs" />
+    <Compile Include="Front\GraphControls.cs" />
+    <Compile Include="Front\GraphValue.cs" />
+    <Compile Include="Front\PitchControls.cs" />
+    <Compile Include="Front\RollControls.cs" />
+    <Compile Include="Front\SliderControls.cs" />
+=======
+    <Compile Include="Front\Graph\GaugeGraphControls.cs" />
+    <Compile Include="Front\Graph\GraphControls.cs" />
+    <Compile Include="Front\Graph\GraphValue.cs" />
+    <Compile Include="Front\Contoller\PitchControls.cs" />
+    <Compile Include="Front\Contoller\RollControls.cs" />
+    <Compile Include="Front\Contoller\SliderControls.cs" />
+>>>>>>> c2435e62bb5638ff515b90c65cccec879b711eb1
+    <Compile Include="Live.cs" />
+    <Compile Include="Resources\Resource.Designer.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Controller.cs" />
+    <Compile Include="Setting\Settings_Singleton.cs" />
+    <Compile Include="Spectate.cs" />
+    <Compile Include="Viewer.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\AboutResources.txt" />
+    <None Include="Assets\AboutAssets.txt" />
+    <AndroidResource Include="Resources\Layout\Live.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\Layout\Controller.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\Layout\DialogWindow.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\Layout\Viewer.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\Layout\Spectate.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\Layout\Main.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\Values\Strings.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\Drawable\backbutton.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\Drawable\background.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\Drawable\bottombox.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\Drawable\connectbutton.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\Drawable\exitbutton.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\Drawable\infobutton.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\Drawable\interface02.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\Drawable\joybox.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\Drawable\joystick.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\Drawable\joystick_bg.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\Drawable\livebutton.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\Drawable\menubox.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\Drawable\menubox2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\Drawable\minibutton.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\Drawable\minibuttonpressed.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\Drawable\nhl_logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\Drawable\recordedbutton.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\Drawable\replaybutton.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\Drawable\settingsbutton.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\Drawable\sidebox.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\Drawable\sidebox2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\Drawable\sliderbig.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\Drawable\slidersbox.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\Drawable\slidersbox2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\Drawable\slidersmall.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\Drawable\startbutton.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\Drawable\pitchbox.png" />
+    <AndroidResource Include="Resources\Drawable\pitchline.png" />
+    <Content Include="Front\Webcam\common.js" />
+    <Content Include="Front\Webcam\jquery.jplayer.min.js" />
+    <Content Include="Front\Webcam\jquery.min.js" />
+    <Content Include="Front\Webcam\js.html" />
+    <Content Include="Properties\AndroidManifest.xml" />
+    <AndroidResource Include="Resources\Drawable\AchtergrondAppGrijs.png" />
+    <AndroidResource Include="Resources\Drawable\sliderBoxL.png" />
+    <AndroidResource Include="Resources\Drawable\sliderBoxR.png" />
+    <AndroidResource Include="Resources\Drawable\menubox3.png" />
+    <AndroidResource Include="Resources\Drawable\batterybutton.png" />
+    <AndroidResource Include="Resources\Drawable\batterybutton_pressed.png" />
+    <AndroidResource Include="Resources\Drawable\overviewbutton.png" />
+    <AndroidResource Include="Resources\Drawable\overviewbutton_pressed.png" />
+    <AndroidResource Include="Resources\Drawable\OverViewBG.png" />
+    <AndroidResource Include="Resources\Drawable\Icon.png" />
+    <AndroidResource Include="Resources\Drawable\slidersbox1.png" />
+    <AndroidResource Include="Resources\Drawable\slidersbox0.png" />
+    <AndroidResource Include="Resources\Drawable\background1.png" />
+    <AndroidResource Include="Resources\Drawable\Overview_Carmen.png" />
+    <AndroidResource Include="Resources\Drawable\Overview_Carmen1.png" />
+    <AndroidResource Include="Resources\Drawable\Overview_Carmen2.png" />
+    <AndroidResource Include="Resources\Drawable\Overview_Carmen3.png" />
+    <AndroidResource Include="Resources\Drawable\midbox.png" />
+    <AndroidResource Include="Resources\Drawable\camerabutton.png" />
+    <AndroidResource Include="Resources\Drawable\camerabutton_pressed.png" />
+    <AndroidResource Include="Resources\Drawable\livebutton_pressed.png" />
+    <AndroidResource Include="Resources\Drawable\recordedbutton_pressed.png" />
+    <AndroidResource Include="Resources\Drawable\settingsbutton_pressed.png" />
+    <AndroidResource Include="Resources\Drawable\connectbutton_pressed.png" />
+    <AndroidResource Include="Resources\Drawable\background2.png" />
+    <AndroidResource Include="Resources\Drawable\powerframe.png" />
+    <AndroidResource Include="Resources\Drawable\okbutton.png" />
+    <AndroidResource Include="Resources\Drawable\okbutton_pressed.png" />
+    <AndroidResource Include="Resources\Drawable\cancelbutton.png" />
+    <AndroidResource Include="Resources\Drawable\cancelbutton_pressed.png" />
+    <AndroidResource Include="Resources\Drawable\DialogInterface.png" />
+    <AndroidResource Include="Resources\Drawable\batterybar.png" />
+    <AndroidResource Include="Resources\Drawable\ampbutton_pressed.png" />
+    <AndroidResource Include="Resources\Drawable\tempbutton.png" />
+    <AndroidResource Include="Resources\Drawable\tempbutton_pressed.png" />
+    <AndroidResource Include="Resources\Drawable\voltbutton.png" />
+    <AndroidResource Include="Resources\Drawable\voltbutton_pressed.png" />
+    <AndroidResource Include="Resources\Drawable\ampbutton.png" />
+    <AndroidResource Include="Resources\Drawable\graphview.png" />
+    <AndroidResource Include="Resources\Drawable\basegraph.png" />
+    <AndroidResource Include="Resources\Drawable\spectatebutton_pressed.png" />
+    <AndroidResource Include="Resources\Drawable\controlbutton.png" />
+    <AndroidResource Include="Resources\Drawable\controlbutton_pressed.png" />
+    <AndroidResource Include="Resources\Drawable\spectatebutton.png" />
+    <AndroidResource Include="Resources\Drawable\viewbutton.png" />
+    <AndroidResource Include="Resources\Drawable\viewbutton_pressed.png" />
+    <AndroidResource Include="Resources\Drawable\spectatebg.png" />
+    <AndroidResource Include="Resources\Drawable\orientbutton.png" />
+    <AndroidResource Include="Resources\Drawable\orientbutton_pressed.png" />
+    <AndroidResource Include="Resources\Drawable\rollline.png" />
+    <AndroidResource Include="Resources\Drawable\pitchview0.png" />
+    <AndroidResource Include="Resources\Drawable\pitchline0.png" />
+    <AndroidResource Include="Resources\Drawable\rollline0.png" />
+    <AndroidResource Include="Resources\Drawable\rollline1.png" />
+    <AndroidResource Include="Resources\Drawable\pitchbg0.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferences Include="Web References\" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+     Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
