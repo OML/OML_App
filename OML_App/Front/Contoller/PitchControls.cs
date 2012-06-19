@@ -11,6 +11,8 @@ using Android.Views;
 using Android.Widget;
 using Android.Util;
 using Android.Graphics;
+using OML_App.Data;
+using OML_App.Setting;
 
 namespace OML_App
 {
@@ -56,7 +58,7 @@ namespace OML_App
                 init = false;
             }//end if
 
-            yDiff += 0.1f;
+            yDiff = Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.G0Y].Values[Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.G0Y].Values.Length].Value;
 
             m.SetTranslate(xOffCenter, yOffCenter + yDiff);
 

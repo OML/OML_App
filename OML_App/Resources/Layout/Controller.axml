@@ -289,6 +289,42 @@
               android:textColor="#000000"
               android:text="28C"
               android:textSize="18sp" />
+        <TextView
+          android:id="@+id/Throttle0"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="130dp"
+          android:layout_marginLeft="200dp"
+          android:textColor="#000000"
+          android:text="10000"
+          android:textSize="18sp"/>
+        <TextView
+          android:id="@+id/Throttle1"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="130dp"
+          android:layout_marginLeft="340dp"
+          android:textColor="#000000"
+          android:text="20000"
+          android:textSize="18sp"/>
+        <TextView
+          android:id="@+id/Throttle2"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="400dp"
+          android:layout_marginLeft="200dp"
+          android:textColor="#000000"
+          android:text="30000"
+          android:textSize="18sp"/>
+        <TextView
+          android:id="@+id/Throttle3"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="400dp"
+          android:layout_marginLeft="340dp"
+          android:textColor="#000000"
+          android:text="40000"
+          android:textSize="18sp"/>
       </RelativeLayout>
       <RelativeLayout
           android:id="@+id/battery"
@@ -453,7 +489,7 @@
         android:background="@drawable/midbox">
       </RelativeLayout>
       <RelativeLayout
-          android:id="@+id/spec_orient"
+          android:id="@+id/orient"
           android:layout_width="fill_parent"
           android:layout_height="fill_parent"
           android:background="@drawable/pitchview0">

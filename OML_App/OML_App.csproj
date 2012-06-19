@@ -66,6 +66,7 @@
     <Compile Include="Data\Session.cs" />
     <Compile Include="Data\Receive_Singleton.cs" />
     <Compile Include="Data\ValueData.cs" />
+    <Compile Include="Front\Graph\GaugeGraphControls.cs" />
     <Compile Include="Front\Webcam\CamThread.cs" />
     <Compile Include="Front\Graph\GraphControls.cs" />
     <Compile Include="Front\Graph\GraphValue.cs" />

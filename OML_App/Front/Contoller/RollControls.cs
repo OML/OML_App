@@ -12,6 +12,8 @@ using Android.Widget;
 using Android.Util;
 using Android.Graphics;
 using Android.Graphics.Drawables;
+using OML_App.Data;
+using OML_App.Setting;
 
 namespace OML_App
 {
@@ -55,7 +57,7 @@ namespace OML_App
                 init = false;
             }//end if
 
-            angle += 0.001f;
+            angle = Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.G0X].Values[Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.G0X].Values.Length].Value;
 
             m.PreRotate(angle, 120, 120);
 
