@@ -10,6 +10,8 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.Content.PM;
+using OML_App.Setting;
+using Android.Graphics;
 
 namespace OML_App
 {
@@ -19,6 +21,9 @@ namespace OML_App
         //Buttons
         Button spectate;
 
+        //TextView
+        TextView textonoff;
+        
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
@@ -28,15 +33,38 @@ namespace OML_App
 
             spectate = FindViewById<Button>(Resource.Id.spectateButton);
             spectate.Click += new EventHandler(spectateClick);
+
+            textonoff = FindViewById<TextView>(Resource.Id.onofflinetxt);
         }//end overrided method OnCreate
 
         protected override void OnResume()
         {
             base.OnResume();
-
             //reset the background on resume
             spectate.SetBackgroundResource(Resource.Drawable.spectatebutton);
+            //Update Status
+
         }//end overrided method OnResume
+
+        private void UpdateStatus()
+        {
+            if (Settings_Singleton.Instance.TCP_View_State)
+            {
+                //graphview
+                textonoff.Text = "Online";
+                textonoff.SetTextColor(Color.Green);
+
+                spectate.Visibility = ViewStates.Visible;
+            }
+            else
+            {
+                //graphview
+                textonoff.Text = "Offline";
+                textonoff.SetTextColor(Color.Red);
+
+                spectate.Visibility = ViewStates.Invisible;
+            }
+        }
 
         /// <summary>
         /// eventhandler for the spectate button click event
