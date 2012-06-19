@@ -341,6 +341,7 @@ namespace OML_App.Connection
                     }
                     DateTime this_time = DateTime.Now;
                     Console.WriteLine("succesfully synced");
+                    Console.WriteLine(pack.ToString());
                     Receive_Singleton.Instance.Current_ses.Sensors[0].AddValueDataToArray(new ValueData(pack.voltage_motor_0, this_time));
                     Receive_Singleton.Instance.Current_ses.Sensors[1].AddValueDataToArray(new ValueData(pack.voltage_motor_1, this_time));
                     Receive_Singleton.Instance.Current_ses.Sensors[2].AddValueDataToArray(new ValueData(pack.voltage_motor_2, this_time));
@@ -505,6 +506,11 @@ namespace OML_App.Connection
             public Int16 Cable_temp_1;
             public Int16 Cable_temp_2;
             public Int16 Cable_temp_3;
+
+            public override string ToString()
+            {
+                return "Pack: op:" + opcode + "time:" + timestamp + "throttle" + throttle_0 + "Current" + current_motor_0 + "Voltage" + voltage_motor_0 + "Temp" + Temp_0 + "gyro_x" + gyro_x + "throttle 3" + throttle_3 ;
+            }
         }
 
         #endregion
