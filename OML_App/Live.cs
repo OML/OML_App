@@ -145,7 +145,6 @@ namespace OML_App
                     //Start the Update Dialog to wait for the connection!
                     updateDialog = new Thread(new ThreadStart(WaitForConnection)); //Will be started by the ConnectThread
                     
-
                     //Open Connect Dialog
                     DisplayDialogCancel();
                 }
