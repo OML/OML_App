@@ -13,6 +13,11 @@ using Android.Content.PM;
 using OML_App.Front;
 using Java.IO;
 using Android.Media;
+using Java.Net;
+using Android.Graphics;
+using System.Net;
+using Android.Webkit;
+using System.Threading;
 
 namespace OML_App
 {
@@ -40,8 +45,15 @@ namespace OML_App
         //ActiveIndex for Batteryview
         public static int activeIndex;
 
-        private VideoView video;
-        string path = "rtsp://192.168.1.102:8090/webcam.asf";
+        CamThread cam;
+
+        private WebView wView;
+
+        Android.Net.Uri uri = Android.Net.Uri.Parse("http://192.168.1.102:8090/webcam.asf");
+        string path = "file:///sdcard/jsfs.html";
+
+        string path1 = "http://commonsware.com/misc/test2.3gp";
+        string path2 = "http://commonsware.com/misc/test.mp4";
 
         protected override void OnCreate(Bundle bundle)
         {
@@ -49,10 +61,9 @@ namespace OML_App
 
             SetContentView(Resource.Layout.Spectate);
 
-            video = FindViewById<VideoView>(Resource.Id.vidview);
+            wView = FindViewById<WebView>(Resource.Id.vidview);
 
-            video.SetVideoPath(path);
-            video.SetMediaController(new MediaController(this));
+            cam = new CamThread(wView,path);
 
             //set the activeIndex to 0
             activeIndex = 0;
@@ -111,7 +122,7 @@ namespace OML_App
             camera.SetBackgroundResource(Resource.Drawable.camerabutton);
             orient.SetBackgroundResource(Resource.Drawable.orientbutton);
 
-            video.StopPlayback();
+            cam.stopCamera();
         }//end method FlipToOverView
 
         /// <summary>
@@ -129,7 +140,7 @@ namespace OML_App
             camera.SetBackgroundResource(Resource.Drawable.camerabutton);
             orient.SetBackgroundResource(Resource.Drawable.orientbutton);
 
-            video.StopPlayback();
+            cam.stopCamera();
         }//end method FlipToBattery
 
         /// <summary>
@@ -147,7 +158,7 @@ namespace OML_App
             camera.SetBackgroundResource(Resource.Drawable.camerabutton_pressed);
             orient.SetBackgroundResource(Resource.Drawable.orientbutton);
 
-            video.Start();
+            cam.startCamera();
         }//end method FlipToCamera
 
         /// <summary>
@@ -165,7 +176,7 @@ namespace OML_App
             overview.SetBackgroundResource(Resource.Drawable.overviewbutton);
             camera.SetBackgroundResource(Resource.Drawable.camerabutton);
 
-            video.StopPlayback();
+            cam.stopCamera();
         }//end method FlipToPitch
 
         #region Sub-Flips Battery
@@ -266,6 +277,8 @@ namespace OML_App
         }//end method FlipToTemp1
 
         #endregion
+
         #endregion
+
     }//end class Spectate
 }//end namespace OML_App

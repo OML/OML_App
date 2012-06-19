@@ -123,8 +123,8 @@ namespace OML_App
 
             if (_touchingPoint.Y > 189)
                 _touchingPoint.Y = 189;
-		
-		    //determine the percentage of power forward/backward
+
+            //determine the percentage of power forward/backward
             //-83 < 0 > 83
             _power = Convert.ToInt32((_touchingPoint.Y - 13) - 88);
 

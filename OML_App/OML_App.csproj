@@ -19,7 +19,7 @@
     <DeployExternal>False</DeployExternal>
     <AndroidSupportedAbis>armeabi%3barmeabi-v7a%3bx86</AndroidSupportedAbis>
     <AndroidStoreUncompressedFileExtensions />
-    <TargetFrameworkVersion>v3.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v2.3</TargetFrameworkVersion>
     <MandroidI18n />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -66,6 +66,7 @@
     <Compile Include="Data\Session.cs" />
     <Compile Include="Data\Singleton.cs" />
     <Compile Include="Data\ValueData.cs" />
+    <Compile Include="Front\Webcam\CamThread.cs" />
     <Compile Include="Front\GaugeGraphControls.cs" />
     <Compile Include="Front\GraphControls.cs" />
     <Compile Include="Front\GraphValue.cs" />
@@ -188,6 +189,10 @@
   <ItemGroup>
     <AndroidResource Include="Resources\Drawable\pitchbox.png" />
     <AndroidResource Include="Resources\Drawable\pitchline.png" />
+    <Content Include="Front\Webcam\common.js" />
+    <Content Include="Front\Webcam\jquery.jplayer.min.js" />
+    <Content Include="Front\Webcam\jquery.min.js" />
+    <Content Include="Front\Webcam\js.html" />
     <Content Include="Properties\AndroidManifest.xml" />
     <AndroidResource Include="Resources\Drawable\AchtergrondAppGrijs.png" />
     <AndroidResource Include="Resources\Drawable\sliderBoxL.png" />
