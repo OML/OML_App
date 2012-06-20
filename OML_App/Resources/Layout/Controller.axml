@@ -487,6 +487,10 @@
         android:layout_width="640dp"
         android:layout_height="520dp"
         android:background="@drawable/midbox">
+        <WebView
+          android:id="@+id/vidview"
+          android:layout_width="fill_parent"
+          android:layout_height="fill_parent"/>
       </RelativeLayout>
       <RelativeLayout
           android:id="@+id/orient"

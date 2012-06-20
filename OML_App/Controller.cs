@@ -14,6 +14,7 @@ using Android.Graphics.Drawables;
 using OML_App.Data;
 using OML_App.Setting;
 using System.Threading;
+using Android.Webkit;
 
 namespace OML_App
 {
@@ -69,6 +70,9 @@ namespace OML_App
 
         //ActiveIndex for Batteryview
         public static int activeIndex { get; set; }
+        //webview and path to our camera feed
+        private WebView wView;
+        string path = "http://192.168.1.107:8090/webcam.mjpeg";
 
         #endregion
 
@@ -91,6 +95,9 @@ namespace OML_App
 
             // Create your application here
             SetContentView(Resource.Layout.Controller);
+
+            //set webview
+            wView = FindViewById<WebView>(Resource.Id.vidview);
 
             //midbox viewflipper
             flipper = FindViewById<ViewFlipper>(Resource.Id.flipper);
@@ -220,6 +227,8 @@ namespace OML_App
             battery.SetBackgroundResource(Resource.Drawable.batterybutton);
             camera.SetBackgroundResource(Resource.Drawable.camerabutton);
             orient.SetBackgroundResource(Resource.Drawable.orientbutton);
+
+            wView.StopLoading();
         }//end method FlipToOverView
 
         /// <summary>
@@ -236,6 +245,8 @@ namespace OML_App
             overview.SetBackgroundResource(Resource.Drawable.overviewbutton);
             camera.SetBackgroundResource(Resource.Drawable.camerabutton);
             orient.SetBackgroundResource(Resource.Drawable.orientbutton);
+
+            wView.StopLoading();
         }//end method FlipToBattery
 
         /// <summary>
@@ -252,6 +263,9 @@ namespace OML_App
             overview.SetBackgroundResource(Resource.Drawable.overviewbutton);
             camera.SetBackgroundResource(Resource.Drawable.camerabutton_pressed);
             orient.SetBackgroundResource(Resource.Drawable.orientbutton);
+
+            wView.LoadUrl(path);
+            wView.RequestFocus();
         }//end method FlipToCamera
 
         /// <summary>
@@ -268,11 +282,14 @@ namespace OML_App
             battery.SetBackgroundResource(Resource.Drawable.batterybutton);
             overview.SetBackgroundResource(Resource.Drawable.overviewbutton);
             camera.SetBackgroundResource(Resource.Drawable.camerabutton);
+
+            wView.StopLoading();
         }//end method FlipToPitch
 
         public void releaseClick(object sender, EventArgs e)
         {
             updateThread.Abort();
+            wView.StopLoading();
 
             //set the content view to the dialogwindow content
             //outside this contentview we are unable to find our resources

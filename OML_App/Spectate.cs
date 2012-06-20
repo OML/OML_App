@@ -45,13 +45,12 @@ namespace OML_App
         //ActiveIndex for Batteryview
         public static int activeIndex;
 
+        //webview and path to our camera feed
         private WebView wView;
+        string path = "http://192.168.1.107:8090/webcam.mjpeg";
 
-        Android.Net.Uri uri = Android.Net.Uri.Parse("http://192.168.1.102:8090/webcam.asf");
-        string path = "file:///sdcard/jsfs.html";
-
-        string path1 = "http://commonsware.com/misc/test2.3gp";
-        string path2 = "http://commonsware.com/misc/test.mp4";
+        //string path1 = "http://commonsware.com/misc/test2.3gp";
+        //string path2 = "http://commonsware.com/misc/test.mp4";
 
         protected override void OnCreate(Bundle bundle)
         {
@@ -117,6 +116,8 @@ namespace OML_App
             battery.SetBackgroundResource(Resource.Drawable.batterybutton);
             camera.SetBackgroundResource(Resource.Drawable.camerabutton);
             orient.SetBackgroundResource(Resource.Drawable.orientbutton);
+
+            wView.StopLoading();
         }//end method FlipToOverView
 
         /// <summary>
@@ -133,6 +134,8 @@ namespace OML_App
             overview.SetBackgroundResource(Resource.Drawable.overviewbutton);
             camera.SetBackgroundResource(Resource.Drawable.camerabutton);
             orient.SetBackgroundResource(Resource.Drawable.orientbutton);
+
+            wView.StopLoading();
         }//end method FlipToBattery
 
         /// <summary>
@@ -149,6 +152,9 @@ namespace OML_App
             overview.SetBackgroundResource(Resource.Drawable.overviewbutton);
             camera.SetBackgroundResource(Resource.Drawable.camerabutton_pressed);
             orient.SetBackgroundResource(Resource.Drawable.orientbutton);
+
+            wView.LoadUrl(path);
+            wView.RequestFocus();
         }//end method FlipToCamera
 
         /// <summary>
@@ -165,6 +171,8 @@ namespace OML_App
             battery.SetBackgroundResource(Resource.Drawable.batterybutton);
             overview.SetBackgroundResource(Resource.Drawable.overviewbutton);
             camera.SetBackgroundResource(Resource.Drawable.camerabutton);
+
+            wView.StopLoading();
         }//end method FlipToPitch
 
         #region Sub-Flips Battery
