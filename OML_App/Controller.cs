@@ -33,7 +33,7 @@ namespace OML_App
         Button camera;
         Button orient;
         Button release;
-        Button audio;
+        Button extra;
 
         //battery buttons
         Button volt0;
@@ -175,8 +175,8 @@ namespace OML_App
 
             #region Eventhandlers + Textviews audio buttons
 
-            audio = FindViewById<Button>(Resource.Id.audiobutton);
-            audio.Click += new EventHandler(audioClick);
+            extra = FindViewById<Button>(Resource.Id.extrabutton);
+            extra.Click += new EventHandler(extraClick);
 
             atv1 = FindViewById<TextView>(Resource.Id.aTxt1);
             atv1.Text = Receive_Singleton.Instance.Track1;
@@ -324,7 +324,7 @@ namespace OML_App
             battery.SetBackgroundResource(Resource.Drawable.batterybutton);
             camera.SetBackgroundResource(Resource.Drawable.camerabutton);
             orient.SetBackgroundResource(Resource.Drawable.orientbutton);
-            audio.SetBackgroundResource(Resource.Drawable.audiobutton);
+            extra.SetBackgroundResource(Resource.Drawable.extrabutton);
         }//end method FlipToOverView
 
         /// <summary>
@@ -341,7 +341,7 @@ namespace OML_App
             overview.SetBackgroundResource(Resource.Drawable.overviewbutton);
             camera.SetBackgroundResource(Resource.Drawable.camerabutton);
             orient.SetBackgroundResource(Resource.Drawable.orientbutton);
-            audio.SetBackgroundResource(Resource.Drawable.audiobutton);
+            extra.SetBackgroundResource(Resource.Drawable.extrabutton);
         }//end method FlipToBattery
 
         /// <summary>
@@ -358,7 +358,7 @@ namespace OML_App
             overview.SetBackgroundResource(Resource.Drawable.overviewbutton);
             camera.SetBackgroundResource(Resource.Drawable.camerabutton_pressed);
             orient.SetBackgroundResource(Resource.Drawable.orientbutton);
-            audio.SetBackgroundResource(Resource.Drawable.audiobutton);
+            extra.SetBackgroundResource(Resource.Drawable.extrabutton);
 
             wView.LoadUrl(path);
             wView.RequestFocus();
@@ -378,7 +378,7 @@ namespace OML_App
             battery.SetBackgroundResource(Resource.Drawable.batterybutton);
             overview.SetBackgroundResource(Resource.Drawable.overviewbutton);
             camera.SetBackgroundResource(Resource.Drawable.camerabutton);
-            audio.SetBackgroundResource(Resource.Drawable.audiobutton);
+            extra.SetBackgroundResource(Resource.Drawable.extrabutton);
         }//end method FlipToPitch
 
         /// <summary>
@@ -388,6 +388,9 @@ namespace OML_App
         /// <param name="e"></param>
         public void releaseClick(object sender, EventArgs e)
         {
+            //set the background
+            release.SetBackgroundResource(Resource.Drawable.releasebutton_pressed);
+
             updateThread.Abort();
             wView.StopLoading();
 
@@ -438,7 +441,7 @@ namespace OML_App
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        public void audioClick(object sender, EventArgs e)
+        public void extraClick(object sender, EventArgs e)
         {
             flipper.DisplayedChild = 5;
 
@@ -447,7 +450,7 @@ namespace OML_App
             battery.SetBackgroundResource(Resource.Drawable.batterybutton);
             overview.SetBackgroundResource(Resource.Drawable.overviewbutton);
             camera.SetBackgroundResource(Resource.Drawable.camerabutton);
-            audio.SetBackgroundResource(Resource.Drawable.audiobutton_pressed);
+            extra.SetBackgroundResource(Resource.Drawable.extrabutton_pressed);
         }//end method audioClick
 
         #endregion

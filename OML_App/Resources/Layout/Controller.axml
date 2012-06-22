@@ -35,12 +35,12 @@
         android:layout_marginTop="8dp"
         android:background="@drawable/releasebutton"/>
       <Button
-        android:id="@+id/audiobutton"
+        android:id="@+id/extrabutton"
         android:layout_width="142dp"
         android:layout_height="55dp"
         android:layout_below="@id/releasebutton"
         android:layout_marginTop="8dp"
-        android:background="@drawable/audiobutton"/>
+        android:background="@drawable/extrabutton"/>
     </RelativeLayout>
     <!-- SliderBox layout, contains sliders to control CARMEN -->
     <RelativeLayout
@@ -589,12 +589,23 @@
         </RelativeLayout>
       </RelativeLayout>
       <RelativeLayout
-        android:id="@+id/audiobox"
+        android:id="@+id/extrabox"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:paddingLeft="50dp"
         android:paddingTop="40dp"
-        android:background="@drawable/audiobox">
+        android:background="@drawable/extrabox">
+        <RelativeLayout
+          android:id="@+id/rgbsliderframe"
+          android:layout_width="44dp"
+          android:layout_height="370dp"
+          android:layout_marginLeft="495dp"
+          android:layout_marginTop="38dp">
+          <oml_app.audioControls
+            android:id="@+id/audioControls"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"/>
+        </RelativeLayout>
         <Button
           android:id="@+id/aButton1"
           android:layout_width="127dp"
@@ -602,7 +613,7 @@
           android:background="@drawable/audiobutton1"/>
         <TextView
           android:id="@+id/aTxt1"
-          android:layout_width="370dp"
+          android:layout_width="325dp"
           android:layout_height="38dp"
           android:layout_toRightOf="@id/aButton1"
           android:layout_marginLeft="42dp"
@@ -619,7 +630,7 @@
           android:background="@drawable/audiobutton2"/>
         <TextView
           android:id="@+id/aTxt2"
-          android:layout_width="370dp"
+          android:layout_width="325dp"
           android:layout_height="38dp"
           android:layout_toRightOf="@id/aButton2"
           android:layout_below="@id/aButton1"
@@ -638,7 +649,7 @@
           android:background="@drawable/audiobutton3"/>
         <TextView
           android:id="@+id/aTxt3"
-          android:layout_width="370dp"
+          android:layout_width="325dp"
           android:layout_height="38dp"
           android:layout_toRightOf="@id/aButton3"
           android:layout_below="@id/aButton2"
@@ -657,7 +668,7 @@
           android:background="@drawable/audiobutton4"/>
         <TextView
           android:id="@+id/aTxt4"
-          android:layout_width="370dp"
+          android:layout_width="325dp"
           android:layout_height="38dp"
           android:layout_toRightOf="@id/aButton4"
           android:layout_below="@id/aButton3"
@@ -676,7 +687,7 @@
           android:background="@drawable/audiobutton5"/>
         <TextView
           android:id="@+id/aTxt5"
-          android:layout_width="370dp"
+          android:layout_width="325dp"
           android:layout_height="38dp"
           android:layout_toRightOf="@id/aButton5"
           android:layout_below="@id/aButton4"
@@ -695,7 +706,7 @@
           android:background="@drawable/audiobutton6"/>
         <TextView
           android:id="@+id/aTxt6"
-          android:layout_width="370dp"
+          android:layout_width="325dp"
           android:layout_height="38dp"
           android:layout_toRightOf="@id/aButton6"
           android:layout_below="@id/aButton5"
@@ -714,7 +725,7 @@
           android:background="@drawable/audiobutton7"/>
         <TextView
           android:id="@+id/aTxt7"
-          android:layout_width="370dp"
+          android:layout_width="325dp"
           android:layout_height="38dp"
           android:layout_toRightOf="@id/aButton7"
           android:layout_below="@id/aButton6"
@@ -733,7 +744,7 @@
           android:background="@drawable/audiobutton8"/>
         <TextView
           android:id="@+id/aTxt8"
-          android:layout_width="370dp"
+          android:layout_width="325dp"
           android:layout_height="38dp"
           android:layout_toRightOf="@id/aButton8"
           android:layout_below="@id/aButton7"
@@ -752,7 +763,7 @@
           android:background="@drawable/audiobutton9"/>
         <TextView
           android:id="@+id/aTxt9"
-          android:layout_width="370dp"
+          android:layout_width="325dp"
           android:layout_height="38dp"
           android:layout_toRightOf="@id/aButton9"
           android:layout_below="@id/aButton8"
