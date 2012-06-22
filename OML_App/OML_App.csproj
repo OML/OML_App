@@ -250,6 +250,29 @@
     <AndroidResource Include="Resources\Drawable\pitchbg0.png" />
     <AndroidResource Include="Resources\Drawable\releasebutton.png" />
     <AndroidResource Include="Resources\Drawable\releasebutton_pressed.png" />
+    <AndroidResource Include="Resources\Drawable\audiobutton1.png" />
+    <AndroidResource Include="Resources\Drawable\audiobutton1_pressed.png" />
+    <AndroidResource Include="Resources\Drawable\audiobutton2.png" />
+    <AndroidResource Include="Resources\Drawable\audiobutton2_pressed.png" />
+    <AndroidResource Include="Resources\Drawable\audiobutton3.png" />
+    <AndroidResource Include="Resources\Drawable\audiobutton3_pressed.png" />
+    <AndroidResource Include="Resources\Drawable\audiobutton4.png" />
+    <AndroidResource Include="Resources\Drawable\audiobutton4_pressed.png" />
+    <AndroidResource Include="Resources\Drawable\audiobutton5.png" />
+    <AndroidResource Include="Resources\Drawable\audiobutton5_pressed.png" />
+    <AndroidResource Include="Resources\Drawable\audiobutton6.png" />
+    <AndroidResource Include="Resources\Drawable\audiobutton7.png" />
+    <AndroidResource Include="Resources\Drawable\audiobutton7_pressed.png" />
+    <AndroidResource Include="Resources\Drawable\audiobutton8.png" />
+    <AndroidResource Include="Resources\Drawable\audiobutton8_pressed.png" />
+    <AndroidResource Include="Resources\Drawable\audiobutton9.png" />
+    <AndroidResource Include="Resources\Drawable\audiobutton9_pressed.png" />
+    <AndroidResource Include="Resources\Drawable\audiobutton10.png" />
+    <AndroidResource Include="Resources\Drawable\audiobutton10_pressed.png" />
+    <AndroidResource Include="Resources\Drawable\audiobutton.png" />
+    <AndroidResource Include="Resources\Drawable\audiobutton_pressed.png" />
+    <AndroidResource Include="Resources\Drawable\audiobox.png" />
+    <AndroidResource Include="Resources\Drawable\audiobutton6_pressed.png" />
   </ItemGroup>
   <ItemGroup>
     <WebReferences Include="Web References\" />

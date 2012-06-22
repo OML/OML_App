@@ -34,6 +34,13 @@
         android:layout_below="@id/orientbutton"
         android:layout_marginTop="8dp"
         android:background="@drawable/releasebutton"/>
+      <Button
+        android:id="@+id/audiobutton"
+        android:layout_width="142dp"
+        android:layout_height="55dp"
+        android:layout_below="@id/releasebutton"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/audiobutton"/>
     </RelativeLayout>
     <!-- SliderBox layout, contains sliders to control CARMEN -->
     <RelativeLayout
@@ -437,7 +444,7 @@
           android:layout_height="340dp"
           android:layout_below="@id/batterybar"
           android:layout_marginTop="8dp"
-          android:background="@drawable/graphview">
+          android:background="@drawable/basegraph">
           <TextView
             android:id="@+id/maxY"
             android:layout_width="35dp"
@@ -580,6 +587,181 @@
               android:background="@drawable/rollline0"/>
           </RelativeLayout>
         </RelativeLayout>
+      </RelativeLayout>
+      <RelativeLayout
+        android:id="@+id/audiobox"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:paddingLeft="50dp"
+        android:paddingTop="40dp"
+        android:background="@drawable/audiobox">
+        <Button
+          android:id="@+id/aButton1"
+          android:layout_width="127dp"
+          android:layout_height="38dp"
+          android:background="@drawable/audiobutton1"/>
+        <TextView
+          android:id="@+id/aTxt1"
+          android:layout_width="370dp"
+          android:layout_height="38dp"
+          android:layout_toRightOf="@id/aButton1"
+          android:layout_marginLeft="42dp"
+          android:gravity="center"
+          android:textSize="15dp"
+          android:textColor="#000000"
+          android:text="test artist - test song"/>
+        <Button
+          android:id="@+id/aButton2"
+          android:layout_width="127dp"
+          android:layout_height="38dp"
+          android:layout_below="@id/aButton1"
+          android:layout_marginTop="10dp"
+          android:background="@drawable/audiobutton2"/>
+        <TextView
+          android:id="@+id/aTxt2"
+          android:layout_width="370dp"
+          android:layout_height="38dp"
+          android:layout_toRightOf="@id/aButton2"
+          android:layout_below="@id/aButton1"
+          android:layout_marginTop="10dp"
+          android:layout_marginLeft="42dp"
+          android:gravity="center"
+          android:textSize="15dp"
+          android:textColor="#000000"
+          android:text="test artist - test song"/>
+        <Button
+          android:id="@+id/aButton3"
+          android:layout_width="127dp"
+          android:layout_height="38dp"
+          android:layout_below="@id/aButton2"
+          android:layout_marginTop="10dp"
+          android:background="@drawable/audiobutton3"/>
+        <TextView
+          android:id="@+id/aTxt3"
+          android:layout_width="370dp"
+          android:layout_height="38dp"
+          android:layout_toRightOf="@id/aButton3"
+          android:layout_below="@id/aButton2"
+          android:layout_marginTop="10dp"
+          android:layout_marginLeft="42dp"
+          android:gravity="center"
+          android:textSize="15dp"
+          android:textColor="#000000"
+          android:text="test artist - test song"/>
+        <Button
+          android:id="@+id/aButton4"
+          android:layout_width="127dp"
+          android:layout_height="38dp"
+          android:layout_below="@id/aButton3"
+          android:layout_marginTop="10dp"
+          android:background="@drawable/audiobutton4"/>
+        <TextView
+          android:id="@+id/aTxt4"
+          android:layout_width="370dp"
+          android:layout_height="38dp"
+          android:layout_toRightOf="@id/aButton4"
+          android:layout_below="@id/aButton3"
+          android:layout_marginTop="10dp"
+          android:layout_marginLeft="42dp"
+          android:gravity="center"
+          android:textSize="15dp"
+          android:textColor="#000000"
+          android:text="test artist - test song"/>
+        <Button
+          android:id="@+id/aButton5"
+          android:layout_width="127dp"
+          android:layout_height="38dp"
+          android:layout_below="@id/aButton4"
+          android:layout_marginTop="10dp"
+          android:background="@drawable/audiobutton5"/>
+        <TextView
+          android:id="@+id/aTxt5"
+          android:layout_width="370dp"
+          android:layout_height="38dp"
+          android:layout_toRightOf="@id/aButton5"
+          android:layout_below="@id/aButton4"
+          android:layout_marginTop="10dp"
+          android:layout_marginLeft="42dp"
+          android:gravity="center"
+          android:textSize="15dp"
+          android:textColor="#000000"
+          android:text="test artist - test song"/>
+        <Button
+          android:id="@+id/aButton6"
+          android:layout_width="127dp"
+          android:layout_height="38dp"
+          android:layout_below="@id/aButton5"
+          android:layout_marginTop="10dp"
+          android:background="@drawable/audiobutton6"/>
+        <TextView
+          android:id="@+id/aTxt6"
+          android:layout_width="370dp"
+          android:layout_height="38dp"
+          android:layout_toRightOf="@id/aButton6"
+          android:layout_below="@id/aButton5"
+          android:layout_marginTop="10dp"
+          android:layout_marginLeft="42dp"
+          android:gravity="center"
+          android:textSize="15dp"
+          android:textColor="#000000"
+          android:text="test artist - test song"/>
+        <Button
+          android:id="@+id/aButton7"
+          android:layout_width="127dp"
+          android:layout_height="38dp"
+          android:layout_below="@id/aButton6"
+          android:layout_marginTop="10dp"
+          android:background="@drawable/audiobutton7"/>
+        <TextView
+          android:id="@+id/aTxt7"
+          android:layout_width="370dp"
+          android:layout_height="38dp"
+          android:layout_toRightOf="@id/aButton7"
+          android:layout_below="@id/aButton6"
+          android:layout_marginTop="10dp"
+          android:layout_marginLeft="42dp"
+          android:gravity="center"
+          android:textSize="15dp"
+          android:textColor="#000000"
+          android:text="test artist - test song"/>
+        <Button
+          android:id="@+id/aButton8"
+          android:layout_width="127dp"
+          android:layout_height="38dp"
+          android:layout_below="@id/aButton7"
+          android:layout_marginTop="10dp"
+          android:background="@drawable/audiobutton8"/>
+        <TextView
+          android:id="@+id/aTxt8"
+          android:layout_width="370dp"
+          android:layout_height="38dp"
+          android:layout_toRightOf="@id/aButton8"
+          android:layout_below="@id/aButton7"
+          android:layout_marginTop="10dp"
+          android:layout_marginLeft="42dp"
+          android:gravity="center"
+          android:textSize="15dp"
+          android:textColor="#000000"
+          android:text="test artist - test song"/>
+        <Button
+          android:id="@+id/aButton9"
+          android:layout_width="127dp"
+          android:layout_height="38dp"
+          android:layout_below="@id/aButton8"
+          android:layout_marginTop="10dp"
+          android:background="@drawable/audiobutton9"/>
+        <TextView
+          android:id="@+id/aTxt9"
+          android:layout_width="370dp"
+          android:layout_height="38dp"
+          android:layout_toRightOf="@id/aButton9"
+          android:layout_below="@id/aButton8"
+          android:layout_marginTop="10dp"
+          android:layout_marginLeft="42dp"
+          android:gravity="center"
+          android:textSize="15dp"
+          android:textColor="#000000"
+          android:text="test artist - test song"/>
       </RelativeLayout>
     </ViewFlipper>
     <!--<RelativeLayout

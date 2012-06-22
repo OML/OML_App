@@ -32,12 +32,37 @@ namespace OML_App
         Button camera;
         Button orient;
         Button release;
+        Button audio;
+
+        //battery buttons
         Button volt0;
         Button amp0;
         Button temp0;
         Button volt1;
         Button amp1;
         Button temp1;
+
+        //audio buttons
+        Button ab1;
+        Button ab2;
+        Button ab3;
+        Button ab4;
+        Button ab5;
+        Button ab6;
+        Button ab7;
+        Button ab8;
+        Button ab9;
+
+        //audio textviews
+        TextView atv1;
+        TextView atv2;
+        TextView atv3;
+        TextView atv4;
+        TextView atv5;
+        TextView atv6;
+        TextView atv7;
+        TextView atv8;
+        TextView atv9;
 
         //dialog for exit message
         Dialog dialog;
@@ -105,6 +130,8 @@ namespace OML_App
             //graphview
             graphview = FindViewById<RelativeLayout>(Resource.Id.graphview);
 
+            #region Eventhandlers control buttons
+
             //set buttons
             overview = FindViewById<Button>(Resource.Id.overviewButton);
             overview.Click += new EventHandler(FlipToOverView);
@@ -120,6 +147,10 @@ namespace OML_App
 
             release = FindViewById<Button>(Resource.Id.releasebutton);
             release.Click += new EventHandler(releaseClick);
+
+            #endregion
+
+            #region Eventhandlers battery buttons
 
             volt0 = FindViewById<Button>(Resource.Id.voltbutton0);
             volt0.Click += new EventHandler(FlipToVolt0);
@@ -138,6 +169,42 @@ namespace OML_App
 
             temp1 = FindViewById<Button>(Resource.Id.tempbutton1);
             temp1.Click += new EventHandler(FlipToTemp1);
+
+            #endregion
+
+            #region Eventhandlers audio buttons
+
+            audio = FindViewById<Button>(Resource.Id.audiobutton);
+            audio.Click += new EventHandler(audioClick);
+
+            ab1 = FindViewById<Button>(Resource.Id.aButton1);
+            ab1.Click += delegate { playTrack(1); };
+            
+            ab2 = FindViewById<Button>(Resource.Id.aButton2);
+            ab2.Click += delegate { playTrack(2); };
+
+            ab3 = FindViewById<Button>(Resource.Id.aButton3);
+            ab3.Click += delegate { playTrack(3); };
+
+            ab4 = FindViewById<Button>(Resource.Id.aButton4);
+            ab4.Click += delegate { playTrack(4); };
+
+            ab5 = FindViewById<Button>(Resource.Id.aButton5);
+            ab5.Click += delegate { playTrack(5); };
+
+            ab6 = FindViewById<Button>(Resource.Id.aButton6);
+            ab6.Click += delegate { playTrack(6); };
+
+            ab7 = FindViewById<Button>(Resource.Id.aButton7);
+            ab7.Click += delegate { playTrack(7); };
+
+            ab8 = FindViewById<Button>(Resource.Id.aButton8);
+            ab8.Click += delegate { playTrack(8); };
+
+            ab9 = FindViewById<Button>(Resource.Id.aButton9);
+            ab9.Click += delegate { playTrack(9); };
+            
+            #endregion
 
             //set throttle textviews
             Throttle0 = FindViewById<TextView>(Resource.Id.Throttle0);
@@ -212,7 +279,9 @@ namespace OML_App
 
         #endregion
 
-        #region Flippers
+        #region Flippers and sub-events (Eventhandlers)
+
+        #region Control flippers
         /// <summary>
         /// Flips the Current View to First
         /// </summary>
@@ -227,8 +296,7 @@ namespace OML_App
             battery.SetBackgroundResource(Resource.Drawable.batterybutton);
             camera.SetBackgroundResource(Resource.Drawable.camerabutton);
             orient.SetBackgroundResource(Resource.Drawable.orientbutton);
-
-            wView.StopLoading();
+            audio.SetBackgroundResource(Resource.Drawable.audiobutton);
         }//end method FlipToOverView
 
         /// <summary>
@@ -245,8 +313,7 @@ namespace OML_App
             overview.SetBackgroundResource(Resource.Drawable.overviewbutton);
             camera.SetBackgroundResource(Resource.Drawable.camerabutton);
             orient.SetBackgroundResource(Resource.Drawable.orientbutton);
-
-            wView.StopLoading();
+            audio.SetBackgroundResource(Resource.Drawable.audiobutton);
         }//end method FlipToBattery
 
         /// <summary>
@@ -263,6 +330,7 @@ namespace OML_App
             overview.SetBackgroundResource(Resource.Drawable.overviewbutton);
             camera.SetBackgroundResource(Resource.Drawable.camerabutton_pressed);
             orient.SetBackgroundResource(Resource.Drawable.orientbutton);
+            audio.SetBackgroundResource(Resource.Drawable.audiobutton);
 
             wView.LoadUrl(path);
             wView.RequestFocus();
@@ -282,10 +350,14 @@ namespace OML_App
             battery.SetBackgroundResource(Resource.Drawable.batterybutton);
             overview.SetBackgroundResource(Resource.Drawable.overviewbutton);
             camera.SetBackgroundResource(Resource.Drawable.camerabutton);
-
-            wView.StopLoading();
+            audio.SetBackgroundResource(Resource.Drawable.audiobutton);
         }//end method FlipToPitch
 
+        /// <summary>
+        /// Opens a dialog window with the choice to release the object we picked up (ring)
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         public void releaseClick(object sender, EventArgs e)
         {
             updateThread.Abort();
@@ -333,7 +405,27 @@ namespace OML_App
             };//end delegate
         }//end method releaseClick
 
-        #region Sub-Flips Battery
+        /// <summary>
+        /// Flips the current view to Fifth
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        public void audioClick(object sender, EventArgs e)
+        {
+            flipper.DisplayedChild = 5;
+
+            //change the background on click
+            orient.SetBackgroundResource(Resource.Drawable.orientbutton);
+            battery.SetBackgroundResource(Resource.Drawable.batterybutton);
+            overview.SetBackgroundResource(Resource.Drawable.overviewbutton);
+            camera.SetBackgroundResource(Resource.Drawable.camerabutton);
+            audio.SetBackgroundResource(Resource.Drawable.audiobutton_pressed);
+        }//end method audioClick
+
+        #endregion
+
+        #region Sub-Flips Battery (Eventhandlers)
+
         public void FlipToVolt0(object sender, EventArgs e)
         {
             activeIndex = 1;
@@ -429,6 +521,142 @@ namespace OML_App
             //change graphview backgroud
             graphview.SetBackgroundResource(Resource.Drawable.basegraph);
         }//end method FlipToTemp1
+
+        #endregion
+
+        #region play track (audio)
+
+        /// <summary>
+        /// Plays the track depending on the pressed button (#1-9)
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        /// <param name="btn">number #1-9</param>
+        public void playTrack(int btnIndex)
+        {
+            //switch the button index, to check which 
+            //button were dealing with and what to do..
+            switch (btnIndex)
+            {
+                case 1:
+                    //change the background drawables
+                    ab1.SetBackgroundResource(Resource.Drawable.audiobutton1_pressed);
+                    ab2.SetBackgroundResource(Resource.Drawable.audiobutton2);
+                    ab3.SetBackgroundResource(Resource.Drawable.audiobutton3);
+                    ab4.SetBackgroundResource(Resource.Drawable.audiobutton4);
+                    ab5.SetBackgroundResource(Resource.Drawable.audiobutton5);
+                    ab6.SetBackgroundResource(Resource.Drawable.audiobutton6);
+                    ab7.SetBackgroundResource(Resource.Drawable.audiobutton7);
+                    ab8.SetBackgroundResource(Resource.Drawable.audiobutton8);
+                    ab9.SetBackgroundResource(Resource.Drawable.audiobutton9);
+                    //play 1st track
+                    break;
+                case 2:
+                    //change the background drawables
+                    ab1.SetBackgroundResource(Resource.Drawable.audiobutton1);
+                    ab2.SetBackgroundResource(Resource.Drawable.audiobutton2_pressed);
+                    ab3.SetBackgroundResource(Resource.Drawable.audiobutton3);
+                    ab4.SetBackgroundResource(Resource.Drawable.audiobutton4);
+                    ab5.SetBackgroundResource(Resource.Drawable.audiobutton5);
+                    ab6.SetBackgroundResource(Resource.Drawable.audiobutton6);
+                    ab7.SetBackgroundResource(Resource.Drawable.audiobutton7);
+                    ab8.SetBackgroundResource(Resource.Drawable.audiobutton8);
+                    ab9.SetBackgroundResource(Resource.Drawable.audiobutton9);
+                    //play 2nd track
+                    break;
+                case 3:
+                    //change the background drawables
+                    ab1.SetBackgroundResource(Resource.Drawable.audiobutton1);
+                    ab2.SetBackgroundResource(Resource.Drawable.audiobutton2);
+                    ab3.SetBackgroundResource(Resource.Drawable.audiobutton3_pressed);
+                    ab4.SetBackgroundResource(Resource.Drawable.audiobutton4);
+                    ab5.SetBackgroundResource(Resource.Drawable.audiobutton5);
+                    ab6.SetBackgroundResource(Resource.Drawable.audiobutton6);
+                    ab7.SetBackgroundResource(Resource.Drawable.audiobutton7);
+                    ab8.SetBackgroundResource(Resource.Drawable.audiobutton8);
+                    ab9.SetBackgroundResource(Resource.Drawable.audiobutton9);
+                    //play 3rd track
+                    break;
+                case 4:
+                    //change the background drawables
+                    ab1.SetBackgroundResource(Resource.Drawable.audiobutton1);
+                    ab2.SetBackgroundResource(Resource.Drawable.audiobutton2);
+                    ab3.SetBackgroundResource(Resource.Drawable.audiobutton3);
+                    ab4.SetBackgroundResource(Resource.Drawable.audiobutton4_pressed);
+                    ab5.SetBackgroundResource(Resource.Drawable.audiobutton5);
+                    ab6.SetBackgroundResource(Resource.Drawable.audiobutton6);
+                    ab7.SetBackgroundResource(Resource.Drawable.audiobutton7);
+                    ab8.SetBackgroundResource(Resource.Drawable.audiobutton8);
+                    ab9.SetBackgroundResource(Resource.Drawable.audiobutton9);
+                    //play 4th track
+                    break;
+                case 5:
+                    //change the background drawables
+                    ab1.SetBackgroundResource(Resource.Drawable.audiobutton1);
+                    ab2.SetBackgroundResource(Resource.Drawable.audiobutton2);
+                    ab3.SetBackgroundResource(Resource.Drawable.audiobutton3);
+                    ab4.SetBackgroundResource(Resource.Drawable.audiobutton4);
+                    ab5.SetBackgroundResource(Resource.Drawable.audiobutton5_pressed);
+                    ab6.SetBackgroundResource(Resource.Drawable.audiobutton6);
+                    ab7.SetBackgroundResource(Resource.Drawable.audiobutton7);
+                    ab8.SetBackgroundResource(Resource.Drawable.audiobutton8);
+                    ab9.SetBackgroundResource(Resource.Drawable.audiobutton9);
+                    //play 5th track
+                    break;
+                case 6:
+                    //change the background drawables
+                    ab1.SetBackgroundResource(Resource.Drawable.audiobutton1);
+                    ab2.SetBackgroundResource(Resource.Drawable.audiobutton2);
+                    ab3.SetBackgroundResource(Resource.Drawable.audiobutton3);
+                    ab4.SetBackgroundResource(Resource.Drawable.audiobutton4);
+                    ab5.SetBackgroundResource(Resource.Drawable.audiobutton5);
+                    ab6.SetBackgroundResource(Resource.Drawable.audiobutton6_pressed);
+                    ab7.SetBackgroundResource(Resource.Drawable.audiobutton7);
+                    ab8.SetBackgroundResource(Resource.Drawable.audiobutton8);
+                    ab9.SetBackgroundResource(Resource.Drawable.audiobutton9);
+                    //play 6th track
+                    break;
+                case 7:
+                    //change the background drawables
+                    ab1.SetBackgroundResource(Resource.Drawable.audiobutton1);
+                    ab2.SetBackgroundResource(Resource.Drawable.audiobutton2);
+                    ab3.SetBackgroundResource(Resource.Drawable.audiobutton3);
+                    ab4.SetBackgroundResource(Resource.Drawable.audiobutton4);
+                    ab5.SetBackgroundResource(Resource.Drawable.audiobutton5);
+                    ab6.SetBackgroundResource(Resource.Drawable.audiobutton6);
+                    ab7.SetBackgroundResource(Resource.Drawable.audiobutton7_pressed);
+                    ab8.SetBackgroundResource(Resource.Drawable.audiobutton8);
+                    ab9.SetBackgroundResource(Resource.Drawable.audiobutton9);
+                    //play 7th track
+                    break;
+                case 8:
+                    //change the background drawables
+                    ab1.SetBackgroundResource(Resource.Drawable.audiobutton1);
+                    ab2.SetBackgroundResource(Resource.Drawable.audiobutton2);
+                    ab3.SetBackgroundResource(Resource.Drawable.audiobutton3);
+                    ab4.SetBackgroundResource(Resource.Drawable.audiobutton4);
+                    ab5.SetBackgroundResource(Resource.Drawable.audiobutton5);
+                    ab6.SetBackgroundResource(Resource.Drawable.audiobutton6);
+                    ab7.SetBackgroundResource(Resource.Drawable.audiobutton7);
+                    ab8.SetBackgroundResource(Resource.Drawable.audiobutton8_pressed);
+                    ab9.SetBackgroundResource(Resource.Drawable.audiobutton9);
+                    //play 8th track
+                    break;
+                case 9:
+                    //change the background drawables
+                    ab1.SetBackgroundResource(Resource.Drawable.audiobutton1);
+                    ab2.SetBackgroundResource(Resource.Drawable.audiobutton2);
+                    ab3.SetBackgroundResource(Resource.Drawable.audiobutton3);
+                    ab4.SetBackgroundResource(Resource.Drawable.audiobutton4);
+                    ab5.SetBackgroundResource(Resource.Drawable.audiobutton5);
+                    ab6.SetBackgroundResource(Resource.Drawable.audiobutton6);
+                    ab7.SetBackgroundResource(Resource.Drawable.audiobutton7);
+                    ab8.SetBackgroundResource(Resource.Drawable.audiobutton8);
+                    ab9.SetBackgroundResource(Resource.Drawable.audiobutton9_pressed);
+                    //play 9th track
+                    break;
+            }//end switch
+        }//end method playTrack
 
         #endregion
 
