@@ -14,6 +14,18 @@ namespace OML_App.Data
 
         private Receive_Singleton() { }
 
+
+        public string Track1 = "not available";
+        public string Track2 = "not available";
+        public string Track3 = "not available";
+        public string Track4 = "not available";
+        public string Track5 = "not available";
+        public string Track6 = "not available";
+        public string Track7 = "not available";
+        public string Track8 = "not available";
+        public string Track9 = "not available";
+        
+
         public void init()
         {
             Current_ses = new Session("OML Carmen");

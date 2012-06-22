@@ -158,6 +158,9 @@ namespace OML_App.Connection
             sync.engine_3 = Convert.ToSByte(Send_Singleton.Instance.engine3);
             //sync.engines = 5;
             sync.sound = Convert.ToByte(Send_Singleton.Instance.sound);
+            //put sound to a hold
+            if (Send_Singleton.Instance.sound != 0)
+            { Send_Singleton.Instance.sound = 0; }
             sync.IOModule = Convert.ToByte(Send_Singleton.Instance.releaseRing);
             return sync;
 
