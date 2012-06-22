@@ -23,6 +23,7 @@ namespace OML_App
     {
 
         #region Variables
+
         private ViewFlipper flipper;
         private Thread updateThread;
 
@@ -97,7 +98,7 @@ namespace OML_App
         public static int activeIndex { get; set; }
         //webview and path to our camera feed
         private WebView wView;
-        string path = "http://192.168.1.107:8090/webcam.mjpeg";
+        string path = "http://192.168.1.107:8090/js.html";
 
         #endregion
 
@@ -172,34 +173,61 @@ namespace OML_App
 
             #endregion
 
-            #region Eventhandlers audio buttons
+            #region Eventhandlers + Textviews audio buttons
 
             audio = FindViewById<Button>(Resource.Id.audiobutton);
             audio.Click += new EventHandler(audioClick);
 
+            atv1 = FindViewById<TextView>(Resource.Id.aTxt1);
+            atv1.Text = Receive_Singleton.Instance.Track1;
+
             ab1 = FindViewById<Button>(Resource.Id.aButton1);
             ab1.Click += delegate { playTrack(1); };
+
+            atv2 = FindViewById<TextView>(Resource.Id.aTxt2);
+            atv2.Text = Receive_Singleton.Instance.Track2;
             
             ab2 = FindViewById<Button>(Resource.Id.aButton2);
             ab2.Click += delegate { playTrack(2); };
 
+            atv3 = FindViewById<TextView>(Resource.Id.aTxt3);
+            atv3.Text = Receive_Singleton.Instance.Track3;
+
             ab3 = FindViewById<Button>(Resource.Id.aButton3);
             ab3.Click += delegate { playTrack(3); };
+
+            atv4 = FindViewById<TextView>(Resource.Id.aTxt4);
+            atv4.Text = Receive_Singleton.Instance.Track4;
 
             ab4 = FindViewById<Button>(Resource.Id.aButton4);
             ab4.Click += delegate { playTrack(4); };
 
+            atv5 = FindViewById<TextView>(Resource.Id.aTxt5);
+            atv5.Text = Receive_Singleton.Instance.Track5;
+
             ab5 = FindViewById<Button>(Resource.Id.aButton5);
             ab5.Click += delegate { playTrack(5); };
+
+            atv6 = FindViewById<TextView>(Resource.Id.aTxt6);
+            atv6.Text = Receive_Singleton.Instance.Track6;
 
             ab6 = FindViewById<Button>(Resource.Id.aButton6);
             ab6.Click += delegate { playTrack(6); };
 
+            atv7 = FindViewById<TextView>(Resource.Id.aTxt7);
+            atv7.Text = Receive_Singleton.Instance.Track7;
+
             ab7 = FindViewById<Button>(Resource.Id.aButton7);
             ab7.Click += delegate { playTrack(7); };
 
+            atv8 = FindViewById<TextView>(Resource.Id.aTxt8);
+            atv8.Text = Receive_Singleton.Instance.Track8;
+
             ab8 = FindViewById<Button>(Resource.Id.aButton8);
             ab8.Click += delegate { playTrack(8); };
+
+            atv9 = FindViewById<TextView>(Resource.Id.aTxt9);
+            atv9.Text = Receive_Singleton.Instance.Track9;
 
             ab9 = FindViewById<Button>(Resource.Id.aButton9);
             ab9.Click += delegate { playTrack(9); };
@@ -550,6 +578,7 @@ namespace OML_App
                     ab8.SetBackgroundResource(Resource.Drawable.audiobutton8);
                     ab9.SetBackgroundResource(Resource.Drawable.audiobutton9);
                     //play 1st track
+                    Send_Singleton.Instance.sound = 1;
                     break;
                 case 2:
                     //change the background drawables
@@ -563,6 +592,7 @@ namespace OML_App
                     ab8.SetBackgroundResource(Resource.Drawable.audiobutton8);
                     ab9.SetBackgroundResource(Resource.Drawable.audiobutton9);
                     //play 2nd track
+                    Send_Singleton.Instance.sound = 2;
                     break;
                 case 3:
                     //change the background drawables
@@ -576,6 +606,7 @@ namespace OML_App
                     ab8.SetBackgroundResource(Resource.Drawable.audiobutton8);
                     ab9.SetBackgroundResource(Resource.Drawable.audiobutton9);
                     //play 3rd track
+                    Send_Singleton.Instance.sound = 3;
                     break;
                 case 4:
                     //change the background drawables
@@ -589,6 +620,7 @@ namespace OML_App
                     ab8.SetBackgroundResource(Resource.Drawable.audiobutton8);
                     ab9.SetBackgroundResource(Resource.Drawable.audiobutton9);
                     //play 4th track
+                    Send_Singleton.Instance.sound = 4;
                     break;
                 case 5:
                     //change the background drawables
@@ -602,6 +634,7 @@ namespace OML_App
                     ab8.SetBackgroundResource(Resource.Drawable.audiobutton8);
                     ab9.SetBackgroundResource(Resource.Drawable.audiobutton9);
                     //play 5th track
+                    Send_Singleton.Instance.sound = 5;
                     break;
                 case 6:
                     //change the background drawables
@@ -615,6 +648,7 @@ namespace OML_App
                     ab8.SetBackgroundResource(Resource.Drawable.audiobutton8);
                     ab9.SetBackgroundResource(Resource.Drawable.audiobutton9);
                     //play 6th track
+                    Send_Singleton.Instance.sound = 6;
                     break;
                 case 7:
                     //change the background drawables
@@ -628,6 +662,7 @@ namespace OML_App
                     ab8.SetBackgroundResource(Resource.Drawable.audiobutton8);
                     ab9.SetBackgroundResource(Resource.Drawable.audiobutton9);
                     //play 7th track
+                    Send_Singleton.Instance.sound = 7;
                     break;
                 case 8:
                     //change the background drawables
@@ -641,6 +676,7 @@ namespace OML_App
                     ab8.SetBackgroundResource(Resource.Drawable.audiobutton8_pressed);
                     ab9.SetBackgroundResource(Resource.Drawable.audiobutton9);
                     //play 8th track
+                    Send_Singleton.Instance.sound = 8;
                     break;
                 case 9:
                     //change the background drawables
@@ -654,6 +690,7 @@ namespace OML_App
                     ab8.SetBackgroundResource(Resource.Drawable.audiobutton8);
                     ab9.SetBackgroundResource(Resource.Drawable.audiobutton9_pressed);
                     //play 9th track
+                    Send_Singleton.Instance.sound = 9;
                     break;
             }//end switch
         }//end method playTrack

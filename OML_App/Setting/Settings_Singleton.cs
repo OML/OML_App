@@ -33,7 +33,7 @@ namespace OML_App.Setting
         
         public int Controller_UpdateRate = 250; //SleepTime Controller
         public bool LiveSession = false;
-        public string IpAdress = "192.168.1.104"; //Default Ip , CurrentSession
+        public string IpAdress = "192.168.1.107"; //Default Ip , CurrentSession
         public string Port = "1337"; //Default port, CurrentSession
         public bool ControllingCarmen = true; //True if Besturen eigen auto
         public int Camera_Port; //Port from Camera
