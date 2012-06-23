@@ -317,14 +317,12 @@ namespace OML_App
         /// <param name="e"></param>
         public void FlipToOverView(object sender, EventArgs e)
         {
+            //reset the button drawable and flip to the correct child
+            btnDrawableReset();
             flipper.DisplayedChild = 1;
 
-            //change the backgrounds on click
+            //change the background on click
             overview.SetBackgroundResource(Resource.Drawable.overviewbutton_pressed);
-            battery.SetBackgroundResource(Resource.Drawable.batterybutton);
-            camera.SetBackgroundResource(Resource.Drawable.camerabutton);
-            orient.SetBackgroundResource(Resource.Drawable.orientbutton);
-            extra.SetBackgroundResource(Resource.Drawable.extrabutton);
         }//end method FlipToOverView
 
         /// <summary>
@@ -334,14 +332,12 @@ namespace OML_App
         /// <param name="e"></param>
         public void FlipToBattery(object sender, EventArgs e)
         {
+            //reset the button drawable and flip to the correct child
+            btnDrawableReset();
             flipper.DisplayedChild = 2;
 
-            //change the backgrounds on click
+            //change the background on click
             battery.SetBackgroundResource(Resource.Drawable.batterybutton_pressed);
-            overview.SetBackgroundResource(Resource.Drawable.overviewbutton);
-            camera.SetBackgroundResource(Resource.Drawable.camerabutton);
-            orient.SetBackgroundResource(Resource.Drawable.orientbutton);
-            extra.SetBackgroundResource(Resource.Drawable.extrabutton);
         }//end method FlipToBattery
 
         /// <summary>
@@ -351,14 +347,12 @@ namespace OML_App
         /// <param name="e"></param>
         public void FlipToCamera(object sender, EventArgs e)
         {
+            //reset the button drawable and flip to the correct child
+            btnDrawableReset();
             flipper.DisplayedChild = 3;
 
-            //change the backgrounds on click
-            battery.SetBackgroundResource(Resource.Drawable.batterybutton);
-            overview.SetBackgroundResource(Resource.Drawable.overviewbutton);
+            //change the background on click
             camera.SetBackgroundResource(Resource.Drawable.camerabutton_pressed);
-            orient.SetBackgroundResource(Resource.Drawable.orientbutton);
-            extra.SetBackgroundResource(Resource.Drawable.extrabutton);
 
             wView.LoadUrl(path);
             wView.RequestFocus();
@@ -371,14 +365,12 @@ namespace OML_App
         /// <param name="e"></param>
         public void FlipToPitch(object sender, EventArgs e)
         {
+            //reset the button drawable and flip to the correct child
+            btnDrawableReset();
             flipper.DisplayedChild = 4;
 
             //change the background on click
             orient.SetBackgroundResource(Resource.Drawable.orientbutton_pressed);
-            battery.SetBackgroundResource(Resource.Drawable.batterybutton);
-            overview.SetBackgroundResource(Resource.Drawable.overviewbutton);
-            camera.SetBackgroundResource(Resource.Drawable.camerabutton);
-            extra.SetBackgroundResource(Resource.Drawable.extrabutton);
         }//end method FlipToPitch
 
         /// <summary>
@@ -388,6 +380,8 @@ namespace OML_App
         /// <param name="e"></param>
         public void releaseClick(object sender, EventArgs e)
         {
+            //reset the button drawable
+            btnDrawableReset();
             //set the background
             release.SetBackgroundResource(Resource.Drawable.releasebutton_pressed);
 
@@ -443,13 +437,11 @@ namespace OML_App
         /// <param name="e"></param>
         public void extraClick(object sender, EventArgs e)
         {
+            //reset the button drawable and flip to the correct child
+            btnDrawableReset();
             flipper.DisplayedChild = 5;
 
             //change the background on click
-            orient.SetBackgroundResource(Resource.Drawable.orientbutton);
-            battery.SetBackgroundResource(Resource.Drawable.batterybutton);
-            overview.SetBackgroundResource(Resource.Drawable.overviewbutton);
-            camera.SetBackgroundResource(Resource.Drawable.camerabutton);
             extra.SetBackgroundResource(Resource.Drawable.extrabutton_pressed);
         }//end method audioClick
 
@@ -461,13 +453,11 @@ namespace OML_App
         {
             activeIndex = 1;
 
+            //reset the battery button background
+            batteryBtnDrawableReset();
+
             //change background on click
             volt0.SetBackgroundResource(Resource.Drawable.voltbutton_pressed);
-            volt1.SetBackgroundResource(Resource.Drawable.voltbutton);
-            amp0.SetBackgroundResource(Resource.Drawable.ampbutton);
-            amp1.SetBackgroundResource(Resource.Drawable.ampbutton);
-            temp0.SetBackgroundResource(Resource.Drawable.tempbutton);
-            temp1.SetBackgroundResource(Resource.Drawable.tempbutton);
 
             //change graphview backgroud
             graphview.SetBackgroundResource(Resource.Drawable.basegraph);
@@ -477,13 +467,11 @@ namespace OML_App
         {
             activeIndex = 2;
 
+            //reset the battery button background
+            batteryBtnDrawableReset();
+
             //change background on click
             volt1.SetBackgroundResource(Resource.Drawable.voltbutton_pressed);
-            volt0.SetBackgroundResource(Resource.Drawable.voltbutton);
-            amp0.SetBackgroundResource(Resource.Drawable.ampbutton);
-            amp1.SetBackgroundResource(Resource.Drawable.ampbutton);
-            temp0.SetBackgroundResource(Resource.Drawable.tempbutton);
-            temp1.SetBackgroundResource(Resource.Drawable.tempbutton);
 
             //change graphview backgroud
             graphview.SetBackgroundResource(Resource.Drawable.basegraph);
@@ -493,13 +481,11 @@ namespace OML_App
         {
             activeIndex = 3;
 
+            //reset the battery button background
+            batteryBtnDrawableReset();
+
             //change background on click
             amp0.SetBackgroundResource(Resource.Drawable.ampbutton_pressed);
-            volt0.SetBackgroundResource(Resource.Drawable.voltbutton);
-            volt1.SetBackgroundResource(Resource.Drawable.voltbutton);
-            amp1.SetBackgroundResource(Resource.Drawable.ampbutton);
-            temp0.SetBackgroundResource(Resource.Drawable.tempbutton);
-            temp1.SetBackgroundResource(Resource.Drawable.tempbutton);
 
             //change graphview backgroud
             graphview.SetBackgroundResource(Resource.Drawable.basegraph);
@@ -509,13 +495,11 @@ namespace OML_App
         {
             activeIndex = 4;
 
+            //reset the battery button background
+            batteryBtnDrawableReset();
+
             //change background on click
             amp1.SetBackgroundResource(Resource.Drawable.ampbutton_pressed);
-            volt0.SetBackgroundResource(Resource.Drawable.voltbutton);
-            volt1.SetBackgroundResource(Resource.Drawable.voltbutton);
-            amp0.SetBackgroundResource(Resource.Drawable.ampbutton);
-            temp0.SetBackgroundResource(Resource.Drawable.tempbutton);
-            temp1.SetBackgroundResource(Resource.Drawable.tempbutton);
 
             //change graphview backgroud
             graphview.SetBackgroundResource(Resource.Drawable.basegraph);
@@ -525,13 +509,11 @@ namespace OML_App
         {
             activeIndex = 5;
 
+            //reset the battery button background
+            batteryBtnDrawableReset();
+
             //change background on click
             temp0.SetBackgroundResource(Resource.Drawable.tempbutton_pressed);
-            volt0.SetBackgroundResource(Resource.Drawable.voltbutton);
-            volt1.SetBackgroundResource(Resource.Drawable.voltbutton);
-            amp0.SetBackgroundResource(Resource.Drawable.ampbutton);
-            amp1.SetBackgroundResource(Resource.Drawable.ampbutton);
-            temp1.SetBackgroundResource(Resource.Drawable.tempbutton);
 
             //change graphview backgroud
             graphview.SetBackgroundResource(Resource.Drawable.basegraph);
@@ -541,17 +523,25 @@ namespace OML_App
         {
             activeIndex = 6;
 
+            //reset the battery button background
+            batteryBtnDrawableReset();
+
             //change background on click
             temp1.SetBackgroundResource(Resource.Drawable.tempbutton_pressed);
+
+            //change graphview backgroud
+            graphview.SetBackgroundResource(Resource.Drawable.basegraph);
+        }//end method FlipToTemp1
+
+        public void batteryBtnDrawableReset()
+        {
+            temp1.SetBackgroundResource(Resource.Drawable.tempbutton);
             volt0.SetBackgroundResource(Resource.Drawable.voltbutton);
             volt1.SetBackgroundResource(Resource.Drawable.voltbutton);
             amp0.SetBackgroundResource(Resource.Drawable.ampbutton);
             amp1.SetBackgroundResource(Resource.Drawable.ampbutton);
             temp0.SetBackgroundResource(Resource.Drawable.tempbutton);
-
-            //change graphview backgroud
-            graphview.SetBackgroundResource(Resource.Drawable.basegraph);
-        }//end method FlipToTemp1
+        }//end method batteryBtnDrawableReset
 
         #endregion
 
@@ -699,6 +689,20 @@ namespace OML_App
         }//end method playTrack
 
         #endregion
+
+
+        /// <summary>
+        /// Method to reset the drawables of our buttons
+        /// </summary>
+        public void btnDrawableReset()
+        {
+            //change the background on click
+            orient.SetBackgroundResource(Resource.Drawable.orientbutton);
+            battery.SetBackgroundResource(Resource.Drawable.batterybutton);
+            overview.SetBackgroundResource(Resource.Drawable.overviewbutton);
+            camera.SetBackgroundResource(Resource.Drawable.camerabutton);
+            extra.SetBackgroundResource(Resource.Drawable.extrabutton);
+        }//end method btnDrawableReset
 
         #endregion
 
