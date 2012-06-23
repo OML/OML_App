@@ -113,7 +113,7 @@ namespace OML_App.Setting
                 TCP_Current = null;
             }
 
-            if (TCP_Viewer != null)
+            if (TCP_View_IsServer == true)
             {
                 TCP_Viewer.SendAppServerPack(false);
             }

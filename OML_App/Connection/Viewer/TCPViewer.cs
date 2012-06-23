@@ -18,11 +18,11 @@ namespace OML_App.Connection.Viewer
     //The commands for interaction between the server and the client
     enum Command
     {
+        Null,       //No command
         Login,      //Log into the server
         Logout,     //Logout of the server
-        DataPacket,    //Send a text message to all the chat clients
-        AppPack,  //Send a Message when server
-        Null        //No command
+        DataPacket, //Send a text message to all the chat clients
+        AppPack     //Send a Message when server        
     }
 
     class TCPViewer
