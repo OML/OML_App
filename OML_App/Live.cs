@@ -387,6 +387,9 @@ namespace OML_App
 
         private void LoadController()
         {
+            //Succesfull so start TCPViewer
+            Settings_Singleton.Instance.StartViewerTCP(true);
+
             Intent i = new Intent();
             i.SetClass(this, typeof(Controller));
             i.AddFlags(ActivityFlags.NewTask);

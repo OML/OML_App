@@ -287,7 +287,9 @@ namespace OML_App
                     //Close the Activity
                     Finish();
                     //Ends the Current Session!
-                    Settings_Singleton.Instance.CloseCurrentSession();                  
+                    Settings_Singleton.Instance.CloseCurrentSession(); 
+                    //Close the Viewer TCP
+                    Settings_Singleton.Instance.CloseViewerTCP();
                     
                     
                 };//end delegate

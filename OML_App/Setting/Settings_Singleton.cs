@@ -12,6 +12,7 @@ using Android.Widget;
 using OML_App.Data;
 using OML_App.Connection;
 using OML_App.Connection.Viewer;
+using System.Threading;
 
 namespace OML_App.Setting
 {
@@ -30,6 +31,8 @@ namespace OML_App.Setting
         public string TCP_View_IP = "77.170.34.17";
         public int TCP_View_Port = 12000;
         public TCPViewer TCP_Viewer; //TCP Viewer
+
+        Thread viewerThread;        
         
         public int Controller_UpdateRate = 250; //SleepTime Controller
         public bool LiveSession = false;
@@ -96,6 +99,40 @@ namespace OML_App.Setting
                 }
                 return instance;
             }
+        }
+
+        public void StartViewerTCP(bool IsServer)
+        {
+            if (IsServer)
+            {
+                //Start the Connection in a different Thread! (so you can still control all the buttons)
+                viewerThread = new Thread(new ThreadStart(ConnectViewerServer));
+                viewerThread.Start();
+            }
+            else
+            {
+                //Start the Connection in a different Thread! (so you can still control all the buttons)
+                viewerThread = new Thread(new ThreadStart(ConnectViewer));
+                viewerThread.Start();
+            }
+        }
+
+        public void ConnectViewer()
+        {
+            //Setup TCP Viewer Connection
+            TCP_Viewer = new TCPViewer();
+        }
+
+        public void ConnectViewerServer()
+        {
+            //Setup TCP Viewer Connection
+            TCP_Viewer = new TCPViewer(true);
+        }
+
+        public void CloseViewerTCP()
+        {
+            //Close the TCP Viewer
+            TCP_Viewer.OnClose();
         }
 
         /// <summary>

@@ -48,11 +48,7 @@ namespace OML_App
             * Create info sometimes
             */
             viewer = FindViewById<Button>(Resource.Id.viewerButton);
-            viewer.Click += new EventHandler(ViewClick);
-
-            //Start the Connection in a different Thread! (so you can still control all the buttons)
-            viewerThread = new Thread(new ThreadStart(ConnectViewer));
-            viewerThread.Start(); 
+            viewer.Click += new EventHandler(ViewClick);            
         }
         
         /// <summary>
@@ -97,18 +93,7 @@ namespace OML_App
             i.SetClass(this, typeof(Viewer));
             i.AddFlags(ActivityFlags.NewTask);
             StartActivity(i);
-        }
-
-        /// <summary>
-        /// Connect To the TCP Viewer Server
-        /// </summary>
-        private void ConnectViewer()
-        {
-            //Get new TCP Connection
-            tcpViewer = new TCPViewer();
-            //Set in Sinngleton
-            Settings_Singleton.Instance.TCP_Viewer = tcpViewer;
-        }
+        }        
     }
 }
 

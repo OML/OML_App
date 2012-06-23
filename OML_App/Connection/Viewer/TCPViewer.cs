@@ -12,6 +12,9 @@ using Android.Widget;
 using System.Net.Sockets;
 using System.Net;
 using OML_App.Setting;
+using OML_App.Connection;
+using OML_App.Data;
+using System.Runtime.InteropServices;
 
 namespace OML_App.Connection.Viewer
 {
@@ -30,10 +33,19 @@ namespace OML_App.Connection.Viewer
         public Socket clientSocket;
         private byte[] byteData = new byte[1024];
         private bool FirstConnect = true;
+        private bool SetServer = false;
 
         public TCPViewer()
         {
             Connect(Settings_Singleton.Instance.TCP_View_IP);
+        }
+
+        public TCPViewer(bool State)
+        {
+            //Bool Set server
+            Connect(Settings_Singleton.Instance.TCP_View_IP);
+            SetServer = State;
+                     
         }
 
         /// <summary>
@@ -102,6 +114,11 @@ namespace OML_App.Connection.Viewer
                                                SocketFlags.None,
                                                new AsyncCallback(OnReceive),
                                                null);
+                    if (SetServer)
+                    {
+                        SendAppServerPack(true);
+                        SetServer = false;
+                    }
                 }
             }
             catch (Exception ex)
@@ -126,6 +143,53 @@ namespace OML_App.Connection.Viewer
                 {
                     case Command.DataPacket:
                         //TODO Save the Packed somewhere!
+                        //data sync
+                        try
+                        {
+                            //
+                            OML_App.Connection.Data.SyncStructPackage pack = new OML_App.Connection.Data.SyncStructPackage();
+                            unsafe
+                            {
+                                OML_App.Connection.Data.SyncStructPackage* p;
+                                GCHandle gch = GCHandle.Alloc(msgReceived.Message, GCHandleType.Pinned);
+                                p = (OML_App.Connection.Data.SyncStructPackage*)gch.AddrOfPinnedObject().ToPointer();
+                                pack = *p;
+                                gch.Free();
+                            }
+                            DateTime this_time = DateTime.Now;
+                            Console.WriteLine("succesfully synced");
+                            Console.WriteLine(pack.ToString());
+                            Receive_Singleton.Instance.Current_ses.Sensors[0].AddValueDataToArray(new ValueData(pack.voltage_motor_0, this_time));
+                            Receive_Singleton.Instance.Current_ses.Sensors[1].AddValueDataToArray(new ValueData(pack.voltage_motor_1, this_time));
+                            Receive_Singleton.Instance.Current_ses.Sensors[2].AddValueDataToArray(new ValueData(pack.voltage_motor_2, this_time));
+                            Receive_Singleton.Instance.Current_ses.Sensors[3].AddValueDataToArray(new ValueData(pack.voltage_motor_3, this_time));
+                            Receive_Singleton.Instance.Current_ses.Sensors[4].AddValueDataToArray(new ValueData(pack.current_motor_0, this_time));
+                            Receive_Singleton.Instance.Current_ses.Sensors[5].AddValueDataToArray(new ValueData(pack.current_motor_1, this_time));
+                            Receive_Singleton.Instance.Current_ses.Sensors[6].AddValueDataToArray(new ValueData(pack.current_motor_2, this_time));
+                            Receive_Singleton.Instance.Current_ses.Sensors[7].AddValueDataToArray(new ValueData(pack.current_motor_3, this_time));
+                            Receive_Singleton.Instance.Current_ses.Sensors[8].AddValueDataToArray(new ValueData(pack.Temp_0, this_time));
+                            Receive_Singleton.Instance.Current_ses.Sensors[9].AddValueDataToArray(new ValueData(pack.Temp_1, this_time));
+                            Receive_Singleton.Instance.Current_ses.Sensors[10].AddValueDataToArray(new ValueData(pack.Temp_2, this_time));
+                            Receive_Singleton.Instance.Current_ses.Sensors[11].AddValueDataToArray(new ValueData(pack.Temp_3, this_time));
+                            Receive_Singleton.Instance.Current_ses.Sensors[12].AddValueDataToArray(new ValueData(pack.throttle_0, this_time));
+                            Receive_Singleton.Instance.Current_ses.Sensors[13].AddValueDataToArray(new ValueData(pack.throttle_1, this_time));
+                            Receive_Singleton.Instance.Current_ses.Sensors[14].AddValueDataToArray(new ValueData(pack.throttle_2, this_time));
+                            Receive_Singleton.Instance.Current_ses.Sensors[15].AddValueDataToArray(new ValueData(pack.throttle_3, this_time));
+                            Receive_Singleton.Instance.Current_ses.Sensors[16].AddValueDataToArray(new ValueData(pack.accu_voltage, this_time));
+                            Receive_Singleton.Instance.Current_ses.Sensors[17].AddValueDataToArray(new ValueData(pack.accu_current, this_time));
+                            Receive_Singleton.Instance.Current_ses.Sensors[18].AddValueDataToArray(new ValueData(pack.accu_temp1, this_time));
+                            Receive_Singleton.Instance.Current_ses.Sensors[19].AddValueDataToArray(new ValueData(pack.accu_voltage, this_time));
+                            Receive_Singleton.Instance.Current_ses.Sensors[20].AddValueDataToArray(new ValueData(pack.accu_current, this_time));
+                            Receive_Singleton.Instance.Current_ses.Sensors[21].AddValueDataToArray(new ValueData(pack.accu_temp1, this_time));
+                            Receive_Singleton.Instance.Current_ses.Sensors[22].AddValueDataToArray(new ValueData(pack.gyro_x, this_time));
+                            Receive_Singleton.Instance.Current_ses.Sensors[23].AddValueDataToArray(new ValueData(pack.gyro_y, this_time));
+                            Receive_Singleton.Instance.Current_ses.Sensors[24].AddValueDataToArray(new ValueData(pack.gyro_z, this_time));
+                            //Receive_Singleton.Instance.Current_ses.Sensors[25].AddValueDataToArray(new ValueData(pack.voltage_motor_0, this_time));
+                        }
+                        catch (Exception e)
+                        {
+                            Console.WriteLine("het lezen van syncpackage is mislukt");
+                        }
                         break;
                     case Command.AppPack:
                         //Set Server State

@@ -35,6 +35,10 @@ namespace OML_App
             spectate.Click += new EventHandler(spectateClick);
 
             textonoff = FindViewById<TextView>(Resource.Id.onofflinetxt);
+
+            //Start TCPViewer
+            Settings_Singleton.Instance.StartViewerTCP(false);
+
         }//end overrided method OnCreate
 
         protected override void OnResume()
