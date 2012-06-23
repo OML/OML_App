@@ -561,132 +561,86 @@ namespace OML_App
             {
                 case 1:
                     //change the background drawables
+                    resetAudioDrawable();
                     ab1.SetBackgroundResource(Resource.Drawable.audiobutton1_pressed);
-                    ab2.SetBackgroundResource(Resource.Drawable.audiobutton2);
-                    ab3.SetBackgroundResource(Resource.Drawable.audiobutton3);
-                    ab4.SetBackgroundResource(Resource.Drawable.audiobutton4);
-                    ab5.SetBackgroundResource(Resource.Drawable.audiobutton5);
-                    ab6.SetBackgroundResource(Resource.Drawable.audiobutton6);
-                    ab7.SetBackgroundResource(Resource.Drawable.audiobutton7);
-                    ab8.SetBackgroundResource(Resource.Drawable.audiobutton8);
-                    ab9.SetBackgroundResource(Resource.Drawable.audiobutton9);
                     //play 1st track
                     Send_Singleton.Instance.sound = 1;
                     break;
                 case 2:
                     //change the background drawables
-                    ab1.SetBackgroundResource(Resource.Drawable.audiobutton1);
+                    resetAudioDrawable();
                     ab2.SetBackgroundResource(Resource.Drawable.audiobutton2_pressed);
-                    ab3.SetBackgroundResource(Resource.Drawable.audiobutton3);
-                    ab4.SetBackgroundResource(Resource.Drawable.audiobutton4);
-                    ab5.SetBackgroundResource(Resource.Drawable.audiobutton5);
-                    ab6.SetBackgroundResource(Resource.Drawable.audiobutton6);
-                    ab7.SetBackgroundResource(Resource.Drawable.audiobutton7);
-                    ab8.SetBackgroundResource(Resource.Drawable.audiobutton8);
-                    ab9.SetBackgroundResource(Resource.Drawable.audiobutton9);
                     //play 2nd track
                     Send_Singleton.Instance.sound = 2;
                     break;
                 case 3:
                     //change the background drawables
-                    ab1.SetBackgroundResource(Resource.Drawable.audiobutton1);
-                    ab2.SetBackgroundResource(Resource.Drawable.audiobutton2);
+                    resetAudioDrawable();
                     ab3.SetBackgroundResource(Resource.Drawable.audiobutton3_pressed);
-                    ab4.SetBackgroundResource(Resource.Drawable.audiobutton4);
-                    ab5.SetBackgroundResource(Resource.Drawable.audiobutton5);
-                    ab6.SetBackgroundResource(Resource.Drawable.audiobutton6);
-                    ab7.SetBackgroundResource(Resource.Drawable.audiobutton7);
-                    ab8.SetBackgroundResource(Resource.Drawable.audiobutton8);
-                    ab9.SetBackgroundResource(Resource.Drawable.audiobutton9);
                     //play 3rd track
                     Send_Singleton.Instance.sound = 3;
                     break;
                 case 4:
                     //change the background drawables
-                    ab1.SetBackgroundResource(Resource.Drawable.audiobutton1);
-                    ab2.SetBackgroundResource(Resource.Drawable.audiobutton2);
-                    ab3.SetBackgroundResource(Resource.Drawable.audiobutton3);
+                    resetAudioDrawable();
                     ab4.SetBackgroundResource(Resource.Drawable.audiobutton4_pressed);
-                    ab5.SetBackgroundResource(Resource.Drawable.audiobutton5);
-                    ab6.SetBackgroundResource(Resource.Drawable.audiobutton6);
-                    ab7.SetBackgroundResource(Resource.Drawable.audiobutton7);
-                    ab8.SetBackgroundResource(Resource.Drawable.audiobutton8);
-                    ab9.SetBackgroundResource(Resource.Drawable.audiobutton9);
                     //play 4th track
                     Send_Singleton.Instance.sound = 4;
                     break;
                 case 5:
                     //change the background drawables
-                    ab1.SetBackgroundResource(Resource.Drawable.audiobutton1);
-                    ab2.SetBackgroundResource(Resource.Drawable.audiobutton2);
-                    ab3.SetBackgroundResource(Resource.Drawable.audiobutton3);
-                    ab4.SetBackgroundResource(Resource.Drawable.audiobutton4);
+                    resetAudioDrawable();
                     ab5.SetBackgroundResource(Resource.Drawable.audiobutton5_pressed);
-                    ab6.SetBackgroundResource(Resource.Drawable.audiobutton6);
-                    ab7.SetBackgroundResource(Resource.Drawable.audiobutton7);
-                    ab8.SetBackgroundResource(Resource.Drawable.audiobutton8);
-                    ab9.SetBackgroundResource(Resource.Drawable.audiobutton9);
                     //play 5th track
                     Send_Singleton.Instance.sound = 5;
                     break;
                 case 6:
                     //change the background drawables
-                    ab1.SetBackgroundResource(Resource.Drawable.audiobutton1);
-                    ab2.SetBackgroundResource(Resource.Drawable.audiobutton2);
-                    ab3.SetBackgroundResource(Resource.Drawable.audiobutton3);
-                    ab4.SetBackgroundResource(Resource.Drawable.audiobutton4);
-                    ab5.SetBackgroundResource(Resource.Drawable.audiobutton5);
+                    resetAudioDrawable();
                     ab6.SetBackgroundResource(Resource.Drawable.audiobutton6_pressed);
-                    ab7.SetBackgroundResource(Resource.Drawable.audiobutton7);
-                    ab8.SetBackgroundResource(Resource.Drawable.audiobutton8);
-                    ab9.SetBackgroundResource(Resource.Drawable.audiobutton9);
                     //play 6th track
                     Send_Singleton.Instance.sound = 6;
                     break;
                 case 7:
                     //change the background drawables
-                    ab1.SetBackgroundResource(Resource.Drawable.audiobutton1);
-                    ab2.SetBackgroundResource(Resource.Drawable.audiobutton2);
-                    ab3.SetBackgroundResource(Resource.Drawable.audiobutton3);
-                    ab4.SetBackgroundResource(Resource.Drawable.audiobutton4);
-                    ab5.SetBackgroundResource(Resource.Drawable.audiobutton5);
-                    ab6.SetBackgroundResource(Resource.Drawable.audiobutton6);
+                    resetAudioDrawable();
                     ab7.SetBackgroundResource(Resource.Drawable.audiobutton7_pressed);
-                    ab8.SetBackgroundResource(Resource.Drawable.audiobutton8);
-                    ab9.SetBackgroundResource(Resource.Drawable.audiobutton9);
                     //play 7th track
                     Send_Singleton.Instance.sound = 7;
                     break;
                 case 8:
                     //change the background drawables
-                    ab1.SetBackgroundResource(Resource.Drawable.audiobutton1);
-                    ab2.SetBackgroundResource(Resource.Drawable.audiobutton2);
-                    ab3.SetBackgroundResource(Resource.Drawable.audiobutton3);
-                    ab4.SetBackgroundResource(Resource.Drawable.audiobutton4);
-                    ab5.SetBackgroundResource(Resource.Drawable.audiobutton5);
-                    ab6.SetBackgroundResource(Resource.Drawable.audiobutton6);
-                    ab7.SetBackgroundResource(Resource.Drawable.audiobutton7);
+                    resetAudioDrawable();
                     ab8.SetBackgroundResource(Resource.Drawable.audiobutton8_pressed);
-                    ab9.SetBackgroundResource(Resource.Drawable.audiobutton9);
                     //play 8th track
                     Send_Singleton.Instance.sound = 8;
                     break;
                 case 9:
                     //change the background drawables
-                    ab1.SetBackgroundResource(Resource.Drawable.audiobutton1);
-                    ab2.SetBackgroundResource(Resource.Drawable.audiobutton2);
-                    ab3.SetBackgroundResource(Resource.Drawable.audiobutton3);
-                    ab4.SetBackgroundResource(Resource.Drawable.audiobutton4);
-                    ab5.SetBackgroundResource(Resource.Drawable.audiobutton5);
-                    ab6.SetBackgroundResource(Resource.Drawable.audiobutton6);
-                    ab7.SetBackgroundResource(Resource.Drawable.audiobutton7);
-                    ab8.SetBackgroundResource(Resource.Drawable.audiobutton8);
+                    resetAudioDrawable();
                     ab9.SetBackgroundResource(Resource.Drawable.audiobutton9_pressed);
                     //play 9th track
                     Send_Singleton.Instance.sound = 9;
                     break;
             }//end switch
         }//end method playTrack
+
+        /// <summary>
+        /// method to reset the backgrounds of the audio track buttons (half height buttons)
+        /// </summary>
+        public void resetAudioDrawable()
+        {
+            //reset the background drawables
+            ab1.SetBackgroundResource(Resource.Drawable.audiobutton1);
+            ab2.SetBackgroundResource(Resource.Drawable.audiobutton2);
+            ab3.SetBackgroundResource(Resource.Drawable.audiobutton3);
+            ab4.SetBackgroundResource(Resource.Drawable.audiobutton4);
+            ab5.SetBackgroundResource(Resource.Drawable.audiobutton5);
+            ab6.SetBackgroundResource(Resource.Drawable.audiobutton6);
+            ab7.SetBackgroundResource(Resource.Drawable.audiobutton7);
+            ab8.SetBackgroundResource(Resource.Drawable.audiobutton8);
+            ab9.SetBackgroundResource(Resource.Drawable.audiobutton9);
+        }//end method resetAudioDrawable
 
         #endregion
 
