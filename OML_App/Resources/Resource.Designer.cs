@@ -499,9 +499,6 @@ namespace OML_App
 			// aapt resource value: 0x7f05002d
 			public const int amptxt1 = 2131034157;
 			
-			// aapt resource value: 0x7f050045
-			public const int audioControls = 2131034181;
-			
 			// aapt resource value: 0x7f050022
 			public const int battery = 2131034146;
 			
@@ -549,6 +546,9 @@ namespace OML_App
 			
 			// aapt resource value: 0x7f050067
 			public const int ipaddress = 2131034215;
+			
+			// aapt resource value: 0x7f050045
+			public const int ledControls = 2131034181;
 			
 			// aapt resource value: 0x7f05006c
 			public const int liveButton = 2131034220;

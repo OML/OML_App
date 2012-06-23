@@ -601,8 +601,8 @@
           android:layout_height="370dp"
           android:layout_marginLeft="495dp"
           android:layout_marginTop="38dp">
-          <oml_app.audioControls
-            android:id="@+id/audioControls"
+          <oml_app.ledControls
+            android:id="@+id/ledControls"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"/>
         </RelativeLayout>

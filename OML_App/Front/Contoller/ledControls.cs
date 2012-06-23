@@ -15,7 +15,7 @@ using OML_App.Data;
 
 namespace OML_App
 {
-    public class audioControls : View, View.IOnTouchListener
+    public class ledControls : View, View.IOnTouchListener
     {
         //initial slider position
         public const float INIT_X = 0;
@@ -24,8 +24,11 @@ namespace OML_App
         //slider position within our view
         public PointF _touchingPoint = new PointF(INIT_X, INIT_Y);
 
-        //value with which we divide our y-axis value, to get a respective value between 0-3.
-        public float divider = 124;
+        //value with which we divide our y-axis value, to get a respective value between 0-7.
+        public float divider = 50;
+
+        //bit multiplier to ensure we send 3 bit values (0-2-4-6-8-10-12-14)
+        int bitmultiplier = 2;
 
         //float to save the coordinates of our last touch on the screen
         private float mLastTouchY;
@@ -35,14 +38,14 @@ namespace OML_App
 
         public float colorValue;
 
-        public audioControls(Context context, IAttributeSet attrs) :
+        public ledControls(Context context, IAttributeSet attrs) :
             base(context, attrs)
         {
             Initialize();
             this.SetOnTouchListener(this);
         }//end constructor
 
-        public audioControls(Context context, IAttributeSet attrs, int defStyle) :
+        public ledControls(Context context, IAttributeSet attrs, int defStyle) :
             base(context, attrs, defStyle)
         {
             Initialize();
@@ -102,17 +105,25 @@ namespace OML_App
                 _touchingPoint.Y = 357;
 
             //determine the colorvalue and divide it to get a integral value between 0 - 3
-            colorValue = _touchingPoint.Y / divider;
-            Math.Round(colorValue);
+            colorValue = (int)Math.Round((_touchingPoint.Y / divider) * bitmultiplier);
 
             //set the power value in our singleton class so we can send it to CARMEN
             //Make sure we dont update too often, so we dont lock the thread
             if (DateTime.Now - LastUpdate > interval)
             {
                 LastUpdate = DateTime.Now;
-                //Send_Singleton.Instance.
+                Send_Singleton.Instance.releaseRing = (int)colorValue;
             }//end if
         }//end method Update
+
+        /// <summary>
+        /// Method to snap our slider to a color
+        /// **colorvalue as an integral number between 0-7**
+        /// </summary>
+        public void snapTouch()
+        {
+
+        }//end method snapTouch
 
         protected override void OnDraw(Canvas canvas)
         {

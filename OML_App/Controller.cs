@@ -116,9 +116,6 @@ namespace OML_App
             //set the activeIndex to 0
             activeIndex = 0;
 
-            //set grabber off (also reinitialisation of the grabber)
-            Send_Singleton.Instance.releaseRing = 0;
-
             // Create your application here
             SetContentView(Resource.Layout.Controller);
 

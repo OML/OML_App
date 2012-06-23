@@ -162,6 +162,8 @@ namespace OML_App.Connection
             if (Send_Singleton.Instance.sound != 0)
             { Send_Singleton.Instance.sound = 0; }
             sync.IOModule = Convert.ToByte(Send_Singleton.Instance.releaseRing);
+            if (Send_Singleton.Instance.releaseRing == 1)
+                Send_Singleton.Instance.releaseRing = 0;
             return sync;
 
         }
