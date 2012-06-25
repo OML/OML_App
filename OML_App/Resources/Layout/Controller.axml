@@ -71,6 +71,13 @@
         android:background="@drawable/powerframe"
         android:padding="5dp"
         android:textColor="#00ff00"/>
+      <Button
+        android:id="@+id/stopbuttonR"
+        android:layout_width="63dp"
+        android:layout_height="55dp"
+        android:layout_marginLeft="57dp"
+        android:layout_marginTop="141dp"
+        android:background="@drawable/stopbutton"/>
     </RelativeLayout>
     <!--<RelativeLayout
                 android:id="@+id/smallSliderLayout"
@@ -594,18 +601,24 @@
         android:layout_height="fill_parent"
         android:paddingLeft="50dp"
         android:paddingTop="40dp"
-        android:background="@drawable/extrabox">
+        android:background="@drawable/extrabox2">
         <RelativeLayout
           android:id="@+id/rgbsliderframe"
           android:layout_width="44dp"
           android:layout_height="370dp"
-          android:layout_marginLeft="495dp"
-          android:layout_marginTop="38dp">
-          <oml_app.ledControls
-            android:id="@+id/ledControls"
+          android:layout_marginLeft="495dp">
+          <oml_app.LedControls
+            android:id="@+id/LedControls"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"/>
         </RelativeLayout>
+        <Button
+          android:id="@+id/discoButton"
+          android:layout_width="63dp"
+          android:layout_height="55dp"
+          android:layout_marginLeft="486dp"
+          android:layout_marginTop="388dp"
+          android:background="@drawable/minibutton"/>
         <Button
           android:id="@+id/aButton1"
           android:layout_width="127dp"
@@ -828,12 +841,13 @@
         android:layout_marginTop="8dp"
         android:layout_marginLeft="8dp"
         android:paddingTop="30dp"
-        android:paddingRight="30dp"
+        android:paddingRight="23dp"
         android:paddingLeft="29dp">
       <TextView
         android:id="@+id/powerView1"
         android:layout_width="55dp"
         android:layout_height="30dp"
+        android:layout_marginLeft="7dp"
         android:background="@drawable/powerframe"
         android:padding="5dp"
         android:textColor="#00ff00"/>
@@ -842,12 +856,18 @@
           android:layout_width="44dp"
           android:layout_height="202dp"
           android:layout_toRightOf="@id/powerView1"
-          android:layout_marginLeft="14dp">
+          android:layout_marginLeft="7dp">
         <oml_app.SliderControls
               android:id="@+id/sliderControls1"
               android:layout_width="fill_parent"
               android:layout_height="fill_parent"/>
       </RelativeLayout>
+      <Button
+        android:id="@+id/stopbuttonL"
+        android:layout_width="63dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="141dp"
+        android:background="@drawable/stopbutton"/>
     </RelativeLayout>
   </RelativeLayout>
 </LinearLayout>

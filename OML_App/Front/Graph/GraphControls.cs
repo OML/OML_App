@@ -274,7 +274,7 @@ namespace OML_App
                     break;
                 //if were not drawing anything, "clear" the screen
                 default:
-                    ((RelativeLayout)this.Parent).SetBackgroundResource(Resource.Drawable.graphview);
+                    ((RelativeLayout)this.Parent).SetBackgroundResource(Resource.Drawable.basegraph);
                     minX.Text = "";
                     maxX.Text = "";
                     minY.Text = "";
@@ -317,9 +317,9 @@ namespace OML_App
 
                     //show the min and max x-axis value's
                     if (i == 0)
-                        minX.Text = value0.time.Seconds.ToString();
+                        minX.Text = value0.time.Seconds.ToString() + " seconds";
                     if (i == list.Count - 2)
-                        maxX.Text = value1.time.Seconds.ToString();
+                        maxX.Text = value1.time.Seconds.ToString() + " seconds";
                 }//end for
             }//end if
         }//end method drawGraph

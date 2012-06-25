@@ -28,6 +28,7 @@ namespace OML_App
         Matrix m = new Matrix();
         Matrix n = new Matrix();
         private bool init = true;
+        private int divider = 1000;
 
         public RollControls(Context context, IAttributeSet attrs) :
             base(context, attrs)
@@ -53,11 +54,11 @@ namespace OML_App
             {
                 original = BitmapFactory.DecodeResource(Resources, Resource.Drawable.pitchbg0);
                 bm = Bitmap.CreateBitmap(original, 0, 0, original.Width, original.Height, n, true);
-                m.SetTranslate(xOffCenter, yOffCenter);
                 init = false;
             }//end if
+            m.SetTranslate(xOffCenter, yOffCenter);
 
-            angle = Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.G0X].Values[Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.G0X].Values.Length - 1].Value;
+            angle = Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.G0X].Values[Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.G0X].Values.Length - 1].Value / divider;
 
             m.PreRotate(angle, 120, 120);
 

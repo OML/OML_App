@@ -27,6 +27,7 @@ namespace OML_App
         Matrix m = new Matrix();
         Matrix n = new Matrix();
         private bool init = true;
+        private int divider = 1000;
 
         //value between -100 and 100, 0 is center (vertical)
         private float increment = 0f;
@@ -58,7 +59,7 @@ namespace OML_App
                 init = false;
             }//end if
 
-            yDiff = Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.G0Y].Values[Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.G0Y].Values.Length - 1].Value;
+            yDiff = Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.G0Y].Values[Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.G0Y].Values.Length - 1].Value / divider;
 
             m.SetTranslate(xOffCenter, yOffCenter + yDiff);
 

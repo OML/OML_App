@@ -12,11 +12,15 @@ using Android.Widget;
 using Android.Util;
 using Android.Graphics;
 using OML_App.Data;
+using OML_App.Setting;
 
 namespace OML_App
 {
-    public class ledControls : View, View.IOnTouchListener
+    public class LedControls : View, View.IOnTouchListener
     {
+        //float to store our (LED) colorvalue
+        public static float colorValue { get; set; }
+
         //initial slider position
         public const float INIT_X = 0;
         public const float INIT_Y = 13;
@@ -33,19 +37,18 @@ namespace OML_App
         //float to save the coordinates of our last touch on the screen
         private float mLastTouchY;
 
+        //time and interval to update 5 times per minute (so we dont lock the singleton class)
         private DateTime LastUpdate = DateTime.Now;
-        TimeSpan interval = TimeSpan.FromMilliseconds(250);
+        TimeSpan interval = TimeSpan.FromMilliseconds(Settings_Singleton.Instance.Controller_UpdateRate);
 
-        public float colorValue;
-
-        public ledControls(Context context, IAttributeSet attrs) :
+        public LedControls(Context context, IAttributeSet attrs) :
             base(context, attrs)
         {
             Initialize();
             this.SetOnTouchListener(this);
         }//end constructor
 
-        public ledControls(Context context, IAttributeSet attrs, int defStyle) :
+        public LedControls(Context context, IAttributeSet attrs, int defStyle) :
             base(context, attrs, defStyle)
         {
             Initialize();
@@ -75,37 +78,44 @@ namespace OML_App
         /// <param name="events"></param>
         public void update(MotionEvent events)
         {
-            switch (events.Action & events.ActionMasked)
+            //if were not in discomode, we can move the slider
+            if (!Controller.discoInferno)
             {
-                case MotionEventActions.Down:
-                    //remember where we started
-                    mLastTouchY = events.GetY();
-                    break;
+                switch (events.Action & events.ActionMasked)
+                {
+                    case MotionEventActions.Down:
+                        //remember where we started
+                        mLastTouchY = events.GetY();
+                        break;
 
-                case MotionEventActions.Move:
-                    //only get the vertical movement
-                    float y = events.GetY();
+                    case MotionEventActions.Move:
+                        //only get the vertical movement
+                        float y = events.GetY();
 
-                    //set touchingpoint
-                    _touchingPoint.Y = (int)y;
+                        //set touchingpoint
+                        _touchingPoint.Y = (int)y;
 
-                    //remember this touch point for the next move event
-                    mLastTouchY = y;
+                        //remember this touch point for the next move event
+                        mLastTouchY = y;
 
-                    //invalidate to request a redraw
-                    Invalidate();
-                    break;
-            }//end switch
+                        //invalidate to request a redraw
+                        Invalidate();
+                        break;
+                }//end switch
 
-            //set the touching points to min/max when they go out of bounds
-            if (_touchingPoint.Y < 13)
-                _touchingPoint.Y = 13;
+                //check the bounds of our touching point
+                checkBounds();
 
-            if (_touchingPoint.Y > 357)
-                _touchingPoint.Y = 357;
+                //determine the colorvalue and divide it to get a integral value between 0 - 7
+                colorValue = (int)Math.Round(_touchingPoint.Y / divider);
 
-            //determine the colorvalue and divide it to get a integral value between 0 - 3
-            colorValue = (int)Math.Round((_touchingPoint.Y / divider) * bitmultiplier);
+                //snap the slider and re-check the bounds
+                _touchingPoint.Y = colorValue * divider;
+                checkBounds();
+
+                //multiply the color value to get an even value between 0 - 14
+                colorValue *= bitmultiplier;
+            }//end if
 
             //set the power value in our singleton class so we can send it to CARMEN
             //Make sure we dont update too often, so we dont lock the thread
@@ -117,13 +127,17 @@ namespace OML_App
         }//end method Update
 
         /// <summary>
-        /// Method to snap our slider to a color
-        /// **colorvalue as an integral number between 0-7**
+        /// Method to check the bounds of our touching point on the y-axis
         /// </summary>
-        public void snapTouch()
+        public void checkBounds()
         {
+            //set the touching points to min/max when they go out of bounds
+            if (_touchingPoint.Y < 25)
+                _touchingPoint.Y = 13;
 
-        }//end method snapTouch
+            if (_touchingPoint.Y > 349)
+                _touchingPoint.Y = 357;
+        }//end method checkBounds
 
         protected override void OnDraw(Canvas canvas)
         {
@@ -131,6 +145,6 @@ namespace OML_App
 
             //draw the y with minus 13 to make it center.
             canvas.DrawBitmap(BitmapFactory.DecodeResource(Resources, Resource.Drawable.slidersmall), _touchingPoint.X, _touchingPoint.Y - 13, null);
-        }
+        }//end method OnDraw
     }//end class audioControls
 }//end namespace OML_App

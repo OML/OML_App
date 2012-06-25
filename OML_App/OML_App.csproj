@@ -66,7 +66,7 @@
     <Compile Include="Data\Session.cs" />
     <Compile Include="Data\Receive_Singleton.cs" />
     <Compile Include="Data\ValueData.cs" />
-    <Compile Include="Front\Contoller\ledControls.cs" />
+    <Compile Include="Front\Contoller\LedControls.cs" />
     <Compile Include="Front\Graph\GaugeGraphControls.cs" />
     <Compile Include="Front\Graph\GraphControls.cs" />
     <Compile Include="Front\Graph\GraphValue.cs" />
@@ -151,7 +151,7 @@
     <AndroidResource Include="Resources\Drawable\minibutton.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\Drawable\minibuttonpressed.png" />
+    <AndroidResource Include="Resources\Drawable\minibutton_pressed.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\Drawable\nhl_logo.png" />
@@ -277,6 +277,9 @@
     <AndroidResource Include="Resources\Drawable\extrabox.png" />
     <AndroidResource Include="Resources\Drawable\extrabutton.png" />
     <AndroidResource Include="Resources\Drawable\extrabutton_pressed.png" />
+    <AndroidResource Include="Resources\Drawable\extrabox2.png" />
+    <AndroidResource Include="Resources\Drawable\stopbutton.png" />
+    <AndroidResource Include="Resources\Drawable\stopbutton_pressed.png" />
   </ItemGroup>
   <ItemGroup>
     <WebReferences Include="Web References\" />

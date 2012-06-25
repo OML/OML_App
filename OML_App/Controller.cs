@@ -34,6 +34,8 @@ namespace OML_App
         Button orient;
         Button release;
         Button extra;
+        Button stopR;
+        Button stopL;
 
         //battery buttons
         Button volt0;
@@ -53,6 +55,9 @@ namespace OML_App
         Button ab7;
         Button ab8;
         Button ab9;
+
+        //LED button
+        Button LEDButton;
 
         //audio textviews
         TextView atv1;
@@ -94,11 +99,24 @@ namespace OML_App
         //Bundle to be able to return from Dialog
         Bundle bundle;
 
+        //Random for our color value
+        Random rnd = new Random();
+
+        //bools to keep track of our stopbuttons
+        private bool rStopped = false;
+        private bool lStopped = false;
+
+        private int stopValue = 16;
+
         //ActiveIndex for Batteryview
         public static int activeIndex { get; set; }
+
+        //bool to set disco mode for our LEDs
+        public static bool discoInferno { get; set; }
+
         //webview and path to our camera feed
         private WebView wView;
-        string path = "http://192.168.1.107:8090/js.html";
+        string path = "http://192.168.209.88/js.html";
 
         #endregion
 
@@ -145,6 +163,12 @@ namespace OML_App
 
             release = FindViewById<Button>(Resource.Id.releasebutton);
             release.Click += new EventHandler(releaseClick);
+
+            stopR = FindViewById<Button>(Resource.Id.stopbuttonR);
+            stopR.Click += new EventHandler(stopRclick);
+
+            stopL = FindViewById<Button>(Resource.Id.stopbuttonL);
+            stopL.Click += new EventHandler(stopLclick);
 
             #endregion
 
@@ -230,6 +254,9 @@ namespace OML_App
             ab9.Click += delegate { playTrack(9); };
             
             #endregion
+
+            LEDButton = FindViewById<Button>(Resource.Id.discoButton);
+            LEDButton.Click += new EventHandler(LEDClick);
 
             //set throttle textviews
             Throttle0 = FindViewById<TextView>(Resource.Id.Throttle0);
@@ -444,6 +471,46 @@ namespace OML_App
             extra.SetBackgroundResource(Resource.Drawable.extrabutton_pressed);
         }//end method audioClick
 
+        /// <summary>
+        /// Puts the vehicle to an instant standstill when pressed with the left stop button
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        public void stopRclick(object sender, EventArgs e)
+        {
+            if (!rStopped)
+            {
+                stopR.SetBackgroundResource(Resource.Drawable.stopbutton_pressed);
+                rStopped = true;
+            }//end if
+
+            else
+            {
+                stopR.SetBackgroundResource(Resource.Drawable.stopbutton);
+                rStopped = false;
+            }//end else
+        }//end method stopRclick
+
+        /// <summary>
+        /// Puts the vehicle to an instant standstill when pressed with the right stop button
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        public void stopLclick(object sender, EventArgs e)
+        {
+            if (!lStopped)
+            {
+                stopL.SetBackgroundResource(Resource.Drawable.stopbutton_pressed);
+                lStopped = true;
+            }//end if
+
+            else
+            {
+                stopL.SetBackgroundResource(Resource.Drawable.stopbutton);
+                lStopped = false;
+            }//end else
+        }//end method stopLclick
+
         #endregion
 
         #region Sub-Flips Battery (Eventhandlers)
@@ -643,6 +710,28 @@ namespace OML_App
 
         #endregion
 
+        #region LED Click
+
+        public void LEDClick(object sender, EventArgs e)
+        {
+            //check wether we are in disco mode or not
+            //and act accordingly
+            if (!discoInferno)
+            {
+                //set the bool true, so we can read it in our ledControls class
+                discoInferno = true;
+                LEDButton.SetBackgroundResource(Resource.Drawable.minibutton_pressed);
+            }//end if
+
+            else
+            {
+                //set the bool false, so we can read it in our ledControls class
+                discoInferno = false;
+                LEDButton.SetBackgroundResource(Resource.Drawable.minibutton);
+            }//end else
+        }//end method LEDClick
+
+        #endregion
 
         /// <summary>
         /// Method to reset the drawables of our buttons
@@ -675,7 +764,13 @@ namespace OML_App
                     case 2:
                         UpdateBattery();
                         break;
+                    case 5:
+                        UpdateLED();
+                        break;
                 }//end switch
+
+                UpdateStopSequence();
+
                 Thread.Sleep(Settings_Singleton.Instance.Controller_UpdateRate);
             }            
 
@@ -816,6 +911,31 @@ namespace OML_App
         {
 
         }//end method UpdateBattery
+
+        #endregion
+
+        #region UpdateLED
+
+        public void UpdateLED()
+        {
+            if (discoInferno)
+            {
+                LedControls.colorValue = (rnd.Next(1, 7) * 2);
+                Send_Singleton.Instance.releaseRing = (int)LedControls.colorValue;
+            }//end if
+        }//end method UpdateLED
+        #endregion
+
+        #region UpdateStopSequence
+
+        /// <summary>
+        /// Update method to activate our emergency stop
+        /// </summary>
+        public void UpdateStopSequence()
+        {
+            if (rStopped && lStopped)
+                Send_Singleton.Instance.releaseRing = stopValue;
+        }//end method UpdateStopSequence
 
         #endregion
 

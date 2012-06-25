@@ -164,6 +164,8 @@ namespace OML_App.Connection
             sync.IOModule = Convert.ToByte(Send_Singleton.Instance.releaseRing);
             if (Send_Singleton.Instance.releaseRing == 1)
                 Send_Singleton.Instance.releaseRing = 0;
+            if (Send_Singleton.Instance.releaseRing == 16)
+                Send_Singleton.Instance.releaseRing = 0;
             return sync;
 
         }

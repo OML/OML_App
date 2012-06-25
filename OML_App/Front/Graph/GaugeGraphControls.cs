@@ -27,11 +27,11 @@ namespace OML_App
         TextView maxY;
 
         //integers to hold our max and min Y-axis values
-        float minimumY = 0;
-        float maximumY = 0;
+        float minimumY = -20;
+        float maximumY = 20;
 
-        float pitchval = 0.1f;
-        float rollval = -0.1f;
+        float pitchval = 0;
+        float rollval = 0;
 
         //starttime & timespan for intervals
         TimeSpan time;
@@ -47,6 +47,8 @@ namespace OML_App
 
         ArrayList pitchvalue = new ArrayList();
         ArrayList rollvalue = new ArrayList();
+
+        private int divider = 1000;
 
         public GaugeGraphControls(Context context, IAttributeSet attrs) :
             base(context, attrs)
@@ -80,22 +82,18 @@ namespace OML_App
             minY = ((RelativeLayout)this.Parent).FindViewById<TextView>(Resource.Id.orient_minY);
             maxY = ((RelativeLayout)this.Parent).FindViewById<TextView>(Resource.Id.orient_maxY);
 
+            //show the min and max Y on the graph
+            minY.Text = minimumY.ToString();
+            maxY.Text = maximumY.ToString();
+
             //set the time
             time = DateTime.Now - start;// Receive_Singleton.Instance.Current_ses.StartTime;
 
             //set the updated textview values
             if (pitchval != Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.G0X].Values[Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.G0X].Values.Length - 1].Value)
             {
-                pitchval = Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.G0X].Values[Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.G0X].Values.Length - 1].Value;
+                pitchval = Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.G0X].Values[Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.G0X].Values.Length - 1].Value / divider;
                 pitchvalue.Add(new GraphValue(pitchval, time));
-
-                //get the min and max Y
-                minimumY = Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.G0X].Min;
-                maximumY = Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.G0X].Max;
-
-                //show the min and max Y on the graph
-                minY.Text = minimumY.ToString();
-                maxY.Text = maximumY.ToString();
 
                 //if we exceed 100 elements remove the first
                 if (pitchvalue.Count > 100)
@@ -107,16 +105,8 @@ namespace OML_App
             //set the updated textview values
             if (rollval != Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.G0Y].Values[Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.G0Y].Values.Length - 1].Value)
             {
-                rollval = Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.G0Y].Values[Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.G0Y].Values.Length - 1].Value;
+                rollval = Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.G0Y].Values[Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.G0Y].Values.Length - 1].Value / divider;
                 rollvalue.Add(new GraphValue(rollval, time));
-
-                //get the min and max Y
-                minimumY = Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.G0Y].Min;
-                maximumY = Receive_Singleton.Instance.Current_ses.Sensors[Settings_Singleton.Instance.G0Y].Max;
-
-                //show the min and max Y on the graph
-                minY.Text = minimumY.ToString();
-                maxY.Text = maximumY.ToString();
 
                 //if we exceed 100 elements remove the first
                 if (rollvalue.Count > 100)
@@ -158,9 +148,9 @@ namespace OML_App
 
                     //show the min and max x-axis value's
                     if (i == 0)
-                        minX.Text = value0.time.Seconds.ToString();
+                        minX.Text = value0.time.Seconds.ToString() + " seconds";
                     if (i == list.Count - 2)
-                        maxX.Text = value1.time.Seconds.ToString();
+                        maxX.Text = value1.time.Seconds.ToString() + " seconds";
                 }//end for
             }//end if
         }//end method drawGraph

@@ -41,8 +41,9 @@ namespace OML_App
         //bool to determine wether we have stopped touching the tablet
         private bool release;
 
+        //time and interval to update 5 times per minute (so we dont lock the singleton class)
         private DateTime LastUpdate = DateTime.Now;
-        TimeSpan interval = TimeSpan.FromMilliseconds(250);
+        TimeSpan interval = TimeSpan.FromMilliseconds(Settings_Singleton.Instance.Controller_UpdateRate);
 
         //textview to show our current power value
         TextView tv;
