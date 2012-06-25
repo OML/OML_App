@@ -116,7 +116,7 @@ namespace OML_App
 
         //webview and path to our camera feed
         private WebView wView;
-        string path = "http://192.168.209.88/js.html";
+        string path = "http://192.168.209.88:8090/webcam.mjpeg";
 
         #endregion
 
@@ -137,7 +137,7 @@ namespace OML_App
             // Create your application here
             SetContentView(Resource.Layout.Controller);
 
-            //set webview
+            //set webview and client
             wView = FindViewById<WebView>(Resource.Id.vidview);
 
             //midbox viewflipper
@@ -380,8 +380,11 @@ namespace OML_App
             //change the background on click
             camera.SetBackgroundResource(Resource.Drawable.camerabutton_pressed);
 
+            wView.Settings.JavaScriptEnabled = true;
             wView.LoadUrl(path);
-            wView.RequestFocus();
+            //wView.LoadUrl(path);
+            //wView.Invalidate();
+            //wView.RequestFocus();
         }//end method FlipToCamera
 
         /// <summary>
@@ -412,7 +415,6 @@ namespace OML_App
             release.SetBackgroundResource(Resource.Drawable.releasebutton_pressed);
 
             updateThread.Abort();
-            wView.StopLoading();
 
             //set the content view to the dialogwindow content
             //outside this contentview we are unable to find our resources
