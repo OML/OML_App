@@ -115,7 +115,7 @@ namespace OML_App
         public static bool discoInferno { get; set; }
 
         //webview and path to our camera feed
-        private WebView wView;
+        private ImageView iView;
         string path = "http://192.168.209.88:8090/webcam.mjpeg";
 
         #endregion
@@ -138,7 +138,7 @@ namespace OML_App
             SetContentView(Resource.Layout.Controller);
 
             //set webview and client
-            wView = FindViewById<WebView>(Resource.Id.vidview);
+            iView = FindViewById<ImageView>(Resource.Id.vidview);
 
             //midbox viewflipper
             flipper = FindViewById<ViewFlipper>(Resource.Id.flipper);
@@ -380,8 +380,7 @@ namespace OML_App
             //change the background on click
             camera.SetBackgroundResource(Resource.Drawable.camerabutton_pressed);
 
-            wView.Settings.JavaScriptEnabled = true;
-            wView.LoadUrl(path);
+            UpdateImageView();
             //wView.LoadUrl(path);
             //wView.Invalidate();
             //wView.RequestFocus();
@@ -771,7 +770,9 @@ namespace OML_App
                         break;
                 }//end switch
 
+                //keep track of our stop sequence and keep updating our imageview for live "camera"
                 UpdateStopSequence();
+                UpdateImageView();
 
                 Thread.Sleep(Settings_Singleton.Instance.Controller_UpdateRate);
             }            
@@ -927,6 +928,14 @@ namespace OML_App
             }//end if
         }//end method UpdateLED
         #endregion
+
+        /// <summary>
+        /// Method to rapidly update our imageview to make it look like a video is playing
+        /// </summary>
+        public void UpdateImageView()
+        {
+            RunOnUiThread(() =>iView.SetImageURI(Android.Net.Uri.Parse(path)));
+        }//end method UpdateImageView
 
         #region UpdateStopSequence
 

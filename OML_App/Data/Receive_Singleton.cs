@@ -15,15 +15,15 @@ namespace OML_App.Data
         private Receive_Singleton() { }
 
 
-        public string Track1 = "not available";
-        public string Track2 = "not available";
-        public string Track3 = "not available";
-        public string Track4 = "not available";
-        public string Track5 = "not available";
-        public string Track6 = "not available";
-        public string Track7 = "not available";
-        public string Track8 = "not available";
-        public string Track9 = "not available";
+        public string Track1 = "Intro Quake III";
+        public string Track2 = "Perfect";
+        public string Track3 = "Regeneration";
+        public string Track4 = "Humiliation";
+        public string Track5 = "Taken the lead";
+        public string Track6 = "Not available";
+        public string Track7 = "Not available";
+        public string Track8 = "Not available";
+        public string Track9 = "Not available";
         
 
         public void init()

@@ -501,7 +501,7 @@
         android:layout_width="640dp"
         android:layout_height="520dp"
         android:background="@drawable/midbox">
-        <WebView
+        <ImageView
           android:id="@+id/vidview"
           android:layout_width="fill_parent"
           android:layout_height="fill_parent"/>
@@ -630,10 +630,10 @@
           android:layout_height="38dp"
           android:layout_toRightOf="@id/aButton1"
           android:layout_marginLeft="42dp"
-          android:gravity="center"
+          android:gravity="left"
           android:textSize="15dp"
           android:textColor="#000000"
-          android:text="test artist - test song"/>
+          android:text="Intro Quake III"/>
         <Button
           android:id="@+id/aButton2"
           android:layout_width="127dp"
@@ -649,10 +649,10 @@
           android:layout_below="@id/aButton1"
           android:layout_marginTop="10dp"
           android:layout_marginLeft="42dp"
-          android:gravity="center"
+          android:gravity="left"
           android:textSize="15dp"
           android:textColor="#000000"
-          android:text="test artist - test song"/>
+          android:text="Perfect"/>
         <Button
           android:id="@+id/aButton3"
           android:layout_width="127dp"
@@ -668,10 +668,10 @@
           android:layout_below="@id/aButton2"
           android:layout_marginTop="10dp"
           android:layout_marginLeft="42dp"
-          android:gravity="center"
+          android:gravity="left"
           android:textSize="15dp"
           android:textColor="#000000"
-          android:text="test artist - test song"/>
+          android:text="Regeneration"/>
         <Button
           android:id="@+id/aButton4"
           android:layout_width="127dp"
@@ -687,10 +687,10 @@
           android:layout_below="@id/aButton3"
           android:layout_marginTop="10dp"
           android:layout_marginLeft="42dp"
-          android:gravity="center"
+          android:gravity="left"
           android:textSize="15dp"
           android:textColor="#000000"
-          android:text="test artist - test song"/>
+          android:text="Humiliation"/>
         <Button
           android:id="@+id/aButton5"
           android:layout_width="127dp"
@@ -706,10 +706,10 @@
           android:layout_below="@id/aButton4"
           android:layout_marginTop="10dp"
           android:layout_marginLeft="42dp"
-          android:gravity="center"
+          android:gravity="left"
           android:textSize="15dp"
           android:textColor="#000000"
-          android:text="test artist - test song"/>
+          android:text="Taken the lead"/>
         <Button
           android:id="@+id/aButton6"
           android:layout_width="127dp"
@@ -725,10 +725,10 @@
           android:layout_below="@id/aButton5"
           android:layout_marginTop="10dp"
           android:layout_marginLeft="42dp"
-          android:gravity="center"
+          android:gravity="left"
           android:textSize="15dp"
           android:textColor="#000000"
-          android:text="test artist - test song"/>
+          android:text="not available"/>
         <Button
           android:id="@+id/aButton7"
           android:layout_width="127dp"
@@ -744,10 +744,10 @@
           android:layout_below="@id/aButton6"
           android:layout_marginTop="10dp"
           android:layout_marginLeft="42dp"
-          android:gravity="center"
+          android:gravity="left"
           android:textSize="15dp"
           android:textColor="#000000"
-          android:text="test artist - test song"/>
+          android:text="not available"/>
         <Button
           android:id="@+id/aButton8"
           android:layout_width="127dp"
@@ -763,10 +763,10 @@
           android:layout_below="@id/aButton7"
           android:layout_marginTop="10dp"
           android:layout_marginLeft="42dp"
-          android:gravity="center"
+          android:gravity="left"
           android:textSize="15dp"
           android:textColor="#000000"
-          android:text="test artist - test song"/>
+          android:text="not available"/>
         <Button
           android:id="@+id/aButton9"
           android:layout_width="127dp"
@@ -782,10 +782,10 @@
           android:layout_below="@id/aButton8"
           android:layout_marginTop="10dp"
           android:layout_marginLeft="42dp"
-          android:gravity="center"
+          android:gravity="left"
           android:textSize="15dp"
           android:textColor="#000000"
-          android:text="test artist - test song"/>
+          android:text="not available"/>
       </RelativeLayout>
     </ViewFlipper>
     <!--<RelativeLayout
