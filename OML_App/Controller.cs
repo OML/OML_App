@@ -15,6 +15,8 @@ using OML_App.Data;
 using OML_App.Setting;
 using System.Threading;
 using Android.Webkit;
+using System.IO;
+using Android.Graphics;
 
 namespace OML_App
 {
@@ -26,6 +28,10 @@ namespace OML_App
 
         private ViewFlipper flipper;
         private Thread updateThread;
+        private Thread camThread;
+
+        //frames per second (update rate camera)
+        float cam_fps = 1000 / 10;
 
         //control buttons
         Button overview;
@@ -116,7 +122,7 @@ namespace OML_App
 
         //webview and path to our camera feed
         private ImageView iView;
-        string path = "http://192.168.209.88:8090/webcam.mjpeg";
+        string path = "http://192.168.1.103:8090/webcam.mjpeg";
 
         #endregion
 
@@ -267,6 +273,10 @@ namespace OML_App
             //Start Update Thread
             updateThread = new Thread(new ThreadStart(Update));
             updateThread.Start();
+
+            //Start Camera Thread
+            camThread = new Thread(new ThreadStart(UpdateCamera));
+            camThread.Start();
         }//end overrided method OnCreate
 
         #endregion
@@ -380,7 +390,7 @@ namespace OML_App
             //change the background on click
             camera.SetBackgroundResource(Resource.Drawable.camerabutton_pressed);
 
-            UpdateImageView();
+            //UpdateImageView();
             //wView.LoadUrl(path);
             //wView.Invalidate();
             //wView.RequestFocus();
@@ -772,7 +782,6 @@ namespace OML_App
 
                 //keep track of our stop sequence and keep updating our imageview for live "camera"
                 UpdateStopSequence();
-                UpdateImageView();
 
                 Thread.Sleep(Settings_Singleton.Instance.Controller_UpdateRate);
             }            
@@ -929,12 +938,24 @@ namespace OML_App
         }//end method UpdateLED
         #endregion
 
+        public void UpdateCamera()
+        {
+            //keep updating
+            while (true)
+            {
+                //update our image
+                //iView.SetImageBitmap(UpdateImageView());
+                //dont hold the lock
+                Thread.Sleep((int)cam_fps);
+            }//end while
+        }//end method UpdateCamera
+
         /// <summary>
         /// Method to rapidly update our imageview to make it look like a video is playing
         /// </summary>
-        public void UpdateImageView()
+        public Bitmap UpdateImageView(byte[] pic)
         {
-            RunOnUiThread(() =>iView.SetImageURI(Android.Net.Uri.Parse(path)));
+            return BitmapFactory.DecodeByteArray(pic , 0, pic.Length);
         }//end method UpdateImageView
 
         #region UpdateStopSequence
