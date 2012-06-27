@@ -28,7 +28,7 @@ namespace OML_App.Setting
         public TCPClient TCP_Current; //TCP Carmen
         public bool TCP_View_State = false;
         public bool TCP_View_IsServer = false;
-        public string TCP_View_IP = "77.170.34.17";
+        public string TCP_View_IP = "192.168.1.10";
         public int TCP_View_Port = 12000;
         public TCPViewer TCP_Viewer; //TCP Viewer
 
